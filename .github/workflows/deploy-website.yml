@@ -1,0 +1,56 @@
+name: Deploy Website (Staging)
+
+on:
+  push:
+    branches:
+      - dev   # deploy on dev branch
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Setup PHP
+      uses: shivammathur/setup-php@v2
+      with:
+        php-version: 8.2
+
+    - name: Install Composer Dependencies
+      run: composer install --no-dev --optimize-autoloader
+
+    - name: Setup Node
+      uses: actions/setup-node@v3
+      with:
+        node-version: 18
+
+    - name: Build Frontend
+      run: |
+        npm install
+        npm run build
+
+    - name: Prepare Deployment Package
+      run: |
+        zip -r deploy.zip app bootstrap config database public vendor artisan composer.json composer.lock resources/routes
+
+    - name: Upload Files to Staging
+      uses: appleboy/scp-action@v0.1.4
+      with:
+        host: ${{ secrets.BIGROCK_HOST }}
+        username: ${{ secrets.BIGROCK_USER }}
+        key: ${{ secrets.BIGROCK_SSH_KEY }}
+        source: "deploy.zip"
+        target: "/demo/udyantra/staging/"
+
+    - name: Extract & Optimize
+      uses: appleboy/ssh-action@v0.1.4
+      with:
+        host: ${{ secrets.BIGROCK_HOST }}
+        username: ${{ secrets.BIGROCK_USER }}
+        key: ${{ secrets.BIGROCK_SSH_KEY }}
+        script: |
+          cd /demo/udyantra/staging/
+          unzip -o deploy.zip
+          php artisan optimize
+
