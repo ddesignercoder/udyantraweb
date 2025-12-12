@@ -1,4 +1,4 @@
-name: Deploy Website to BigRock
+name: Deploy to BigRock
 
 on:
   push:
@@ -9,48 +9,56 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      # -----------------------------
+      # 1. Checkout repo
+      # -----------------------------
       - name: Checkout code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v3
 
-      - name: Setup SSH for BigRock
+      # -----------------------------
+      # 2. Setup SSH
+      # -----------------------------
+      - name: Setup SSH Key for BigRock
         run: |
           mkdir -p ~/.ssh
           echo "${{ secrets.BIGROCK_SSH_KEY }}" > ~/.ssh/id_rsa
           chmod 600 ~/.ssh/id_rsa
 
-          cat <<EOF > ~/.ssh/config
-          Host bigrock
-            HostName ${{ secrets.BIGROCK_HOST }}
-            User ${{ secrets.BIGROCK_USER }}
-            IdentityFile ~/.ssh/id_rsa
-            PubkeyAcceptedKeyTypes +ssh-rsa
-            HostKeyAlgorithms +ssh-rsa
-            KexAlgorithms +diffie-hellman-group-exchange-sha256
-            StrictHostKeyChecking no
-          EOF
-          chmod 600 ~/.ssh/config
-
+      # -----------------------------
+      # 3. Add known host (BigRock)
+      # -----------------------------
       - name: Add BigRock host key
         run: |
-          mkdir -p ~/.ssh
-          touch ~/.ssh/known_hosts
-
-          # FIX: ssh-keyscan does NOT support -o option
           ssh-keyscan -t rsa ${{ secrets.BIGROCK_HOST }} >> ~/.ssh/known_hosts
-
           chmod 600 ~/.ssh/known_hosts
 
+      # -----------------------------
+      # 4. Remove all default GitHub keys
+      # Prevents "Too many authentication failures"
+      # -----------------------------
+      - name: Clear Default SSH Agent Keys
+        run: |
+          ssh-add -D || true
+          eval `ssh-agent -k` || true
+
+      # -----------------------------
+      # 5. Install rsync
+      # -----------------------------
       - name: Install rsync
         run: sudo apt-get update && sudo apt-get install -y rsync
 
+      # -----------------------------
+      # 6. Deploy using rsync
+      # -----------------------------
       - name: Deploy Website via rsync
         run: |
           rsync -avz --delete \
-            -e "ssh -o StrictHostKeyChecking=no \
-                    -o IdentitiesOnly=yes \
-                    -o HostKeyAlgorithms=+ssh-rsa \
-                    -o PubkeyAcceptedKeyTypes=+ssh-rsa \
-                    -o KexAlgorithms=+diffie-hellman-group-exchange-sha256 \
-                    -i ~/.ssh/id_rsa" \
+            -e "ssh \
+                  -o StrictHostKeyChecking=no \
+                  -o IdentitiesOnly=yes \
+                  -o HostKeyAlgorithms=+ssh-rsa \
+                  -o PubkeyAcceptedKeyTypes=+ssh-rsa \
+                  -o KexAlgorithms=+diffie-hellman-group-exchange-sha256 \
+                  -i ~/.ssh/id_rsa" \
             ./ \
-            ${{ secrets.BIGROCK_USER }}@${{ secrets.BIGROCK_HOST }}:/home1/***/demo/udyantra/staging
+            ${{ secrets.BIGROCK_USER }}@${{ secrets.BIGROCK_HOST }}:/home1/${{ secrets.CPANEL_USER }}/demo/udyantra/staging
