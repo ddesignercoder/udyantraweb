@@ -1,4 +1,4 @@
-name: Deploy Website to BigRock
+name: Deploy Laravel Projects to BigRock
 
 on:
   push:
@@ -9,29 +9,36 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # -----------------------------
-      # 1. Checkout repo
-      # -----------------------------
+      # 1️⃣ Checkout code
       - name: Checkout code
         uses: actions/checkout@v3
 
-      # -----------------------------
-      # 2. Install rsync
-      # -----------------------------
-      - name: Install rsync
-        run: sudo apt-get update && sudo apt-get install -y rsync
-
-      # -----------------------------
-      # 3. Setup SSH agent and add private key
-      # -----------------------------
-      - name: Setup SSH Agent
+      # 2️⃣ Install rsync and PHP CLI
+      - name: Install rsync and PHP
         run: |
-          eval "$(ssh-agent -s)"
-          echo "${{ secrets.BIGROCK_SSH_KEY }}" | ssh-add -
+          sudo apt-get update
+          sudo apt-get install -y rsync php-cli unzip
 
-      # -----------------------------
-      # 4. Deploy via rsync
-      # -----------------------------
+      # 3️⃣ Setup SSH agent
+      - name: Setup SSH Agent
+        uses: webfactory/ssh-agent@v0.7.1
+        with:
+          ssh-private-key: ${{ secrets.BIGROCK_SSH_KEY }}
+
+      # 4️⃣ Deploy Website files
       - name: Deploy Website via rsync
         run: |
-          rsync -avz --delete -e "ssh ..." ./ ${{ secrets.BIGROCK_USER }}@${{ secrets.BIGROCK_HOST }}:/home1/${{ secrets.CPANEL_USER }}/demo/udyantra/staging/
+          rsync -avz --delete \
+            -e "ssh -o StrictHostKeyChecking=no" \
+            ./staging/ ${{ secrets.BIGROCK_USER }}@${{ secrets.BIGROCK_HOST }}:/home1/${{ secrets.BIGROCK_USER }}/public_html/
+
+      # 6️⃣ Run Composer & Laravel commands on server (Website)
+      - name: Run Website Composer & Laravel commands
+        run: |
+          ssh -o StrictHostKeyChecking=no ${{ secrets.BIGROCK_USER }}@${{ secrets.BIGROCK_HOST }} "
+            cd /home1/${{ secrets.BIGROCK_USER }}/public_html &&
+            composer install --no-dev --optimize-autoloader &&
+            php artisan migrate --force &&
+            php artisan config:cache &&
+            php artisan route:cache
+          "
