@@ -1,0 +1,44 @@
+name: Deploy Laravel Projects to BigRock
+
+on:
+  push:
+    branches: ["main"]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      # 1️⃣ Checkout code
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      # 2️⃣ Install rsync and PHP CLI
+      - name: Install rsync and PHP
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y rsync php-cli unzip
+
+      # 3️⃣ Setup SSH agent
+      - name: Setup SSH Agent
+        uses: webfactory/ssh-agent@v0.9.0
+        with:
+          ssh-private-key: ${{ secrets.BIGROCK_SSH_KEY }}
+
+      # 4️⃣ Deploy Website files
+      - name: Deploy Website via rsync
+        run: |
+          rsync -avz --delete \
+            -e "ssh -o StrictHostKeyChecking=no" \
+            ./ ${{ secrets.BIGROCK_USER }}@${{ secrets.BIGROCK_HOST }}:/home1/${{ secrets.BIGROCK_USER }}/demo/udyantra/production
+
+      # 6️⃣ Run Composer & Laravel commands on server (Website)
+      - name: Run Website Composer & Laravel commands
+        run: |
+          ssh -o StrictHostKeyChecking=no ${{ secrets.BIGROCK_USER }}@${{ secrets.BIGROCK_HOST }} "
+            cd /home1/${{ secrets.BIGROCK_USER }}/demo/udyantra/production &&
+            composer install --no-dev --optimize-autoloader &&
+            php artisan migrate --force &&
+            php artisan config:cache &&
+            php artisan route:cache
+          "
