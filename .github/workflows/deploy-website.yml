@@ -12,7 +12,7 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Setup SSH with legacy algorithms for BigRock
+      - name: Setup SSH for BigRock
         run: |
           mkdir -p ~/.ssh
           echo "${{ secrets.BIGROCK_SSH_KEY }}" > ~/.ssh/id_rsa
@@ -26,15 +26,23 @@ jobs:
             PubkeyAcceptedKeyTypes +ssh-rsa
             HostKeyAlgorithms +ssh-rsa
             KexAlgorithms +diffie-hellman-group-exchange-sha256
+            StrictHostKeyChecking no
           EOF
           chmod 600 ~/.ssh/config
+
+      - name: Add BigRock host key
+        run: |
+          mkdir -p ~/.ssh
+          touch ~/.ssh/known_hosts
+          ssh-keyscan -o KexAlgorithms=+diffie-hellman-group-exchange-sha256 -t rsa ${{ secrets.BIGROCK_HOST }} >> ~/.ssh/known_hosts
+          chmod 600 ~/.ssh/known_hosts
 
       - name: Install rsync
         run: sudo apt-get update && sudo apt-get install -y rsync
 
-      - name: Deploy using rsync
+      - name: Deploy Website via rsync
         run: |
           rsync -avz --delete \
-            -e "ssh -o HostKeyAlgorithms=+ssh-rsa -o PubkeyAcceptedKeyTypes=+ssh-rsa -o KexAlgorithms=+diffie-hellman-group-exchange-sha256" \
+            -e "ssh -o StrictHostKeyChecking=no -o HostKeyAlgorithms=+ssh-rsa -o PubkeyAcceptedKeyTypes=+ssh-rsa -o KexAlgorithms=+diffie-hellman-group-exchange-sha256" \
             ./ \
-            bigrock:/home1/a1662bta/demo/udyantra/staging/
+            bigrock:/home1/a1662bta/demo/udyantra/staging
