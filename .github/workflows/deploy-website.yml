@@ -30,13 +30,13 @@ jobs:
         run: |
           rsync -avz --delete \
             -e "ssh -o StrictHostKeyChecking=no" \
-            ./staging/ ${{ secrets.BIGROCK_USER }}@${{ secrets.BIGROCK_HOST }}:/home1/${{ secrets.BIGROCK_USER }}/public_html/
+            ./ ${{ secrets.BIGROCK_USER }}@${{ secrets.BIGROCK_HOST }}:/home1/${{ secrets.BIGROCK_USER }}/demo/udyantra/staging
 
       # 6️⃣ Run Composer & Laravel commands on server (Website)
       - name: Run Website Composer & Laravel commands
         run: |
           ssh -o StrictHostKeyChecking=no ${{ secrets.BIGROCK_USER }}@${{ secrets.BIGROCK_HOST }} "
-            cd /home1/${{ secrets.BIGROCK_USER }}/public_html &&
+            cd /home1/${{ secrets.BIGROCK_USER }}/demo/udyantra/staging &&
             composer install --no-dev --optimize-autoloader &&
             php artisan migrate --force &&
             php artisan config:cache &&
