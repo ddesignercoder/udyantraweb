@@ -34,12 +34,4 @@ jobs:
       # -----------------------------
       - name: Deploy Website via rsync
         run: |
-          rsync -avz --delete \
-            -e "ssh \
-                  -o StrictHostKeyChecking=no \
-                  -o IdentitiesOnly=yes \
-                  -o HostKeyAlgorithms=+ssh-rsa \
-                  -o PubkeyAcceptedKeyTypes=+ssh-rsa \
-                  -o KexAlgorithms=+diffie-hellman-group-exchange-sha256" \
-            ./ \
-            ${{ secrets.BIGROCK_USER }}@${{ secrets.BIGROCK_HOST }}:/home1/${{ secrets.CPANEL_USER }}/website
+          rsync -avz --delete -e "ssh ..." ./ ${{ secrets.BIGROCK_USER }}@${{ secrets.BIGROCK_HOST }}:/home1/${{ secrets.CPANEL_USER }}/demo/udyantra/staging/
