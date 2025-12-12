@@ -53,10 +53,10 @@ jobs:
       - name: Deploy via FTP
         uses: SamKirkland/FTP-Deploy-Action@v4.3.3
         with:
-          server: ${{ secrets.BIGROCK_FTP_HOST }}
-          username: ${{ secrets.BIGROCK_FTP_USER }}
+          server: ${{ secrets.BIGROCK_HOST }}
+          username: ${{ secrets.BIGROCK_USER }}
           password: ${{ secrets.BIGROCK_FTP_PASS }}
           local-dir: ./deploy
-          server-dir: ${{ secrets.BIGROCK_REMOTE_PATH }}
+          server-dir: /home1/${{ secrets.BIGROCK_USER }}/demo/udyantra/staging/
           dry-run: false
           dangerous-clean-slate: false   # deletes only changed files
