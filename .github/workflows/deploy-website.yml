@@ -30,7 +30,7 @@ jobs:
           chmod 600 ~/.ssh/config
 
       - name: Deploy Website via rsync
-        uses: burnett01/rsync-deployments@v5.2
+        uses: burnett01/rsync-deployments@v1.0.2
         with:
           switches: -avzr --delete
           path: "./"
