@@ -1,4 +1,4 @@
-name: Deploy to BigRock
+name: Deploy Website to BigRock
 
 on:
   push:
@@ -16,39 +16,21 @@ jobs:
         uses: actions/checkout@v3
 
       # -----------------------------
-      # 2. Setup SSH
-      # -----------------------------
-      - name: Setup SSH Key for BigRock
-        run: |
-          mkdir -p ~/.ssh
-          echo "${{ secrets.BIGROCK_SSH_KEY }}" > ~/.ssh/id_rsa
-          chmod 600 ~/.ssh/id_rsa
-
-      # -----------------------------
-      # 3. Add known host (BigRock)
-      # -----------------------------
-      - name: Add BigRock host key
-        run: |
-          ssh-keyscan -t rsa ${{ secrets.BIGROCK_HOST }} >> ~/.ssh/known_hosts
-          chmod 600 ~/.ssh/known_hosts
-
-      # -----------------------------
-      # 4. Remove all default GitHub keys
-      # Prevents "Too many authentication failures"
-      # -----------------------------
-      - name: Clear Default SSH Agent Keys
-        run: |
-          ssh-add -D || true
-          eval `ssh-agent -k` || true
-
-      # -----------------------------
-      # 5. Install rsync
+      # 2. Install rsync
       # -----------------------------
       - name: Install rsync
         run: sudo apt-get update && sudo apt-get install -y rsync
 
       # -----------------------------
-      # 6. Deploy using rsync
+      # 3. Setup SSH agent and add private key
+      # -----------------------------
+      - name: Setup SSH Agent
+        run: |
+          eval "$(ssh-agent -s)"
+          echo "${{ secrets.BIGROCK_SSH_KEY }}" | ssh-add -
+
+      # -----------------------------
+      # 4. Deploy via rsync
       # -----------------------------
       - name: Deploy Website via rsync
         run: |
@@ -58,7 +40,6 @@ jobs:
                   -o IdentitiesOnly=yes \
                   -o HostKeyAlgorithms=+ssh-rsa \
                   -o PubkeyAcceptedKeyTypes=+ssh-rsa \
-                  -o KexAlgorithms=+diffie-hellman-group-exchange-sha256 \
-                  -i ~/.ssh/id_rsa" \
+                  -o KexAlgorithms=+diffie-hellman-group-exchange-sha256" \
             ./ \
-            ${{ secrets.BIGROCK_USER }}@${{ secrets.BIGROCK_HOST }}:/home1/${{ secrets.CPANEL_USER }}/demo/udyantra/staging
+            ${{ secrets.BIGROCK_USER }}@${{ secrets.BIGROCK_HOST }}:/home1/${{ secrets.CPANEL_USER }}/website
