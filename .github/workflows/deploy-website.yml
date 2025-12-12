@@ -1,56 +1,44 @@
-name: Deploy Website (Staging)
+name: Deploy Laravel Projects to BigRock
 
 on:
   push:
-    branches:
-      - dev   # deploy on dev branch
+    branches: ["dev"]
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v3
+      # 1️⃣ Checkout code
+      - name: Checkout code
+        uses: actions/checkout@v3
 
-    - name: Setup PHP
-      uses: shivammathur/setup-php@v2
-      with:
-        php-version: 8.2
+      # 2️⃣ Install rsync and PHP CLI
+      - name: Install rsync and PHP
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y rsync php-cli unzip
 
-    - name: Install Composer Dependencies
-      run: composer install --no-dev --optimize-autoloader
+      # 3️⃣ Setup SSH agent
+      - name: Setup SSH Agent
+        uses: webfactory/ssh-agent@v0.9.0
+        with:
+          ssh-private-key: ${{ secrets.BIGROCK_SSH_KEY }}
 
-    - name: Setup Node
-      uses: actions/setup-node@v3
-      with:
-        node-version: 18
+      # 4️⃣ Deploy Website files
+      - name: Deploy Website via rsync
+        run: |
+          rsync -avz --delete \
+            -e "ssh -o StrictHostKeyChecking=no" \
+            ./ ${{ secrets.BIGROCK_USER }}@${{ secrets.BIGROCK_HOST }}:/home1/${{ secrets.BIGROCK_USER }}/demo/udyantra/staging
 
-    - name: Build Frontend
-      run: |
-        npm install
-        npm run build
-
-    - name: Prepare Deployment Package
-      run: |
-        zip -r deploy.zip app bootstrap config database public vendor artisan composer.json composer.lock resources/routes
-
-    - name: Upload Files to Staging
-      uses: appleboy/scp-action@v0.1.4
-      with:
-        host: ${{ secrets.BIGROCK_HOST }}
-        username: ${{ secrets.BIGROCK_USER }}
-        key: ${{ secrets.BIGROCK_SSH_KEY }}
-        source: "deploy.zip"
-        target: "/demo/udyantra/staging/"
-
-    - name: Extract & Optimize
-      uses: appleboy/ssh-action@v0.1.4
-      with:
-        host: ${{ secrets.BIGROCK_HOST }}
-        username: ${{ secrets.BIGROCK_USER }}
-        key: ${{ secrets.BIGROCK_SSH_KEY }}
-        script: |
-          cd /demo/udyantra/staging/
-          unzip -o deploy.zip
-          php artisan optimize
-
+      # 6️⃣ Run Composer & Laravel commands on server (Website)
+      - name: Run Website Composer & Laravel commands
+        run: |
+          ssh -o StrictHostKeyChecking=no ${{ secrets.BIGROCK_USER }}@${{ secrets.BIGROCK_HOST }} "
+            cd /home1/${{ secrets.BIGROCK_USER }}/demo/udyantra/staging &&
+            composer install --no-dev --optimize-autoloader &&
+            php artisan migrate --force &&
+            php artisan config:cache &&
+            php artisan route:cache
+          "
