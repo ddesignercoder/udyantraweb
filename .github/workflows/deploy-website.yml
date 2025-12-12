@@ -1,4 +1,4 @@
-name: Deploy Website (Staging)
+name: Deploy Website to BigRock
 
 on:
   push:
@@ -9,10 +9,10 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout Code
+      - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Setup SSH for BigRock
+      - name: Setup SSH with legacy algorithms for BigRock
         run: |
           mkdir -p ~/.ssh
           echo "${{ secrets.BIGROCK_SSH_KEY }}" > ~/.ssh/id_rsa
@@ -23,17 +23,18 @@ jobs:
             HostName ${{ secrets.BIGROCK_HOST }}
             User ${{ secrets.BIGROCK_USER }}
             IdentityFile ~/.ssh/id_rsa
-            KexAlgorithms +diffie-hellman-group-exchange-sha256
             PubkeyAcceptedKeyTypes +ssh-rsa
             HostKeyAlgorithms +ssh-rsa
+            KexAlgorithms +diffie-hellman-group-exchange-sha256
           EOF
           chmod 600 ~/.ssh/config
 
-      - name: Deploy Website via rsync
-        uses: burnett01/rsync-deployments@v1.0.0
-        with:
-          switches: -avzr --delete
-          path: "./"
-          remote_path: "/home1/a1662bta/demo/udyantra/staging/"
-          remote_host: bigrock
-          remote_port: 22
+      - name: Install rsync
+        run: sudo apt-get update && sudo apt-get install -y rsync
+
+      - name: Deploy using rsync
+        run: |
+          rsync -avz --delete \
+            -e "ssh -o HostKeyAlgorithms=+ssh-rsa -o PubkeyAcceptedKeyTypes=+ssh-rsa -o KexAlgorithms=+diffie-hellman-group-exchange-sha256" \
+            ./ \
+            bigrock:/home1/a1662bta/demo/udyantra/staging/
