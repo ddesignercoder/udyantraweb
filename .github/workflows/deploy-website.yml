@@ -57,6 +57,6 @@ jobs:
           username: ${{ secrets.BIGROCK_USER }}
           password: ${{ secrets.BIGROCK_FTP_PASS }}
           local-dir: ./deploy/
-          server-dir: /home1/${{ secrets.BIGROCK_USER }}/demo/udyantra/staging/public/
+          server-dir: /demo/udyantra/staging/public/
           dry-run: false
           dangerous-clean-slate: false   # deletes only changed files
