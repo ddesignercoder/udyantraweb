@@ -32,10 +32,10 @@ jobs:
         with:
           node-version: '18'
 
-      - name: Install NPM Packages & Build
-        run: |
-          npm install
-          npm run build
+      # - name: Install NPM Packages & Build
+      #   run: |
+      #     npm install
+      #     npm run build
 
       # 5️⃣ Prepare Deployment Folder
       - name: Create deployment artifact
