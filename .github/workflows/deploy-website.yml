@@ -1,44 +1,62 @@
-name: Deploy Laravel Projects to BigRock
+name: Deploy Laravel Project to BigRock (FTP)
 
 on:
   push:
-    branches: ["dev"]
+    branches:
+      - dev
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
 
     steps:
-      # 1️⃣ Checkout code
-      - name: Checkout code
+      # 1️⃣ Checkout Code
+      - name: Checkout Code
         uses: actions/checkout@v3
 
-      # 2️⃣ Install rsync and PHP CLI
-      - name: Install rsync and PHP
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y rsync php-cli unzip
-
-      # 3️⃣ Setup SSH agent
-      - name: Setup SSH Agent
-        uses: webfactory/ssh-agent@v0.9.0
+      # 2️⃣ Install PHP & Composer
+      - name: Install PHP & Composer
+        uses: shivammathur/setup-php@v2
         with:
-          ssh-private-key: ${{ secrets.BIGROCK_SSH_KEY }}
+          php-version: '8.2'
+          tools: composer
 
-      # 4️⃣ Deploy Website files
-      - name: Deploy Website via rsync
+      # 3️⃣ Install Composer Dependencies (Optimized for Production)
+      - name: Composer Install
         run: |
-          rsync -avz --delete \
-            -e "ssh -o StrictHostKeyChecking=no" \
-            ./ ${{ secrets.BIGROCK_USER }}@${{ secrets.BIGROCK_HOST }}:/home1/${{ secrets.BIGROCK_USER }}/demo/udyantra/staging
+          composer install --no-dev --optimize-autoloader
 
-      # 6️⃣ Run Composer & Laravel commands on server (Website)
-      - name: Run Website Composer & Laravel commands
+      # 4️⃣ Install Node & Build Assets
+      - name: Install Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+
+      # - name: Install NPM Packages & Build
+      #   run: |
+      #     npm install
+      #     npm run build
+
+      # 5️⃣ Prepare Deployment Folder
+      - name: Create deployment artifact
         run: |
-          ssh -o StrictHostKeyChecking=no ${{ secrets.BIGROCK_USER }}@${{ secrets.BIGROCK_HOST }} "
-            cd /home1/${{ secrets.BIGROCK_USER }}/demo/udyantra/staging &&
-            composer install --no-dev --optimize-autoloader &&
-            php artisan migrate --force &&
-            php artisan config:cache &&
-            php artisan route:cache
-          "
+          mkdir deploy
+          rsync -av --exclude="node_modules" \
+                    --exclude=".git" \
+                    --exclude=".github" \
+                    --exclude="tests" \
+                    --exclude="storage/logs/*" \
+                    --exclude="storage/framework/views/*" \
+                    ./ deploy/
+
+      # 6️⃣ Deploy to BigRock using FTP
+      - name: Deploy via FTP
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.3
+        with:
+          server: ${{ secrets.BIGROCK_HOST }}
+          username: ${{ secrets.BIGROCK_USER }}
+          password: ${{ secrets.BIGROCK_FTP_PASS }}
+          local-dir: ./deploy/
+          server-dir: /demo/udyantra/staging/public/
+          dry-run: false
+          dangerous-clean-slate: false   # deletes only changed files
