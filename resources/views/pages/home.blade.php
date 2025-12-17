@@ -16,7 +16,7 @@
 
 @section('content')
     {{-- SECTION 1: HERO Section --}}
-    <section class="relative bg-secondary w-full z-10 overflow-hidden">
+    <section class="relative bg-secondary w-full z-10 overflow-hidden md:overflow-visible">
         
         {{-- Background Decoration (Leaf) --}}
         <div class="absolute bottom-[40%] right-[30%] transform translate-x-1/2 translate-y-1/2 z-0 opacity-40 pointer-events-none w-[500px] lg:w-[700px] overflow-hidden">
@@ -48,8 +48,8 @@
                 </div>
 
                 {{-- 3. Right Side: OverlapDevice Mockup Image --}}
-                <div class="relative lg:absolute bottom-0  right-0  lg:w-[65%] flex justify-center md:justify-end z-20 
-                            transform translate-y-[40%] md:translate-y-[30%] translate-x-[0%]">
+                <div class="relative lg:absolute bottom-8 md:bottom-0 right-[-8%] md:right-0  lg:w-[65%] flex justify-center md:justify-end z-20 
+                            transform translate-y-[40%] md:translate-y-[30%]  md:translate-x-[0%]">
                     
                     <img src="{{ asset('assets/image/home/hero-devices.svg') }}" 
                         alt="Dashboard Preview" 
