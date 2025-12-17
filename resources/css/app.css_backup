@@ -1,0 +1,35 @@
+/* 1. Import Inter Font first */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+
+@import 'tailwindcss';
+
+@source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
+@source '../../storage/framework/views/*.php';
+@source '../**/*.blade.php';
+@source '../**/*.js';
+
+@theme {
+    /* 1. Udyantra Brand Colors */
+    --color-cyan: #00C6D9;
+    --color-cyan-hover: #00AFC1;
+    --color-cyan-light: #E6FAFC;
+    
+    --color-navy: #263544;
+    --color-navy-light: #7A8A99;
+    
+    /* 2. Form & UI Colors */
+    --color-input-bg: #F8FEFF;
+    --color-input-border: #CCE8EB;
+    --color-success: #24C784;
+    --color-warning: #FFB84D;
+    --color-error: #FF5F5F;
+
+    /* 3. Fonts */
+    --font-sans: "Inter", "Poppins", sans-serif;
+
+    /* 4. Custom Shapes */
+    --radius-card: 16px;
+    --radius-btn: 10px;
+    
+    --shadow-card: 0 4px 10px rgba(0, 0, 0, 0.05);
+}
