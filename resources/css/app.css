@@ -9,27 +9,41 @@
 @source '../**/*.js';
 
 @theme {
-    /* 1. Udyantra Brand Colors */
-    --color-cyan: #00C6D9;
-    --color-cyan-hover: #00AFC1;
-    --color-cyan-light: #E6FAFC;
-    
-    --color-navy: #263544;
-    --color-navy-light: #7A8A99;
-    
-    /* 2. Form & UI Colors */
-    --color-input-bg: #F8FEFF;
-    --color-input-border: #CCE8EB;
-    --color-success: #24C784;
-    --color-warning: #FFB84D;
-    --color-error: #FF5F5F;
 
-    /* 3. Fonts */
-    --font-sans: "Inter", "Poppins", sans-serif;
+      /* =========================================
+      1. COLORS
+      ========================================= */
+      /*Default Colors*/
+      --color-black:       #000000; 
+      --color-white:       #ffffff; 
 
-    /* 4. Custom Shapes */
-    --radius-card: 16px;
-    --radius-btn: 10px;
-    
-    --shadow-card: 0 4px 10px rgba(0, 0, 0, 0.05);
+      /* BRANDING: The main colors of Udyantra */
+      --color-primary:        #018580; /* Rich Teal / Persian Green */
+      --color-primary-light:  #1F9A94; /* Light Sea Green (Hover state) */
+      --color-primary-dark:   #015F58; /* Deep Teal (Active state / Text) */
+
+      --color-secondary:      #6FC7C4;/* Soft Turquoise (Backgrounds / Accents) */
+      
+      /*Border Colors*/
+      --color-gray-100: #f3f4f6;
+      --color-borderBase: #374151;
+      --color-borderAround: #263544;
+
+      /*Text Colors*/
+      --color-textBlack: #0e141a;
+      /*Horizontal Line*/
+      --color-hrGray: #d9d9d9;
+      
+      /* Define the shadow here using the variable */
+      --shadow-hard: -3px 3px 0px 0px var(--color-borderBase);
+      /* =========================================
+        2. TYPOGRAPHY
+        ========================================= */
+      
+      /* Body Text (Clean, readable) */
+        --font-sans: "Inter", "Poppins", sans-serif;
+      
+
+
+
 }
