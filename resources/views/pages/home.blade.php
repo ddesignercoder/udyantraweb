@@ -164,7 +164,7 @@
 
         <div class="sticky top-0 h-dvh flex flex-col justify-start md:justify-center pt-16 md:pt-0 pb-10 md:pb-0 overflow-hidden bg-white z-20">
             
-            <div class="max-w-7xl mx-auto px-6 lg:px-8 text-center w-full h-full flex flex-col justify-center md:block">
+            <div class="max-w-7xl mx-auto px-6 lg:px-8 md:py-8 text-center w-full h-full flex flex-col justify-center md:block">
                 
                 {{-- Heading --}}
                 <h2 class="text-2xl md:text-xxl font-serif font-bold text-black leading-tight mb-4 md:mb-6 shrink-0">
@@ -172,9 +172,9 @@
                 </h2>
 
                 {{-- PROGRESS BAR --}}
-                <div class="w-full max-w-6xl mx-auto h-1 bg-hrGray-200 mb-6 md:mb-12 relative overflow-hidden rounded-full shrink-0">
-                    <div class="absolute top-0 h-full bg-black w-1/3 rounded-full transition-all duration-75 ease-linear will-change-transform"
-                        :style="`left: ${scrollPercentage * 66.66}%`">
+                <div class="w-full max-w-6xl mx-auto h-1 bg-hrGray-200 mb-6 md:mb-8 relative overflow-hidden rounded-full shrink-0">
+                    <div class="absolute top-0 left-0 h-full bg-black rounded-full transition-all duration-75 ease-linear will-change-transform"
+                        :style="`width: ${33.33 + (scrollPercentage * 66.66)}%`">
                     </div>
                 </div>
 
@@ -184,7 +184,7 @@
 
                     {{-- STEP 1 --}}
                     <div class="w-1/3 shrink-0 flex flex-col items-center justify-center px-4">
-                        <p class="text-black text-lg md:text-xl max-w-2xl mx-auto leading-relaxed mb-4 md:mb-8">
+                        <p class="text-black text-lg md:text-xl max-w-2xl mx-auto leading-relaxed mb-4 md:mb-6">
                             <span class="font-bold block mb-2 text-xl md:text-3xl">Take the assessment online</span>
                             from any device
                         </p>
@@ -196,7 +196,7 @@
 
                     {{-- STEP 2 --}}
                     <div class="w-1/3 shrink-0 flex flex-col items-center justify-center px-4">
-                        <p class="text-black text-lg md:text-xl max-w-2xl mx-auto leading-relaxed mb-4 md:mb-8">
+                        <p class="text-black text-lg md:text-xl max-w-2xl mx-auto leading-relaxed mb-4 md:mb-6">
                             <span class="font-bold block mb-2 text-xl md:text-3xl">Receive a detailed report instantly</span>
                             highlighting strengths and career matches
                         </p>
@@ -207,7 +207,7 @@
 
                     {{-- STEP 3 --}}
                     <div class="w-1/3 shrink-0 flex flex-col items-center justify-center px-4">
-                        <p class="text-black text-lg md:text-xl max-w-2xl mx-auto leading-relaxed mb-4 md:mb-8">
+                        <p class="text-black text-lg md:text-xl max-w-2xl mx-auto leading-relaxed mb-4 md:mb-6">
                             <span class="font-bold block mb-2 text-xl md:text-3xl">Plan your next steps</span>
                             with clear recommendations
                         </p>
@@ -219,7 +219,7 @@
                 </div> 
 
                 {{-- Static Action Buttons --}}
-                <div class="flex flex-col md:flex-row justify-center items-center gap-4 md:gap-6 mt-6 md:mt-12 shrink-0">
+                <div class="flex flex-col md:flex-row justify-center items-center gap-4 md:gap-6 mt-6  shrink-0">
                     <a href="#demo-tests" class="inline-block bg-primary text-white font-bold text-base px-10 py-3 md:py-4 rounded-full border-2 border-secondary shadow-hard hover:shadow-none hover:-translate-x-0.5 hover:translate-y-0.5 transition-all duration-200 w-full md:w-auto text-center">
                         Try Demo Tests
                     </a>
