@@ -29,7 +29,7 @@
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center lg:pb-20">
                 
                 {{-- 2. Left Side: Text Content --}}
-                <div class="text-left space-y-6 max-w-xl">
+                <div class="text-center md:text-left space-y-6 max-w-xl">
                     <h1 class="text-xl md:text-3xl font-semibold text-black leading-tight font-sans">
                         Discover your true career path and skills with 
                         science-backed assessments
@@ -48,7 +48,7 @@
                 </div>
 
                 {{-- 3. Right Side: OverlapDevice Mockup Image --}}
-                <div class="relative lg:absolute bottom-8 md:bottom-0 right-[-8%] md:right-0  lg:w-[65%] flex justify-center md:justify-end z-20 
+                <div class="relative lg:absolute bottom-7 md:bottom-0 right-[-8%] md:right-[-14.5%]  lg:w-[65%] flex justify-center md:justify-end z-20 
                             transform translate-y-[40%] md:translate-y-[30%]  md:translate-x-[0%]">
                     
                     <img src="{{ asset('assets/image/home/hero-devices.svg') }}" 
@@ -63,7 +63,7 @@
     {{-- SECTION 2: WHAT IS A PSYCHOMETRIC TEST? --}}
     <section class="bg-white w-full py-16 md:py-24 relative z-0">
         <div class="max-w-7xl mx-auto px-2 md:px-6">
-            <div class="flex flex-col items-center text-left md:text-center space-y-8 lg:mt-32">
+            <div class="flex flex-col items-center text-center space-y-8 lg:mt-32">
                 
                 {{-- Heading --}}
                 <h2 class="text-xl md:text-3xl font-semibold text-black font-sans mb-2">
@@ -71,7 +71,7 @@
                 </h2>
 
                 {{-- Lead Text--}}
-                <div class="space-y-4 max-w-5xl text-base text-textBlack leading-relaxed">
+                <div class="space-y-4 max-w-5xl text-base text-textBlack ">
                     <p>
                         A <span class="font-semibold">psychometric test</span> is a scientific assessment that measures an individual’s abilities, personality, interests, and behaviour. <br>
                         It helps understand strengths, preferences, and potential beyond academic scores or resumes.
@@ -79,7 +79,7 @@
                 </div>
 
                 {{-- Body Text--}}
-                <div class="max-w-5xl text-base md:text-base text-textBlack leading-relaxed">
+                <div class="max-w-5xl text-base md:text-base text-textBlack ">
                     <p>
                         These tests support career guidance, subject selection, role fitment, and personal development by providing objective, unbiased insights. When interpreted by experts, psychometric assessments enable confident decision-making and meaningful growth.
                     </p>
@@ -94,7 +94,7 @@
     <section class="w-full py-16 md:py-24 bg-cover bg-center" 
              style="background-image: url('{{ asset('assets/image/home/section3-pattern-bg.svg') }}');">
         
-        <div class="max-w-7xl mx-auto px-2 md:px-6 text-left md:text-center">
+        <div class="max-w-7xl mx-auto px-2 md:px-6 text-center">
             <h2 class="text-xl md:text-4xl font-semibold font-sans  text-black leading-tight mb-12">
                 Who can benefit out of these tests?
             </h2>

@@ -4,7 +4,7 @@
         <nav class="w-full max-w-7xl mx-auto px-2 md:px-4">
             <div class="flex justify-between h-16 items-center">
                 
-                {{-- Logo --}}
+                {{-- Logo --}} 
                 <a href="{{ route('home') }}" class="flex items-center gap-2 transition hover:opacity-90 shrink-0">
                     <img src="{{ asset('assets/image/Udyantra-logo.svg') }}" 
                          alt="Udyantra" 
@@ -12,7 +12,7 @@
                 </a>
 
                 {{-- Desktop Menu Links --}}
-                <div class="hidden md:flex items-center gap-6 lg:gap-8 font-semibold text-sm lg:text-base text-black">
+                <div class="hidden lg:flex items-center gap-6 lg:gap-8 font-semibold text-sm lg:text-base text-black">
                     <a href="#why-choose-us" class="hover:text-primary transition-colors">Why Choose Us</a>
                     <a href="#focus" class="hover:text-primary transition-colors">What We Focus On</a>
                     <a href="#pricing" class="hover:text-primary transition-colors">Pricing</a>
@@ -21,7 +21,7 @@
                 </div>
 
                 {{-- Desktop Action Buttons --}}
-                <div class="hidden md:flex items-center gap-6">
+                <div class="hidden lg:flex items-center gap-6">
                     <div class="bg-primary text-white rounded-full px-6 py-2.5 flex items-center font-medium shadow-sm hover:bg-primary-light transition duration-200">
                         @if(session('api_token'))
                             <form method="POST" action="{{ route('logout') }}" class="flex items-center">
@@ -39,7 +39,7 @@
                 </div>
 
                 {{-- Mobile Menu Trigger --}}
-                <div class="md:hidden flex items-center">
+                <div class="lg:hidden flex items-center">
                     <button @click="mobileMenuOpen = !mobileMenuOpen" class="text-black focus:outline-none p-2">
                         {{-- Hamburger Icon --}}
                         <x-lucide-menu x-show="!mobileMenuOpen" class="h-6 w-6" />
@@ -60,7 +60,7 @@
              x-transition:leave="transition ease-in duration-150"
              x-transition:leave-start="opacity-100 translate-y-0"
              x-transition:leave-end="opacity-0 -translate-y-2"
-             class="md:hidden bg-white border-t border-gray-100 shadow-lg absolute w-full left-0">
+             class="lg:hidden bg-white border-t border-gray-100 shadow-lg absolute w-full left-0">
             
             <div class="px-4 py-4 space-y-2 flex flex-col font-medium text-black">
                 {{-- Login/Register at Top --}}

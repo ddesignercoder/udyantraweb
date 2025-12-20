@@ -9,7 +9,7 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center max-w-5xl mx-auto mb-4">
                 <h2 class="text-3xl md:text-5xl font-serif text-gray-900 mb-4">
-                   Hi, {{ session('user_name', 'Creator') }}! Choose the right plan for you
+                   Hi, {{ session('user_name', 'Creator') }}! Choose the right plan for   you
                 </h2>
                 <p class="text-gray-600 text-lg">
                     Comprehensive assessments tailored for your career stage.
