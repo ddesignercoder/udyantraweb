@@ -4,7 +4,7 @@
         <nav class="w-full max-w-7xl mx-auto px-2 md:px-4">
             <div class="flex justify-between h-16 items-center">
                 
-                {{-- Logo --}}
+                {{-- Logo --}} 
                 <a href="{{ route('home') }}" class="flex items-center gap-2 transition hover:opacity-90 shrink-0">
                     <img src="{{ asset('assets/image/Udyantra-logo.svg') }}" 
                          alt="Udyantra" 

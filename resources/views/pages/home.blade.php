@@ -15,7 +15,7 @@
 @endsection
 
 @section('content')
-    {{-- SECTION 1: HERO Section --}}
+    {{-- SECTION 1: HERO Section --}} 
     <section class="relative bg-secondary w-full z-10 overflow-hidden md:overflow-visible">
         
         {{-- Background Decoration (Leaf) --}}
