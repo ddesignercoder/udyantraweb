@@ -3,7 +3,9 @@
 @section('title', 'Home')
 @section('css')
 <style>
-
+    body{
+        overflow-x: hidden;
+    }
     .hide-scrollbar::-webkit-scrollbar {
         display: none;
     }
@@ -11,33 +13,38 @@
         -ms-overflow-style: none;
         scrollbar-width: none;
     }
-    </style>   
+
+    </style> 
+      
 @endsection
 
 @section('content')
     {{-- SECTION 1: HERO Section --}}
-    <section class="relative bg-secondary w-full z-10 overflow-hidden md:overflow-visible">
+    <section class="relative bg-secondary w-full">
         
         {{-- Background Decoration (Leaf) --}}
-        <div class="absolute bottom-[40%] right-[30%] transform translate-x-1/2 translate-y-1/2 z-0 opacity-40 pointer-events-none w-[500px] lg:w-[700px] overflow-hidden">
+        <div class="absolute bottom-[40%] right-[30%] transform translate-x-1/2 translate-y-1/2 z-0 opacity-40 pointer-events-none w-[200px] md:w-[400px] lg:w-[700px] overflow-hidden">
             <img src="{{ asset('assets/image/home/logo-symbol.svg') }}" 
                 alt="Background Pattern" 
                 class="w-full h-auto object-contain">
         </div>
 
         <div class="max-w-7xl mx-auto px-2 md:px-6 py-8 md:py-12 relative z-10">
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center lg:pb-20">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center pb-30 md:pb-6 lg:pb-20">
                 
                 {{-- 2. Left Side: Text Content --}}
-                <div class="text-left space-y-6 max-w-xl">
+                <div class="text-center md:text-left space-y-6 w-full md:max-w-xl">
                     <h1 class="text-xl md:text-3xl font-semibold text-black leading-tight font-sans">
                         Discover your true career path and skills with 
                         science-backed assessments
                     </h1>
-                    
-                    <p class="text-textBlack text-lg md:text-xl  leading-tight">
-                        Personalized psychometric tests and actionable <br> reports for Students (Grade 8–12) and <br> Professionals.
-                    </p>
+                    <div class="grid grid-cols-1 md:grid-cols-5">
+                        <div class="col-span-4">
+                            <p class="text-textBlack text-lg md:text-xl leading-tight">
+                                Personalized psychometric tests and actionable reports for Students (Grade 8–12) and Professionals.
+                            </p>
+                        </div>
+                    </div>
 
                     <div class="pt-4">
                         <a href="#plans" 
@@ -48,12 +55,11 @@
                 </div>
 
                 {{-- 3. Right Side: OverlapDevice Mockup Image --}}
-                <div class="relative lg:absolute bottom-8 md:bottom-0 right-[-8%] md:right-0  lg:w-[65%] flex justify-center md:justify-end z-20 
-                            transform translate-y-[40%] md:translate-y-[30%]  md:translate-x-[0%]">
+                <div class="absolute bottom-0">
                     
                     <img src="{{ asset('assets/image/home/hero-devices.svg') }}" 
                         alt="Dashboard Preview" 
-                        class="w-full max-w-2xl md:max-w-5xl h-auto drop-shadow-2xl object-contain">
+                        class="w-11/12 md:max-w-xl lg:max-w-4xl h-auto drop-shadow-2xl">
                 </div>
 
             </div>
@@ -437,5 +443,5 @@
             </div>
         </div>
     </section>
-
+ <script src="{{ asset('assets/js/custom.js') }}"></script>
 @endsection
