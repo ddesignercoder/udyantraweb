@@ -148,7 +148,7 @@
             </div>
         </div>
     </section>
-    {{-- SECTION 4: HOW IT WORKS (Scroll-Driven Horizontal Movement) --}}
+    {{-- SECTION 4: HOW IT WORKS --}}
     <section x-data="{ 
                 scrollPercentage: 0,
                 calculateScroll() {
@@ -160,72 +160,70 @@
                 }
             }" 
             @scroll.window="calculateScroll()"
-            class="relative h-[300vh] bg-white"> 
+            class="relative h-[300vh] bg-white z-10"> 
 
-        <div class="sticky top-0 h-screen flex flex-col justify-center overflow-hidden">
+        <div class="sticky top-0 h-dvh flex flex-col justify-start md:justify-center pt-16 md:pt-0 pb-10 md:pb-0 overflow-hidden bg-white z-20">
             
-            <div class="max-w-7xl mx-auto px-6 lg:px-8 text-center w-full">
+            <div class="max-w-7xl mx-auto px-6 lg:px-8 text-center w-full h-full flex flex-col justify-center md:block">
                 
-                <h2 class="text-2xl  md:text-xxl font-serif font-bold text-black leading-tight mb-6">
+                {{-- Heading --}}
+                <h2 class="text-2xl md:text-xxl font-serif font-bold text-black leading-tight mb-4 md:mb-6 shrink-0">
                     How it works?
                 </h2>
 
                 {{-- PROGRESS BAR --}}
-                <div class="w-full max-w-6xl mx-auto h-1 bg-hrGray mb-12 relative overflow-hidden rounded-full">
+                <div class="w-full max-w-6xl mx-auto h-1 bg-hrGray-200 mb-6 md:mb-12 relative overflow-hidden rounded-full shrink-0">
                     <div class="absolute top-0 h-full bg-black w-1/3 rounded-full transition-all duration-75 ease-linear will-change-transform"
                         :style="`left: ${scrollPercentage * 66.66}%`">
                     </div>
                 </div>
 
-                {{-- 
-                MOVING CONTENT TRACK 
-                FIX: Set width to 300% so it holds all 3 screens horizontally.
-                --}}
-                <div class="flex w-[300%] transition-transform duration-75 ease-linear will-change-transform"
+                {{-- MOVING CONTENT TRACK --}}
+                <div class="flex w-[300%] transition-transform duration-75 ease-linear will-change-transform grow-0"
                     :style="`transform: translateX(-${scrollPercentage * 66.66}%)`">
 
                     {{-- STEP 1 --}}
-                    {{-- FIX: Set width to 1/3 (33.33% of 300% = 1 Full Screen) --}}
                     <div class="w-1/3 shrink-0 flex flex-col items-center justify-center px-4">
-                        <p class="text-black text-lg md:text-xl max-w-2xl mx-auto leading-relaxed mb-8">
-                            <span class="font-bold block mb-2 text-2xl md:text-3xl">Take the assessment online</span>
+                        <p class="text-black text-lg md:text-xl max-w-2xl mx-auto leading-relaxed mb-4 md:mb-8">
+                            <span class="font-bold block mb-2 text-xl md:text-3xl">Take the assessment online</span>
                             from any device
                         </p>
+                        {{-- FIX 3: Reduced max-height to 30vh on mobile to prevent bottom clipping --}}
                         <img src="{{ asset('assets/image/home/hero-devices.svg') }}" 
                             alt="Step 1 Dashboard" 
-                            class="w-full h-auto max-h-[50vh] object-contain drop-shadow-xl select-none">
+                            class="w-full h-auto max-h-[30vh] md:max-h-[50vh] object-contain drop-shadow-xl select-none">
                     </div>
 
                     {{-- STEP 2 --}}
                     <div class="w-1/3 shrink-0 flex flex-col items-center justify-center px-4">
-                        <p class="text-black text-lg md:text-xl max-w-2xl mx-auto leading-relaxed mb-8">
-                            <span class="font-bold block mb-2 text-2xl md:text-3xl">Receive a detailed report instantly</span>
+                        <p class="text-black text-lg md:text-xl max-w-2xl mx-auto leading-relaxed mb-4 md:mb-8">
+                            <span class="font-bold block mb-2 text-xl md:text-3xl">Receive a detailed report instantly</span>
                             highlighting strengths and career matches
                         </p>
                         <img src="{{ asset('assets/image/home/section4-image.svg') }}" 
                             alt="Step 2 Recommendations" 
-                            class="w-full h-auto max-h-[50vh] object-contain select-none">
+                            class="w-full h-auto max-h-[30vh] md:max-h-[50vh] object-contain select-none">
                     </div>
 
                     {{-- STEP 3 --}}
                     <div class="w-1/3 shrink-0 flex flex-col items-center justify-center px-4">
-                        <p class="text-black text-lg md:text-xl max-w-2xl mx-auto leading-relaxed mb-8">
-                            <span class="font-bold block mb-2 text-2xl md:text-3xl">Plan your next steps</span>
+                        <p class="text-black text-lg md:text-xl max-w-2xl mx-auto leading-relaxed mb-4 md:mb-8">
+                            <span class="font-bold block mb-2 text-xl md:text-3xl">Plan your next steps</span>
                             with clear recommendations
                         </p>
                         <img src="{{ asset('assets/image/home/section4-step3.svg') }}" 
                             alt="Step 3 Devices" 
-                            class="w-full h-auto max-h-[50vh] object-contain drop-shadow-xl select-none">
+                            class="w-full h-auto max-h-[30vh] md:max-h-[50vh] object-contain drop-shadow-xl select-none">
                     </div>
 
-                </div> {{-- End Moving Track --}}
+                </div> 
 
                 {{-- Static Action Buttons --}}
-                <div class="flex flex-col md:flex-row justify-center items-center gap-6 mt-12">
-                    <a href="#demo-tests" class="inline-block bg-primary text-white font-bold text-base px-10 py-4 rounded-full border-2 border-secondary shadow-hard hover:shadow-none hover:-translate-x-0.5 hover:translate-y-0.5 transition-all duration-200 w-full md:w-auto text-center">
+                <div class="flex flex-col md:flex-row justify-center items-center gap-4 md:gap-6 mt-6 md:mt-12 shrink-0">
+                    <a href="#demo-tests" class="inline-block bg-primary text-white font-bold text-base px-10 py-3 md:py-4 rounded-full border-2 border-secondary shadow-hard hover:shadow-none hover:-translate-x-0.5 hover:translate-y-0.5 transition-all duration-200 w-full md:w-auto text-center">
                         Try Demo Tests
                     </a>
-                    <a href="#sample-report" class="inline-block bg-white text-textBlack font-bold text-base px-10 py-4 rounded-full border-2 border-borderBase shadow-hard hover:shadow-none hover:-translate-x-0.5 hover:translate-y-0.5 transition-all duration-200 w-full md:w-auto text-center">
+                    <a href="#sample-report" class="inline-block bg-white text-textBlack font-bold text-base px-10 py-3 md:py-4 rounded-full border-2 border-borderBase shadow-hard hover:shadow-none hover:-translate-x-0.5 hover:translate-y-0.5 transition-all duration-200 w-full md:w-auto text-center">
                         Download Sample Report
                     </a>
                 </div>
