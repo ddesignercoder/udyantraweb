@@ -79,7 +79,7 @@
                 </div>
 
                 {{-- Body Text--}}
-                <div class="max-w-5xl text-base md:text-base text-textBlack ">
+                <div class="max-w-5xl text-base  text-textBlack ">
                     <p>
                         These tests support career guidance, subject selection, role fitment, and personal development by providing objective, unbiased insights. When interpreted by experts, psychometric assessments enable confident decision-making and meaningful growth.
                     </p>
@@ -167,12 +167,12 @@
             <div class="max-w-7xl mx-auto px-6 lg:px-8 md:py-8 text-center w-full h-full flex flex-col justify-center md:block">
                 
                 {{-- Heading --}}
-                <h2 class="text-2xl md:text-xxl font-serif font-bold text-black leading-tight mb-4 md:mb-6 shrink-0">
+                <h2 class="text-xl md:text-3xl font-serif font-bold text-black leading-tight mb-4 md:mb-6 shrink-0">
                     How it works?
                 </h2>
 
                 {{-- PROGRESS BAR --}}
-                <div class="w-full max-w-6xl mx-auto h-1 bg-hrGray-200 mb-6 md:mb-8 relative overflow-hidden rounded-full shrink-0">
+                <div class="w-full max-w-6xl mx-auto h-1 bg-hrGray mb-6 md:mb-8 relative overflow-hidden rounded-full shrink-0">
                     <div class="absolute top-0 left-0 h-full bg-black rounded-full transition-all duration-75 ease-linear will-change-transform"
                         :style="`width: ${33.33 + (scrollPercentage * 66.66)}%`">
                     </div>
@@ -233,10 +233,10 @@
     </section>
 
     {{-- SECTION 5: Success Stories (Floating Carousel) --}}
-    <section class="py-20 bg-gray-50 font-sans">
+    <section class="py-20 bg-lightgray font-sans">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             
-            <h2 class="text-3xl md:text-5xl font-serif text-center text-gray-900 mb-12">
+            <h2 class="text-lg md:text-3xl font-serif font-bold text-center text-black mb-12">
                 Success stories from our customers
             </h2>
 

@@ -36,6 +36,9 @@
       
       /* Define the shadow here using the variable */
       --shadow-hard: -3px 3px 0px 0px var(--color-borderBase);
+      
+      /*Background Colors*/
+      --color-lightgray:#f0f0f0;/*Light Gray background*/
       /* =========================================
         2. TYPOGRAPHY
         ========================================= */
