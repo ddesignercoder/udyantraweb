@@ -26,6 +26,7 @@
             }
         }"
         @scroll.window="updateScroll()"
+        @click.outside="mobileMenuOpen = false"
         :class="show ? 'translate-y-0' : '-translate-y-full'"
     >
         
@@ -90,7 +91,7 @@
              x-transition:leave-end="opacity-0 -translate-y-2"
              class="lg:hidden bg-white border-t border-gray-100 shadow-lg absolute w-full left-0">
             
-            <div class="px-4 py-4 space-y-2 flex flex-col font-medium text-black">
+            <div class="px-4 py-4 space-y-2 flex flex-col font-medium text-black " @click="mobileMenuOpen = false">
                 {{-- Login/Register at Top --}}
                 <div class="pb-2 border-b border-gray-100 mb-2">
                     @if(session('api_token'))
