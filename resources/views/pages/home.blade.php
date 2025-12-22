@@ -240,7 +240,7 @@
             <h2 class="text-2xl md:text-3xl font-serif font-bold text-center text-black mb-6 md:mb-12">
                 Success stories from our customers
             </h2>
-
+            {{-- MOVING CONTENT STORIES --}}
             <div class="bg-white rounded-4xl shadow-xl p-4 md:p-10 relative">
 
                 <div x-data="{ 
@@ -312,7 +312,24 @@
             </div>
         </div>
     </section>
-    {{-- Section 6: FAQ (Pill Accordion) --}}
+    {{-- Section 6: FAQ --}}
+    @php
+        $faqs = [
+            [
+                'question' => 'How accurate are the tests?',
+                'answer' => 'Our tests are designed to be highly accurate and reliable. Each assessment is developed using standardized methods, validated datasets, and continuous performance reviews to ensure consistency.'
+            ],
+            [
+                'question' => 'Are results confidential?',
+                'answer' => 'Yes, absolutely. We prioritize your privacy and data security above all else. Results are only shared with the specific recipients you authorize.'
+            ],
+            [
+                'question' => 'How long does each test take?',
+                'answer' => 'Most tests take between 15 to 30 minutes to complete, depending on the complexity of the subject matter.'
+            ],
+        ];
+    @endphp
+
     <section class="py-20 bg-white font-sans">
         <div class="max-w-3xl mx-auto px-4">
             <h2 class="text-3xl md:text-5xl font-serif text-center text-gray-900 mb-16">
@@ -320,46 +337,31 @@
             </h2>
 
             <div class="space-y-4">
-                
-                <div x-data="{ open: false }" class="bg-gray-100 rounded-2xl transition-all duration-300">
-                    <button @click="open = !open" class="w-full px-8 py-5 flex items-center justify-between text-left focus:outline-none cursor-pointer">
-                        <span class="text-lg font-medium text-gray-900">How accurate are the tests?</span>
-                        <span class="ml-4 shrink-0">
-                            <svg x-show="!open" class="w-5 h-5 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path></svg>
-                            <svg x-show="open" class="w-5 h-5 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
-                        </span>
-                    </button>
-                    <div x-show="open" x-collapse class="px-8 pb-6 text-gray-600 text-base leading-relaxed">
-                        Our tests are designed to be highly accurate and reliable. Each assessment is developed using standardized methods, validated datasets, and continuous performance reviews to ensure consistency.
-                    </div>
-                </div>
+                @foreach($faqs as $faq)
+                    <div x-data="{ open: false }" class="bg-lightgray rounded-2xl transition-all duration-300">
+                        
+                        {{-- Question / Trigger --}}
+                        <button @click="open = !open" class="w-full px-8 py-5 flex items-center justify-between text-left focus:outline-none cursor-pointer">
+                            <span class="text-lg font-medium text-black">{{ $faq['question'] }}</span>
+                            
+                            {{-- Icons (Using absolute positioning to prevent layout jump) --}}
+                            <span class="ml-4 shrink-0 relative w-5 h-5">
+                                <svg x-show="!open" class="w-5 h-5 text-gray-500 absolute inset-0 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path>
+                                </svg>
+                                <svg x-show="open" x-cloak class="w-5 h-5 text-gray-500 absolute inset-0 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                                </svg>
+                            </span>
+                        </button>
 
-                <div x-data="{ open: false }" class="bg-gray-100 rounded-2xl transition-all duration-300">
-                    <button @click="open = !open" class="w-full px-8 py-5 flex items-center justify-between text-left focus:outline-none cursor-pointer">
-                        <span class="text-lg font-medium text-gray-900">Are results confidential?</span>
-                        <span class="ml-4 shrink-0">
-                            <svg x-show="!open" class="w-5 h-5 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path></svg>
-                            <svg x-show="open" class="w-5 h-5 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
-                        </span>
-                    </button>
-                    <div x-show="open" x-collapse class="px-8 pb-6 text-gray-600 text-base leading-relaxed">
-                        Yes, absolutely. We prioritize your privacy and data security above all else. Results are only shared with the specific recipients you authorize.
+                        {{-- Answer / Content --}}
+                        <div x-show="open" x-collapse x-cloak class="px-8 pb-6 text-textBlack text-base leading-relaxed">
+                            {{ $faq['answer'] }}
+                        </div>
+                        
                     </div>
-                </div>
-
-                <div x-data="{ open: false }" class="bg-gray-100 rounded-2xl transition-all duration-300">
-                    <button @click="open = !open" class="w-full px-8 py-5 flex items-center justify-between text-left focus:outline-none cursor-pointer">
-                        <span class="text-lg font-medium text-gray-900">How long does each test take?</span>
-                        <span class="ml-4 shrink-0">
-                            <svg x-show="!open" class="w-5 h-5 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path></svg>
-                            <svg x-show="open" class="w-5 h-5 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
-                        </span>
-                    </button>
-                    <div x-show="open" x-collapse class="px-8 pb-6 text-gray-600 text-base leading-relaxed">
-                        Most tests take between 15 to 30 minutes to complete, depending on the complexity of the subject matter.
-                    </div>
-                </div>
-
+                @endforeach
             </div>
         </div>
     </section>
