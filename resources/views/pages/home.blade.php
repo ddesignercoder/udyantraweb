@@ -168,7 +168,7 @@
             <div class="max-w-7xl mx-auto px-6 lg:px-8 md:py-8 text-center w-full h-full flex flex-col justify-center md:block">
                 
                 {{-- Heading --}}
-                <h2 class="text-xl md:text-3xl font-serif font-bold text-black leading-tight mb-4 md:mb-6 shrink-0">
+                <h2 class="text-2xl md:text-3xl font-serif font-bold text-black leading-tight mb-4 md:mb-6 shrink-0">
                     How it works?
                 </h2>
 
@@ -234,77 +234,62 @@
     </section>
 
     {{-- SECTION 5: Success Stories --}}
-    <section class="py-20 bg-lightgray font-sans">
+    {{-- 1. 'z-10 relative': Keeps this section ON TOP of the next one --}}
+    <section class="py-10 md:py-20 bg-lightgray font-sans relative z-10">
         <div class="max-w-7xl mx-auto px-4 md:px-6">
 
-            <h2 class="text-2xl md:text-3xl font-serif font-bold text-center text-black mb-6 md:mb-12">
+            <h2 class="text-2xl md:text-4xl font-semibold text-center text-black leading-tight mb-4 md:mb-12">
                 Success stories from our customers
             </h2>
-            {{-- MOVING CONTENT STORIES --}}
-            <div class="bg-white rounded-4xl shadow-xl p-4 md:p-10 relative">
 
+            {{-- MOVING CONTENT STORIES --}}
+            {{-- 2. '-mb-24 md:-mb-32': Pulls the section below UP behind this card --}}
+            <div class="bg-white rounded-4xl shadow-xl p-4 md:p-10 relative -mb-60 md:-mb-70">
+                
+                {{-- Carousel Logic --}}
                 <div x-data="{ 
                         scrollContainer() { return this.$refs.container },
-                        getScrollWidth() { 
-                            // Updated to measure the actual item width dynamically
-                            return this.$refs.container.firstElementChild.getBoundingClientRect().width + 24 
-                        },
-                        scrollNext() { 
-                            this.scrollContainer().scrollBy({ left: this.getScrollWidth(), behavior: 'smooth' }) 
-                        },
-                        scrollPrev() { 
-                            this.scrollContainer().scrollBy({ left: -this.getScrollWidth(), behavior: 'smooth' }) 
-                        }
+                        getScrollWidth() { return this.$refs.container.firstElementChild.getBoundingClientRect().width + 24 },
+                        scrollNext() { this.scrollContainer().scrollBy({ left: this.getScrollWidth(), behavior: 'smooth' }) },
+                        scrollPrev() { this.scrollContainer().scrollBy({ left: -this.getScrollWidth(), behavior: 'smooth' }) }
                     }" class="relative">
 
                     <div x-ref="container" class="flex gap-6 overflow-x-auto snap-x snap-mandatory pb-4 hide-scrollbar">
-
                         @php
                             $stories = [
-                                ['name' => 'Erin Booth', 'role' => 'Virtual Assistant Coach', 'img' => '5', 'title' => 'Get Full Control', 'quote' => 'You should never have anyone dictating the prices you charge for your content. With Teachable, you get full control...'],
-                                ['name' => 'Razvan Ciobanu', 'role' => 'Voxyde', 'img' => '3', 'title' => 'Peace of Mind', 'quote' => 'Teachable is consistently monitored and delivers excellent uptime. As an instructor, that peace of mind is invaluable...'],
-                                ['name' => 'Dan George', 'role' => 'FlightInsight', 'img' => '11', 'title' => '10,000+ Students', 'quote' => 'Teachable gave me the structure to go beyond the classroom. What started as a few dozen students has grown into...'],
-                                ['name' => 'Rony Pinto', 'role' => 'Virtual Assistant Coach', 'img' => '5', 'title' => 'Get Full Control', 'quote' => 'You should never have anyone dictating the prices you charge for your content. With Teachable, you get full control...'],
-                                ['name' => 'Ricky Lee', 'role' => 'Voxyde', 'img' => '3', 'title' => 'Peace of Mind', 'quote' => 'Teachable is consistently monitored and delivers excellent uptime. As an instructor, that peace of mind is invaluable...'],
-                                ['name' => 'Karl Kowalski', 'role' => 'FlightInsight', 'img' => '11', 'title' => '10,000+ Students', 'quote' => 'Teachable gave me the structure to go beyond the classroom. What started as a few dozen students has grown into...'],
+                                ['name' => 'Erin Booth', 'role' => 'Virtual Assistant Coach', 'img' => '5', 'title' => 'Get Full Control', 'quote' => 'You should never have anyone dictating the prices you charge for your content...'],
+                                ['name' => 'Razvan Ciobanu', 'role' => 'Voxyde', 'img' => '3', 'title' => 'Peace of Mind', 'quote' => 'Teachable is consistently monitored and delivers excellent uptime...'],
+                                ['name' => 'Dan George', 'role' => 'FlightInsight', 'img' => '11', 'title' => '10,000+ Students', 'quote' => 'Teachable gave me the structure to go beyond the classroom...'],
+                                ['name' => 'Rony Pinto', 'role' => 'Virtual Assistant Coach', 'img' => '5', 'title' => 'Get Full Control', 'quote' => 'You should never have anyone dictating the prices you charge for your content...'],
                             ];
                         @endphp
 
                         @foreach($stories as $story)
                             <div class="w-full md:w-[calc(33.333%-1rem)] flex-none border border-lightgray rounded-xl p-6 snap-center flex flex-col bg-white">
-                                
                                 <div class="flex items-center mb-4">
                                     <img src="https://i.pravatar.cc/150?img={{ $story['img'] }}" 
                                         alt="{{ $story['name'] }}" 
-                                        loading="lazy"
                                         class="w-12 h-12 rounded-full object-cover mr-3 bg-gray-100">
                                     <div>
                                         <h4 class="font-bold text-gray-900 text-sm">{{ $story['name'] }}</h4>
                                         <p class="text-xs text-gray-500">{{ $story['role'] }}</p>
                                     </div>
                                 </div>
-
                                 <h5 class="text-base font-bold text-gray-800 mb-2">{{ $story['title'] }}</h5>
-                                
-                                {{-- Line Clamp ensures dots appear if text is still too long --}}
-                                <p class="text-gray-600 text-sm leading-relaxed mb-6 grow line-clamp-4">
-                                    "{{ $story['quote'] }}"
-                                </p>
-                                
+                                <p class="text-gray-600 text-sm leading-relaxed mb-6 grow line-clamp-4">"{{ $story['quote'] }}"</p>
                                 <a href="#" class="text-sm font-bold text-gray-900 hover:underline mt-auto flex items-center">
                                     Explore school <span class="ml-1">&rarr;</span>
                                 </a>
                             </div>
                         @endforeach
-
                     </div>
 
                     {{-- Controls --}}
-                    <div class="flex justify-center gap-4 mt-2 md:mt-8">
-                        <button @click="scrollPrev()" class="w-12 h-12 rounded-full bg-black text-white cursor-pointer flex items-center justify-center hover:bg-gray-800 transition shadow-lg">
+                    <div class="flex justify-center gap-4 mt-4 md:mt-8">
+                        <button @click="scrollPrev()" class="w-12 h-12 rounded-full bg-black text-white flex items-center justify-center hover:bg-gray-800 transition shadow-lg">
                             &larr;
                         </button>
-                        <button @click="scrollNext()" class="w-12 h-12 rounded-full bg-black text-white cursor-pointer flex items-center justify-center hover:bg-gray-800 transition shadow-lg">
+                        <button @click="scrollNext()" class="w-12 h-12 rounded-full bg-black text-white flex items-center justify-center hover:bg-gray-800 transition shadow-lg">
                             &rarr;
                         </button>
                     </div>
@@ -312,54 +297,38 @@
             </div>
         </div>
     </section>
-    {{-- Section 6: FAQ --}}
-    @php
-        $faqs = [
-            [
-                'question' => 'How accurate are the tests?',
-                'answer' => 'Our tests are designed to be highly accurate and reliable. Each assessment is developed using standardized methods, validated datasets, and continuous performance reviews to ensure consistency.'
-            ],
-            [
-                'question' => 'Are results confidential?',
-                'answer' => 'Yes, absolutely. We prioritize your privacy and data security above all else. Results are only shared with the specific recipients you authorize.'
-            ],
-            [
-                'question' => 'How long does each test take?',
-                'answer' => 'Most tests take between 15 to 30 minutes to complete, depending on the complexity of the subject matter.'
-            ],
-        ];
-    @endphp
 
-    <section class="py-20 bg-white font-sans">
+    {{-- Section 6: FAQ --}}
+    {{-- 3. 'pt-48': Adds extra padding at top so the title isn't hidden behind the card --}}
+    {{-- 4. 'z-0': Ensures this background sits BEHIND the card --}}
+    <section class="pt-70 pb-20 bg-white font-sans relative z-0">
         <div class="max-w-3xl mx-auto px-4">
-            <h2 class="text-3xl md:text-5xl font-serif text-center text-gray-900 mb-16">
+            <h2 class="text-2xl md:text-4xl font-semibold text-center text-black mb-6 md:mb-12">
                 Frequently asked questions
             </h2>
+            
+            {{-- FAQ Items --}}
+            @php
+                $faqs = [
+                    ['question' => 'How accurate are the tests?', 'answer' => 'Our tests are designed to be highly accurate...'],
+                    ['question' => 'Are results confidential?', 'answer' => 'Yes, absolutely. We prioritize your privacy...'],
+                    ['question' => 'How long does each test take?', 'answer' => 'Most tests take between 15 to 30 minutes...'],
+                ];
+            @endphp
 
             <div class="space-y-4">
                 @foreach($faqs as $faq)
                     <div x-data="{ open: false }" class="bg-lightgray rounded-2xl transition-all duration-300">
-                        
-                        {{-- Question / Trigger --}}
-                        <button @click="open = !open" class="w-full px-8 py-5 flex items-center justify-between text-left focus:outline-none cursor-pointer">
+                        <button @click="open = !open" class="w-full px-3 py-4 md:px-8 md:py-5 flex items-center justify-between text-left focus:outline-none cursor-pointer">
                             <span class="text-lg font-medium text-black">{{ $faq['question'] }}</span>
-                            
-                            {{-- Icons (Using absolute positioning to prevent layout jump) --}}
                             <span class="ml-4 shrink-0 relative w-5 h-5">
-                                <svg x-show="!open" class="w-5 h-5 text-gray-500 absolute inset-0 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path>
-                                </svg>
-                                <svg x-show="open" x-cloak class="w-5 h-5 text-gray-500 absolute inset-0 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
-                                </svg>
+                                <svg x-show="!open" class="w-5 h-5 text-gray-500 absolute inset-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path></svg>
+                                <svg x-show="open" x-cloak class="w-5 h-5 text-gray-500 absolute inset-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
                             </span>
                         </button>
-
-                        {{-- Answer / Content --}}
-                        <div x-show="open" x-collapse x-cloak class="px-8 pb-6 text-textBlack text-base leading-relaxed">
+                        <div x-show="open" x-collapse x-cloak class="px-8 pb-6 text-black text-base leading-relaxed">
                             {{ $faq['answer'] }}
                         </div>
-                        
                     </div>
                 @endforeach
             </div>
