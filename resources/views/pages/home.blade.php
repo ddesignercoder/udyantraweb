@@ -232,151 +232,78 @@
         </div>
     </section>
 
-    {{-- SECTION 5: Success Stories (Floating Carousel) --}}
+    {{-- SECTION 5: Success Stories --}}
     <section class="py-20 bg-lightgray font-sans">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            
+        <div class="max-w-7xl mx-auto px-4 md:px-6">
+
             <h2 class="text-lg md:text-3xl font-serif font-bold text-center text-black mb-12">
                 Success stories from our customers
             </h2>
 
-            <div class="bg-white rounded-4xl shadow-xl p-8 md:p-12 relative">
-                
+            <div class="bg-white rounded-4xl shadow-xl p-4 md:p-10 relative">
+
                 <div x-data="{ 
-                        scrollAmount: 0,
                         scrollContainer() { return this.$refs.container },
-                        scrollNext() { this.scrollContainer().scrollBy({ left: 340, behavior: 'smooth' }) },
-                        scrollPrev() { this.scrollContainer().scrollBy({ left: -340, behavior: 'smooth' }) }
+                        getScrollWidth() { 
+                            // Updated to measure the actual item width dynamically
+                            return this.$refs.container.firstElementChild.getBoundingClientRect().width + 24 
+                        },
+                        scrollNext() { 
+                            this.scrollContainer().scrollBy({ left: this.getScrollWidth(), behavior: 'smooth' }) 
+                        },
+                        scrollPrev() { 
+                            this.scrollContainer().scrollBy({ left: -this.getScrollWidth(), behavior: 'smooth' }) 
+                        }
                     }" class="relative">
 
                     <div x-ref="container" class="flex gap-6 overflow-x-auto snap-x snap-mandatory pb-4 hide-scrollbar">
-                        
-                        <div class="min-w-[300px] md:min-w-[340px] border border-gray-100 rounded-xl p-6 snap-center flex flex-col bg-white">
-                            <div class="flex items-center mb-4">
-                                <img src="https://i.pravatar.cc/150?img=5" alt="Erin Booth" class="w-12 h-12 rounded-full object-cover mr-3">
-                                <div>
-                                    <h4 class="font-bold text-gray-900 text-sm">Erin Booth</h4>
-                                    <p class="text-xs text-gray-500">Virtual Assistant Coach</p>
-                                </div>
-                            </div>
-                            <h5 class="text-base font-bold text-gray-800 mb-2">Get Full Control</h5>
-                            <p class="text-gray-600 text-sm leading-relaxed mb-6 grow">
-                                "You should never have anyone dictating the prices you charge for your content. With Teachable, you get full control..."
-                            </p>
-                            <a href="#" class="text-sm font-bold text-gray-900 hover:underline mt-auto flex items-center">
-                                Explore school <span class="ml-1">&rarr;</span>
-                            </a>
-                        </div>
 
-                        <div class="min-w-[300px] md:min-w-[340px] border border-gray-100 rounded-xl p-6 snap-center flex flex-col bg-white">
-                            <div class="flex items-center mb-4">
-                                <img src="https://i.pravatar.cc/150?img=3" alt="Razvan Ciobanu" class="w-12 h-12 rounded-full object-cover mr-3">
-                                <div>
-                                    <h4 class="font-bold text-gray-900 text-sm">Razvan Ciobanu</h4>
-                                    <p class="text-xs text-gray-500">Voxyde</p>
-                                </div>
-                            </div>
-                            <h5 class="text-base font-bold text-gray-800 mb-2">Peace of Mind</h5>
-                            <p class="text-gray-600 text-sm leading-relaxed mb-6 grow">
-                                "Teachable is consistently monitored and delivers excellent uptime. As an instructor, that peace of mind is invaluable..."
-                            </p>
-                            <a href="#" class="text-sm font-bold text-gray-900 hover:underline mt-auto flex items-center">
-                                Explore school <span class="ml-1">&rarr;</span>
-                            </a>
-                        </div>
+                        @php
+                            $stories = [
+                                ['name' => 'Erin Booth', 'role' => 'Virtual Assistant Coach', 'img' => '5', 'title' => 'Get Full Control', 'quote' => 'You should never have anyone dictating the prices you charge for your content. With Teachable, you get full control...'],
+                                ['name' => 'Razvan Ciobanu', 'role' => 'Voxyde', 'img' => '3', 'title' => 'Peace of Mind', 'quote' => 'Teachable is consistently monitored and delivers excellent uptime. As an instructor, that peace of mind is invaluable...'],
+                                ['name' => 'Dan George', 'role' => 'FlightInsight', 'img' => '11', 'title' => '10,000+ Students', 'quote' => 'Teachable gave me the structure to go beyond the classroom. What started as a few dozen students has grown into...'],
+                                ['name' => 'Erin Booth', 'role' => 'Virtual Assistant Coach', 'img' => '5', 'title' => 'Get Full Control', 'quote' => 'You should never have anyone dictating the prices you charge for your content. With Teachable, you get full control...'],
+                                ['name' => 'Razvan Ciobanu', 'role' => 'Voxyde', 'img' => '3', 'title' => 'Peace of Mind', 'quote' => 'Teachable is consistently monitored and delivers excellent uptime. As an instructor, that peace of mind is invaluable...'],
+                                ['name' => 'Dan George', 'role' => 'FlightInsight', 'img' => '11', 'title' => '10,000+ Students', 'quote' => 'Teachable gave me the structure to go beyond the classroom. What started as a few dozen students has grown into...'],
+                            ];
+                        @endphp
 
-                        <div class="min-w-[300px] md:min-w-[340px] border border-gray-100 rounded-xl p-6 snap-center flex flex-col bg-white">
-                            <div class="flex items-center mb-4">
-                                <img src="https://i.pravatar.cc/150?img=11" alt="Dan George" class="w-12 h-12 rounded-full object-cover mr-3">
-                                <div>
-                                    <h4 class="font-bold text-gray-900 text-sm">Dan George</h4>
-                                    <p class="text-xs text-gray-500">FlightInsight</p>
+                        @foreach($stories as $story)
+                            <div class="w-full md:w-[calc(33.333%-1rem)] flex-none border border-gray-100 rounded-xl p-6 snap-center flex flex-col bg-white">
+                                
+                                <div class="flex items-center mb-4">
+                                    <img src="https://i.pravatar.cc/150?img={{ $story['img'] }}" 
+                                        alt="{{ $story['name'] }}" 
+                                        loading="lazy"
+                                        class="w-12 h-12 rounded-full object-cover mr-3 bg-gray-100">
+                                    <div>
+                                        <h4 class="font-bold text-gray-900 text-sm">{{ $story['name'] }}</h4>
+                                        <p class="text-xs text-gray-500">{{ $story['role'] }}</p>
+                                    </div>
                                 </div>
-                            </div>
-                            <h5 class="text-base font-bold text-gray-800 mb-2">10,000+ Students</h5>
-                            <p class="text-gray-600 text-sm leading-relaxed mb-6 grow">
-                                "Teachable gave me the structure to go beyond the classroom. What started as a few dozen students has grown into..."
-                            </p>
-                            <a href="#" class="text-sm font-bold text-gray-900 hover:underline mt-auto flex items-center">
-                                Explore school <span class="ml-1">&rarr;</span>
-                            </a>
-                        </div>
 
-                        <div class="min-w-[300px] md:min-w-[340px] border border-gray-100 rounded-xl p-6 snap-center flex flex-col bg-white">
-                            <div class="flex items-center mb-4">
-                                <img src="https://i.pravatar.cc/150?img=32" alt="Sarah Jenkins" class="w-12 h-12 rounded-full object-cover mr-3">
-                                <div>
-                                    <h4 class="font-bold text-gray-900 text-sm">Sarah Jenkins</h4>
-                                    <p class="text-xs text-gray-500">Career Counselor</p>
-                                </div>
+                                <h5 class="text-base font-bold text-gray-800 mb-2">{{ $story['title'] }}</h5>
+                                
+                                {{-- Line Clamp ensures dots appear if text is still too long --}}
+                                <p class="text-gray-600 text-sm leading-relaxed mb-6 grow line-clamp-4">
+                                    "{{ $story['quote'] }}"
+                                </p>
+                                
+                                <a href="#" class="text-sm font-bold text-gray-900 hover:underline mt-auto flex items-center">
+                                    Explore school <span class="ml-1">&rarr;</span>
+                                </a>
                             </div>
-                            <h5 class="text-base font-bold text-gray-800 mb-2">Incredible Clarity</h5>
-                            <p class="text-gray-600 text-sm leading-relaxed mb-6 grow">
-                                "The psychometric reports provided insights I couldn't have found on my own. It completely changed my career trajectory."
-                            </p>
-                            <a href="#" class="text-sm font-bold text-gray-900 hover:underline mt-auto flex items-center">
-                                Explore school <span class="ml-1">&rarr;</span>
-                            </a>
-                        </div>
-
-                        <div class="min-w-[300px] md:min-w-[340px] border border-gray-100 rounded-xl p-6 snap-center flex flex-col bg-white">
-                            <div class="flex items-center mb-4">
-                                <img src="https://i.pravatar.cc/150?img=60" alt="Michael Chen" class="w-12 h-12 rounded-full object-cover mr-3">
-                                <div>
-                                    <h4 class="font-bold text-gray-900 text-sm">Michael Chen</h4>
-                                    <p class="text-xs text-gray-500">Student, Class 12</p>
-                                </div>
-                            </div>
-                            <h5 class="text-base font-bold text-gray-800 mb-2">Stream Selection</h5>
-                            <p class="text-gray-600 text-sm leading-relaxed mb-6 grow">
-                                "I was confused between Engineering and Design. The aptitude test highlighted my spatial skills, making the choice obvious."
-                            </p>
-                            <a href="#" class="text-sm font-bold text-gray-900 hover:underline mt-auto flex items-center">
-                                Explore school <span class="ml-1">&rarr;</span>
-                            </a>
-                        </div>
-
-                        <div class="min-w-[300px] md:min-w-[340px] border border-gray-100 rounded-xl p-6 snap-center flex flex-col bg-white">
-                            <div class="flex items-center mb-4">
-                                <img src="https://i.pravatar.cc/150?img=44" alt="Anita Roy" class="w-12 h-12 rounded-full object-cover mr-3">
-                                <div>
-                                    <h4 class="font-bold text-gray-900 text-sm">Anita Roy</h4>
-                                    <p class="text-xs text-gray-500">HR Manager</p>
-                                </div>
-                            </div>
-                            <h5 class="text-base font-bold text-gray-800 mb-2">Hiring Made Easy</h5>
-                            <p class="text-gray-600 text-sm leading-relaxed mb-6 grow">
-                                "We use these assessments for internal hiring. It saves us hours of interview time by filtering the best candidates first."
-                            </p>
-                            <a href="#" class="text-sm font-bold text-gray-900 hover:underline mt-auto flex items-center">
-                                Explore school <span class="ml-1">&rarr;</span>
-                            </a>
-                        </div>
-
-                        <div class="min-w-[300px] md:min-w-[340px] border border-gray-100 rounded-xl p-6 snap-center flex flex-col bg-white">
-                            <div class="flex items-center mb-4">
-                                <img src="https://i.pravatar.cc/150?img=12" alt="David Miller" class="w-12 h-12 rounded-full object-cover mr-3">
-                                <div>
-                                    <h4 class="font-bold text-gray-900 text-sm">David Miller</h4>
-                                    <p class="text-xs text-gray-500">Freelancer</p>
-                                </div>
-                            </div>
-                            <h5 class="text-base font-bold text-gray-800 mb-2">Found My Niche</h5>
-                            <p class="text-gray-600 text-sm leading-relaxed mb-6 grow">
-                                "I struggled to find a niche for years. The personality test showed my strengths in analytical thinking, which led me to data science."
-                            </p>
-                            <a href="#" class="text-sm font-bold text-gray-900 hover:underline mt-auto flex items-center">
-                                Explore school <span class="ml-1">&rarr;</span>
-                            </a>
-                        </div>
+                        @endforeach
 
                     </div>
 
+                    {{-- Controls --}}
                     <div class="flex justify-center gap-4 mt-8">
-                        <button @click="scrollPrev()" class="w-12 h-12 rounded-full bg-black text-white flex items-center justify-center hover:bg-gray-800 transition shadow-lg">
+                        <button @click="scrollPrev()" class="w-12 h-12 rounded-full bg-black text-white cursor-pointer flex items-center justify-center hover:bg-gray-800 transition shadow-lg">
                             &larr;
                         </button>
-                        <button @click="scrollNext()" class="w-12 h-12 rounded-full bg-black text-white flex items-center justify-center hover:bg-gray-800 transition shadow-lg">
+                        <button @click="scrollNext()" class="w-12 h-12 rounded-full bg-black text-white cursor-pointer flex items-center justify-center hover:bg-gray-800 transition shadow-lg">
                             &rarr;
                         </button>
                     </div>
