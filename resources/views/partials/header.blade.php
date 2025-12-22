@@ -1,5 +1,33 @@
-    {{-- HEADER (Navigation + Mobile Menu) --}}
-    <header class="bg-white  shadow-md sticky top-0 z-50 font-sans" x-data="{ mobileMenuOpen: false }">
+{{-- HEADER (Navigation + Mobile Menu) --}}
+    {{-- 1. Updated x-data and added @scroll.window --}}
+    <header 
+        class="bg-white shadow-md sticky top-0 z-50 font-sans transition-transform duration-300 ease-in-out" 
+        x-data="{ 
+            mobileMenuOpen: false,
+            show: true,
+            lastScroll: 0,
+            updateScroll() {
+                const currentScroll = window.pageYOffset;
+                
+                // Always show if at the very top or if mobile menu is open
+                if (currentScroll <= 0 || this.mobileMenuOpen) {
+                    this.show = true;
+                } 
+                // Hide if scrolling down
+                else if (currentScroll > this.lastScroll) {
+                    this.show = false;
+                } 
+                // Show if scrolling up
+                else {
+                    this.show = true;
+                }
+                
+                this.lastScroll = currentScroll; 
+            }
+        }"
+        @scroll.window="updateScroll()"
+        :class="show ? 'translate-y-0' : '-translate-y-full'"
+    >
         
         <nav class="w-full max-w-7xl mx-auto px-2 md:px-4">
             <div class="flex justify-between h-16 items-center">
