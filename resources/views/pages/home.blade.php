@@ -3,7 +3,9 @@
 @section('title', 'Home')
 @section('css')
 <style>
-
+    body{
+        overflow-x: hidden;
+    }
     .hide-scrollbar::-webkit-scrollbar {
         display: none;
     }
@@ -16,17 +18,17 @@
 
 @section('content')
     {{-- SECTION 1: HERO Section --}}
-    <section class="relative bg-secondary w-full z-10 overflow-hidden md:overflow-visible">
+    <section class="relative bg-secondary w-full">
         
         {{-- Background Decoration (Leaf) --}}
-        <div class="absolute bottom-[40%] right-[30%] transform translate-x-1/2 translate-y-1/2 z-0 opacity-40 pointer-events-none w-[500px] lg:w-[700px] overflow-hidden">
+        <div class="absolute bottom-[0%] right-[0%] opacity-40 pointer-events-none w-[300px] lg:w-[500px] overflow-hidden">
             <img src="{{ asset('assets/image/home/logo-symbol.svg') }}" 
                 alt="Background Pattern" 
                 class="w-full h-auto object-contain">
         </div>
 
         <div class="max-w-7xl mx-auto px-2 md:px-6 py-8 md:py-12 relative z-10">
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center lg:pb-20">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center pb-30 lg:pb-20">
                 
                 {{-- 2. Left Side: Text Content --}}
                 <div class="text-center md:text-left space-y-6 max-w-xl">
@@ -48,12 +50,11 @@
                 </div>
 
                 {{-- 3. Right Side: OverlapDevice Mockup Image --}}
-                <div class="relative lg:absolute bottom-7 md:bottom-0 right-[-8%] md:right-[-14.5%]  lg:w-[65%] flex justify-center md:justify-end z-20 
-                            transform translate-y-[40%] md:translate-y-[30%]  md:translate-x-[0%]">
+                <div class="">
                     
                     <img src="{{ asset('assets/image/home/hero-devices.svg') }}" 
                         alt="Dashboard Preview" 
-                        class="w-full max-w-2xl md:max-w-5xl h-auto drop-shadow-2xl object-contain">
+                        class="w-11/12 md:w-2xl lg:w-3xl xl:w-4xl absolute bottom-[-10%] md:bottom-[-15%] lg:bottom-[-27%] md:right-[-7%] lg:right-[-6%] xl:right-[-14.8%]">
                 </div>
 
             </div>
@@ -236,7 +237,7 @@
     <section class="py-20 bg-lightgray font-sans">
         <div class="max-w-7xl mx-auto px-4 md:px-6">
 
-            <h2 class="text-lg md:text-3xl font-serif font-bold text-center text-black mb-12">
+            <h2 class="text-2xl md:text-3xl font-serif font-bold text-center text-black mb-6 md:mb-12">
                 Success stories from our customers
             </h2>
 
@@ -263,14 +264,14 @@
                                 ['name' => 'Erin Booth', 'role' => 'Virtual Assistant Coach', 'img' => '5', 'title' => 'Get Full Control', 'quote' => 'You should never have anyone dictating the prices you charge for your content. With Teachable, you get full control...'],
                                 ['name' => 'Razvan Ciobanu', 'role' => 'Voxyde', 'img' => '3', 'title' => 'Peace of Mind', 'quote' => 'Teachable is consistently monitored and delivers excellent uptime. As an instructor, that peace of mind is invaluable...'],
                                 ['name' => 'Dan George', 'role' => 'FlightInsight', 'img' => '11', 'title' => '10,000+ Students', 'quote' => 'Teachable gave me the structure to go beyond the classroom. What started as a few dozen students has grown into...'],
-                                ['name' => 'Erin Booth', 'role' => 'Virtual Assistant Coach', 'img' => '5', 'title' => 'Get Full Control', 'quote' => 'You should never have anyone dictating the prices you charge for your content. With Teachable, you get full control...'],
-                                ['name' => 'Razvan Ciobanu', 'role' => 'Voxyde', 'img' => '3', 'title' => 'Peace of Mind', 'quote' => 'Teachable is consistently monitored and delivers excellent uptime. As an instructor, that peace of mind is invaluable...'],
-                                ['name' => 'Dan George', 'role' => 'FlightInsight', 'img' => '11', 'title' => '10,000+ Students', 'quote' => 'Teachable gave me the structure to go beyond the classroom. What started as a few dozen students has grown into...'],
+                                ['name' => 'Rony Pinto', 'role' => 'Virtual Assistant Coach', 'img' => '5', 'title' => 'Get Full Control', 'quote' => 'You should never have anyone dictating the prices you charge for your content. With Teachable, you get full control...'],
+                                ['name' => 'Ricky Lee', 'role' => 'Voxyde', 'img' => '3', 'title' => 'Peace of Mind', 'quote' => 'Teachable is consistently monitored and delivers excellent uptime. As an instructor, that peace of mind is invaluable...'],
+                                ['name' => 'Karl Kowalski', 'role' => 'FlightInsight', 'img' => '11', 'title' => '10,000+ Students', 'quote' => 'Teachable gave me the structure to go beyond the classroom. What started as a few dozen students has grown into...'],
                             ];
                         @endphp
 
                         @foreach($stories as $story)
-                            <div class="w-full md:w-[calc(33.333%-1rem)] flex-none border border-gray-100 rounded-xl p-6 snap-center flex flex-col bg-white">
+                            <div class="w-full md:w-[calc(33.333%-1rem)] flex-none border border-lightgray rounded-xl p-6 snap-center flex flex-col bg-white">
                                 
                                 <div class="flex items-center mb-4">
                                     <img src="https://i.pravatar.cc/150?img={{ $story['img'] }}" 
@@ -299,7 +300,7 @@
                     </div>
 
                     {{-- Controls --}}
-                    <div class="flex justify-center gap-4 mt-8">
+                    <div class="flex justify-center gap-4 mt-2 md:mt-8">
                         <button @click="scrollPrev()" class="w-12 h-12 rounded-full bg-black text-white cursor-pointer flex items-center justify-center hover:bg-gray-800 transition shadow-lg">
                             &larr;
                         </button>
