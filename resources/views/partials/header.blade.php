@@ -9,8 +9,13 @@
             updateScroll() {
                 const currentScroll = window.pageYOffset;
                 
+                // Close mobile menu if open
+                if (this.mobileMenuOpen) {
+                    this.mobileMenuOpen = false;
+                }
+
                 // Always show if at the very top or if mobile menu is open
-                if (currentScroll <= 0 || this.mobileMenuOpen) {
+                if (currentScroll <= 0 ) {
                     this.show = true;
                 } 
                 // Hide if scrolling down
