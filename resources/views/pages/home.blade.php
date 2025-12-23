@@ -234,7 +234,6 @@
     </section>
 
     {{-- SECTION 5: Success Stories --}}
-    {{-- 1. 'z-10 relative': Keeps this section ON TOP of the next one --}}
     <section class="py-10 md:py-20 bg-lightgray font-sans relative z-10">
         <div class="max-w-7xl mx-auto px-4 md:px-6">
 
@@ -243,7 +242,6 @@
             </h2>
 
             {{-- MOVING CONTENT STORIES --}}
-            {{-- 2. '-mb-24 md:-mb-32': Pulls the section below UP behind this card --}}
             <div class="bg-white rounded-4xl shadow-xl p-4 md:p-10 relative -mb-60 md:-mb-70">
                 
                 {{-- Carousel Logic --}}
@@ -271,12 +269,12 @@
                                         alt="{{ $story['name'] }}" 
                                         class="w-12 h-12 rounded-full object-cover mr-3 bg-gray-100">
                                     <div>
-                                        <h4 class="font-bold text-gray-900 text-sm">{{ $story['name'] }}</h4>
-                                        <p class="text-xs text-gray-500">{{ $story['role'] }}</p>
+                                        <h4 class="font-bold text-textBlack text-sm">{{ $story['name'] }}</h4>
+                                        <h5 class="text-xs text-black opacity-[0.7]">{{ $story['role'] }}</h5>
                                     </div>
                                 </div>
-                                <h5 class="text-base font-bold text-gray-800 mb-2">{{ $story['title'] }}</h5>
-                                <p class="text-gray-600 text-sm leading-relaxed mb-6 grow line-clamp-4">"{{ $story['quote'] }}"</p>
+                                <h5 class="text-base font-bold text-textBlack mb-2">{{ $story['title'] }}</h5>
+                                <p class="text-black opacity-[0.7] text-sm leading-relaxed mb-6 grow line-clamp-4">"{{ $story['quote'] }}"</p>
                                 <a href="#" class="text-sm font-bold text-gray-900 hover:underline mt-auto flex items-center">
                                     Explore school <span class="ml-1">&rarr;</span>
                                 </a>
@@ -298,9 +296,7 @@
         </div>
     </section>
 
-    {{-- Section 6: FAQ --}}
-    {{-- 3. 'pt-48': Adds extra padding at top so the title isn't hidden behind the card --}}
-    {{-- 4. 'z-0': Ensures this background sits BEHIND the card --}}
+{{-- Section 6: FAQ --}}
     <section class="pt-70 pb-20 bg-white font-sans relative z-0">
         <div class="max-w-3xl mx-auto px-4">
             <h2 class="text-2xl md:text-4xl font-semibold text-center text-black mb-6 md:mb-12">
@@ -316,17 +312,18 @@
                 ];
             @endphp
 
-            <div class="space-y-4">
+            <div class="space-y-4" x-data="{ active: null }">
                 @foreach($faqs as $faq)
-                    <div x-data="{ open: false }" class="bg-lightgray rounded-2xl transition-all duration-300">
-                        <button @click="open = !open" class="w-full px-3 py-4 md:px-8 md:py-5 flex items-center justify-between text-left focus:outline-none cursor-pointer">
+                    <div class="bg-lightgray rounded-2xl transition-all duration-300">
+                        <button @click="active = (active === {{ $loop->index }} ? null : {{ $loop->index }})" class="w-full px-3 py-4 md:px-8 md:py-5 flex items-center justify-between text-left focus:outline-none cursor-pointer">
                             <span class="text-lg font-medium text-black">{{ $faq['question'] }}</span>
+                            
                             <span class="ml-4 shrink-0 relative w-5 h-5">
-                                <svg x-show="!open" class="w-5 h-5 text-gray-500 absolute inset-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path></svg>
-                                <svg x-show="open" x-cloak class="w-5 h-5 text-gray-500 absolute inset-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                                <svg x-show="active !== {{ $loop->index }}" class="w-5 h-5 text-black absolute inset-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path></svg>
+                                <svg x-show="active === {{ $loop->index }}" x-cloak class="w-5 h-5 text-black absolute inset-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
                             </span>
                         </button>
-                        <div x-show="open" x-collapse x-cloak class="px-8 pb-6 text-black text-base leading-relaxed">
+                        <div x-show="active === {{ $loop->index }}" x-collapse x-cloak class="px-3 md:px-8 pb-6 text-black text-base leading-relaxed">
                             {{ $faq['answer'] }}
                         </div>
                     </div>
