@@ -1,18 +1,18 @@
     {{-- FOOTER --}}
-    <footer class="relative bg-primary text-white pt-8 pb-8 px-4 md:px-6 overflow-hidden font-sans">
+    <footer class="relative bg-primary text-white py-6 md:py-8 px-4 md:px-6 overflow-hidden font-sans">
         
         {{-- 1. Background Leaf Decoration (Right Side) --}}
-        <div class="absolute bottom-[-8%] left-[65%] pointer-events-none opacity-80 w-[300px] md:w-[480px] z-0">
+        <div class="absolute bottom-[10%] left-0 md:bottom-[-8%] md:left-[65%] pointer-events-none opacity-80 w-[300px] md:w-[480px] z-0">
             <img src="{{ asset('assets/image/home/logo-symbol.svg') }}" 
                  alt="Background Leaf" 
                  class="w-full h-auto object-contain ">
         </div>
 
         <div class="relative z-10 max-w-7xl mx-auto">
-            <div class="grid grid-cols-1 md:grid-cols-12 gap-12 mb-12">
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-12 mb-8 md:mb-12">
 
                 {{-- COLUMN 1: Brand & Description --}}
-                <div class="md:col-span-5 space-y-6">
+                <div class="md:col-span-5  space-y-1">
                     {{-- Logo --}}
                     <a href="{{ route('home') }}" class="inline-block">
                         <img src="{{ asset('assets/image/footer-logo.svg') }}" 
@@ -20,7 +20,7 @@
                              class="h-12 w-auto object-contain">
                     </a>
                     
-                    <p class="text-white/90 text-sm leading-relaxed pr-0 md:pr-12 text-justify">
+                    <p class="text-white text-sm leading-relaxed pr-0 md:pr-12 text-justify">
                         Udyantra is the platform for experts and businesses who take education seriously. 
                         In a world where anyone can ask AI for information, we're the home for those who 
                         educate with purpose, modernity, and humanity. We power human-led learning that 
@@ -30,7 +30,7 @@
 
                 {{-- COLUMN 2: Quick Links --}}
                 <div class="md:col-span-2">
-                    <h3 class="text-lg font-bold mb-6">Quick links</h3>
+                    <h3 class="text-lg font-bold mb-2 md:mb-6">Quick links</h3>
                     <ul class="space-y-3 text-sm font-medium text-white/90">
                         <li><a href="{{ route('home') }}" class="hover:text-white hover:underline transition">Home</a></li>
                         <li><a href="#" class="hover:text-white hover:underline transition">About us</a></li>
@@ -42,7 +42,7 @@
 
                 {{-- COLUMN 3: Policies --}}
                 <div class="md:col-span-2">
-                    <h3 class="text-lg font-bold mb-6">Policies</h3>
+                    <h3 class="text-lg font-bold mb-2 md:mb-6">Policies</h3>
                     <ul class="space-y-3 text-sm font-medium text-white/90">
                         <li><a href="#" class="hover:text-white hover:underline transition">Terms of use</a></li>
                         <li><a href="#" class="hover:text-white hover:underline transition">Privacy policy</a></li>
@@ -51,7 +51,7 @@
 
                 {{-- COLUMN 4: Follow Us --}}
                 <div class="md:col-span-3">
-                    <h3 class="text-lg font-bold mb-6">Follow Us</h3>
+                    <h3 class="text-lg font-bold mb-2 md:mb-6">Follow Us</h3>
                     <div class="flex gap-4">
                         {{-- Facebook --}}
                         <a href="#" class="bg-white/10 hover:bg-white/20 p-2 rounded-full transition text-white">
