@@ -19,8 +19,8 @@
 
       /* BRANDING: The main colors of Udyantra */
       --color-primary:        #018580; /* Rich Teal / Persian Green */
-      --color-primary-light:  #1F9A94; /* Light Sea Green (Hover state) */
-      --color-primary-dark:   #015F58; /* Deep Teal (Active state / Text) */
+      --color-primary-light:  #6FC7C4; /* Light Sea Green (Hover state) */
+      --color-primary-dark:   #02857F; /* Deep Teal (Active state / Text) */
 
       --color-secondary:      #6FC7C4;/* Soft Turquoise (Backgrounds / Accents) */
       
@@ -28,6 +28,7 @@
       --color-gray-100: #f3f4f6;
       --color-borderBase: #374151;
       --color-borderAround: #263544;
+      --color-borderButn: #00C6D9;
 
       /*Text Colors*/
       --color-textBlack: #0e141a;
@@ -44,7 +45,7 @@
         ========================================= */
       
       /* Body Text (Clean, readable) */
-        --font-sans: "Inter", "Poppins", sans-serif;
+        --font-sans: "Inter", sans-serif;
 
       
 
