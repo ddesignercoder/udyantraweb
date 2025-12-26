@@ -7,17 +7,26 @@
     {{-- SECTION 7: PRICING / PLANS (Linked from Hero) --}}
     <section id="plans" class="py-2 bg-gray-50 font-sans">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            {{-- OPTIONAL: Quick Dev Link (You can remove this later) --}}
+            <div class="flex justify-center mb-6">
+                <a href="{{ route('test-panel', ['slug' => 'professional-psychometric-69342f0c4f9a2']) }}" 
+                   target="_blank"
+                   class="bg-indigo-600 text-white px-4 py-2 rounded shadow hover:bg-indigo-700 transition">
+                    🚀 Launch Demo Test (Direct Link)
+                </a>
+            </div>
+
             <div class="text-center max-w-5xl mx-auto mb-4">
                 <h2 class="text-3xl md:text-5xl font-serif text-gray-900 mb-4">
-                   Hi, {{ session('user_name', 'Creator') }}! Choose the right plan for   you
+                   Hi, {{ session('user_name', 'Creator') }}!
                 </h2>
-                <p class="text-gray-600 text-lg">
+                <!-- <p class="text-gray-600 text-lg">
                     Comprehensive assessments tailored for your career stage.
-                </p>
+                </p> -->
             </div>
 
             {{-- Alpine Component for Pricing Toggle --}}
-            <div x-data="{ userType: 'student' }" class="flex flex-col items-center">
+            <!-- <div x-data="{ userType: 'student' }" class="flex flex-col items-center">
                 
                 {{-- Toggle Switch --}}
                 <div class="flex  bg-white rounded-full border border-gray-200 p-1 mb-12 shadow-sm">
@@ -139,7 +148,7 @@
                     </div>
 
                 </div>
-            </div>
+            </div> -->
         </div>
     </section>
 

@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
-
+use App\Http\Controllers\TestPanelController;
 // Route::get('/', function () {
 //     return view('welcome');
 // });
@@ -21,6 +21,13 @@ Route::middleware(['auth.api'])->group(function () {
 
     Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
     Route::get('/welcome', fn () => view('pages.welcome'))->name('welcome');
+
+    // Test Panel
+    Route::get('/test-panel/{slug}', [TestPanelController::class, 'show'])->name('test-panel');
+    // The "Bridge" route
+    Route::post('/test-panel/submit', [TestPanelController::class, 'submit'])->name('test.submit');
+    Route::get('/test-result/{id}', [TestPanelController::class, 'result'])->name('test.result');
+
    
    
 });
