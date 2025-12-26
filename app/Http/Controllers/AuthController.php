@@ -7,7 +7,10 @@ use Illuminate\Support\Facades\Http;
 class AuthController extends Controller
 {
     public function index()
-    {
+    {  
+        if(session('api_token')) {
+            return redirect()->route('welcome');
+        }
         return view('pages.home');
     }
 
