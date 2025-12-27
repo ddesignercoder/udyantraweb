@@ -30,12 +30,12 @@
                 class="w-full h-auto object-contain">
         </div>
 
-        <div class="max-w-7xl mx-auto px-2 md:px-6 py-8 md:pt-12 md:pb-8 relative z-10">
+        <div class="max-w-7xl mx-auto px-4 md:px-6 pt-16 pb-0 md:pt-16 md:pb-8 relative z-10">
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center pb-30 sm:pb-36 md:pb-12 lg:pb-18">
                 
                 {{-- 2. Left Side: Text Content --}}
                 <div class="text-center md:text-left space-y-6 w-full md:max-w-xl">
-                    <h1 class="text-3xl lg:text-4xl font-semibold text-black leading-tight font-sans">
+                    <h1 class="text-sizeMobile lg:text-sizeDesktop font-semibold text-black leading-tight font-sans">
                         Discover your true career path and skills with 
                         science-backed assessments
                     </h1>
@@ -66,12 +66,12 @@
     </section>
 
     {{-- SECTION 2: WHAT IS A PSYCHOMETRIC TEST? --}}
-    <section class="bg-white w-full pb-16 pt-24 md:pt-36 md:pb-16 lg:pt-18 lg:pb-22 relative z-0">
-        <div class="w-full lg:max-w-[992px] mx-auto px-4 lg:px-0">
+    <section class="bg-white w-full px-4 md:px-6 pb-16 pt-24 md:pt-36 md:pb-16 lg:pt-18 lg:pb-22 relative z-0">
+        <div class="w-full lg:max-w-[992px] mx-auto">
             <div class="flex flex-col items-center text-center space-y-8 lg:mt-32">
                 
                 {{-- Heading --}}
-                <h2 class="text-3xl lg:text-4xl font-semibold text-center text-black font-sans mb-8 md:mb-10">
+                <h2 class="text-sizeMobile lg:text-sizeDesktop font-semibold text-center text-black font-sans mb-8 md:mb-10">
                     What is a psychometric test?
                 </h2>
 
@@ -92,11 +92,11 @@
 
 
     {{-- SECTION 3: WHO CAN BENEFIT? --}}
-    <section class="w-full py-16 lg:py-22 bg-cover bg-center" 
+    <section class="w-full px-4 md:px-6 py-16 lg:py-22 bg-cover bg-center" 
              style="background-image: url('{{ asset('assets/image/home/section3-pattern-bg.svg') }}');">
         
-        <div class="max-w-7xl mx-auto px-2 md:px-6 text-center">
-            <h2 class="text-3xl lg:text-4xl font-semibold text-center text-black font-sans mb-8 md:mb-10">
+        <div class="max-w-7xl mx-auto md:px-6 text-center">
+            <h2 class="text-sizeMobile lg:text-sizeDesktop font-semibold text-center text-black font-sans mb-8 md:mb-10">
                 Who can benefit out of these tests?
             </h2>
 
@@ -110,7 +110,7 @@
                              class="w-full h-full object-cover">
                     </div>
                     
-                    <div class="bg-white border-1 border-borderArround text-center text-xl rounded-lg px-2 md:px-6 py-1 md:py-3 font-bold text-black shadow-sm mb-4">
+                    <div class="bg-white border-1 border-borderArround text-center text-lg md:text-xl rounded-lg px-3 md:px-6 py-3 md:py-3 font-bold text-black shadow-sm mb-4">
                         Schools Students (Grade 8–12)
                     </div>
                     
@@ -132,7 +132,7 @@
                              class="w-full h-full object-cover">
                     </div>
                     
-                    <div class="bg-white border-1 border-borderArround text-center text-xl rounded-lg px-2 md:px-6 py-1 md:py-3 font-bold md:font-bold text-black shadow-sm mb-4">
+                    <div class="bg-white border-1 border-borderArround text-center text-lg md:text-xl rounded-lg px-3 md:px-6 py-3 md:py-3 font-bold md:font-bold text-black shadow-sm mb-4">
                         Professionals (Undergraduates and working individuals)
                     </div>
                     
@@ -141,7 +141,7 @@
                     </p>
                     
                     <a href="#professional-tests" 
-                       class="inline-block bg-primary text-white font-medium text-base px-8 py-3 rounded-full border-1 border-borderButn shadow-hard hover:shadow-none hover:translate-x-0.5 hover:translate-y-0.5 transition-all duration-200 mt-6">
+                       class="inline-block bg-primary text-white font-medium text-base px-4 py-3 rounded-full border-1 border-borderButn shadow-hard hover:shadow-none hover:translate-x-0.5 hover:translate-y-0.5 transition-all duration-200 mt-6">
                         Explore Professional Tests
                     </a>
                 </div>
@@ -167,7 +167,7 @@
             <div class="max-w-7xl mx-auto px-6 lg:px-8 md:py-0 text-center w-full h-full flex flex-col justify-center md:block">
                 
                 {{-- Heading --}}
-                <h2 class="text-3xl lg:text-4xl font-semibold text-center text-black font-sans mb-8 md:mb-10">
+                <h2 class="text-sizeMobile lg:text-sizeDesktop font-semibold text-center text-black font-sans mb-8 md:mb-10">
                     How it works?
                 </h2>
 
@@ -184,36 +184,36 @@
 
                     {{-- STEP 1 --}}
                     <div class="w-1/3 shrink-0 flex flex-col items-center justify-center px-4">
-                        <p class="text-black font-normal text-xl max-w-2xl mx-auto mb-4 md:mb-6">
+                        <p class="text-black font-normal text-lg md:text-xl w-full mx-auto mb-4 md:mb-6">
                             <span class="font-bold block mb-1">Take the assessment online</span>
                             from any device
                         </p>
                         {{-- FIX 3: Reduced max-height to 30vh on mobile to prevent bottom clipping --}}
                         <img src="{{ asset('assets/image/home/hero-devices.svg') }}" 
                             alt="Step 1 Dashboard" 
-                            class="w-full h-auto max-h-[40vh] md:max-h-[70vh] object-contain drop-shadow-xl select-none">
+                            class="w-full h-auto max-h-[50vh] md:max-h-[70vh] object-contain drop-shadow-xl select-none">
                     </div>
 
                     {{-- STEP 2 --}}
                     <div class="w-1/3 shrink-0 flex flex-col items-center justify-center px-4">
-                        <p class="text-black font-normal text-xl max-w-2xl mx-auto mb-4 md:mb-6">
+                        <p class="text-black font-normal text-lg md:text-xl w-full mx-auto mb-4 md:mb-6">
                             <span class="font-bold block mb-1">Receive a detailed report instantly</span>
                             highlighting strengths and career matches
                         </p>
                         <img src="{{ asset('assets/image/home/section4-image.svg') }}" 
                             alt="Step 2 Recommendations" 
-                            class="w-full h-auto max-h-[40vh] md:max-h-[60vh] object-contain select-none">
+                            class="w-full h-auto max-h-[50vh] md:max-h-[60vh] object-contain select-none">
                     </div>
 
                     {{-- STEP 3 --}}
                     <div class="w-1/3 shrink-0 flex flex-col items-center justify-center px-4">
-                        <p class="text-black font-normal text-xl max-w-2xl mx-auto mb-4 md:mb-6">
+                        <p class="text-black font-normal text-lg md:text-xl w-full mx-auto mb-4 md:mb-6">
                             <span class="font-bold block mb-1">Plan your next steps</span>
                             with clear recommendations
                         </p>
                         <img src="{{ asset('assets/image/home/section4-step3.svg') }}" 
                             alt="Step 3 Devices" 
-                            class="w-full h-auto max-h-[40vh] md:max-h-[60vh] object-contain drop-shadow-xl select-none">
+                            class="w-full h-auto max-h-[50vh] md:max-h-[60vh] object-contain drop-shadow-xl select-none">
                     </div>
 
                 </div>  
@@ -221,10 +221,10 @@
             </div>
             {{-- Static Action Buttons --}}
                 <div class="flex flex-col md:flex-row justify-center items-center gap-4 md:gap-6 mt-6  shrink-0 pb-2">
-                    <a href="#demo-tests" class="inline-block bg-primary text-white font-medium text-base px-10 py-3 md:py-4 rounded-full border-1 border-borderButn shadow-hard hover:shadow-none hover:-translate-x-0.5 hover:translate-y-0.5 transition-all duration-200 w-auto text-center">
+                    <a href="#demo-tests" class="inline-block bg-primary text-white font-medium text-base px-4 py-3 md:py-4 rounded-full border-1 border-borderButn shadow-hard hover:shadow-none hover:-translate-x-0.5 hover:translate-y-0.5 transition-all duration-200 w-8/12 md:w-4/12 lg:w-70 text-center">
                         Try Demo Tests
                     </a>
-                    <a href="#sample-report" class="inline-block bg-white text-textBlack font-medium text-base px-10 py-3 md:py-4 rounded-full border-1 border-borderBase shadow-hard hover:shadow-none hover:-translate-x-0.5 hover:translate-y-0.5 transition-all duration-200 w-auto text-center">
+                    <a href="#sample-report" class="inline-block bg-white text-textBlack font-medium text-base px-4 py-3 md:py-4 rounded-full border-1 border-borderBase shadow-hard hover:shadow-none hover:-translate-x-0.5 hover:translate-y-0.5 transition-all duration-200 w-8/12 md:w-4/12 lg:w-70 text-center">
                         Download Sample Report
                     </a>
                 </div>
@@ -235,7 +235,7 @@
     <section class=" py-16 lg:py-22 bg-lightgray font-sans relative z-10">
         <div class="max-w-7xl mx-auto px-4 md:px-6">
 
-            <h2 class="text-3xl lg:text-4xl font-semibold text-center text-black font-sans mb-8 md:mb-10">
+            <h2 class="text-sizeMobile lg:text-sizeDesktop font-semibold text-center text-black font-sans mb-8 md:mb-10">
                 Success stories from our customers
             </h2>
 
@@ -297,7 +297,7 @@
 {{-- Section 6: FAQ --}}
     <section class="pt-58 lg:pt-70 pb-16 lg:py-22 bg-white font-sans relative z-0">
         <div class="max-w-3xl mx-auto px-4">
-            <h2 class="text-3xl lg:text-4xl font-semibold text-center text-black font-sans mb-8 md:mb-10">
+            <h2 class="text-sizeMobile lg:text-sizeDesktop font-semibold text-center text-black font-sans mb-8 md:mb-10">
                 Frequently asked questions
             </h2>
             
@@ -313,10 +313,10 @@
             <div class="space-y-4" x-data="{ active: null }">
                 @foreach($faqs as $faq)
                     <div class="transition-all duration-300">
-                        <button @click="active = (active === {{ $loop->index }} ? null : {{ $loop->index }})" class="w-full px-8 py-4 md:py-5 flex items-center justify-between text-left focus:outline-none cursor-pointer bg-lightgray rounded-4xl">
+                        <button @click="active = (active === {{ $loop->index }} ? null : {{ $loop->index }})" class="w-full px-8 py-4 md:py-5 flex items-start justify-between text-left focus:outline-none cursor-pointer bg-lightgray rounded-4xl">
                             <span class="text-lg font-medium text-black">{{ $faq['question'] }}</span>
                             
-                            <span class="ml-4 shrink-0 relative w-5 h-5">
+                            <span class="ml-4 shrink-0 relative mt-1 w-5 h-5">
                                 <svg x-show="active !== {{ $loop->index }}" class="w-5 h-5 text-black absolute inset-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path></svg>
                                 <svg x-show="active === {{ $loop->index }}" x-cloak class="w-5 h-5 text-black absolute inset-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
                             </span>

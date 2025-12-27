@@ -47,6 +47,9 @@
       /* Body Text (Clean, readable) */
         --font-sans: "Inter", sans-serif;
 
+      /* Font Size */
+      --text-sizeDesktop: 2.25rem;
+      --text-sizeMobile: 1.625rem;
       
 
 
