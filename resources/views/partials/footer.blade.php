@@ -14,10 +14,10 @@
                 {{-- COLUMN 1: Brand & Description --}}
                 <div class="col-span-12 md:col-span-6 lg:col-span-5 space-y-1">
                     {{-- Logo --}}
-                    <a href="{{ route('home') }}" class="inline-block">
+                    <a href="{{ route('home') }}" class="inline-block mt-[-10px]">
                         <img src="{{ asset('assets/image/footer-logo.svg') }}" 
                              alt="Udyantra" 
-                             class="h-20 w-auto object-contain">
+                             class="h-18 w-auto object-contain">
                     </a>
                     
                     <p class="text-white text-base leading-relaxed pr-4 md:pr-12">
