@@ -65,7 +65,7 @@ return [
     |
     */
 
-    'timezone' => 'Asia/Kolkata', // Changed from 'UTC'
+    'timezone' => 'UTC', // Changed from Asia/Kolkata
 
     /*
     |--------------------------------------------------------------------------
