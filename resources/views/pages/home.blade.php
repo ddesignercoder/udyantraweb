@@ -2,6 +2,7 @@
 
 @section('title', 'Home')
 @section('css')
+<link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
 <style>
     body{
         overflow-x: hidden;
@@ -13,6 +14,8 @@
         -ms-overflow-style: none;
         scrollbar-width: none;
     }
+    
+
     </style>   
 @endsection
 
@@ -28,7 +31,7 @@
         </div>
 
         <div class="max-w-7xl mx-auto px-2 md:px-6 py-8 md:pt-12 md:pb-8 relative z-10">
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center pb-32 sm:pb-40 md:pb-12 lg:pb-18">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center pb-30 sm:pb-36 md:pb-12 lg:pb-18">
                 
                 {{-- 2. Left Side: Text Content --}}
                 <div class="text-center md:text-left space-y-6 w-full md:max-w-xl">
@@ -54,7 +57,7 @@
                     
                     <img src="{{ asset('assets/image/home/hero-devices.svg') }}" 
                         alt="Dashboard Preview" 
-                        class="w-11/12 md:w-xl lg:w-3xl xl:w-4xl absolute right-[4%] bottom-[-15%] md:bottom-[-18%] lg:bottom-[-26%] md:right-[-5.5%] lg:right-[-6%] xl:right-[-8%]">
+                        class="w-11/12 md:w-xl lg:w-3xl xl:w-4xl absolute right-[4%] bottom-[-10%] md:bottom-[-18%] lg:bottom-[-26%] md:right-[-5.5%] lg:right-[-6%] xl:right-[-8%]">
                 
                 </div>
 
@@ -63,7 +66,7 @@
     </section>
 
     {{-- SECTION 2: WHAT IS A PSYCHOMETRIC TEST? --}}
-    <section class="bg-white w-full pb-16 pt-30 md:pt-36 md:pb-16 lg:pt-18 lg:pb-22 relative z-0">
+    <section class="bg-white w-full pb-16 pt-24 md:pt-36 md:pb-16 lg:pt-18 lg:pb-22 relative z-0">
         <div class="w-full lg:max-w-[992px] mx-auto px-4 lg:px-0">
             <div class="flex flex-col items-center text-center space-y-8 lg:mt-32">
                 
@@ -116,7 +119,7 @@
                     </p>
                     
                     <a href="#student-tests" 
-                    class="inline-block bg-primary text-white font-semibold text-base px-8 py-3 rounded-full border-1 border-borderButn shadow-hard hover:shadow-none hover:translate-x-0.5 hover:translate-y-0.5 transition-all duration-200 mt-6">
+                    class="inline-block bg-primary text-white font-medium text-base px-8 py-3 rounded-full border-1 border-borderButn shadow-hard hover:shadow-none hover:translate-x-0.5 hover:translate-y-0.5 transition-all duration-200 mt-6">
                         Explore Student Tests
                     </a>
                 </div>
@@ -138,7 +141,7 @@
                     </p>
                     
                     <a href="#professional-tests" 
-                       class="inline-block bg-primary text-white font-semibold text-base px-8 py-3 rounded-full border-1 border-borderButn shadow-hard hover:shadow-none hover:translate-x-0.5 hover:translate-y-0.5 transition-all duration-200 mt-6">
+                       class="inline-block bg-primary text-white font-medium text-base px-8 py-3 rounded-full border-1 border-borderButn shadow-hard hover:shadow-none hover:translate-x-0.5 hover:translate-y-0.5 transition-all duration-200 mt-6">
                         Explore Professional Tests
                     </a>
                 </div>
@@ -218,10 +221,10 @@
             </div>
             {{-- Static Action Buttons --}}
                 <div class="flex flex-col md:flex-row justify-center items-center gap-4 md:gap-6 mt-6  shrink-0 pb-2">
-                    <a href="#demo-tests" class="inline-block bg-primary text-white font-semibold text-base px-10 py-3 md:py-4 rounded-full border-1 border-borderButn shadow-hard hover:shadow-none hover:-translate-x-0.5 hover:translate-y-0.5 transition-all duration-200 w-auto text-center">
+                    <a href="#demo-tests" class="inline-block bg-primary text-white font-medium text-base px-10 py-3 md:py-4 rounded-full border-1 border-borderButn shadow-hard hover:shadow-none hover:-translate-x-0.5 hover:translate-y-0.5 transition-all duration-200 w-auto text-center">
                         Try Demo Tests
                     </a>
-                    <a href="#sample-report" class="inline-block bg-white text-textBlack font-semibold text-base px-10 py-3 md:py-4 rounded-full border-1 border-borderBase shadow-hard hover:shadow-none hover:-translate-x-0.5 hover:translate-y-0.5 transition-all duration-200 w-auto text-center">
+                    <a href="#sample-report" class="inline-block bg-white text-textBlack font-medium text-base px-10 py-3 md:py-4 rounded-full border-1 border-borderBase shadow-hard hover:shadow-none hover:-translate-x-0.5 hover:translate-y-0.5 transition-all duration-200 w-auto text-center">
                         Download Sample Report
                     </a>
                 </div>
@@ -237,7 +240,7 @@
             </h2>
 
             {{-- MOVING CONTENT STORIES --}}
-            <div class="bg-white rounded-4xl shadow-xl p-4 md:p-10 relative -mb-60 md:-mb-70">
+            <div class="bg-white rounded-xl shadow-xl p-4 md:p-10 relative -mb-60 md:-mb-70 fade-sides">
                 
                 {{-- Carousel Logic --}}
                 <div x-data="{ 
@@ -258,7 +261,7 @@
                         @endphp
 
                         @foreach($stories as $story)
-                            <div class="w-full md:w-[calc(33.333%-1rem)] flex-none border border-lightgray rounded-xl p-6 snap-center flex flex-col bg-white">
+                            <div class="w-full md:w-[calc(50%-1rem)] lg:w-[calc(33.333%-1rem)] flex-none border border-lightgray rounded-xl p-6 snap-center flex flex-col bg-white">
                                 <div class="flex items-center mb-4">
                                     <img src="https://i.pravatar.cc/150?img={{ $story['img'] }}" 
                                         alt="{{ $story['name'] }}" 
@@ -279,11 +282,11 @@
 
                     {{-- Controls --}}
                     <div class="flex justify-center gap-4 mt-4 md:mt-8">
-                        <button @click="scrollPrev()" class="w-8 h-8 md:w-12 md:h-12 rounded-full bg-black text-white flex items-center justify-center leading-none  hover:bg-gray-800 transition shadow-lg">
-                            &larr;
+                        <button @click="scrollPrev()" class="w-8 h-8 md:w-12 md:h-12 rounded-full bg-black text-white flex items-center justify-center leading-none  hover:bg-gray-800 transition shadow-lg ">
+                            <span class="relative top-[-2px]">&larr;</span>
                         </button>
                         <button @click="scrollNext()" class="w-8 h-8 md:w-12 md:h-12 rounded-full bg-black text-white flex items-center justify-center leading-none  hover:bg-gray-800 transition shadow-lg">
-                            &rarr;
+                            <span class="relative top-[-2px]">&rarr;</span>
                         </button>
                     </div>
                 </div>
@@ -292,7 +295,7 @@
     </section>
 
 {{-- Section 6: FAQ --}}
-    <section class="pt-70 pb-20 bg-white font-sans relative z-0">
+    <section class="pt-58 lg:pt-70 pb-16 lg:py-22 bg-white font-sans relative z-0">
         <div class="max-w-3xl mx-auto px-4">
             <h2 class="text-3xl lg:text-4xl font-semibold text-center text-black font-sans mb-8 md:mb-10">
                 Frequently asked questions
@@ -309,8 +312,8 @@
 
             <div class="space-y-4" x-data="{ active: null }">
                 @foreach($faqs as $faq)
-                    <div class="bg-lightgray rounded-4xl transition-all duration-300">
-                        <button @click="active = (active === {{ $loop->index }} ? null : {{ $loop->index }})" class="w-full px-8 py-4 md:py-5 flex items-center justify-between text-left focus:outline-none cursor-pointer">
+                    <div class="transition-all duration-300">
+                        <button @click="active = (active === {{ $loop->index }} ? null : {{ $loop->index }})" class="w-full px-8 py-4 md:py-5 flex items-center justify-between text-left focus:outline-none cursor-pointer bg-lightgray rounded-4xl">
                             <span class="text-lg font-medium text-black">{{ $faq['question'] }}</span>
                             
                             <span class="ml-4 shrink-0 relative w-5 h-5">
@@ -318,7 +321,7 @@
                                 <svg x-show="active === {{ $loop->index }}" x-cloak class="w-5 h-5 text-black absolute inset-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
                             </span>
                         </button>
-                        <div x-show="active === {{ $loop->index }}" x-collapse x-cloak class="px-8 pb-6 text-black text-base fw-normal leading-relaxed">
+                        <div x-show="active === {{ $loop->index }}" x-collapse x-cloak class="px-8 pb-6 text-black text-base fw-normal mt-5 leading-relaxed">
                             {{ $faq['answer'] }}
                         </div>
                     </div>
