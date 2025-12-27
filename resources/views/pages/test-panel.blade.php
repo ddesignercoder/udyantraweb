@@ -341,7 +341,8 @@
                 alert("Time Up!");
                 this.submitTest();
             },
-async submitTest() {
+            
+            async submitTest() {
                 if (!confirm('Final Submit?')) return;
                 
                 // Clear Interval & warning
@@ -381,36 +382,7 @@ async submitTest() {
                     alert('Network Error: Unable to submit test. Please check your connection.');
                 }               
             }
-            // async submitTest() {
-            //     if (!confirm('Final Submit?')) return;
-                
-            //     // Clear Interval & warning
-            //     clearInterval(this.timerInterval);
-            //     window.onbeforeunload = null;
-
-            //     const payload = {
-            //         test_id: this.test.id,
-            //         user_id: this.userId,
-            //         answers: this.answers,
-            //         time_taken: (this.test.duration_minutes * 60) - this.timeLeft
-            //     };
-                
-            //     console.log("Submitting:", payload);
-            //     localStorage.removeItem('test_progress_' + this.test.id);
-            //     // Call your backend here...
-            //     try {
-            //             // 1. Post to your FRONTEND route (which acts as a bridge)
-            //             // We use the blade helper to generate the URL
-            //             const response = await axios.post("{{ route('test.submit') }}", payload);
-
-            //             // 2. Redirect to the result page using the ID returned
-            //             window.location.href = '/test-result/' + response.data.result_id;
-                        
-            //         } catch (e) {
-            //             console.error(e);
-            //             alert('Error submitting test. Please try again.');
-            //         }               
-            // }
+            
         }));
     });
 </script>

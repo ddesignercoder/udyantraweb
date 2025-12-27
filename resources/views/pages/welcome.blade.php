@@ -20,6 +20,12 @@
                 <h2 class="text-3xl md:text-5xl font-serif text-gray-900 mb-4">
                    Hi, {{ session('user_name', 'Creator') }}!
                 </h2>
+                <div>
+                    <a href="{{ route('udyantra-package') }}" 
+                        class="bg-indigo-600 text-white px-4 py-2 rounded shadow hover:bg-indigo-700 transition">
+                        Package
+                    </a>
+                </div>
                 <!-- <p class="text-gray-600 text-lg">
                     Comprehensive assessments tailored for your career stage.
                 </p> -->
