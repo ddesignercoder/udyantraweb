@@ -42,7 +42,7 @@
                 <a href="{{ route('home') }}" class="flex items-center gap-2 transition hover:opacity-90 shrink-0">
                     <img src="{{ asset('assets/image/Udyantra-logo.svg') }}" 
                          alt="Udyantra" 
-                         class="h-10 md:h-12 w-auto object-contain">
+                         class="h-16 w-auto object-contain">
                 </a>
 
                 {{-- Desktop Menu Links --}}
