@@ -8,9 +8,12 @@ use App\Http\Controllers\PaymentController;
 //     return view('welcome');
 // });
 
+    //demo package page
+    Route::get('/', function () {
+    return view('pages.package');})->name('home');;
 
 
-Route::get('/', [AuthController::class, 'index'])->name('home');
+// Route::get('/', [AuthController::class, 'index'])->name('home');
 Route::view('/login', 'auth.login')->name('login'); 
 Route::view('/register', 'auth.register')->name('register');
 
@@ -34,6 +37,5 @@ Route::middleware(['auth.api'])->group(function () {
     Route::post('/payment/initiate', [PaymentController::class, 'createOrder'])->name('payment.initiate');
     Route::post('/payment/verify', [PaymentController::class, 'verifyPayment'])->name('payment.verify');
     Route::get('/payment/thank-you/{orderId}', [PaymentController::class, 'thankYou'])->name('payment.thankyou');
-   
    
 });
