@@ -3,20 +3,7 @@
 @section('title', 'Home')
 @section('css')
 <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
-<style>
-    body{
-        overflow-x: hidden;
-    }
-    .hide-scrollbar::-webkit-scrollbar {
-        display: none;
-    }
-    .hide-scrollbar {
-        -ms-overflow-style: none;
-        scrollbar-width: none;
-    }
-    
-
-    </style>   
+ 
 @endsection
 
 @section('content')
@@ -44,11 +31,12 @@
                         Personalized psychometric tests and actionable <br> reports for Students (Grade 8–12) and <br> Professionals.
                     </p>
 
-                    <div class="pt-4">
-                        <a href="#plans" 
+                    <div class="pt-0">
+                        <x-button variant="secondary" as="a" class="mt-6" href="#plans">Explore our plan</x-button>
+                        <!-- <a href="#plans" 
                         class="inline-block bg-white text-black font-medium text-base px-8 py-3 rounded-full border border-borderBase shadow-hard hover:shadow-none hover:translate-x-0.5 hover:translate-y-0.5 transition-all duration-200">
-                            Explore our plan
-                        </a>
+                           Explore our plan 
+                        </a> -->
                     </div>
                 </div>
 
@@ -118,10 +106,7 @@
                         Get clear guidance on the right stream, understand your strengths and interests, and explore career paths that fit you best.
                     </p>
                     
-                    <a href="#student-tests" 
-                    class="inline-block bg-primary text-white font-medium text-base px-8 py-3 rounded-full border-1 border-borderButn shadow-hard hover:shadow-none hover:translate-x-0.5 hover:translate-y-0.5 transition-all duration-200 mt-6">
-                        Explore Student Tests
-                    </a>
+                    <x-button as="a" class="mt-6" href="#student-tests">Explore Student Tests</x-button>
                 </div>
 
                 {{-- Card 2: Professionals --}}
@@ -139,11 +124,8 @@
                     <p class="text-textBlack leading-relaxed max-w-xl">
                         Understand your skill profile, strengths, personality traits, and align with the right career or growth path.
                     </p>
+                    <x-button as="a" class="mt-6" href="#professional-tests">Explore Professional Tests</x-button>
                     
-                    <a href="#professional-tests" 
-                       class="inline-block bg-primary text-white font-medium text-base px-4 py-3 rounded-full border-1 border-borderButn shadow-hard hover:shadow-none hover:translate-x-0.5 hover:translate-y-0.5 transition-all duration-200 mt-6">
-                        Explore Professional Tests
-                    </a>
                 </div>
 
             </div>
@@ -221,18 +203,14 @@
             </div>
             {{-- Static Action Buttons --}}
                 <div class="flex flex-col md:flex-row justify-center items-center gap-4 md:gap-6 mt-6  shrink-0 pb-2">
-                    <a href="#demo-tests" class="inline-block bg-primary text-white font-medium text-base px-4 py-3 md:py-4 rounded-full border-1 border-borderButn shadow-hard hover:shadow-none hover:-translate-x-0.5 hover:translate-y-0.5 transition-all duration-200 w-8/12 md:w-4/12 lg:w-70 text-center">
-                        Try Demo Tests
-                    </a>
-                    <a href="#sample-report" class="inline-block bg-white text-textBlack font-medium text-base px-4 py-3 md:py-4 rounded-full border-1 border-borderBase shadow-hard hover:shadow-none hover:-translate-x-0.5 hover:translate-y-0.5 transition-all duration-200 w-8/12 md:w-4/12 lg:w-70 text-center">
-                        Download Sample Report
-                    </a>
+                    <x-button as="a" class="w-9/12 md:w-4/12 lg:w-70" href="#demo-tests">Try Demo Tests</x-button>
+                    <x-button variant="secondary" as="a" class="w-9/12 md:w-4/12 lg:w-70 px-4 py-3 md:py-4" href="#sample-report">Download Sample Report</x-button>
                 </div>
         </div>
     </section>
 
     {{-- SECTION 5: Success Stories --}}
-    <section class=" py-16 lg:py-22 bg-lightgray font-sans relative z-10">
+    <section class="pt-14 lg:pt-20 pb-16 lg:pb-22 bg-lightgray font-sans relative z-10">
         <div class="max-w-7xl mx-auto px-4 md:px-6">
 
             <h2 class="text-sizeMobile lg:text-sizeDesktop font-semibold text-center text-black font-sans mb-8 md:mb-10">
@@ -243,91 +221,15 @@
             <div class="bg-white rounded-xl shadow-xl p-4 md:p-10 relative -mb-60 md:-mb-70 fade-sides">
                 
                 {{-- Carousel Logic --}}
-                <div x-data="{ 
-                        scrollContainer() { return this.$refs.container },
-                        getScrollWidth() { return this.$refs.container.firstElementChild.getBoundingClientRect().width + 24 },
-                        scrollNext() { this.scrollContainer().scrollBy({ left: this.getScrollWidth(), behavior: 'smooth' }) },
-                        scrollPrev() { this.scrollContainer().scrollBy({ left: -this.getScrollWidth(), behavior: 'smooth' }) }
-                    }" class="relative">
+                <x-testimonials />
 
-                    <div x-ref="container" class="flex gap-6 overflow-x-auto snap-x snap-mandatory pb-4 hide-scrollbar">
-                        @php
-                            $stories = [
-                                ['name' => 'Erin Booth', 'role' => 'Virtual Assistant Coach', 'img' => '5', 'title' => 'Get Full Control', 'quote' => "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley..."],
-                                ['name' => 'Razvan Ciobanu', 'role' => 'Voxyde', 'img' => '3', 'title' => 'Peace of Mind', 'quote' => "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley..."],
-                                ['name' => 'Dan George', 'role' => 'FlightInsight', 'img' => '11', 'title' => '10,000+ Students', 'quote' => "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley..."],
-                                ['name' => 'Rony Pinto', 'role' => 'Virtual Assistant Coach', 'img' => '5', 'title' => 'Get Full Control', 'quote' => 'Lorem Ipsum is simply dummy text of the printing and typesetting industry...'],
-                            ];
-                        @endphp
-
-                        @foreach($stories as $story)
-                            <div class="w-full md:w-[calc(50%-1rem)] lg:w-[calc(33.333%-1rem)] flex-none border border-lightgray rounded-xl p-6 snap-center flex flex-col bg-white">
-                                <div class="flex items-center mb-4">
-                                    <img src="https://i.pravatar.cc/150?img={{ $story['img'] }}" 
-                                        alt="{{ $story['name'] }}" 
-                                        class="w-12 h-12 rounded-full object-cover mr-3 bg-gray-100">
-                                    <div>
-                                        <h4 class="font-bold text-textBlack text-sm">{{ $story['name'] }}</h4>
-                                        <h5 class="text-xs text-black opacity-[0.7]">{{ $story['role'] }}</h5>
-                                    </div>
-                                </div>
-                                <h5 class="text-base font-bold text-textBlack mb-2">{{ $story['title'] }}</h5>
-                                <p class="text-black opacity-[0.7] text-sm leading-relaxed mb-6 grow line-clamp-4">"{{ $story['quote'] }}"</p>
-                                <a href="#" class="text-sm font-bold text-gray-900 hover:underline mt-auto flex items-center">
-                                    Explore school <span class="ml-1">&rarr;</span>
-                                </a>
-                            </div>
-                        @endforeach
-                    </div>
-
-                    {{-- Controls --}}
-                    <div class="flex justify-center gap-4 mt-4 md:mt-8">
-                        <button @click="scrollPrev()" class="w-8 h-8 md:w-12 md:h-12 rounded-full bg-black text-white flex items-center justify-center leading-none  hover:bg-gray-800 transition shadow-lg ">
-                            <span class="relative top-[-2px]">&larr;</span>
-                        </button>
-                        <button @click="scrollNext()" class="w-8 h-8 md:w-12 md:h-12 rounded-full bg-black text-white flex items-center justify-center leading-none  hover:bg-gray-800 transition shadow-lg">
-                            <span class="relative top-[-2px]">&rarr;</span>
-                        </button>
-                    </div>
-                </div>
             </div>
         </div>
     </section>
 
 {{-- Section 6: FAQ --}}
-    <section class="pt-58 lg:pt-70 pb-16 lg:py-22 bg-white font-sans relative z-0">
-        <div class="max-w-3xl mx-auto px-4">
-            <h2 class="text-sizeMobile lg:text-sizeDesktop font-semibold text-center text-black font-sans mb-8 md:mb-10">
-                Frequently asked questions
-            </h2>
-            
-            {{-- FAQ Items --}}
-            @php
-                $faqs = [
-                    ['question' => 'How accurate are the tests?', 'answer' => "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."],
-                    ['question' => 'Are results confidential?', 'answer' => "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."],
-                    ['question' => 'How long does each test take?', 'answer' => "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."],
-                ];
-            @endphp
-
-            <div class="space-y-4" x-data="{ active: null }">
-                @foreach($faqs as $faq)
-                    <div class="transition-all duration-300">
-                        <button @click="active = (active === {{ $loop->index }} ? null : {{ $loop->index }})" class="w-full px-8 py-4 md:py-5 flex items-start justify-between text-left focus:outline-none cursor-pointer bg-lightgray rounded-4xl">
-                            <span class="text-lg font-medium text-black">{{ $faq['question'] }}</span>
-                            
-                            <span class="ml-4 shrink-0 relative mt-1 w-5 h-5">
-                                <svg x-show="active !== {{ $loop->index }}" class="w-5 h-5 text-black absolute inset-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path></svg>
-                                <svg x-show="active === {{ $loop->index }}" x-cloak class="w-5 h-5 text-black absolute inset-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
-                            </span>
-                        </button>
-                        <div x-show="active === {{ $loop->index }}" x-collapse x-cloak class="px-8 pb-6 text-black text-base fw-normal mt-5 leading-relaxed">
-                            {{ $faq['answer'] }}
-                        </div>
-                    </div>
-                @endforeach
-            </div>
-        </div>
+    <section class="pt-56 lg:pt-68 pb-16 lg:py-22 bg-white font-sans relative z-0">                           
+        <x-faq />
     </section>
 
 @endsection

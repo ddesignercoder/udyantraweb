@@ -9,11 +9,11 @@ use App\Http\Controllers\PaymentController;
 // });
 
     //demo package page
-    Route::get('/', function () {
-    return view('pages.package');})->name('home');;
+    // Route::get('/', function () {
+    // return view('pages.package');})->name('home');
 
 
-// Route::get('/', [AuthController::class, 'index'])->name('home');
+Route::get('/', [AuthController::class, 'index'])->name('home');
 Route::view('/login', 'auth.login')->name('login'); 
 Route::view('/register', 'auth.register')->name('register');
 
@@ -33,7 +33,7 @@ Route::middleware(['auth.api'])->group(function () {
     Route::get('/test-result/{id}', [TestPanelController::class, 'result'])->name('test.result');
 
     // Udyantra Package
-    Route::get('/udyantra-package', [PaymentController::class, 'udyantraPackage'])->name('udyantra-package');
+    Route::get('/pricing', [PaymentController::class, 'udyantraPackage'])->name('udyantra-package');
     Route::post('/payment/initiate', [PaymentController::class, 'createOrder'])->name('payment.initiate');
     Route::post('/payment/verify', [PaymentController::class, 'verifyPayment'])->name('payment.verify');
     Route::get('/payment/thank-you/{orderId}', [PaymentController::class, 'thankYou'])->name('payment.thankyou');

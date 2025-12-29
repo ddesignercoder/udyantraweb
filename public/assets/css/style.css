@@ -1,3 +1,14 @@
+body{
+        overflow-x: hidden;
+    }
+    .hide-scrollbar::-webkit-scrollbar {
+        display: none;
+    }
+    .hide-scrollbar {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+    }
+
 .fade-sides::before,
     .fade-sides::after {
     content: "";
@@ -19,6 +30,22 @@
     right: 0;
     background: linear-gradient(to left, rgba(255,255,255,1), rgba(255,255,255,0));
     border-radius: 0px 12px 12px 0px;
+    }
+    .button-white{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: #fff;
+        font-size: 16px;
+        font-weight: 500;
+        color: #000;
+        border: 1px solid #374151;
+        border-radius: 50px;
+        box-shadow: -3px 3px 0px 0px var(--tw-shadow-color, var(--color-borderBase));
+        transition: all .5s;
+    }
+    .button-white:hover{
+        box-shadow: none;
     }
 
     @media (max-width: 991px) {
