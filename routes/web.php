@@ -8,11 +8,6 @@ use App\Http\Controllers\PaymentController;
 //     return view('welcome');
 // });
 
-    //demo package page
-    // Route::get('/', function () {
-    // return view('pages.package');})->name('home');
-
-
 Route::get('/', [AuthController::class, 'index'])->name('home');
 Route::view('/login', 'auth.login')->name('login'); 
 Route::view('/register', 'auth.register')->name('register');
@@ -28,7 +23,6 @@ Route::middleware(['auth.api'])->group(function () {
 
     // Test Panel
     Route::get('/test-panel/{slug}', [TestPanelController::class, 'show'])->name('test-panel');
-    // The "Bridge" route
     Route::post('/test-panel/submit', [TestPanelController::class, 'submit'])->name('test.submit');
     Route::get('/test-result/{id}', [TestPanelController::class, 'result'])->name('test.result');
 
