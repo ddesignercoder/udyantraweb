@@ -110,7 +110,7 @@
 
 {{-- SECTION 5: Success Stories --}}
     <section class="pt-14 lg:pt-20 pb-16 lg:pb-22 bg-lightgray font-sans relative z-10">
-        <div class="max-w-7xl mx-auto px-4 md:px-6">
+        <div class="max-w-7xl mx-auto px-2 md:px-4">
 
             <h2 class="text-sizeMobile lg:text-sizeDesktop font-semibold text-center text-black font-sans mb-8 md:mb-10">
                 Success stories from our customers
@@ -133,9 +133,9 @@
 
     {{-- SECTION 5: Sign Up Today --}}
     <section class="pt-14 lg:pt-20 pb-16 lg:pb-22 bg-gray-100 font-sans relative">
-        <div class="max-w-7xl mx-auto px-4 md:px-6 ">
+        <div class="max-w-7xl mx-auto px-2 md:px-4 ">
             <div class="bg-primary-light rounded-xl shadow-xl p-4 md:p-10 g-2 relative text-center">
-                <h2 class="text-sizeMobile lg:text-sizeDesktop font-semibold text-black font-sans mb-8 md:mb-10">
+                <h2 class="text-sizeMobile lg:text-sizeDesktop font-semibold text-black font-sans mb-5 md:mb-7">
                     Start earning. Register today
                 </h2>
                 <p class="test-base mb-0">Create, manage, and sell more.</p>

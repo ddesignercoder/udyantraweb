@@ -80,10 +80,10 @@
 
 
     {{-- SECTION 3: WHO CAN BENEFIT? --}}
-    <section class="w-full px-4 md:px-6 py-16 lg:py-22 bg-cover bg-center" 
+    <section class="py-16 lg:py-22 bg-cover bg-center" 
              style="background-image: url('{{ asset('assets/image/home/section3-pattern-bg.svg') }}');">
         
-        <div class="max-w-7xl mx-auto md:px-6 text-center">
+        <div class="max-w-7xl mx-auto px-2 md:px-4 text-center">
             <h2 class="text-sizeMobile lg:text-sizeDesktop font-semibold text-center text-black font-sans mb-8 md:mb-10">
                 Who can benefit out of these tests?
             </h2>
@@ -146,7 +146,7 @@
 
         <div class="sticky top-0 h-auto flex flex-col justify-start md:justify-center overflow-hidden bg-white z-20">
             
-            <div class="max-w-7xl mx-auto px-6 lg:px-8 md:py-0 text-center w-full h-full flex flex-col justify-center md:block">
+            <div class="max-w-7xl mx-auto px-2 md:px-4 md:py-0 text-center w-full h-full flex flex-col justify-center md:block">
                 
                 {{-- Heading --}}
                 <h2 class="text-sizeMobile lg:text-sizeDesktop font-semibold text-center text-black font-sans mb-8 md:mb-10">
@@ -211,7 +211,7 @@
 
     {{-- SECTION 5: Success Stories --}}
     <section class="pt-14 lg:pt-20 pb-16 lg:pb-22 bg-lightgray font-sans relative z-10">
-        <div class="max-w-7xl mx-auto px-4 md:px-6">
+        <div class="max-w-7xl mx-auto px-2 md:px-4">
 
             <h2 class="text-sizeMobile lg:text-sizeDesktop font-semibold text-center text-black font-sans mb-8 md:mb-10">
                 Success stories from our customers

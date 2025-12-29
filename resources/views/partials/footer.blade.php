@@ -8,7 +8,7 @@
                  class="w-full h-auto object-contain ">
         </div>
 
-        <div class="relative max-w-7xl mx-auto">
+        <div class="relative w-full max-w-7xl mx-auto px-2 md:px-4">
             <div class="grid grid-cols-12 md:grid-cols-12 gap-8">
 
                 {{-- COLUMN 1: Brand & Description --}}
