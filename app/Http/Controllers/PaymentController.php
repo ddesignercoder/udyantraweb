@@ -4,35 +4,43 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Auth;
 
 class PaymentController extends Controller
 {
     // 1. Show the Packages Page
     public function udyantraPackage()
     {
-        $baseUrl = config('services.backend.url'); // Ensure this is set in config/services.php
+        $baseUrl = config('services.backend.url');
+        // Check if the user is logged in and get the token
         $token = session('api_token');
+        $http = Http::acceptJson();
 
-        if (!$token) {
-            return redirect()->route('login')->with('error', 'Session expired.');
+        // Conditionally add the token header only if a token exists
+        if ($token) {
+            $http->withToken($token);
         }
-
-        $response = Http::acceptJson()
-            ->withToken($token)
-            ->get("{$baseUrl}/udyantra-package");
+        
+        //Without Token
+        $response = $http->get("{$baseUrl}/udyantra-package");
 
         if ($response->successful()) {
             $responseData = $response->json();
 
             if (isset($responseData['status']) && $responseData['status'] === true) {
-                // Pass the grouped data to the view
+                // Pass the grouped data and login status to the view
                 return view('pages.udyantra-package', [
-                    'groupedPackages' => $responseData['data'] 
+                    'groupedPackages' => $responseData['data'],
+                    // Pass a boolean to the view to check if a user is logged in
+                    'isLoggedIn' => (bool) $token 
                 ]);
             }
         }
 
-        return back()->with('error', 'Unable to fetch packages.');
+        return view('pages.udyantra-package', [
+            'groupedPackages' => [],
+            'isLoggedIn' => (bool) $token 
+        ])->with('error', 'Unable to fetch packages.');
     }
 
     // 2. Proxy: Create Order

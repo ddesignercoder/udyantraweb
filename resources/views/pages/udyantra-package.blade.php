@@ -63,7 +63,7 @@
                             <div class="absolute inset-0 bg-linear-to-b from-primary to-secondary opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-0"></div>
 
                             <div class="p-8 grow relative z-10">
-                                <h3 class="text-lg font-bold text-gray-900 group-hover:text-primary transition-colors mb-2 group-hover:text-white">
+                                <h3 class="text-lg font-bold text-gray-900  transition-colors mb-2 group-hover:text-white">
                                     {{ $package['name'] }}
                                 </h3>
 
@@ -95,11 +95,19 @@
 
                             {{-- Action Area --}}
                             <div class="p-6 relative z-10 bg-gray-50 border-t border-gray-100 group-hover:bg-transparent group-hover:border-white/30 transition-colors">
-                                <x-button variant="secondary" class="mt-0 w-full" onclick="initiatePayment({{ $package['id'] }})">Buy Now&nbsp;
-                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
-                                </x-button>
-                                
+                                @if($isLoggedIn)
+                                    {{-- LOGGED IN: Enable payment --}}
+                                    <x-button variant="secondary" class="mt-0 w-full" onclick="initiatePayment({{ $package['id'] }})">Buy Now&nbsp;
+                                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+                                    </x-button>
+                                @else
+                                    {{-- LOGGED OUT: Redirect to login --}}
+                                    <x-button variant="secondary" as="a" class="mt-0 w-full" href="{{ route('login') }}">Login to Buy&nbsp;
+                                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1"></path></svg>
+                                    </x-button>
+                                @endif
                             </div>
+
                         </div>
                     @endforeach
                 </div>
@@ -108,7 +116,7 @@
     </div>
 </div>
 
-{{-- SECTION 5: Success Stories --}}
+{{-- SECTION : Success Stories --}}
     <section class="pt-14 lg:pt-20 pb-16 lg:pb-22 bg-lightgray font-sans relative z-10">
         <div class="max-w-7xl mx-auto px-2 md:px-4">
 
@@ -131,7 +139,8 @@
         <x-faq />
     </section>
 
-    {{-- SECTION 5: Sign Up Today --}}
+    {{-- SECTION : Sign Up Today --}}
+    @if(!$isLoggedIn)
     <section class="pt-14 lg:pt-20 pb-16 lg:pb-22 bg-gray-100 font-sans relative">
         <div class="max-w-7xl mx-auto px-2 md:px-4 ">
             <div class="bg-primary-light rounded-xl shadow-xl p-4 md:p-10 g-2 relative text-center">
@@ -140,10 +149,11 @@
                 </h2>
                 <p class="test-base mb-0">Create, manage, and sell more.</p>
 
-                <x-button variant="secondary" as="a" class="mt-2" href="/logout">Start For Free</x-button>
+                <x-button variant="secondary" as="a" class="mt-2" href="{{ route('register') }}">Start For Free</x-button>
             </div>
         </div>
     </section>
+    @endif
 
 <div id="payment-loader" class="fixed inset-0 z-50 hidden flex-col items-center justify-center backdrop-blur-md transition-opacity duration-300">
     
