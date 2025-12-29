@@ -3,182 +3,212 @@
 
 @section('css')
     <style>
-        .custom-scrollbar::-webkit-scrollbar { width: 6px; }
+        .custom-scrollbar::-webkit-scrollbar { width: 4px; } /* Thinner for mobile */
         .custom-scrollbar::-webkit-scrollbar-track { background: #f1f1f1; }
         .custom-scrollbar::-webkit-scrollbar-thumb { background: #d1d5db; border-radius: 4px; }
         .custom-scrollbar::-webkit-scrollbar-thumb:hover { background: #9ca3af; }
 
-        /* Custom Shapes for the Palette to match the image */
-        .shape-box { border-radius: 4px; } /* Standard Square */
-        .shape-circle { border-radius: 50%; } /* Circle */
-        
-        /* The "Tag" shape for Not Answered / Answered (optional, using plain colors is safer for text alignment) */
         .shape-polygon { 
-            clip-path: polygon(0% 0%, 100% 0%, 100% 85%, 50% 100%, 0% 85%); /* Subtle point at bottom */
+            clip-path: polygon(0% 0%, 100% 0%, 100% 85%, 50% 100%, 0% 85%);
         }
+        
+        /* Smooth slide transition for mobile drawer */
+        .drawer-enter-active, .drawer-leave-active { transition: transform 0.3s ease-in-out; }
+        .drawer-enter-start, .drawer-leave-end { transform: translateX(100%); }
     </style>
 @endsection
 
 @section('content')
-<div class="min-h-screen bg-gray-100 py-2 font-sans"
+<div class="h-screen flex flex-col bg-gray-100 font-sans overflow-hidden"
      x-data="testPanel({{ Js::from($questions) }}, {{ Js::from($test) }}, {{ Js::from(session('user_id')) }})">
 
-    {{-- TOP HEADER --}}
-    <div class="max-w-7xl mx-auto px-4 mb-4">
-        <div class="bg-white rounded shadow-sm p-3 flex justify-between items-center border-b-4 border-blue-600">
-            <div>
-                <h1 class="text-lg font-bold text-gray-800 uppercase" x-text="test.name"></h1>
-            </div>
-            <div class="flex items-center gap-3">
-                <div class="text-sm font-semibold text-gray-600">Time Left:</div>
-                <div class="text-xl font-mono font-bold px-3 py-1 rounded bg-black text-white"
-                     :class="{'bg-red-600': timeLeft < 300}">
-                    <span x-text="formatTime(timeLeft)"></span>
+    {{-- TOP HEADER (Sticky) --}}
+    <header class="bg-white shadow-sm border-b-4 border-blue-600 z-30 shrink-0">
+        <div class="max-w-7xl mx-auto px-4 py-2 flex justify-between items-center">
+            
+            {{-- Title --}}
+            <div class="truncate mr-2">
+                <h1 class="text-sm md:text-lg font-bold text-gray-800 uppercase truncate" x-text="test.name"></h1>
+                <div class="text-xs text-gray-500 font-mono lg:hidden">
+                   Q.<span x-text="currentIndex + 1"></span> / <span x-text="questions.length"></span>
                 </div>
+            </div>
+
+            {{-- Right Side: Timer & Palette Toggle --}}
+            <div class="flex items-center gap-2 md:gap-4">
+                {{-- Timer --}}
+                <div class="flex flex-col items-end md:items-center">
+                    <span class="text-[10px] text-gray-500 font-bold uppercase hidden md:block">Time Left</span>
+                    <div class="text-base md:text-xl font-mono font-bold px-2 py-0.5 md:px-3 md:py-1 rounded bg-black text-white"
+                         :class="{'bg-red-600': timeLeft < 300}">
+                        <span x-text="formatTime(timeLeft)"></span>
+                    </div>
+                </div>
+
+                {{-- Mobile Palette Toggle Button --}}
+                <button @click="showPalette = !showPalette" 
+                        class="lg:hidden p-2 text-gray-600 hover:bg-gray-100 rounded border border-gray-300">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
+                    </svg>
+                </button>
             </div>
         </div>
-    </div>
+    </header>
 
-    <div class="max-w-7xl mx-auto px-4 grid grid-cols-1 lg:grid-cols-4 gap-4">
+    {{-- MAIN CONTENT AREA --}}
+    <div class="grow relative max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-4 gap-4 lg:p-4 overflow-hidden">
 
         {{-- LEFT COLUMN: Question Area --}}
-        <div class="lg:col-span-3">
-            <div class="bg-white rounded shadow-sm min-h-[500px] flex flex-col relative">
-                
-                {{-- Question Header --}}
-                <div class="bg-blue-50 px-4 py-3 border-b border-blue-100 flex justify-between items-center">
-                    <span class="font-bold text-blue-900 text-lg">
-                        Q.<span x-text="currentIndex + 1"></span>
-                    </span>
-                    <span class="text-xs font-bold px-2 py-1 rounded bg-white border border-blue-200 text-blue-800 uppercase" 
-                          x-text="currentQuestion.section ?? 'General'"></span>
+        <main class="lg:col-span-3 flex flex-col h-full bg-white lg:rounded shadow-sm overflow-hidden relative">
+            
+            {{-- Question Header --}}
+            <div class="bg-blue-50 px-4 py-2 border-b border-blue-100 flex justify-between items-center shrink-0">
+                <span class="font-bold text-blue-900 text-base md:text-lg">
+                    Question <span x-text="currentIndex + 1"></span>
+                </span>
+                <span class="text-[10px] md:text-xs font-bold px-2 py-1 rounded bg-white border border-blue-200 text-blue-800 uppercase" 
+                      x-text="currentQuestion.section ?? 'General'"></span>
+            </div>
+
+            {{-- Scrollable Question Body --}}
+            <div class="p-4 md:p-6 grow overflow-y-auto custom-scrollbar pb-24 lg:pb-6">
+                {{-- Question Text --}}
+                <div class="text-base md:text-lg text-gray-900 font-medium mb-6 border-b pb-4 leading-relaxed">
+                    <span x-html="currentQuestion.question_text"></span>
                 </div>
 
-                {{-- Scrollable Content --}}
-                <div class="p-6 grow overflow-y-auto">
-                    {{-- Question Text --}}
-                    <div class="text-lg text-gray-900 font-medium mb-6 border-b pb-4">
-                        <span x-text="currentQuestion.question_text"></span>
-                    </div>
-
-                    {{-- Options --}}
-                    <div class="space-y-3">
-                        <template x-for="optionKey in ['a', 'b', 'c', 'd', 'e']" :key="optionKey">
-                            <div x-show="currentQuestion['option_' + optionKey]"
-                                 @click="selectOption(optionKey)"
-                                 class="flex items-center p-3 cursor-pointer border rounded hover:bg-gray-50 transition-colors"
+                {{-- Options --}}
+                <div class="space-y-3 mb-4">
+                    <template x-for="optionKey in ['a', 'b', 'c', 'd', 'e']" :key="optionKey">
+                        <div x-show="currentQuestion['option_' + optionKey]"
+                             @click="selectOption(optionKey)"
+                             class="flex items-start p-3 md:p-4 cursor-pointer border rounded-lg hover:bg-gray-50 transition-colors touch-manipulation select-none"
+                             :class="answers[currentQuestion.id] === optionKey 
+                                ? 'border-blue-500 bg-blue-50 ring-1 ring-blue-500' 
+                                : 'border-gray-200'">
+                            
+                            <div class="mt-0.5 w-5 h-5 md:w-6 md:h-6 rounded-full border shrink-0 flex items-center justify-center mr-3"
                                  :class="answers[currentQuestion.id] === optionKey 
-                                    ? 'border-blue-500 bg-blue-50' 
-                                    : 'border-gray-300'">
-                                
-                                <div class="w-5 h-5 rounded-full border flex items-center justify-center mr-3"
-                                     :class="answers[currentQuestion.id] === optionKey 
-                                        ? 'border-blue-600 bg-blue-600' 
-                                        : 'border-gray-400'">
-                                    <div class="w-2 h-2 bg-white rounded-full" x-show="answers[currentQuestion.id] === optionKey"></div>
-                                </div>
-
-                                <div class="text-gray-800 text-base">
-                                    <strong class="uppercase mr-2" x-text="optionKey + '.'"></strong>
-                                    <span x-text="currentQuestion['option_' + optionKey]"></span>
-                                </div>
+                                    ? 'border-blue-600 bg-blue-600' 
+                                    : 'border-gray-400'">
+                                <div class="w-2 h-2 md:w-2.5 md:h-2.5 bg-white rounded-full" x-show="answers[currentQuestion.id] === optionKey"></div>
                             </div>
+
+                            <div class="text-gray-800 text-sm md:text-base">
+                                <strong class="uppercase mr-1 text-gray-500" x-text="optionKey + '.'"></strong>
+                                <span x-text="currentQuestion['option_' + optionKey]"></span>
+                            </div>
+                        </div>
+                    </template>
+                </div>
+
+                {{-- Secondary Actions (Review/Clear) --}}
+                <div class="flex justify-between items-center mt-6 pt-4 border-t border-gray-100">
+                     <button @click="markForReview()" 
+                             class="text-xs md:text-sm font-medium px-3 py-2 rounded text-purple-700 bg-purple-50 border border-purple-200 hover:bg-purple-100 transition">
+                         <span x-text="marked[currentQuestion.id] ? 'Unmark Review' : 'Mark for Review'"></span>
+                     </button>
+
+                     <button @click="clearResponse()" x-show="answers[currentQuestion.id]"
+                             class="text-xs md:text-sm text-gray-500 hover:text-red-600 underline">
+                        Clear Selection
+                    </button>
+                </div>
+            </div>
+            
+            {{-- DESKTOP FOOTER (Hidden on Mobile) --}}
+            <div class="hidden lg:flex bg-gray-50 px-4 py-3 border-t border-gray-200 justify-between items-center shrink-0">
+                <button @click="prev()" :disabled="currentIndex === 0" class="px-6 py-2 rounded bg-gray-200 text-gray-700 font-bold hover:bg-gray-300 disabled:opacity-50 text-sm">Previous</button>
+                
+                <div class="flex gap-2">
+                    <button x-show="currentIndex < questions.length - 1" @click="saveAndNext()" class="px-6 py-2 rounded bg-blue-600 text-white font-bold hover:bg-blue-700 text-sm shadow">Save & Next</button>
+                    <button x-show="currentIndex === questions.length - 1" @click="submitTest()" class="px-6 py-2 rounded bg-green-600 text-white font-bold hover:bg-green-700 text-sm shadow">Submit Test</button>
+                </div>
+            </div>
+
+            {{-- MOBILE STICKY FOOTER (Fixed Bottom) --}}
+            <div class="lg:hidden absolute bottom-0 left-0 w-full bg-white border-t border-gray-200 p-3 shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.1)] flex gap-3 z-20">
+                <button @click="prev()" :disabled="currentIndex === 0" 
+                    class="flex-1 py-3 rounded-lg bg-gray-100 text-gray-700 font-bold text-sm disabled:opacity-50 border border-gray-300">
+                    PREV
+                </button>
+                
+                <button x-show="currentIndex < questions.length - 1" @click="saveAndNext()" 
+                    class="flex-2 py-3 rounded-lg bg-blue-600 text-white font-bold text-sm shadow-md active:bg-blue-700">
+                    NEXT
+                </button>
+
+                <button x-show="currentIndex === questions.length - 1" @click="submitTest()" 
+                    class="flex-2 py-3 rounded-lg bg-green-600 text-white font-bold text-sm shadow-md animate-pulse">
+                    SUBMIT
+                </button>
+            </div>
+        </main>
+
+        {{-- RIGHT COLUMN: Palette (Responsive Drawer) --}}
+        {{-- Overlay for Mobile --}}
+        <div x-show="showPalette" 
+             x-transition.opacity 
+             @click="showPalette = false"
+             class="fixed inset-0 bg-white bg-opacity-90 z-40 lg:hidden"></div>
+
+        {{-- The Palette Sidebar --}}
+        <aside class="fixed inset-y-0 right-0 w-80 bg-white shadow-xl transform transition-transform duration-300 ease-in-out z-50 lg:translate-x-0 lg:static lg:w-auto lg:shadow-none lg:z-auto flex flex-col lg:h-full lg:bg-transparent"
+               :class="showPalette ? 'translate-x-0' : 'translate-x-full lg:translate-x-0'">
+            
+            <div class="bg-white rounded shadow-sm border border-gray-200 flex flex-col h-full lg:h-auto max-h-screen">
+                
+                {{-- Drawer Header (Mobile Only) --}}
+                <div class="p-4 border-b flex justify-between items-center lg:hidden bg-gray-50">
+                    <h3 class="font-bold text-gray-700">Question Palette</h3>
+                    <button @click="showPalette = false" class="text-gray-500 hover:text-gray-800">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                    </button>
+                </div>
+
+                {{-- User Info --}}
+                <div class="p-4 border-b flex items-center gap-3 bg-gray-50 lg:bg-white lg:rounded-t">
+                    <div class="w-8 h-8 rounded-full bg-blue-100 flex items-center justify-center text-blue-600 font-bold text-xs">
+                        {{ substr(session('user_name', 'Student'), 0, 1) }}
+                    </div>
+                    <div class="text-sm font-bold text-gray-800 truncate">{{ session('user_name', 'Student') }}</div>
+                </div>
+
+                {{-- Legend --}}
+                <div class="p-4 border-b bg-white">
+                    <div class="grid grid-cols-2 gap-y-2 text-[10px] md:text-xs text-gray-600">
+                        <div class="flex items-center"><span class="w-4 h-4 bg-green-500 rounded mr-1"></span> Answered</div>
+                        <div class="flex items-center"><span class="w-4 h-4 bg-red-500 rounded mr-1"></span> Not Ans</div>
+                        <div class="flex items-center"><span class="w-4 h-4 bg-purple-600 rounded-full mr-1"></span> Review</div>
+                        <div class="flex items-center"><span class="w-4 h-4 bg-gray-200 border border-gray-300 rounded mr-1"></span> Skipped</div>
+                    </div>
+                </div>
+
+                {{-- Grid --}}
+                <div class="p-4 overflow-y-auto custom-scrollbar grow lg:max-h-[400px]">
+                    <h3 class="font-bold text-gray-800 mb-2 text-xs uppercase tracking-wide">Jump to Question</h3>
+                    <div class="grid grid-cols-5 gap-2">
+                        <template x-for="(q, index) in questions" :key="q.id">
+                            <button @click="jumpTo(index); showPalette = false;"
+                                    class="relative w-10 h-10 lg:w-9 lg:h-9 flex items-center justify-center text-sm lg:text-xs font-bold transition-all duration-150 shadow-sm"
+                                    :class="getPaletteClass(q.id, index)">
+                                <span x-text="index + 1"></span>
+                                <span x-show="marked[q.id] && answers[q.id]" 
+                                      class="absolute bottom-0 right-0 w-2.5 h-2.5 bg-green-500 rounded-full border border-white"></span>
+                            </button>
                         </template>
                     </div>
                 </div>
 
-                {{-- Footer Buttons --}}
-                <div class="bg-gray-50 px-4 py-3 border-t border-gray-200 flex flex-wrap justify-between items-center gap-2">
-                    
-                    {{-- Left Group --}}
-                    <div class="flex gap-2">
-                        <button @click="markForReview()" 
-                                class="px-4 py-2 rounded border border-purple-600 text-purple-700 hover:bg-purple-50 font-medium text-sm transition">
-                            Mark for Review
-                        </button>
-                        <button @click="clearResponse()" 
-                                class="px-4 py-2 rounded border border-gray-300 text-gray-600 hover:bg-gray-100 font-medium text-sm transition">
-                            Clear Response
-                        </button>
-                    </div>
-
-                    {{-- Right Group --}}
-                    <div class="flex gap-2">
-                        <button @click="prev()" :disabled="currentIndex === 0"
-                                class="px-6 py-2 rounded bg-gray-200 text-gray-700 font-bold hover:bg-gray-300 disabled:opacity-50 text-sm">
-                            Previous
-                        </button>
-                        
-                        <button x-show="currentIndex < questions.length - 1" 
-                                @click="saveAndNext()"
-                                class="px-6 py-2 rounded bg-blue-600 text-white font-bold hover:bg-blue-700 text-sm shadow">
-                            Save & Next
-                        </button>
-
-                        <button x-show="currentIndex === questions.length - 1" 
-                                @click="submitTest()"
-                                class="px-6 py-2 rounded bg-green-600 text-white font-bold hover:bg-green-700 text-sm shadow animate-pulse">
-                            Submit Test
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        {{-- RIGHT COLUMN: Palette --}}
-        <div class="lg:col-span-1">
-            <div class="bg-white rounded shadow-sm border border-gray-200 p-4 sticky top-4">
-                
-                {{-- User Profile / Info (Optional) --}}
-                <div class="flex items-center gap-3 mb-4 border-b pb-2">
-                    <div class="w-10 h-10 rounded-full bg-gray-200 flex items-center justify-center text-gray-500">
-                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path></svg>
-                    </div>
-                    <div>
-                        <div class="text-sm font-bold text-gray-800">{{ session('user_name', 'Student') }}</div>
-                    </div>
-                </div>
-
-                {{-- LEGEND --}}
-                <div class="grid grid-cols-2 gap-y-3 gap-x-1 mb-4 text-xs text-gray-600">
-                    <div class="flex items-center"><span class="w-6 h-6 flex items-center justify-center bg-gray-100 border border-gray-300 rounded mr-2 text-gray-700 font-bold">44</span> Not Visited</div>
-                    <div class="flex items-center"><span class="w-6 h-6 flex items-center justify-center bg-red-500 rounded text-white font-bold mr-2" style="clip-path: polygon(0 0, 100% 0, 100% 80%, 50% 100%, 0 80%);">1</span> Not Answered</div>
-                    <div class="flex items-center"><span class="w-6 h-6 flex items-center justify-center bg-green-500 rounded text-white font-bold mr-2" style="clip-path: polygon(0 0, 100% 0, 100% 80%, 50% 100%, 0 80%);">0</span> Answered</div>
-                    <div class="flex items-center"><span class="w-6 h-6 flex items-center justify-center bg-purple-600 rounded-full text-white font-bold mr-2">0</span> Marked for Review</div>
-                    <div class="flex items-center col-span-2">
-                        <div class="relative w-6 h-6 mr-2">
-                            <span class="absolute inset-0 bg-purple-600 rounded-full flex items-center justify-center text-white font-bold">0</span>
-                            <span class="absolute bottom-0 right-0 w-2.5 h-2.5 bg-green-500 rounded-full border border-white"></span>
-                        </div>
-                        Ans & Marked for Review
-                    </div>
-                </div>
-
-                {{-- Question Palette Grid --}}
-                <h3 class="font-bold text-gray-800 mb-2 bg-blue-50 p-2 text-sm border-l-4 border-blue-500">Question Palette</h3>
-                
-                <div class="grid grid-cols-5 gap-2 max-h-[250px] overflow-y-auto pr-1 custom-scrollbar pb-2">
-                    <template x-for="(q, index) in questions" :key="q.id">
-                        <button @click="jumpTo(index)"
-                                class="relative w-9 h-9 flex items-center justify-center text-xs font-bold transition-all duration-150"
-                                :class="getPaletteClass(q.id, index)">
-                            
-                            <span x-text="index + 1"></span>
-                            
-                            {{-- Small Green Dot for 'Answered & Marked' --}}
-                            <span x-show="marked[q.id] && answers[q.id]" 
-                                  class="absolute bottom-0 right-0 w-2.5 h-2.5 bg-green-500 rounded-full border border-white"></span>
-                        </button>
-                    </template>
-                </div>
-
-                <div class="mt-4 pt-4 border-t border-gray-200">
-                    <button @click="submitTest()" class="w-full py-2 bg-blue-800 text-white font-bold rounded hover:bg-blue-900 transition text-sm shadow">
+                {{-- Submit Button (Drawer Footer) --}}
+                <div class="p-4 border-t bg-gray-50 lg:bg-white lg:rounded-b">
+                    <button @click="submitTest()" class="w-full py-3 bg-blue-800 text-white font-bold rounded shadow hover:bg-blue-900 transition text-sm">
                         SUBMIT TEST
                     </button>
                 </div>
             </div>
-        </div>
+        </aside>
 
     </div>
 </div>
@@ -190,17 +220,17 @@
             test: testData,
             userId: userId,
             currentIndex: 0,
+            showPalette: false, // New Mobile State
             
             // State Storage
-            answers: {},        // { question_id: 'a' }
-            visited: {},        // { question_id: true }
-            marked: {},         // { question_id: true }
+            answers: {},
+            visited: {},
+            marked: {},
             
             timeLeft: (testData.duration_minutes * 60), 
             timerInterval: null,
 
             init() {
-                // Restore State
                 const saved = localStorage.getItem('test_progress_' + this.test.id);
                 if (saved) {
                     const data = JSON.parse(saved);
@@ -208,17 +238,12 @@
                     this.marked = data.marked || {};
                     this.visited = data.visited || {};
                 }
-
-                // Mark first question as visited
                 this.visitCurrent();
                 this.startTimer();
-                
                 window.onbeforeunload = () => "Are you sure? Progress might be lost.";
             },
 
-            get currentQuestion() {
-                return this.questions[this.currentIndex];
-            },
+            get currentQuestion() { return this.questions[this.currentIndex]; },
 
             visitCurrent() {
                 if (!this.visited[this.currentQuestion.id]) {
@@ -238,26 +263,22 @@
             },
 
             markForReview() {
-                // Toggle mark
                 if (this.marked[this.currentQuestion.id]) {
                     delete this.marked[this.currentQuestion.id];
                 } else {
                     this.marked[this.currentQuestion.id] = true;
                 }
                 this.saveProgress();
-                //Move to next question automatically
-                this.next(); 
             },
 
-            saveAndNext() {
-                // 'Save & Next' logic is just next() because we save on click
-                this.next();
-            },
+            saveAndNext() { this.next(); },
 
             next() {
                 if (this.currentIndex < this.questions.length - 1) {
                     this.currentIndex++;
                     this.visitCurrent();
+                    // Scroll to top of question area on mobile
+                    document.querySelector('.custom-scrollbar').scrollTop = 0;
                 }
             },
 
@@ -281,44 +302,22 @@
                 }));
             },
 
-            // --- PALETTE LOGIC (The Core UI Logic) ---
             getPaletteClass(qId, index) {
                 const isAnswered = this.answers[qId];
                 const isMarked = this.marked[qId];
                 const isVisited = this.visited[qId];
                 const isCurrent = (this.currentIndex === index);
 
-                // Priority 1: Current Question (Optional: can just be a border, or distinct color)
-                // If you want "Current" to override everything visually (like a blue border):
                 let baseClass = "border ";
 
-                if (isCurrent) {
-                    baseClass += "ring-2 ring-black border-black z-10 ";
-                } else {
-                    baseClass += "border-gray-300 ";
-                }
+                if (isCurrent) baseClass += "ring-2 ring-black border-black z-10 ";
+                else baseClass += "border-gray-300 ";
 
-                // Priority 2: Marked & Answered
-                if (isAnswered && isMarked) {
-                    return baseClass + "bg-purple-600 text-white rounded-full";
-                }
+                if (isAnswered && isMarked) return baseClass + "bg-purple-600 text-white rounded-full";
+                if (isAnswered) return baseClass + "bg-green-500 text-white rounded shape-polygon";
+                if (isMarked) return baseClass + "bg-purple-600 text-white rounded-full";
+                if (isVisited && !isAnswered) return baseClass + "bg-red-500 text-white rounded shape-polygon";
 
-                // Priority 3: Answered (Green Polygon/Tag)
-                if (isAnswered) {
-                    return baseClass + "bg-green-500 text-white rounded shape-polygon";
-                }
-
-                // Priority 4: Marked (Purple Circle)
-                if (isMarked) {
-                    return baseClass + "bg-purple-600 text-white rounded-full";
-                }
-
-                // Priority 5: Not Answered but Visited (Red Polygon/Tag)
-                if (isVisited && !isAnswered) {
-                    return baseClass + "bg-red-500 text-white rounded shape-polygon";
-                }
-
-                // Priority 6: Not Visited (Gray Square)
                 return baseClass + "bg-gray-100 text-gray-700 rounded";
             },
 
@@ -344,8 +343,6 @@
             
             async submitTest() {
                 if (!confirm('Final Submit?')) return;
-                
-                // Clear Interval & warning
                 clearInterval(this.timerInterval);
                 window.onbeforeunload = null;
 
@@ -355,34 +352,21 @@
                     answers: this.answers,
                     time_taken: (this.test.duration_minutes * 60) - this.timeLeft
                 };
-                
-                console.log("Submitting:", payload);
-                localStorage.removeItem('test_progress_' + this.test.id);
 
+                // Logic to submit (using axios as in your original code)
                 try {
-                    // 1. Post to your FRONTEND route
                     const response = await axios.post("{{ route('test.submit') }}", payload);
-
-                    // 2. Check Status and Redirect
                     if (response.data.status) {
-                        // Success: Redirect to Result Page
-                        // We use a placeholder ':id' and replace it with the actual ID
                         let url = "{{ route('test.result', ':id') }}";
-                        url = url.replace(':id', response.data.result_id);
-                        
-                        
-                        window.location.href = url;
+                        window.location.href = url.replace(':id', response.data.result_id);
                     } else {
-                        // Logical Error from Backend (e.g. Validation failed)
-                        alert('Submission Failed: ' + (response.data.message || 'Unknown error'));
+                        alert('Submission Failed: ' + (response.data.message || 'Error'));
                     }
-
                 } catch (e) {
                     console.error(e);
-                    alert('Network Error: Unable to submit test. Please check your connection.');
-                }               
+                    alert('Network Error');
+                }              
             }
-            
         }));
     });
 </script>
