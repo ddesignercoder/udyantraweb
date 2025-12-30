@@ -14,19 +14,29 @@
                 Select Your Package
             </h1>
 
-            <div class="inline-flex flex-wrap justify-center gap-4 bg-primary p-1.5 rounded-xl border border-gray-200">
+            <div x-ref="tabScroller" class="inline-flex flex-nowrap items-center gap-4 md:gap-2 bg-primary p-3 md:px-3 md:py-3 rounded-xl border border-gray-200 overflow-x-auto overflow-y-hidden md:overflow-x-hidden w-full md:w-auto custom-scroll scroll-px-4 md:scroll-px-0">
                 @foreach($groupedPackages as $category => $packages)
-                    <label class="cursor-pointer relative">
+                    <label class="cursor-pointer relative whitespace-nowrap" x-ref="tab">
                         <input type="radio" 
-                               name="category_filter" 
-                               value="{{ $category }}" 
-                               x-model="activeCategory"
-                               class="peer sr-only">
+                            name="category_filter" 
+                            value="{{ $category }}" 
+                            x-model="activeCategory"
+                            class="peer sr-only"
+                            @click="
+                                if (window.matchMedia('(max-width: 767px)').matches) {
+                                    $nextTick(() => {
+                                        $el.closest('label').scrollIntoView({
+                                            behavior: 'smooth',
+                                            inline: 'nearest',
+                                            block: 'nearest'
+                                        })
+                                    })
+                                }
+                            "
+                        >
                         
                         {{-- Visual Button Style --}}
-                        <div class="px-6 py-2.5 rounded-lg text-sm font-semibold text-gray-100 transition-all duration-200
-                                    hover:bg-white hover:text-primary
-                                    peer-checked:bg-white peer-checked:text-primary peer-checked:shadow-sm peer-checked:ring-1 peer-checked:ring-gray-200">
+                        <div class="px-6 py-2.5 rounded-lg text-sm font-semibold text-gray-100 transition-all duration-200 hover:bg-white hover:text-primary  peer-checked:bg-white inline-block peer-checked:text-primary peer-checked:shadow-sm peer-checked:ring-1 peer-checked:ring-gray-200">
                             {{ ucfirst(strtolower($category)) }} Packages
                         </div>
                     </label>
@@ -57,13 +67,13 @@
                 {{-- Grid Layout --}}
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
                     @foreach($packages as $package)
-                        <div class="group relative flex flex-col bg-white rounded-2xl shadow-sm ring-1 ring-gray-200 transition-all duration-300 hover:shadow-xl hover:-translate-y-1 hover:ring-primary/50 overflow-hidden">
+                        <div class="group relative flex flex-col bg-white rounded-2xl shadow  transition-all duration-300 hover:shadow-xl hover:-translate-y-1 hover:ring-primary/50 overflow-hidden border-0">
                             
                             {{-- Decorative Top Bar --}}
-                            <div class="absolute inset-0 bg-linear-to-b from-primary to-secondary opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-0"></div>
+                            <div class="absolute inset-0 bg-linear-to-b from-primary to-secondary transform -translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-out z-0"></div>
 
                             <div class="p-8 grow relative z-10">
-                                <h3 class="text-lg font-bold text-gray-900  transition-colors mb-2 group-hover:text-white">
+                                <h3 class="text-lg font-bold text-gray-900 transition-colors mb-2 group-hover:text-white">
                                     {{ $package['name'] }}
                                 </h3>
 
@@ -118,7 +128,7 @@
 
 {{-- SECTION : Success Stories --}}
     <section class="pt-14 lg:pt-20 pb-16 lg:pb-22 bg-lightgray font-sans relative z-10">
-        <div class="max-w-7xl mx-auto px-2 md:px-4">
+        <div class="max-w-7xl mx-auto px-4 md:px-4">
 
             <h2 class="text-sizeMobile lg:text-sizeDesktop font-semibold text-center text-black font-sans mb-8 md:mb-10">
                 Success stories from our customers
@@ -126,8 +136,8 @@
 
             {{-- MOVING CONTENT STORIES --}}
             <div class="bg-white rounded-xl shadow-xl p-4 md:p-10 relative -mb-60 md:-mb-70 fade-sides">
-                
-                {{-- Carousel Logic --}}
+            
+            {{-- Carousel Logic --}}
                 <x-testimonials />
 
             </div>
@@ -135,23 +145,14 @@
     </section>
 
     {{-- Section : FAQs --}}
-    <section class="font-sans relative z-0 pt-56 lg:pt-68 pb-16 lg:py-22">
+    <section class="font-sans relative z-0 pt-56 md:pt-70 lg:pt-68 pb-16 lg:py-22">
         <x-faq />
     </section>
 
     {{-- SECTION : Sign Up Today --}}
     @if(!$isLoggedIn)
     <section class="pt-14 lg:pt-20 pb-16 lg:pb-22 bg-gray-100 font-sans relative">
-        <div class="max-w-7xl mx-auto px-2 md:px-4 ">
-            <div class="bg-primary-light rounded-xl shadow-xl p-4 md:p-10 g-2 relative text-center">
-                <h2 class="text-sizeMobile lg:text-sizeDesktop font-semibold text-black font-sans mb-5 md:mb-7">
-                    Start earning. Register today
-                </h2>
-                <p class="test-base mb-0">Create, manage, and sell more.</p>
-
-                <x-button variant="secondary" as="a" class="mt-2" href="{{ route('register') }}">Start For Free</x-button>
-            </div>
-        </div>
+        <x-register />
     </section>
     @endif
 

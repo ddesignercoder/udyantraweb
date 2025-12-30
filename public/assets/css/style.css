@@ -47,6 +47,26 @@ body{
     .button-white:hover{
         box-shadow: none;
     }
+    
+        /* Chrome, Edge, Safari */
+        .custom-scroll::-webkit-scrollbar {
+            height: 2px;
+        }
+
+        .custom-scroll::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        .custom-scroll::-webkit-scrollbar-thumb {
+            background-color: rgba(255, 255, 255, 0.5);
+            border-radius: 10px;
+        }
+
+        /* Firefox */
+        .custom-scroll {
+            scrollbar-width: thin;
+            scrollbar-color: rgba(255, 255, 255, 0.5) transparent;
+        }
 
     @media (max-width: 991px) {
         .fade-sides::before,

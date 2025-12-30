@@ -38,10 +38,10 @@
 
     {{-- Controls --}}
     <div class="flex justify-center gap-4 mt-4 md:mt-8">
-        <button @click="scrollPrev()" class="w-8 h-8 md:w-12 md:h-12 rounded-full bg-black text-white flex items-center justify-center leading-none  hover:bg-gray-800 transition shadow-lg ">
+        <button @click="scrollPrev()" class="w-8 h-8 md:w-12 md:h-12 rounded-full bg-black text-white flex items-center justify-center cursor-pointer leading-none  hover:bg-gray-800 transition shadow-lg ">
             <span class="relative top-[-2px]">&larr;</span>
         </button>
-        <button @click="scrollNext()" class="w-8 h-8 md:w-12 md:h-12 rounded-full bg-black text-white flex items-center justify-center leading-none  hover:bg-gray-800 transition shadow-lg">
+        <button @click="scrollNext()" class="w-8 h-8 md:w-12 md:h-12 rounded-full bg-black text-white flex items-center justify-center cursor-pointer leading-none  hover:bg-gray-800 transition shadow-lg">
             <span class="relative top-[-2px]">&rarr;</span>
         </button>
     </div>

@@ -1,5 +1,5 @@
     {{-- FOOTER --}}
-    <footer class="relative bg-primary text-white py-16 lg:py-22 px-4 md:px-6 overflow-hidden font-sans">
+    <footer class="relative bg-primary text-white py-16 lg:py-22 overflow-hidden font-sans">
         
         {{-- 1. Background Leaf Decoration (Right Side) --}}
         <div class="absolute bottom-[4%] right-[1%]  md:bottom-[2%] lg:top-[1%] md:right[1%] pointer-events-none opacity-27 w-[320px] sm:w-[400px] md:w-[480px] lg:w-[500px] z-0">
@@ -8,16 +8,14 @@
                  class="w-full h-auto object-contain ">
         </div>
 
-        <div class="relative w-full max-w-7xl mx-auto px-2 md:px-4">
+        <div class="relative w-full max-w-7xl mx-auto px-4 md:px-4">
             <div class="grid grid-cols-12 md:grid-cols-12 gap-8">
 
                 {{-- COLUMN 1: Brand & Description --}}
                 <div class="col-span-12 md:col-span-6 lg:col-span-5 space-y-1">
                     {{-- Logo --}}
                     <a href="{{ route('home') }}" class="inline-block mt-[-10px]">
-                        <img src="{{ asset('assets/image/footer-logo.svg') }}" 
-                             alt="Udyantra" 
-                             class="h-18 w-auto object-contain">
+                        <img src="{{ asset('assets/image/footer-logo.svg') }}" alt="Udyantra" class="h-18 w-auto object-contain">
                     </a>
                     
                     <p class="text-white text-base leading-relaxed pr-4 md:pr-12">
