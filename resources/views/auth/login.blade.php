@@ -55,7 +55,7 @@
 
             <div>
                 <button type="submit" class="group relative w-full flex justify-center py-3 px-4 border border-transparent text-sm font-bold rounded-2xl text-white bg-primary-dark hover:bg-primary-light focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary shadow-md transition-all hover:-translate-y-0.5 cursor-pointer">
-                    LogIn
+                    Login
                 </button>
             </div>
         </form>
