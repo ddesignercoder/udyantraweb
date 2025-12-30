@@ -70,6 +70,11 @@
                 <span class="text-[10px] md:text-xs font-bold px-2 py-1 rounded bg-white border border-blue-200 text-blue-800 uppercase" 
                       x-text="currentQuestion.section ?? 'General'"></span>
             </div>
+            <div class="lg:hidden flex justify-center">
+                <button @click="submitTest()" class="w-full py-2 px-4  bg-blue-800 text-white font-bold  shadow hover:bg-blue-900 transition text-sm">
+                    SUBMIT TEST
+                </button>
+            </div>
 
             {{-- Scrollable Question Body --}}
             <div class="p-4 md:p-6 grow overflow-y-auto custom-scrollbar pb-24 lg:pb-6">
