@@ -79,7 +79,7 @@
                 </div>
 
                 {{-- Options --}}
-                <div class="space-y-3 mb-4">
+                <div class="space-y-3 mb-2 md:mb-4">
                     <template x-for="optionKey in ['a', 'b', 'c', 'd', 'e']" :key="optionKey">
                         <div x-show="currentQuestion['option_' + optionKey]"
                              @click="selectOption(optionKey)"
@@ -104,14 +104,14 @@
                 </div>
 
                 {{-- Secondary Actions (Review/Clear) --}}
-                <div class="flex justify-between items-center mt-6 pt-4 border-t border-gray-100">
+                <div class="flex justify-between items-center mt-4 md:mt-2 pt-2 md:pt-2 border-t border-gray-100">
                      <button @click="markForReview()" 
-                             class="text-xs md:text-sm font-medium px-3 py-2 rounded text-purple-700 bg-purple-50 border border-purple-200 hover:bg-purple-100 transition">
+                             class="cursor-pointer text-xs md:text-sm font-medium px-3 py-2 rounded text-purple-700 bg-purple-50 border border-purple-200 hover:bg-purple-100 transition">
                          <span x-text="marked[currentQuestion.id] ? 'Unmark Review' : 'Mark for Review'"></span>
                      </button>
 
                      <button @click="clearResponse()" x-show="answers[currentQuestion.id]"
-                             class="text-xs md:text-sm text-gray-500 hover:text-red-600 underline">
+                             class="cursor-pointer text-xs md:text-sm px-3 py-2 rounded text-gray-500 bg-purple-50 border border-purple-200 hover:text-red-600 hover:bg-red-50 transition ">
                         Clear Selection
                     </button>
                 </div>
@@ -119,11 +119,11 @@
             
             {{-- DESKTOP FOOTER (Hidden on Mobile) --}}
             <div class="hidden lg:flex bg-gray-50 px-4 py-3 border-t border-gray-200 justify-between items-center shrink-0">
-                <button @click="prev()" :disabled="currentIndex === 0" class="px-6 py-2 rounded bg-gray-200 text-gray-700 font-bold hover:bg-gray-300 disabled:opacity-50 text-sm">Previous</button>
+                <button @click="prev()" :disabled="currentIndex === 0" class="cursor-pointer px-6 py-2 rounded bg-gray-200 text-gray-700 font-bold hover:bg-gray-300 disabled:opacity-50 text-sm">Previous</button>
                 
                 <div class="flex gap-2">
-                    <button x-show="currentIndex < questions.length - 1" @click="saveAndNext()" class="px-6 py-2 rounded bg-blue-600 text-white font-bold hover:bg-blue-700 text-sm shadow">Save & Next</button>
-                    <button x-show="currentIndex === questions.length - 1" @click="submitTest()" class="px-6 py-2 rounded bg-green-600 text-white font-bold hover:bg-green-700 text-sm shadow">Submit Test</button>
+                    <button x-show="currentIndex < questions.length - 1" @click="saveAndNext()" class="cursor-pointer px-6 py-2 rounded bg-blue-600 text-white font-bold hover:bg-blue-700 text-sm shadow">Save & Next</button>
+                    <button x-show="currentIndex === questions.length - 1" @click="submitTest()" class="cursor-pointer px-6 py-2 rounded bg-green-600 text-white font-bold hover:bg-green-700 text-sm shadow">Submit Test</button>
                 </div>
             </div>
 
