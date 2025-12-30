@@ -32,7 +32,7 @@
                     </p>
 
                     <div class="pt-0">
-                        <x-button variant="secondary" as="a" class="mt-6" href="#plans">Explore our plan</x-button>
+                        <x-button variant="secondary" as="a" class="mt-6" href="{{ route('udyantra-package') }}">Explore our plan</x-button>
                         <!-- <a href="#plans" 
                         class="inline-block bg-white text-black font-medium text-base px-8 py-3 rounded-full border border-borderBase shadow-hard hover:shadow-none hover:translate-x-0.5 hover:translate-y-0.5 transition-all duration-200">
                            Explore our plan 
@@ -98,7 +98,7 @@
                              class="w-full h-full object-cover">
                     </div>
                     
-                    <div class="bg-white border-1 border-borderArround text-center text-lg md:text-xl rounded-lg px-3 md:px-6 py-3 md:py-3 font-bold text-black shadow-sm mb-4">
+                    <div class="bg-white border border-borderArround text-center text-lg md:text-xl rounded-lg px-3 md:px-6 py-3 md:py-3 font-bold text-black shadow-sm mb-4">
                         Schools Students (Grade 8–12)
                     </div>
                     
@@ -117,7 +117,7 @@
                              class="w-full h-full object-cover">
                     </div>
                     
-                    <div class="bg-white border-1 border-borderArround text-center text-lg md:text-xl rounded-lg px-3 md:px-6 py-3 md:py-3 font-bold md:font-bold text-black shadow-sm mb-4">
+                    <div class="bg-white border border-borderArround text-center text-lg md:text-xl rounded-lg px-3 md:px-6 py-3 md:py-3 font-bold md:font-bold text-black shadow-sm mb-4">
                         Professionals (Undergraduates and working individuals)
                     </div>
                     
@@ -203,7 +203,11 @@
             </div>
             {{-- Static Action Buttons --}}
                 <div class="flex flex-col md:flex-row justify-center items-center gap-4 md:gap-6 mt-6  shrink-0 pb-2">
-                    <x-button as="a" class="w-9/12 md:w-4/12 lg:w-70" href="#demo-tests">Try Demo Tests</x-button>
+                    @if($isLoggedIn)
+                    <x-button as="a" class="w-9/12 md:w-4/12 lg:w-70" href="{{ route('test-panel', ['slug' => 'professional-psychometric-69342f0c4f9a2']) }}" target="_blank">Try Demo Tests</x-button>
+                    @else
+                    <x-button as="a" class="w-9/12 md:w-4/12 lg:w-70" href="{{ route('login') }}">Try Demo Tests</x-button>
+                    @endif
                     <x-button variant="secondary" as="a" class="w-9/12 md:w-4/12 lg:w-70 px-4 py-3 md:py-4" href="#sample-report">Download Sample Report</x-button>
                 </div>
         </div>

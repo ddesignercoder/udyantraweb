@@ -11,7 +11,7 @@
                 Create Account
             </h2>
             <p class="mt-2 text-sm text-textBlack">
-                Join Udyantra and start creating
+                Join Udyantra and start your journey
             </p>
         </div>
 
@@ -56,7 +56,7 @@
             <p class="text-sm text-textBlack">
                 Already have an account? 
                 <a href="{{ route('login') }}" class="font-medium text-primary hover:text-primary-dark transition-colors">
-                    Login here
+                    LogIn here
                 </a>
             </p>
         </div>
