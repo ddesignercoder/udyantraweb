@@ -56,7 +56,7 @@
             <p class="text-sm text-textBlack">
                 Already have an account? 
                 <a href="{{ route('login') }}" class="font-medium text-primary hover:text-primary-dark transition-colors">
-                    LogIn here
+                    Login here
                 </a>
             </p>
         </div>
