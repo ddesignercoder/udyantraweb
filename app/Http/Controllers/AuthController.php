@@ -8,11 +8,11 @@ class AuthController extends Controller
 {
     public function index()
     {  
-        if(session('api_token')) {
+        // if(session('api_token')) {
             
-            return view('pages.home',['isLoggedIn' => true]);
-            // return redirect()->route('welcome');
-        }
+        //     return view('pages.home',['isLoggedIn' => true]);
+        //     // return redirect()->route('welcome');
+        // }
         return view('pages.home');
     }
 
