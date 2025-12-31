@@ -76,13 +76,12 @@
                 
                 {{-- NEW: Mobile "Submit Test" Button (Visible at top of content) --}}
                 <div class="lg:hidden mb-6">
-                    <button @click="submitTest()" 
-                            class="w-full py-2 px-4 bg-green-50 text-green-600 border border-green-200 font-bold rounded shadow-sm hover:bg-green-100 transition text-xs uppercase tracking-wider flex items-center justify-center gap-2">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                        </svg>
-                        Finish & Submit Test
-                    </button>
+                        <button @click="submitTest()" 
+                                class="cursor-pointer w-full py-2 px-4 bg-green-50 text-primary border border-green-200 font-bold rounded shadow-sm hover:bg-green-100 transition text-xs uppercase tracking-wider flex items-center justify-center gap-2">
+                            
+                            <x-lucide-circle-check class="h-4 w-4" />
+                            Finish & Submit Test
+                        </button>
                 </div>
 
                 {{-- Question Text --}}
