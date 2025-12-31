@@ -217,7 +217,7 @@
 
                 {{-- Submit Button (Drawer Footer) --}}
                 <div class="p-4 border-t bg-gray-50 lg:bg-white lg:rounded-b">
-                    <button @click="submitTest()" class="w-full py-3 bg-blue-800 text-white font-bold rounded shadow hover:bg-blue-900 transition text-sm">
+                    <button @click="submitTest()" class="cursor-pointer w-full py-3 bg-blue-800 text-white font-bold rounded shadow hover:bg-blue-900 transition text-sm">
                         SUBMIT TEST
                     </button>
                 </div>
@@ -225,6 +225,25 @@
         </aside>
 
     </div>
+    <!-- Loader -->
+    <div x-show="isSubmitting" 
+        x-transition.opacity.duration.300ms
+        class="fixed inset-0 z-100 bg-white/90 backdrop-blur-sm flex flex-col items-center justify-center"
+        style="display: none;">
+        
+        <div class="relative w-16 h-16 mb-4">
+            <div class="absolute inset-0 rounded-full border-4 border-primary-light/30"></div>
+            <div class="absolute inset-0 rounded-full border-4 border-t-transparent border-primary animate-spin"></div>
+        </div>
+
+        <h3 class="text-xl font-bold text-primary font-sans tracking-tight">
+            Submitting Test
+        </h3>
+        <p class="text-black font-sans text-sm mt-1 animate-pulse">
+            Please do not close this window...
+        </p>
+    </div>
+
 </div>
 
 <script>
@@ -235,6 +254,7 @@
             userId: userId,
             currentIndex: 0,
             showPalette: false, // New Mobile State
+            isSubmitting: false,
             
             // State Storage
             answers: {},
@@ -357,6 +377,7 @@
             
             async submitTest() {
                 if (!confirm('Final Submit?')) return;
+                this.isSubmitting = true; // Start loading animation
                 clearInterval(this.timerInterval);
                 window.onbeforeunload = null;
 
@@ -367,18 +388,21 @@
                     time_taken: (this.test.duration_minutes * 60) - this.timeLeft
                 };
 
-                // Logic to submit (using axios as in your original code)
+                // Logic to submit using axios
                 try {
                     const response = await axios.post("{{ route('test.submit') }}", payload);
                     if (response.data.status) {
                         let url = "{{ route('test.result', ':id') }}";
+                        localStorage.removeItem('test_progress_' + this.test.id);
                         window.location.href = url.replace(':id', response.data.result_id);
                     } else {
                         alert('Submission Failed: ' + (response.data.message || 'Error'));
+                        this.isSubmitting = false; //STOP LOADER ON FAIL
                     }
                 } catch (e) {
                     console.error(e);
                     alert('Network Error');
+                    this.isSubmitting = false; //STOP LOADER ON FAIL
                 }              
             }
         }));
