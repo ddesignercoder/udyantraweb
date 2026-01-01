@@ -91,7 +91,7 @@
 
                 {{-- Options --}}
                 <div class="space-y-3 mb-2 md:mb-4">
-                    <template x-for="optionKey in ['a', 'b', 'c', 'd', 'e']" :key="optionKey">
+                    <template x-for="optionKey in ['A', 'B', 'C', 'D', 'E']" :key="optionKey">
                         <div x-show="currentQuestion['option_' + optionKey]"
                              @click="selectOption(optionKey)"
                              class="flex items-start p-3 md:p-4 cursor-pointer border rounded-lg hover:bg-gray-50 transition-colors touch-manipulation select-none"
