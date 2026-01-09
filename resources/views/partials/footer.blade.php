@@ -32,7 +32,7 @@
                         <li><a href="{{ route('home') }}" class="hover:text-white hover:underline transition">Home</a></li>
                         <li><a href="#" class="hover:text-white hover:underline transition">About us</a></li>
                         <li><a href="{{ route('udyantra-package') }}" class="hover:text-white hover:underline transition">Pricing</a></li>
-                        <li><a href="#" class="hover:text-white hover:underline transition">Blog</a></li>
+                        <!-- <li><a href="#" class="hover:text-white hover:underline transition">Blog</a></li> -->
                         <li><a href="#" class="hover:text-white hover:underline transition">Contact</a></li>
                     </ul>
                 </div>

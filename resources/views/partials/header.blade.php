@@ -47,7 +47,7 @@
 
                 {{-- Desktop Menu Links --}}
                 <div class="hidden lg:flex items-center gap-6 lg:gap-8 font-semibold text-sm lg:text-base text-black">
-                    <a href="#why-choose-us" class="hover:text-primary transition-colors">Why Choose Us</a>
+                    <a href="{{ route('why-choose-us') }}" class="hover:text-primary transition-colors">Why Choose Us</a>
                     <a href="#focus" class="hover:text-primary transition-colors">What We Focus On</a>
                     <a href="{{ route('udyantra-package') }}" class="hover:text-primary transition-colors">Pricing</a>
                     <a href="#faq" class="hover:text-primary transition-colors">FAQs</a>
@@ -126,7 +126,7 @@
                 </div>
 
                 {{-- Mobile Links --}}
-                <a href="#why-choose-us" class="block px-3 py-2 rounded-md active:text-primary transition">Why Choose Us</a>
+                <a href="{{ route('why-choose-us') }}" class="block px-3 py-2 rounded-md active:text-primary transition">Why Choose Us</a>
                 <a href="#focus" class="block px-3 py-2 rounded-md active:text-primary transition">What We Focus On</a>
                 <a href="{{ route('udyantra-package') }}" class="block px-3 py-2 rounded-md active:text-primary transition">Pricing</a>
                 <a href="#faq" class="block px-3 py-2 rounded-md active:text-primary transition">FAQs</a>
