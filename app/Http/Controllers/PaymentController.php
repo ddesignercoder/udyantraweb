@@ -29,7 +29,7 @@ class PaymentController extends Controller
 
             if (isset($responseData['status']) && $responseData['status'] === true) {
                 // Pass the grouped data and login status to the view
-                return view('pages.udyantra-package', [
+                return view('menu-pages.udyantra-package', [
                     'groupedPackages' => $responseData['data'],
                     // Pass a boolean to the view to check if a user is logged in
                     'isLoggedIn' => (bool) $token 
@@ -37,7 +37,7 @@ class PaymentController extends Controller
             }
         }
 
-        return view('pages.udyantra-package', [
+        return view('menu-pages.udyantra-package', [
             'groupedPackages' => [],
             'isLoggedIn' => (bool) $token 
         ])->with('error', 'Unable to fetch packages.');
