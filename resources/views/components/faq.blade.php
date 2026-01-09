@@ -8,9 +8,10 @@
         {{-- FAQ Items --}}
         @php
             $faqs = [
-                ['question' => 'How accurate are the tests?', 'answer' => "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."],
-                ['question' => 'Are results confidential?', 'answer' => "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."],
-                ['question' => 'How long does each test take?', 'answer' => "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."],
+                ['question' => 'How accurate are the assessments?', 'answer' => "Our assessments use structured psychometric principles and standardized scoring, making them significantly more reliable than generic online quizzes."],
+                ['question' => 'Are results confidential?', 'answer' => "Yes. All responses and reports are handled with strict confidentiality and data privacy."],
+                ['question' => 'How long does each assessment take?', 'answer' => "Most assessments take between 45–90 minutes, depending on the test type."],
+                ['question' => 'Can one test decide my entire career?', 'answer' => "The assessment provides clarity and direction. Final decisions should combine assessment insights with guidance, exploration, and personal goals."],
             ];
         @endphp
 

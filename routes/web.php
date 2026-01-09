@@ -13,9 +13,11 @@ Route::get('/', [AuthController::class, 'index'])->name('home');
 Route::view('/login', 'auth.login')->name('login'); 
 Route::view('/register', 'auth.register')->name('register');
 
+// Menu Pages
 Route::get('/pricing', [PaymentController::class, 'udyantraPackage'])->name('udyantra-package');
-Route::get('/why-choose-us', fn () => view('pages.why-choose-us'))->name('why-choose-us');
+Route::get('/why-choose-us', fn () => view('menu-pages.why-choose-us'))->name('why-choose-us');
 
+// API Routes
 Route::post('/login-api', [AuthController::class, 'login'])->name('api.login');
 Route::post('/register-api', [AuthController::class, 'register'])->name('api.register');
 
