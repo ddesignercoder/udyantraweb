@@ -33,10 +33,6 @@
 
                     <div class="pt-0">
                         <x-button variant="secondary" as="a" class="mt-6" href="{{ route('udyantra-package') }}">Explore our plan</x-button>
-                        <!-- <a href="#plans" 
-                        class="inline-block bg-white text-black font-medium text-base px-8 py-3 rounded-full border border-borderBase shadow-hard hover:shadow-none hover:translate-x-0.5 hover:translate-y-0.5 transition-all duration-200">
-                           Explore our plan 
-                        </a> -->
                     </div>
                 </div>
 
@@ -80,8 +76,7 @@
 
 
     {{-- SECTION 3: WHO CAN BENEFIT? --}}
-    <section class="py-16 lg:py-22 bg-cover bg-center" 
-             style="background-image: url('{{ asset('assets/image/home/section3-pattern-bg.svg') }}');">
+    <section class="py-16 lg:py-22 bg-cover bg-center" style="background-image: url('{{ asset('assets/image/home/section3-pattern-bg.svg') }}');">
         
         <div class="max-w-7xl mx-auto px-2 md:px-4 text-center">
             <h2 class="text-sizeMobile lg:text-sizeDesktop font-semibold text-center text-black font-sans mb-8 md:mb-10">

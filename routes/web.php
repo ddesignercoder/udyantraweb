@@ -14,7 +14,7 @@ Route::view('/login', 'auth.login')->name('login');
 Route::view('/register', 'auth.register')->name('register');
 
 Route::get('/pricing', [PaymentController::class, 'udyantraPackage'])->name('udyantra-package');
-
+Route::get('/why-choose-us', fn () => view('pages.why-choose-us'))->name('why-choose-us');
 
 Route::post('/login-api', [AuthController::class, 'login'])->name('api.login');
 Route::post('/register-api', [AuthController::class, 'register'])->name('api.register');
@@ -23,7 +23,7 @@ Route::post('/register-api', [AuthController::class, 'register'])->name('api.reg
 Route::middleware(['auth.api'])->group(function () {
     Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
     Route::get('/welcome', fn () => view('pages.welcome'))->name('welcome');
-
+    
     // Test Panel
     Route::get('/test-panel/{slug}', [TestPanelController::class, 'show'])->name('test-panel');
     Route::post('/test-panel/submit', [TestPanelController::class, 'submit'])->name('test.submit');
