@@ -1,50 +1,69 @@
 @extends('layouts.app')
 
-@section('title', 'Test Submitted')
-
 @section('content')
-<div class="min-h-screen bg-gray-50 flex flex-col justify-center items-center py-12 px-4 sm:px-6 lg:px-8">
-    <div class="max-w-md w-full space-y-8 bg-white p-10 rounded-xl shadow-lg text-center">
+<div class="min-h-screen bg-gray-50 py-12 px-4">
+    
+    {{-- Header --}}
+    <div class="max-w-7xl mx-auto text-center mb-10">
+        <h2 class="text-3xl font-extrabold text-gray-900">Your Career Compass Report</h2>
+        <p class="mt-2 text-gray-600">Reference ID: #{{ $result_id }}</p>
+    </div>
+
+    {{-- Result Container --}}
+    <div class="max-w-7xl mx-auto space-y-8">
         
-        {{-- Success Icon --}}
-        <div class="mx-auto flex items-center justify-center h-24 w-24 rounded-full bg-green-100 mb-6">
-            <svg class="h-12 w-12 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-            </svg>
+        {{-- PROFILE SUMMARY --}}
+        <div class="bg-white rounded-xl shadow-md overflow-hidden">
+            <div class="bg-indigo-600 px-6 py-4">
+                <h3 class="text-xl font-bold text-white">Your Dominant Profile</h3>
+            </div>
+            <div class="p-6 grid grid-cols-1 md:grid-cols-4 gap-6 text-center">
+                @foreach($analysis['user_profile_winners'] as $section => $traits)
+                    <div class="p-4 bg-gray-50 rounded-lg border border-gray-100">
+                        <p class="text-xs font-semibold text-gray-500 uppercase">{{ $section }}</p>
+                        <p class="mt-1 text-lg font-bold text-indigo-700">
+                            {{-- Handle Array (Tie) vs String --}}
+                            {{ is_array($traits) ? implode(' & ', $traits) : $traits }}
+                        </p>
+                    </div>
+                @endforeach
+            </div>
         </div>
 
-        <h2 class="mt-6 text-3xl font-extrabold text-gray-900">
-            Success!
-        </h2>
-        
-        {{-- DYNAMIC MESSAGE FROM SESSION --}}
-        @if(session('success_message'))
-            <div class="mt-4 p-4 rounded-md bg-green-50 border border-green-200">
-                <p class="text-lg text-green-700 font-medium">
-                    {{ session('success_message') }}
+        {{-- TIE BREAKER ALERT --}}
+        @if($analysis['is_tie_scenario'])
+            <div class="bg-yellow-50 border-l-4 border-yellow-400 p-4">
+                <p class="text-sm text-yellow-700">
+                    <strong>Multiple Matches Found!</strong> We found {{ $analysis['match_count'] }} career paths.
                 </p>
             </div>
-        @else
-            {{-- Fallback message if session expired or direct access --}}
-            <p class="mt-2 text-sm text-gray-600">
-                Your responses have been recorded successfully.
-            </p>
         @endif
 
-        <p class="mt-4 text-sm text-gray-500">
-            Result Reference ID: <span class="font-mono font-bold text-gray-800">#{{ $result_id }}</span>
-        </p>
-
-        <div class="mt-8 space-y-3">
-            <a href="{{ route('welcome') }}" class="w-full flex justify-center py-3 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-                Go to Dashboard
-            </a>
-            
-            {{-- Optional: Link to view detailed report later --}}
-            {{-- <a href="#" class="w-full flex justify-center py-3 px-4 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 bg-white hover:bg-gray-50">
-                View Detailed Report
-            </a> --}}
+        {{-- OUTCOMES GRID --}}
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            @foreach($outcomes as $outcome)
+                <div class="bg-white rounded-xl shadow-lg border-l-4 border-indigo-500 overflow-hidden">
+                    <div class="p-6">
+                        <h4 class="text-xl font-bold text-gray-900">
+                            {{ $outcome['personality'] }} + {{ $outcome['aptitude'] }} Path
+                        </h4>
+                        <p class="mt-4 text-gray-600 text-sm">
+                            {{ $outcome['short_summary'] }}
+                        </p>
+                        
+                        <div class="mt-4">
+                            <strong>Streams:</strong>
+                            {{-- Accessor logic handled in PHP or raw string --}}
+                            {{ is_array($outcome['suggested_streams']) 
+                                ? implode(', ', $outcome['suggested_streams']) 
+                                : str_replace(';', ', ', $outcome['suggested_streams']) 
+                            }}
+                        </div>
+                    </div>
+                </div>
+            @endforeach
         </div>
+
     </div>
 </div>
 @endsection
