@@ -391,7 +391,7 @@
                 try {
                     const response = await axios.post("{{ route('test.submit') }}", payload);
                     if (response.data.status) {
-                        let url = "{{ route('test.result', ':id') }}";
+                        let url = "{{ route('test.submit_response', ':id') }}";
                         localStorage.removeItem('test_progress_' + this.test.id);
                         window.location.href = url.replace(':id', response.data.result_id);
                     } else {

@@ -80,12 +80,71 @@ class TestPanelController extends Controller
             ], $response->status());
         }
 
+        public function testSubmittedResponse($id)
+        {
+            return view('pages.test-submitted-response', ['result_id' => $id]);
+        }
+
+        /**
+         * Server-Side Fetch for Dashboard
+         */
+        public function dashboard()
+        {
+            $baseUrl = config('services.backend.url');
+            $token = session('api_token');
+            $userId = session('user_id');
+
+            // 1. Call the API
+            $response = Http::withToken($token)
+                ->acceptJson()
+                ->get("{$baseUrl}/user-test-history", [
+                    'user_id' => $userId
+                ]);
+
+            $history = [];
+            $totalTests = 0;
+
+            if ($response->successful()) {
+                $data = $response->json();
+                $history = $data['history'] ?? [];
+                $totalTests = $data['total_tests_taken'] ?? 0;
+            }
+
+            // 2. Pass data to View
+            return view('pages.user-dashboard', compact('history', 'totalTests'));
+        }
+
+        /**
+         * Server-Side Fetch for Result Page
+         */
         public function result($id)
         {
-            // Optional: You could call the backend API here to get score details if needed
-            // For now, we just pass the ID to the view
-            return view('pages.test-result', ['result_id' => $id]);
+            $baseUrl = config('services.backend.url');
+            $token = session('api_token');
+            $userId = session('user_id');
+
+            // 1. Call the API from the Server
+            $response = Http::withToken($token)
+                ->acceptJson()
+                ->get("{$baseUrl}/career-analysis", [
+                    'user_id' => $userId,
+                    'test_result_id' => $id
+                ]);
+
+            if ($response->successful()) {
+                $data = $response->json();
+                //dd($data);
+                // 2. Pass the array directly to the View
+                return view('pages.test-result', [
+                    'result_id' => $id,
+                    'analysis' => $data['analysis'],
+                    'outcomes' => $data['outcomes'] ?? [] // Handle empty cases
+                ]);
+            }
+
+            return redirect()->route('user.dashboard')->with('error', 'Could not fetch results.');
         }
+
 
 
 }

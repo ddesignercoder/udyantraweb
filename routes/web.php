@@ -29,7 +29,10 @@ Route::middleware(['auth.api'])->group(function () {
     // Test Panel
     Route::get('/test-panel/{slug}', [TestPanelController::class, 'show'])->name('test-panel');
     Route::post('/test-panel/submit', [TestPanelController::class, 'submit'])->name('test.submit');
+    Route::get('/test-submit-response/{id}', [TestPanelController::class, 'testSubmittedResponse'])->name('test.submit_response');
+    // User Dashboard and Test Result
     Route::get('/test-result/{id}', [TestPanelController::class, 'result'])->name('test.result');
+    Route::get('/my-dashboard', [TestPanelController::class, 'dashboard'])->name('user.dashboard');
 
     // Payment Routes
     Route::post('/payment/initiate', [PaymentController::class, 'createOrder'])->name('payment.initiate');
