@@ -43,7 +43,7 @@ class TestPanelController extends Controller
         }
 
 
-        public function submit(Request $request)
+    public function submit(Request $request)
         {
             // 1. Get Token & Config
             $token = session('api_token');
@@ -80,15 +80,15 @@ class TestPanelController extends Controller
             ], $response->status());
         }
 
-        public function testSubmittedResponse($id)
+    public function testSubmittedResponse($id)
         {
             return view('pages.test-submitted-response', ['result_id' => $id]);
         }
 
-        /**
-         * Server-Side Fetch for Dashboard
-         */
-        public function dashboard()
+    /**
+     * Server-Side Fetch for Dashboard
+     */
+    public function dashboard()
         {
             $baseUrl = config('services.backend.url');
             $token = session('api_token');
@@ -114,10 +114,10 @@ class TestPanelController extends Controller
             return view('pages.user-dashboard', compact('history', 'totalTests'));
         }
 
-        /**
-         * Server-Side Fetch for Result Page
-         */
-        public function result($id)
+    /**
+    * Server-Side Fetch for Result Page
+    */
+    public function result($id)
         {
             $baseUrl = config('services.backend.url');
             $token = session('api_token');
