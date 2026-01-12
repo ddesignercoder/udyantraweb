@@ -60,9 +60,9 @@
                         <h3 class="text-2xl font-bold text-white">
                             Career Path {{ $index + 1 }}
                         </h3>
-                        <span class="bg-white text-primary px-4 py-1 rounded-full text-sm font-bold">
+                        <!-- <span class="bg-white text-primary px-4 py-1 rounded-full text-sm font-bold">
                             {{ $outcome['personality'] }} × {{ $outcome['aptitude'] }}
-                        </span>
+                        </span> -->
                     </div>
                 </div>
 

@@ -16,6 +16,7 @@ Route::view('/register', 'auth.register')->name('register');
 // Menu Pages
 Route::get('/pricing', [PaymentController::class, 'udyantraPackage'])->name('udyantra-package');
 Route::get('/why-choose-us', fn () => view('menu-pages.why-choose-us'))->name('why-choose-us');
+Route::get('/what-we-focus-on', fn () => view('menu-pages.what-we-focus-on'))->name('what-we-focus-on');
 
 // API Routes
 Route::post('/login-api', [AuthController::class, 'login'])->name('api.login');
