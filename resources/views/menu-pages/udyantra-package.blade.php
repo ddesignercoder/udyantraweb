@@ -1,7 +1,8 @@
 @extends('layouts.app') 
 @section('title', 'Udyantra Package')
-
+@section('css')
 <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
+@endsection
 
 @section('content')
 <div class="min-h-screen bg-gray-50 font-sans pt-16 lg:pt-22 text-textBlack" 

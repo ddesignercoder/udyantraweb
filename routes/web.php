@@ -17,6 +17,7 @@ Route::view('/register', 'auth.register')->name('register');
 Route::get('/pricing', [PaymentController::class, 'udyantraPackage'])->name('udyantra-package');
 Route::get('/why-choose-us', fn () => view('menu-pages.why-choose-us'))->name('why-choose-us');
 Route::get('/what-we-focus-on', fn () => view('menu-pages.what-we-focus-on'))->name('what-we-focus-on');
+Route::get('/citations', fn () => view('menu-pages.citations'))->name('citations');
 
 // API Routes
 Route::post('/login-api', [AuthController::class, 'login'])->name('api.login');

@@ -50,6 +50,7 @@
                     <a href="{{ route('why-choose-us') }}" class="hover:text-primary transition-colors">Why Choose Us</a>
                     <a href="{{ route('what-we-focus-on') }}" class="hover:text-primary transition-colors">What We Focus On</a>
                     <a href="{{ route('udyantra-package') }}" class="hover:text-primary transition-colors">Pricing</a>
+                    <a href="{{ route('citations')}}" class="hover:text-primary transition-colors">Citations</a>
                     <a href="#faq" class="hover:text-primary transition-colors">FAQs</a>
                     <a href="#contact" class="hover:text-primary transition-colors">Contact Us</a>
                 </div>
@@ -129,6 +130,7 @@
                 <a href="{{ route('why-choose-us') }}" class="block px-3 py-2 rounded-md active:text-primary transition">Why Choose Us</a>
                 <a href="{{ route('what-we-focus-on') }}" class="block px-3 py-2 rounded-md active:text-primary transition">What We Focus On</a>
                 <a href="{{ route('udyantra-package') }}" class="block px-3 py-2 rounded-md active:text-primary transition">Pricing</a>
+                <a href="{{route('citations')}}" class="block px-3 py-2 rounded-md active:text-primary transition">Citations</a>
                 <a href="#faq" class="block px-3 py-2 rounded-md active:text-primary transition">FAQs</a>
                 <a href="#contact" class="block px-3 py-2 rounded-md active:text-primary transition">Contact Us</a>
             </div>
