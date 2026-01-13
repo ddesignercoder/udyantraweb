@@ -31,7 +31,7 @@ class TestPanelController extends Controller
                     $data = $responseData['data'];
                     
                     // dd($data['questions']);
-                    return view('pages.test-panel', [
+                    return view('user-pages.test-panel', [
                         'test' => $data['test'],
                         'questions' => $data['questions']
                     ]);
@@ -82,7 +82,7 @@ class TestPanelController extends Controller
 
     public function testSubmittedResponse($id)
         {
-            return view('pages.test-submitted-response', ['result_id' => $id]);
+            return view('user-pages.test-submitted-response', ['result_id' => $id]);
         }
 
     /**
@@ -111,7 +111,7 @@ class TestPanelController extends Controller
             }
 
             // 2. Pass data to View
-            return view('pages.user-dashboard', compact('history', 'totalTests'));
+            return view('user-pages.user-dashboard', compact('history', 'totalTests'));
         }
 
     /**
@@ -135,7 +135,7 @@ class TestPanelController extends Controller
                 $data = $response->json();
                 //dd($data);
                 // 2. Pass the array directly to the View
-                return view('pages.test-result', [
+                return view('user-pages.test-result', [
                     'result_id' => $id,
                     'analysis' => $data['analysis'],
                     'outcomes' => $data['outcomes'] ?? [] // Handle empty cases
