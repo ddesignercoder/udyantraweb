@@ -68,7 +68,8 @@
                         @else
                             <a href="{{ route('login') }}" class="hover:underline text-sm md:text-base whitespace-nowrap cursor-pointer">Login</a>
                             <span class="mx-2 opacity-100">|</span>
-                            <a href="{{ route('register') }}" class="hover:underline text-sm md:text-base whitespace-nowrap cursor-pointer">Register</a>
+                            {{-- ✅ UPDATED: Points to Selection Page --}}
+                            <a href="{{ route('register.select') }}" class="hover:underline text-sm md:text-base whitespace-nowrap cursor-pointer">Register</a>
                         @endif
                     </div>
                 </div>
@@ -118,7 +119,8 @@
                                 <x-lucide-log-in class="w-4 h-4" />
                                 Login
                             </a>
-                            <a href="{{ route('register') }}" class="flex items-center justify-center gap-2 bg-primary text-white py-2.5 rounded-lg font-semibold">
+                            {{-- ✅ UPDATED: Points to Selection Page --}}
+                            <a href="{{ route('register.select') }}" class="flex items-center justify-center gap-2 bg-primary text-white py-2.5 rounded-lg font-semibold">
                                 <x-lucide-user-plus class="w-4 h-4" />
                                 Register
                             </a>
