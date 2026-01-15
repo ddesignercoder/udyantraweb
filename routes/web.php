@@ -4,6 +4,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\TestPanelController;
 use App\Http\Controllers\PaymentController;
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\OrgUserManagementController;
 // use Illuminate\Support\Facades\Auth; 
 // Route::get('/', function () {
 //     return view('welcome');
@@ -50,6 +52,12 @@ Route::get('/citations', fn () => view('menu-pages.citations'))->name('citations
 Route::middleware(['auth.api'])->group(function () {
     Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
     Route::get('/welcome', fn () => view('pages.welcome'))->name('welcome');
+    //Comman Dashboard
+    Route::get('/my-dashboard', [DashboardController::class, 'index'])->name('user.dashboard');
+    //Org User Management
+    Route::post('/org/add-user', [OrgUserManagementController::class, 'storeUser'])->name('org.add.user');
+    Route::get('/dashboard/add-user', [DashboardController::class, 'addUser'])->name('dashboard.add-user');
+    Route::get('/dashboard/users', [DashboardController::class, 'listUsers'])->name('dashboard.list-users');
     
     // Test Panel
     Route::get('/test-panel/{slug}', [TestPanelController::class, 'show'])->name('test-panel');
@@ -57,7 +65,7 @@ Route::middleware(['auth.api'])->group(function () {
     Route::get('/test-submit-response/{id}', [TestPanelController::class, 'testSubmittedResponse'])->name('test.submit_response');
     // User Dashboard and Test Result
     Route::get('/test-result/{id}', [TestPanelController::class, 'result'])->name('test.result');
-    Route::get('/my-dashboard', [TestPanelController::class, 'dashboard'])->name('user.dashboard');
+    Route::get('/test-report-dashboard', [TestPanelController::class, 'dashboard'])->name('test.report.dashboard');
 
     // Payment Routes
     Route::post('/payment/initiate', [PaymentController::class, 'createOrder'])->name('payment.initiate');
