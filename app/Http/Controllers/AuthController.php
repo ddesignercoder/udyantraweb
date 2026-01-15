@@ -1,18 +1,18 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 
 class AuthController extends Controller
 {
     public function index()
-    {  
-        // if(session('api_token')) {
-            
-        //     return view('pages.home',['isLoggedIn' => true]);
-        //     // return redirect()->route('welcome');
-        // }
+    {   
+        // Optional: Redirect if already logged in
+        if(session('api_token')) {
+            return redirect()->route('user.dashboard');
+        }
         return view('pages.home');
     }
 
@@ -47,18 +47,19 @@ class AuthController extends Controller
         
         if ($response->successful() && isset($data['status']) && $data['status'] === true) {
             
-            // Store extended data in session for Dashboard logic
+            // Store extended data in session
             session([
                 'api_token'       => $data['token'],
                 'user_id'         => $data['user']['id'],
                 'user_name'       => $data['user']['name'],
                 'user_email'      => $data['user']['email'],
-                // New Data Points
-                'user_role'       => $data['user']['roles'][0] ?? 'individual',
+                // Safe fallbacks for roles
+                'user_role'       => $data['user']['roles'][0] ?? 'individual', 
                 'organization_id' => $data['user']['organization_id'] ?? null,
             ]);
 
-            return redirect()->route('welcome')->with('success', 'Login successful!');
+            // ✅ CHANGED: Redirect to the new Dashboard
+            return redirect()->route('user.dashboard')->with('success', 'Login successful!');
         }
 
         return back()->with('error', 'Login failed: ' . ($data['message'] ?? 'Invalid Credentials'));
@@ -88,7 +89,8 @@ class AuthController extends Controller
                 'organization_id' => $data['organization_id'],
             ]);
 
-            return redirect()->route('welcome')->with('success', 'Organization Registered Successfully!');
+            // ✅ CHANGED: Redirect to the new Dashboard
+            return redirect()->route('user.dashboard')->with('success', 'Organization Registered Successfully!');
         }
 
         return back()
@@ -122,7 +124,8 @@ class AuthController extends Controller
                 'user_role'  => 'individual',
             ]);
 
-            return redirect()->route('welcome')->with('success', 'Account Created Successfully!');
+            // ✅ CHANGED: Redirect to the new Dashboard
+            return redirect()->route('user.dashboard')->with('success', 'Account Created Successfully!');
         }
 
         return back()
@@ -131,7 +134,7 @@ class AuthController extends Controller
     }
 
     // ==========================================
-    // 5. LOGOUT (Keep existing logic)
+    // 5. LOGOUT
     // ==========================================
     public function logout()
     {
