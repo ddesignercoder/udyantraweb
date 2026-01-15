@@ -31,9 +31,9 @@
                         placeholder="you@example.com">
                 </div>
                 <div>
-                    <label for="password" class="block text-sm font-medium text- mb-1">Password</label>
+                    <label for="password" class="block text-sm font-medium text-textBlack mb-1">Password</label>
                     <input id="password" name="password" type="password" required 
-                        class="appearance-none relative block w-full px-4 py-3 border border-secondary placeholder-gray-400 text- rounded-full focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent sm:text-sm bg-lightgray transition-colors" 
+                        class="appearance-none relative block w-full px-4 py-3 border border-secondary placeholder-gray-400 text-textBlack rounded-full focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent sm:text-sm bg-lightgray transition-colors" 
                         placeholder="••••••••">
                 </div>
             </div>
@@ -64,7 +64,7 @@
         <div class="text-center mt-4">
             <p class="text-sm text-textBlack">
                 Don't have an account? 
-                <a href="{{ route('register') }}" class="font-medium text-primary hover:text-primary transition-colors">
+                <a href="{{ route('register.select') }}" class="font-medium text-primary hover:text-primary transition-colors">
                     Register here
                 </a>
             </p>
