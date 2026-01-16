@@ -10,9 +10,9 @@ class AuthController extends Controller
     public function index()
     {   
         // Optional: Redirect if already logged in
-        if(session('api_token')) {
-            return redirect()->route('user.dashboard');
-        }
+        // if(session('api_token')) {
+        //     return redirect()->route('user.dashboard');
+        // }
         return view('pages.home');
     }
 

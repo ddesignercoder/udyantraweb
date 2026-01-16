@@ -59,6 +59,8 @@
                 <div class="hidden lg:flex items-center gap-6">
                     <div class="bg-primary text-white rounded-full px-6 py-2.5 flex items-center font-medium shadow-sm hover:bg-primary-light transition duration-200">
                         @if(session('api_token'))
+                            <a href="{{ route('user.dashboard') }}" class="hover:underline text-sm md:text-base whitespace-nowrap cursor-pointer">Dashboard</a>
+                            <span class="mx-2 opacity-100">|</span>
                             <form method="POST" action="{{ route('logout') }}" class="flex items-center">
                                 @csrf
                                 <button type="submit" class="hover:underline text-sm md:text-base whitespace-nowrap cursor-pointer">
@@ -106,6 +108,10 @@
                 {{-- Login/Register at Top --}}
                 <div class="pb-2 border-b border-gray-100 mb-2">
                     @if(session('api_token'))
+                        <a href="{{ route('user.dashboard') }}" class="w-full flex items-center justify-center gap-2 bg-primary text-white py-2.5 rounded-lg font-bold mb-4">
+                            <x-lucide-user class="w-4 h-4" />
+                            Dashboard
+                        </a>
                         <form method="POST" action="{{ route('logout') }}">
                             @csrf
                             <button type="submit" class="w-full flex items-center justify-center gap-2 bg-primary text-white py-2.5 rounded-lg font-bold">
