@@ -42,14 +42,15 @@
                 <a href="{{ route('home') }}" class="flex items-center gap-2 transition hover:opacity-90 shrink-0">
                     <img src="{{ asset('assets/image/Udyantra-logo.svg') }}" 
                          alt="Udyantra" 
-                         class="h-10 md:h-12 w-auto object-contain">
+                         class="h-16 w-auto object-contain">
                 </a>
 
                 {{-- Desktop Menu Links --}}
                 <div class="hidden lg:flex items-center gap-6 lg:gap-8 font-semibold text-sm lg:text-base text-black">
-                    <a href="#why-choose-us" class="hover:text-primary transition-colors">Why Choose Us</a>
-                    <a href="#focus" class="hover:text-primary transition-colors">What We Focus On</a>
-                    <a href="#pricing" class="hover:text-primary transition-colors">Pricing</a>
+                    <a href="{{ route('why-choose-us') }}" class="hover:text-primary transition-colors">Why Choose Us</a>
+                    <a href="{{ route('what-we-focus-on') }}" class="hover:text-primary transition-colors">What We Focus On</a>
+                    <a href="{{ route('udyantra-package') }}" class="hover:text-primary transition-colors">Pricing</a>
+                    <a href="{{ route('citations')}}" class="hover:text-primary transition-colors">Citations</a>
                     <a href="#faq" class="hover:text-primary transition-colors">FAQs</a>
                     <a href="#contact" class="hover:text-primary transition-colors">Contact Us</a>
                 </div>
@@ -73,8 +74,8 @@
                 </div>
 
                 {{-- Mobile Menu Trigger --}}
-                <div class="lg:hidden flex items-center">
-                    <button @click="mobileMenuOpen = !mobileMenuOpen" class="text-black focus:outline-none p-2">
+                <div class="lg:hidden flex items-center ">
+                    <button @click="mobileMenuOpen = !mobileMenuOpen" class="text-black focus:outline-none p-2 cursor-pointer">
                         {{-- Hamburger Icon --}}
                         <x-lucide-menu x-show="!mobileMenuOpen" class="h-6 w-6" />
                         
@@ -87,16 +88,20 @@
 
         {{-- Mobile Menu Dropdown --}}
         <div x-show="mobileMenuOpen" 
-             style="display: none;"
-             x-transition:enter="transition ease-out duration-200"
-             x-transition:enter-start="opacity-0 -translate-y-2"
-             x-transition:enter-end="opacity-100 translate-y-0"
-             x-transition:leave="transition ease-in duration-150"
-             x-transition:leave-start="opacity-100 translate-y-0"
-             x-transition:leave-end="opacity-0 -translate-y-2"
-             class="lg:hidden bg-white border-t border-gray-100 shadow-lg absolute w-full left-0">
+            style="display: none;"
+            x-transition:enter="transition transform duration-300 ease-out"
+            x-transition:enter-start="translate-x-full"
+            x-transition:enter-end="translate-x-0"
+            x-transition:leave="transition transform duration-300 ease-in"
+            x-transition:leave-start="translate-x-0"
+            x-transition:leave-end="translate-x-full"
+            class="fixed inset-y-0 right-0 w-full sm:w-80 bg-white h-screen shadow-lg z-50"
+            @click.outside="mobileMenuOpen = false">
             
-            <div class="px-4 py-4 space-y-2 flex flex-col font-medium text-black " @click="mobileMenuOpen = false">
+            <div class="px-4 py-4 space-y-2 flex flex-col font-medium text-black bg-white" @click="mobileMenuOpen = false">
+                <button @click="mobileMenuOpen = false" class="mb-4 text-start cursor-pointer">
+                    ✕
+                </button>
                 {{-- Login/Register at Top --}}
                 <div class="pb-2 border-b border-gray-100 mb-2">
                     @if(session('api_token'))
@@ -122,9 +127,10 @@
                 </div>
 
                 {{-- Mobile Links --}}
-                <a href="#why-choose-us" class="block px-3 py-2 rounded-md active:text-primary transition">Why Choose Us</a>
-                <a href="#focus" class="block px-3 py-2 rounded-md active:text-primary transition">What We Focus On</a>
-                <a href="#pricing" class="block px-3 py-2 rounded-md active:text-primary transition">Pricing</a>
+                <a href="{{ route('why-choose-us') }}" class="block px-3 py-2 rounded-md active:text-primary transition">Why Choose Us</a>
+                <a href="{{ route('what-we-focus-on') }}" class="block px-3 py-2 rounded-md active:text-primary transition">What We Focus On</a>
+                <a href="{{ route('udyantra-package') }}" class="block px-3 py-2 rounded-md active:text-primary transition">Pricing</a>
+                <a href="{{route('citations')}}" class="block px-3 py-2 rounded-md active:text-primary transition">Citations</a>
                 <a href="#faq" class="block px-3 py-2 rounded-md active:text-primary transition">FAQs</a>
                 <a href="#contact" class="block px-3 py-2 rounded-md active:text-primary transition">Contact Us</a>
             </div>

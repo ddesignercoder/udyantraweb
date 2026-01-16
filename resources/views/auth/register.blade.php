@@ -11,7 +11,7 @@
                 Create Account
             </h2>
             <p class="mt-2 text-sm text-textBlack">
-                Join Udyantra and start creating
+                Join Udyantra and start your journey
             </p>
         </div>
 

@@ -1,0 +1,76 @@
+body{
+        overflow-x: hidden;
+    }
+    .hide-scrollbar::-webkit-scrollbar {
+        display: none;
+    }
+    .hide-scrollbar {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+    }
+
+.fade-sides::before,
+    .fade-sides::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    width: 30%;
+    height: 100%;
+    z-index: 1;
+    pointer-events: none;
+    }
+
+    .fade-sides::before {
+    left: 0;
+    background: linear-gradient(to right, rgba(255,255,255,1), rgba(255,255,255,0));
+    border-radius: 12px 0px 0px 12px;
+    }
+
+    .fade-sides::after {
+    right: 0;
+    background: linear-gradient(to left, rgba(255,255,255,1), rgba(255,255,255,0));
+    border-radius: 0px 12px 12px 0px;
+    }
+    .button-white{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: #fff;
+        font-size: 16px;
+        font-weight: 500;
+        color: #000;
+        border: 1px solid #374151;
+        border-radius: 50px;
+        box-shadow: -3px 3px 0px 0px var(--tw-shadow-color, var(--color-borderBase));
+        transition: all .5s;
+    }
+    .button-white:hover{
+        box-shadow: none;
+    }
+    
+        /* Chrome, Edge, Safari */
+        .custom-scroll::-webkit-scrollbar {
+            height: 2px;
+        }
+
+        .custom-scroll::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        .custom-scroll::-webkit-scrollbar-thumb {
+            background-color: rgba(255, 255, 255, 0.5);
+            border-radius: 10px;
+        }
+
+        /* Firefox */
+        .custom-scroll {
+            scrollbar-width: thin;
+            scrollbar-color: rgba(255, 255, 255, 0.5) transparent;
+        }
+
+    @media (max-width: 991px) {
+        .fade-sides::before,
+        .fade-sides::after {
+            display: none;
+        }
+        }
