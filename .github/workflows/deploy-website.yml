@@ -13,6 +13,19 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
+      # --- NEW: SETUP NODE & BUILD --- by pk
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Build Frontend Assets
+        run: |
+          npm ci
+          npm run build
+          rm -rf node_modules # Remove source files to speed up upload
+      # ------------------------------- by pk
+
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
         with:
