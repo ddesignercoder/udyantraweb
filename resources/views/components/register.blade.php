@@ -4,5 +4,5 @@
     </h2>
     <p class="test-base text-black mb-2">Create, manage, and sell more.</p>
 
-    <x-button variant="primary" as="a" class="mt-2" href="{{ route('register') }}">Start For Free</x-button>
+    <x-button variant="primary" as="a" class="mt-2" href="{{ route('register.select') }}">Start For Free</x-button>
 </div>

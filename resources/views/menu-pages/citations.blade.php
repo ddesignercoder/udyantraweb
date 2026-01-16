@@ -133,7 +133,7 @@
 
                     <div class="block md:inline-flex centent-start items-center gap-3">
                         <x-button variant="primary" as="a" class="mt-6 w-9/12 md:w-50 lg:w-60" href="#">Request a Demo</x-button>
-                        <x-button variant="secondary" as="a" class="mt-6 w-9/12 md:w-50 lg:w-60" href="{{ route('register') }}">Start Free Trial</x-button>
+                        <x-button variant="secondary" as="a" class="mt-6 w-9/12 md:w-50 lg:w-60" href="{{ route('register.select') }}">Start Free Trial</x-button>
                     </div>
                 </div>
             </div>
