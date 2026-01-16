@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Http;
+use Illuminate\Pagination\LengthAwarePaginator;
 
 class DashboardController extends Controller
 {
@@ -66,7 +68,7 @@ class DashboardController extends Controller
         return view('dashboard.add-user', ['role' => $role]);
     }
 
-    public function listUsers()
+    public function listUsers(Request $request)
     {
         $role = session('user_role');
         $token = session('api_token');
@@ -83,17 +85,47 @@ class DashboardController extends Controller
             return redirect()->route('user.dashboard');
         }
 
-        // 2. Fetch Data from API
-        $response = \Illuminate\Support\Facades\Http::withToken($token)->get($baseUrl . $endpoint);
+        // 2. Prepare Query Parameters
+        // We capture 'page' and 'search' from the browser URL to send to the API
+        $queryParams = [
+            'page' => $request->input('page', 1),
+            'per_page' => 10,                 // You can change this to 20 or 50
+            'search' => $request->input('search'), // Forward the search term
+        ];
 
-        $users = [];
+        // 3. Fetch Data from API
+        // The API will now receive: ?page=1&per_page=10&search=rohit
+        $response = Http::withToken($token)->get($baseUrl . $endpoint, $queryParams);
+
+        // Default empty paginator in case of error
+        $usersPaginator = new LengthAwarePaginator([], 0, 10);
+
         if ($response->successful()) {
-            $users = $response->json()['data'];
+            $apiResponse = $response->json();
+            
+            // Based on your backend structure: { status: true, data: { current_page: 1, data: [...] } }
+            if (isset($apiResponse['data']) && isset($apiResponse['data']['data'])) {
+                $meta = $apiResponse['data']; // The pagination metadata
+                $items = $meta['data'];       // The actual list of users
+
+                // 4. Rehydrate the Paginator
+                // This creates a standard Laravel Paginator that Blade understands
+                $usersPaginator = new LengthAwarePaginator(
+                    $items, 
+                    $meta['total'], 
+                    $meta['per_page'], 
+                    $meta['current_page'], 
+                    [
+                        'path' => $request->url(),   // IMPORTANT: Point links to THIS controller, not the API
+                        'query' => $request->query() // IMPORTANT: Keep search params in pagination links
+                    ]
+                );
+            }
         }
 
-        // 3. Return View
+        // 5. Return View
         return view('dashboard.list-users', [
-            'users' => $users,
+            'users' => $usersPaginator,
             'role' => $role,
             'title' => $pageTitle
         ]);

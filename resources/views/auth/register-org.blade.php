@@ -41,6 +41,10 @@
                         class="appearance-none relative block w-full px-4 py-3 border border-secondary placeholder-gray-400 text-textBlack rounded-full focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent sm:text-sm bg-lightgray transition-colors"
                         :placeholder="type === 'school' ? 'e.g. St. Xavier\'s High School' : 'e.g. Tech Solutions Pvt Ltd'">
                 </div>
+                <div class="col-span-1 md:col-span-2">
+                    <label class="block text-sm font-medium text-gray-700 mb-1">Address</label>
+                    <input type="text" name="address" value="{{ old('address') }}" class="appearance-none relative block w-full px-4 py-3 border border-secondary placeholder-gray-400 text-textBlack rounded-full focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent sm:text-sm bg-lightgray transition-colors">
+                </div>
 
                 <div class="col-span-1 md:col-span-2 mt-4">
                     <h3 class="text-xs font-bold text-gray-400 uppercase tracking-wider mb-2 border-b pb-1">Admin Login Details</h3>
@@ -68,7 +72,7 @@
 
             </div>
 
-            <button type="submit" class="w-full mt-8 bg-primary hover:bg-blue-700 text-white font-bold py-3 rounded-lg transition shadow-lg">
+            <button type="submit" class="cursor-pointer w-full mt-8 bg-primary hover:bg-blue-700 text-white font-bold py-3 rounded-lg transition shadow-lg">
                 Create Account
             </button>
 

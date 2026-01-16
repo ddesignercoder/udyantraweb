@@ -6,19 +6,46 @@
 
     <div class="max-w-6xl mx-auto">
         
-        <div class="flex flex-col md:flex-row md:items-center justify-between mb-8 gap-4">
+        {{-- HEADER SECTION --}}
+        <div class="flex flex-col md:flex-row md:items-center justify-between mb-6 gap-4">
             <div>
                 <h1 class="text-2xl font-bold text-gray-900">{{ $title }}</h1>
-                <p class="text-gray-600 mt-1">Total Registered: {{ count($users) }}</p>
+                {{-- UPDATED: Use ->total() for the grand total from API --}}
+                <p class="text-gray-600 mt-1">Total Registered: {{ $users->total() }}</p>
             </div>
             
-            <a href="{{ route('dashboard.add-user') }}" class="bg-blue-600 text-white px-4 py-2 rounded-lg font-semibold hover:bg-blue-700 transition flex items-center gap-2">
-                <x-lucide-plus class="w-5 h-5" />
-                Add New {{ $role === 'school_admin' ? 'Student' : 'Employee' }}
-            </a>
+            <div class="flex flex-col sm:flex-row gap-3">
+                {{-- NEW: Search Form --}}
+                <form method="GET" action="{{ url()->current() }}" class="relative">
+                    <input 
+                        type="text" 
+                        name="search" 
+                        value="{{ request('search') }}" 
+                        placeholder="Search name or email..." 
+                        class="pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 w-full sm:w-64"
+                    >
+                    <div class="absolute left-3 top-2.5 text-gray-400">
+                        {{-- Assuming you have lucide icons, otherwise use SVG --}}
+                        <x-lucide-search class="w-5 h-5" /> 
+                    </div>
+                    
+                    {{-- "Clear" button shows only if searching --}}
+                    @if(request('search'))
+                        <a href="{{ url()->current() }}" class="absolute right-3 top-2.5 text-gray-400 hover:text-red-500">
+                            <x-lucide-x class="w-5 h-5" />
+                        </a>
+                    @endif
+                </form>
+
+                <a href="{{ route('dashboard.add-user') }}" class="bg-blue-600 text-white px-4 py-2 rounded-lg font-semibold hover:bg-blue-700 transition flex items-center justify-center gap-2 whitespace-nowrap">
+                    <x-lucide-plus class="w-5 h-5" />
+                    Add New {{ $role === 'school_admin' ? 'Student' : 'Employee' }}
+                </a>
+            </div>
         </div>
 
-        <div class="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden">
+        {{-- TABLE SECTION --}}
+        <div class="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden flex flex-col">
             <div class="overflow-x-auto">
                 <table class="w-full text-left text-sm text-gray-600">
                     <thead class="bg-gray-50 text-gray-900 uppercase font-semibold text-xs border-b border-gray-200">
@@ -83,6 +110,9 @@
                                     <div class="flex flex-col items-center justify-center">
                                         <x-lucide-users class="w-10 h-10 text-gray-300 mb-2" />
                                         <p>No records found.</p>
+                                        @if(request('search'))
+                                            <p class="text-xs mt-1">Try adjusting your search criteria.</p>
+                                        @endif
                                     </div>
                                 </td>
                             </tr>
@@ -90,6 +120,17 @@
                     </tbody>
                 </table>
             </div>
+
+            {{-- NEW: FOOTER / PAGINATION SECTION --}}
+            @if($users->hasPages())
+                <div class="px-6 py-4 border-t border-gray-200 bg-gray-50">
+                    {{-- 
+                        withQueryString() is crucial! 
+                        It ensures that if you are on ?search=rohit, page 2 becomes ?search=rohit&page=2 
+                    --}}
+                    {{ $users->withQueryString()->links() }}
+                </div>
+            @endif
         </div>
     </div>
 
