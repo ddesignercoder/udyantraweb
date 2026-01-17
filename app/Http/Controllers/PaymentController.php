@@ -98,5 +98,37 @@ class PaymentController extends Controller
 
         return redirect()->route('dashboard')->with('error', 'Could not retrieve transaction details.');
     }
+    
+    //Dashboard Packages Page
+    public function dashboardPackages()
+    {
+        $baseUrl = config('services.backend.url');
+        $token = session('api_token');
+
+        // 1. Force Redirect if not logged in
+        if (!$token) {
+            return redirect()->route('login');
+        }
+
+        // 2. Fetch Packages
+        $response = Http::withToken($token)
+            ->acceptJson()
+            ->get("{$baseUrl}/udyantra-package");
+
+        $groupedPackages = [];
+        
+        if ($response->successful()) {
+            $responseData = $response->json();
+            if (isset($responseData['status']) && $responseData['status'] === true) {
+                $groupedPackages = $responseData['data'];
+            }
+        }
+
+        // 3. Return a DASHBOARD specific view
+        return view('dashboard.package', [
+            'groupedPackages' => $groupedPackages
+        ]);
+    }
+
 
 }
