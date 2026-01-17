@@ -9,6 +9,7 @@
 </head>
 <body class="bg-gray-100 font-sans" x-data="{ sidebarOpen: false }">
 
+    {{-- TOP NAVIGATION --}}
     <nav class="bg-white shadow-sm border-b border-gray-200 fixed w-full z-30">
         <div class="px-4 py-3 flex justify-between items-center">
             <div class="flex items-center gap-4">
@@ -17,8 +18,8 @@
                 </button> 
                 <a href="{{ route('home') }}">
                   <img src="{{ asset('assets/image/Udyantra-logo.svg') }}" 
-                      alt="Udyantra" 
-                      class="h-8 w-auto object-contain">
+                       alt="Udyantra" 
+                       class="h-8 w-auto object-contain">
                 </a>
             </div>
             
@@ -34,84 +35,58 @@
         </div>
     </nav>
 
+    {{-- MAIN LAYOUT --}}
     <div class="flex pt-16 h-screen overflow-hidden">
         
+        {{-- SIDEBAR --}}
         <aside class="fixed inset-y-0 left-0 z-20 w-64 bg-teal-50 border-r border-gray-200 transform transition-transform duration-300 md:translate-x-0 md:static md:h-auto overflow-y-auto"
             :class="sidebarOpen ? 'translate-x-0' : '-translate-x-full'">
             
             <div class="p-4 mt-12 md:mt-0">
-                {{-- <p class="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-4">
-                    {{ str_replace('_', ' ', session('user_role')) }} Menu
-                </p> --}}
-                
                 <nav class="space-y-1">
-                    {{-- Common Dashboard Link --}}
-                    <a href="{{ route('user.dashboard') }}" 
-                       class="flex items-center gap-3 px-3 py-2 rounded-lg transition cursor-pointer 
-                       {{ request()->routeIs('user.dashboard') ? 'bg-blue-50 text-primary font-medium' : 'text-gray-700 hover:bg-gray-100' }}">
-                        <x-lucide-layout-dashboard class="w-5 h-5 {{ request()->routeIs('user.dashboard') ? 'text-primary' : 'text-black' }}" />
-                        Dashboard
-                    </a>
+                    
+                    {{-- DYNAMIC MENU LOOP --}}
+                    {{-- $menuItems is injected via AppServiceProvider --}}
+                    @forelse($menuItems as $item)
+                        @php
+                            // 1. Safe Route Generation
+                            // If route doesn't exist in web.php yet, fallback to '#'
+                            $url = Route::has($item['route']) ? route($item['route']) : '#';
 
-                    @if(in_array(session('user_role'), ['individual', 'school_admin', 'company_admin']))
-                        
-                        {{-- Browse & Buy Packages --}}
-                        <a href="{{ route('dashboard.packages') }}" 
-                        class="flex items-center gap-3 px-3 py-2 rounded-lg transition cursor-pointer 
-                        {{ request()->routeIs('dashboard.packages') ? 'bg-blue-50 text-primary font-medium' : 'text-gray-600 hover:bg-gray-50' }}">
-                            <x-lucide-package class="w-5 h-5 {{ request()->routeIs('dashboard.packages') ? 'text-primary' : 'text-black' }}" />
-                            Packages
-                        </a>
-                    @endif
+                            // 2. Active State Logic
+                            // Check if current page matches the menu item route
+                            $isActive = Route::has($item['route']) && request()->routeIs($item['route']);
 
-                    {{-- SCHOOL ADMIN LINKS --}}
-                    @if(session('user_role') === 'school_admin')                        
-                        <a href="{{ route('dashboard.list-users') }}" 
-                           class="flex items-center gap-3 px-3 py-2 rounded-lg transition cursor-pointer 
-                           {{ request()->routeIs('dashboard.list-users') ? 'bg-blue-50 text-primary font-medium' : 'text-gray-600 hover:bg-gray-50' }}">
-                            <x-lucide-users class="w-5 h-5 {{ request()->routeIs('dashboard.list-users') ? 'text-primary' : 'text-black' }}" />
-                            Manage Students
-                        </a>
-                    @endif
+                            // 3. Styling Classes
+                            $baseClass = "flex items-center gap-3 px-3 py-2 rounded-lg transition cursor-pointer";
+                            $activeClass = "bg-blue-50 text-primary font-medium";
+                            $inactiveClass = "text-gray-700 hover:bg-gray-100";
+                        @endphp
 
-                    {{-- COMPANY ADMIN LINKS --}}
-                    @if(session('user_role') === 'company_admin')
-                        <a href="{{ route('dashboard.list-users') }}" 
-                           class="flex items-center gap-3 px-3 py-2 rounded-lg transition cursor-pointer 
-                           {{ request()->routeIs('dashboard.list-users') ? 'bg-indigo-50 text-primary font-medium' : 'text-gray-600 hover:bg-gray-50' }}">
-                            <x-lucide-briefcase class="w-5 h-5 {{ request()->routeIs('dashboard.list-users') ? 'text-primary' : 'text-black' }}" />
-                            Manage Employees
+                        <a href="{{ $url }}" 
+                           class="{{ $baseClass }} {{ $isActive ? $activeClass : $inactiveClass }}">
+                            
+                            {{-- Dynamic Icon Rendering --}}
+                            {{-- Assumes you are using 'blade-lucide-icons' --}}
+                            <x-dynamic-component 
+                                :component="'lucide-'.$item['icon']" 
+                                class="w-5 h-5 {{ $isActive ? 'text-primary' : 'text-black' }}" 
+                            />
+                            
+                            {{ $item['label'] }}
                         </a>
-                    @endif
-
-                    {{-- STUDENT LINKS --}}
-                    @if(session('user_role') === 'student')
-                        <a href="#" class="flex items-center gap-3 px-3 py-2 text-gray-600 hover:bg-gray-50 rounded-lg transition cursor-pointer">
-                            <x-lucide-pen-tool class="w-5 h-5 text-black" />
-                            My Tests
-                        </a>
-                        <a href="#" class="flex items-center gap-3 px-3 py-2 text-gray-600 hover:bg-gray-50 rounded-lg transition cursor-pointer">
-                            <x-lucide-award class="w-5 h-5 text-black" />
-                            My Results
-                        </a>
-                    @endif
-
-                    {{-- INDIVIDUAL LINKS --}}
-                    @if(session('user_role') === 'individual')
-                        <a href="#" class="flex items-center gap-3 px-3 py-2 text-gray-600 hover:bg-gray-50 rounded-lg transition cursor-pointer">
-                            <x-lucide-search class="w-5 h-5 text-black" />
-                            Browse Tests
-                        </a>
-                        <a href="#" class="flex items-center gap-3 px-3 py-2 text-gray-600 hover:bg-gray-50 rounded-lg transition cursor-pointer">
-                            <x-lucide-history class="w-5 h-5 text-black" />
-                            My History
-                        </a>
-                    @endif
+                    @empty
+                        {{-- Fallback if API fails or no items found --}}
+                        <div class="px-4 py-2 text-sm text-red-400">
+                            Menu unavailable
+                        </div>
+                    @endforelse
 
                 </nav>
             </div>
         </aside>
 
+        {{-- MAIN CONTENT --}}
         <main class="font-sans flex-1 overflow-y-auto bg-gray-50 p-6 md:p-8" @click="sidebarOpen = false">
             @yield('content')
         </main>
