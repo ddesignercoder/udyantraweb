@@ -54,6 +54,7 @@ Route::middleware(['auth.api'])->group(function () {
     Route::get('/welcome', fn () => view('pages.welcome'))->name('welcome');
     //Comman Dashboard
     Route::get('/my-dashboard', [DashboardController::class, 'index'])->name('user.dashboard');
+    Route::get('/dashboard/packages', [PaymentController::class, 'dashboardPackages'])->name('dashboard.packages');
     //Org User Management
     Route::post('/org/add-user', [OrgUserManagementController::class, 'storeUser'])->name('org.add.user');
     Route::get('/dashboard/add-user', [DashboardController::class, 'addUser'])->name('dashboard.add-user');
