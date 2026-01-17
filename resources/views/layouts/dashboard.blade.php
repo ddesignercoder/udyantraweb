@@ -28,7 +28,6 @@
                     @csrf
                     <button type="submit" class="text-sm text-red-600 hover:text-red-800 font-medium flex items-center gap-1 cursor-pointer">
                         <x-lucide-log-out class="w-4 h-4" />
-                        Logout
                     </button>
                 </form>
             </div>
@@ -37,37 +36,40 @@
 
     <div class="flex pt-16 h-screen overflow-hidden">
         
-        <aside class="fixed inset-y-0 left-0 z-20 w-64 bg-white border-r border-gray-200 transform transition-transform duration-300 md:translate-x-0 md:static md:h-auto overflow-y-auto"
+        <aside class="fixed inset-y-0 left-0 z-20 w-64 bg-teal-50 border-r border-gray-200 transform transition-transform duration-300 md:translate-x-0 md:static md:h-auto overflow-y-auto"
             :class="sidebarOpen ? 'translate-x-0' : '-translate-x-full'">
             
-            <div class="p-4 mt-4 md:mt-0">
-                <p class="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-4">
+            <div class="p-4 mt-12 md:mt-0">
+                {{-- <p class="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-4">
                     {{ str_replace('_', ' ', session('user_role')) }} Menu
-                </p>
+                </p> --}}
                 
                 <nav class="space-y-1">
                     {{-- Common Dashboard Link --}}
                     <a href="{{ route('user.dashboard') }}" 
                        class="flex items-center gap-3 px-3 py-2 rounded-lg transition cursor-pointer 
-                       {{ request()->routeIs('user.dashboard') ? 'bg-blue-50 text-blue-700 font-medium' : 'text-gray-700 hover:bg-gray-100' }}">
-                        <x-lucide-layout-dashboard class="w-5 h-5 {{ request()->routeIs('user.dashboard') ? 'text-blue-700' : 'text-gray-500' }}" />
+                       {{ request()->routeIs('user.dashboard') ? 'bg-blue-50 text-primary font-medium' : 'text-gray-700 hover:bg-gray-100' }}">
+                        <x-lucide-layout-dashboard class="w-5 h-5 {{ request()->routeIs('user.dashboard') ? 'text-primary' : 'text-black' }}" />
                         Dashboard
                     </a>
-                    @if(session('user_role') === 'individual' || session('user_role') === 'school_admin' || session('user_role') === 'company_admin')
-                    <a href="{{route('udyantra-package')}}" 
-                       class="flex items-center gap-3 px-3 py-2 rounded-lg transition cursor-pointer 
-                       {{ request()->routeIs('udyantra-package') ? 'bg-blue-50 text-blue-700 font-medium' : 'text-gray-600 hover:bg-gray-50' }}">
-                        <x-lucide-package class="w-5 h-5 {{ request()->routeIs('udyantra-package') ? 'text-blue-700' : 'text-gray-500' }}" />
-                        Udyantra Package
-                    </a>
+
+                    @if(in_array(session('user_role'), ['individual', 'school_admin', 'company_admin']))
+                        
+                        {{-- Browse & Buy Packages --}}
+                        <a href="{{ route('dashboard.packages') }}" 
+                        class="flex items-center gap-3 px-3 py-2 rounded-lg transition cursor-pointer 
+                        {{ request()->routeIs('dashboard.packages') ? 'bg-blue-50 text-primary font-medium' : 'text-gray-600 hover:bg-gray-50' }}">
+                            <x-lucide-package class="w-5 h-5 {{ request()->routeIs('dashboard.packages') ? 'text-primary' : 'text-black' }}" />
+                            Packages
+                        </a>
                     @endif
 
                     {{-- SCHOOL ADMIN LINKS --}}
                     @if(session('user_role') === 'school_admin')                        
                         <a href="{{ route('dashboard.list-users') }}" 
                            class="flex items-center gap-3 px-3 py-2 rounded-lg transition cursor-pointer 
-                           {{ request()->routeIs('dashboard.list-users') ? 'bg-blue-50 text-blue-700 font-medium' : 'text-gray-600 hover:bg-gray-50' }}">
-                            <x-lucide-users class="w-5 h-5 {{ request()->routeIs('dashboard.list-users') ? 'text-blue-700' : 'text-gray-500' }}" />
+                           {{ request()->routeIs('dashboard.list-users') ? 'bg-blue-50 text-primary font-medium' : 'text-gray-600 hover:bg-gray-50' }}">
+                            <x-lucide-users class="w-5 h-5 {{ request()->routeIs('dashboard.list-users') ? 'text-primary' : 'text-black' }}" />
                             Manage Students
                         </a>
                     @endif
@@ -76,8 +78,8 @@
                     @if(session('user_role') === 'company_admin')
                         <a href="{{ route('dashboard.list-users') }}" 
                            class="flex items-center gap-3 px-3 py-2 rounded-lg transition cursor-pointer 
-                           {{ request()->routeIs('dashboard.list-users') ? 'bg-indigo-50 text-indigo-700 font-medium' : 'text-gray-600 hover:bg-gray-50' }}">
-                            <x-lucide-briefcase class="w-5 h-5 {{ request()->routeIs('dashboard.list-users') ? 'text-indigo-700' : 'text-gray-500' }}" />
+                           {{ request()->routeIs('dashboard.list-users') ? 'bg-indigo-50 text-primary font-medium' : 'text-gray-600 hover:bg-gray-50' }}">
+                            <x-lucide-briefcase class="w-5 h-5 {{ request()->routeIs('dashboard.list-users') ? 'text-primary' : 'text-black' }}" />
                             Manage Employees
                         </a>
                     @endif
@@ -85,11 +87,11 @@
                     {{-- STUDENT LINKS --}}
                     @if(session('user_role') === 'student')
                         <a href="#" class="flex items-center gap-3 px-3 py-2 text-gray-600 hover:bg-gray-50 rounded-lg transition cursor-pointer">
-                            <x-lucide-pen-tool class="w-5 h-5 text-green-600" />
+                            <x-lucide-pen-tool class="w-5 h-5 text-black" />
                             My Tests
                         </a>
                         <a href="#" class="flex items-center gap-3 px-3 py-2 text-gray-600 hover:bg-gray-50 rounded-lg transition cursor-pointer">
-                            <x-lucide-award class="w-5 h-5 text-green-600" />
+                            <x-lucide-award class="w-5 h-5 text-black" />
                             My Results
                         </a>
                     @endif
@@ -97,11 +99,11 @@
                     {{-- INDIVIDUAL LINKS --}}
                     @if(session('user_role') === 'individual')
                         <a href="#" class="flex items-center gap-3 px-3 py-2 text-gray-600 hover:bg-gray-50 rounded-lg transition cursor-pointer">
-                            <x-lucide-search class="w-5 h-5 text-gray-600" />
+                            <x-lucide-search class="w-5 h-5 text-black" />
                             Browse Tests
                         </a>
                         <a href="#" class="flex items-center gap-3 px-3 py-2 text-gray-600 hover:bg-gray-50 rounded-lg transition cursor-pointer">
-                            <x-lucide-history class="w-5 h-5 text-gray-600" />
+                            <x-lucide-history class="w-5 h-5 text-black" />
                             My History
                         </a>
                     @endif
