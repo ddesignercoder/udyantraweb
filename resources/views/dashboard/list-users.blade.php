@@ -10,7 +10,6 @@
         <div class="flex flex-col md:flex-row md:items-center justify-between mb-6 gap-4">
             <div>
                 <h1 class="text-2xl font-bold text-gray-900">{{ $title }}</h1>
-                {{-- UPDATED: Use ->total() for the grand total from API --}}
                 <p class="text-gray-600 mt-1">Total Registered: {{ $users->total() }}</p>
             </div>
             
@@ -37,7 +36,7 @@
                     @endif
                 </form>
 
-                <a href="{{ route('dashboard.add-user') }}" class="bg-blue-600 text-white px-4 py-2 rounded-lg font-semibold hover:bg-blue-700 transition flex items-center justify-center gap-2 whitespace-nowrap">
+                <a href="{{ route('dashboard.add-user') }}" class="bg-primary text-white px-4 py-2 rounded-lg font-semibold hover:bg-primary-dark/80 cursor-pointer transition flex items-center justify-center gap-2 whitespace-nowrap">
                     <x-lucide-plus class="w-5 h-5" />
                     Add New {{ $role === 'school_admin' ? 'Student' : 'Employee' }}
                 </a>
