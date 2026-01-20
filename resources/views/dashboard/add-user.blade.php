@@ -13,9 +13,6 @@
                 </h1>
                 <p class="text-gray-600 mt-1">Create a new ID for your organization.</p>
             </div>
-            <a href="{{ route('user.dashboard') }}" class="text-sm text-blue-600 hover:underline">
-                &larr; Back to Dashboard
-            </a>
         </div>
         
         <div class="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden">
@@ -79,8 +76,8 @@
 
                 <div class="flex items-center justify-end gap-4 bg-gray-50 -mx-8 -mb-8 p-6 mt-4 border-t border-gray-200">
                     <a href="{{ route('user.dashboard') }}" class="text-gray-600 hover:text-gray-900 font-medium">Cancel</a>
-                    <button type="submit" class="bg-blue-600 text-white px-6 py-2.5 rounded-lg font-semibold shadow hover:bg-blue-700 transition">
-                        Create {{ $role === 'school_admin' ? 'Student' : 'Employee' }} ID
+                    <button type="submit" class="bg-primary text-white px-6 py-2.5 rounded-lg font-semibold shadow hover:bg-primary-dark/80 transition cursor-pointer">
+                        Create {{ $role === 'school_admin' ? 'Student' : 'Employee' }} 
                     </button>
                 </div>
 
