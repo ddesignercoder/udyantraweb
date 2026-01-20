@@ -6,6 +6,7 @@ use App\Http\Controllers\TestPanelController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\OrgUserManagementController;
+use App\Http\Controllers\ProfileController;
 // use Illuminate\Support\Facades\Auth; 
 // Route::get('/', function () {
 //     return view('welcome');
@@ -72,4 +73,9 @@ Route::middleware(['auth.api'])->group(function () {
     Route::post('/payment/initiate', [PaymentController::class, 'createOrder'])->name('payment.initiate');
     Route::post('/payment/verify', [PaymentController::class, 'verifyPayment'])->name('payment.verify');
     Route::get('/payment/thank-you/{orderId}', [PaymentController::class, 'thankYou'])->name('payment.thankyou');
+
+    //Profile Settings
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::post('/profile/update', [ProfileController::class, 'update'])->name('profile.update');
+    Route::post('/password/update', [ProfileController::class, 'updatePassword'])->name('password.update');
 });
