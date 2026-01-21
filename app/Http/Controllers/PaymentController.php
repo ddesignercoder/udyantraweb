@@ -130,5 +130,36 @@ class PaymentController extends Controller
         ]);
     }
 
+    // My Purchases - Package Order History
+    public function myPurchases()
+    {
+        $baseUrl = config('services.backend.url');
+        $token = session('api_token');
+
+        // 1. Force Redirect if not logged in
+        if (!$token) {
+            return redirect()->route('login');
+        }
+
+        // 2. Fetch Purchase History
+        $response = Http::withToken($token)
+            ->acceptJson()
+            ->get("{$baseUrl}/my-purchases");
+
+        $groupedPurchases = [];
+        
+        if ($response->successful()) {
+            $responseData = $response->json();
+            if (isset($responseData['status']) && $responseData['status'] === true) {
+                // Data is already grouped by category
+                $groupedPurchases = $responseData['data'];
+            }
+        }
+
+        // 3. Return the purchase history view
+        return view('dashboard.package-order-history', [
+            'groupedPurchases' => $groupedPurchases
+        ]);
+    }
 
 }
