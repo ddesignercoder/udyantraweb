@@ -6,9 +6,16 @@
     <div class="max-w-7xl mx-auto relative">
         
         {{-- Header Section --}}
-        <div class="mb-8">
-            <h1 class="text-2xl font-bold text-gray-900">Select a Package</h1>
-            <p class="text-gray-600 mt-1">Choose a plan that suits your assessment needs.</p>
+        <div class="mb-8 flex items-center justify-between">
+            <div>
+                <h1 class="text-2xl font-bold text-gray-900">Select a Package</h1>
+                <p class="text-gray-600 mt-1">Choose a plan that suits your assessment needs.</p>
+            </div>
+            <a href="{{ route('dashboard.my-purchases') }}" 
+               class="inline-flex items-center gap-2 bg-white hover:bg-gray-50 text-primary border border-primary font-medium py-2.5 px-5 rounded-xl transition-colors duration-200">
+                <x-lucide-history class="w-4 h-4" />
+                <span>My Purchases</span>
+            </a>
         </div>
 
         {{-- Content with Tabs --}}
