@@ -39,7 +39,7 @@
 
         </div>
         <div class="flex justify-center gap-4 mb-6">
-                <a href="{{ route('test-panel', ['slug' => 'professional-psychometric-6961eef65d70c']) }}" 
+                <a href="{{ route('test-panel', ['slug' => 'professional-69706796a435d']) }}" 
                    target="_blank"
                    class="bg-primary text-white px-4 py-2 rounded shadow hover:bg-white hover:text-primary hover:border hover:border-primary transition">
                     🚀 Launch Demo Test (Direct Link)
