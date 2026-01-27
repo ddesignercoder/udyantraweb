@@ -10,13 +10,28 @@ class DashboardController extends Controller
 {
     public function index()
     {
-        // 1. Get User Data from Session (stored during Login/Register)
+        // 1. Get User Data from Session
         $role = session('user_role');
         $userName = session('user_name');
         
-        // 2. Define Dashboard Config based on Role
-        // This helps us show different titles/widgets without messy Blade 'if's
-        $dashboardConfig = $this->getRoleConfig($role);
+        // 2. Fetch Dashboard Stats (if Admin)
+        $statsData = [];
+        if (in_array($role, ['school_admin', 'company_admin','individual'])) {
+            $token = session('api_token');
+            $baseUrl = config('services.backend.url');
+            
+            try {
+                $response = Http::withToken($token)->get($baseUrl . '/admin/dashboard-stats');
+                if ($response->successful() && isset($response->json()['data'])) {
+                    $statsData = $response->json()['data'];
+                }
+            } catch (\Exception $e) {
+                // Log error or keep empty
+            }
+        }
+
+        // 3. Define Dashboard Config based on Role & Data
+        $dashboardConfig = $this->getRoleConfig($role, $statsData);
 
         return view('dashboard.index', [
             'role' => $role,
@@ -25,33 +40,51 @@ class DashboardController extends Controller
         ]);
     }
 
-    private function getRoleConfig($role)
+    private function getRoleConfig($role, $data = [])
     {
+        // Helper to safely get value or default
+        $val = fn($key) => $data[$key] ?? '--';
+
         return match ($role) {
             'school_admin' => [
                 'title' => 'School Administration',
-                'widgets' => ['Total Students', 'Class Performance', 'Pending Approvals'],
-                'color' => 'blue'
+                'widgets' => [
+                    ['label' => 'Total Students', 'value' => $val('total_users')],
+                    ['label' => 'Packages Available', 'value' => $val('total_packages')],
+                    ['label' => 'Tests Available', 'value' => $val('total_tests_available')],
+                ],
+                // 'color' => 'blue'
             ],
             'company_admin' => [
                 'title' => 'Company Management',
-                'widgets' => ['Total Employees', 'Project Status', 'Hiring Pipeline'],
-                'color' => 'indigo'
+                'widgets' => [
+                    ['label' => 'Total Employees', 'value' => $val('total_users')],
+                    ['label' => 'Packages Available', 'value' => $val('total_packages')],
+                    ['label' => 'Tests Available', 'value' => $val('total_tests_available')],
+                ],
+                // 'color' => 'indigo'
             ],
             'student' => [
                 'title' => 'Student Portal',
-                'widgets' => ['My Grades', 'Upcoming Tests', 'Attendance'],
-                'color' => 'green'
+                'widgets' => [
+                    ['label' => 'Upcoming Tests', 'value' => '--'], 
+                ],
+                // 'color' => 'green'
             ],
             'employee' => [
                 'title' => 'Employee Portal',
-                'widgets' => ['My Tasks', 'Performance Review', 'Leave Status'],
-                'color' => 'teal'
+                'widgets' => [
+                    ['label' => 'Upcoming Tests', 'value' => '--'], 
+                ],
+                // 'color' => 'teal'
             ],
-            default => [ // 'individual'
+            'individual' => [ // 'individual'
                 'title' => 'My Dashboard',
-                'widgets' => ['My Profile', 'Recent Activity'],
-                'color' => 'gray'
+                'widgets' => [
+                    ['label' => 'Packages Available', 'value' => $val('total_packages')],
+                    ['label' => 'Tests Available', 'value' => $val('total_tests_available')],
+                ],
+                // 'color' => 'gray'
             ],
         };
     }

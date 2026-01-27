@@ -71,7 +71,7 @@
                         </div>
 
                         <!-- Status Badge -->
-                        @if($test['is_active'] && $test['remaining_attempts'] > 0 && $test['days_remaining'] > 0)
+                        @if($test['is_active'] && $test['remaining_attempts'] > 0)
                             <div class="flex items-center">
                                 <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-green-100 text-green-800">
                                     <span class="w-2 h-2 bg-green-500 rounded-full mr-2"></span>
@@ -83,13 +83,6 @@
                                 <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-gray-100 text-gray-800">
                                     <span class="w-2 h-2 bg-gray-500 rounded-full mr-2"></span>
                                     Completed
-                                </span>
-                            </div>
-                        @elseif($test['days_remaining'] <= 0)
-                            <div class="flex items-center">
-                                <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-red-100 text-red-800">
-                                    <span class="w-2 h-2 bg-red-500 rounded-full mr-2"></span>
-                                    Expired
                                 </span>
                             </div>
                         @else
@@ -104,7 +97,7 @@
 
                     <!-- Action Button -->
                     <div class="p-6 pt-0">
-                        @if($test['is_active'] && $test['remaining_attempts'] > 0 && $test['days_remaining'] > 0)
+                        @if($test['is_active'] && $test['remaining_attempts'] > 0)
                             <a 
                                 href="{{ route('test-panel', ['slug' => $test['test_slug']]) }}"
                                 class="block w-full bg-teal-600 text-white text-center py-3 rounded-lg font-semibold hover:bg-teal-700 transition-colors"
@@ -117,13 +110,6 @@
                                 class="block w-full bg-gray-300 text-gray-600 text-center py-3 rounded-lg font-semibold cursor-not-allowed"
                             >
                                 All Attempts Used
-                            </button>
-                        @elseif($test['days_remaining'] <= 0)
-                            <button 
-                                disabled
-                                class="block w-full bg-gray-300 text-gray-600 text-center py-3 rounded-lg font-semibold cursor-not-allowed"
-                            >
-                                Test Expired
                             </button>
                         @else
                             <button 

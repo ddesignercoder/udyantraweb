@@ -11,9 +11,9 @@
 
     <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
         @foreach($config['widgets'] as $widget)
-            <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
-                <h3 class="text-gray-500 text-sm font-medium uppercase">{{ $widget }}</h3>
-                <p class="text-2xl font-bold text-gray-900 mt-2">--</p> 
+            <div class="bg-white p-6 rounded-xl shadow-sm border border-primary-light">
+                <h3 class="text-primary text-sm font-medium uppercase">{{ $widget['label'] }}</h3>
+                <p class="text-2xl font-bold text-gray-900 mt-2">{{ $widget['value'] }}</p> 
             </div>
         @endforeach
     </div>
@@ -24,13 +24,22 @@
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
             {{-- Specific Extra Buttons for School Admin --}}
             @if($role === 'school_admin')
-                <button class="p-4 border border-gray-200 rounded-lg hover:bg-gray-50 transition h-full text-gray-600 font-medium">
+                <button class="p-4 border-2 border-primary rounded-lg text-black hover:bg-primary hover:text-white transition h-full font-medium flex items-center justify-center gap-2">
+                    <x-lucide-bar-chart-4 class="w-5 h-5" />
                     View Class Reports
                 </button>
             @endif
 
+            {{--For Company Admin --}}
+            @if($role === 'company_admin')
+                <button class="p-4 border-2 border-primary rounded-lg text-black hover:bg-primary hover:text-white transition h-full font-medium flex items-center justify-center gap-2">
+                    <x-lucide-bar-chart-4 class="w-5 h-5" />
+                    View Employee Reports
+                </button>
+            @endif
+
             {{-- Buttons for Students / Individuals --}}
-            @if($role === 'individual' || $role === 'student')
+            @if($role === 'individual' || $role === 'student' || $role === 'employee')
                 <button class="p-4 bg-blue-600 text-white rounded-lg shadow hover:bg-blue-700 transition h-full font-semibold flex items-center justify-center gap-2">
                     <x-lucide-play-circle class="w-5 h-5" />
                     Take New Test
