@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>@yield('title') - Udyantra</title>
     <link rel="icon" type="image/png" href="{{ asset('assets/image/favicon.png') }}"> 
+    @yield('css')
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 <body class="bg-gray-100 font-sans" x-data="{ sidebarOpen: false }">
@@ -77,6 +78,7 @@
 
     </div>
 
+    @yield('scripts')
     @include('partials.toast-script')
 </body>
 </html>

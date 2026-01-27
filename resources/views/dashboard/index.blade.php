@@ -38,7 +38,7 @@
             @endif
 
         </div>
-        <div class="flex justify-center gap-4 mb-6">
+    {{--<div class="flex justify-center gap-4 mb-6">
                 <a href="{{ route('test-panel', ['slug' => 'professional-69706796a435d']) }}" 
                    target="_blank"
                    class="bg-primary text-white px-4 py-2 rounded shadow hover:bg-white hover:text-primary hover:border hover:border-primary transition">
@@ -47,7 +47,7 @@
                 <a href="{{ route('test.report.dashboard') }}" class="bg-primary text-white px-4 py-2 rounded shadow hover:bg-white hover:text-primary hover:border hover:border-primary transition">
                    Test Results Dashboard
                 </a>
-        </div>
+        </div> --}}
     </div>
 
 @endsection
