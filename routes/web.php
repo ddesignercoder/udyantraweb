@@ -7,6 +7,7 @@ use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\OrgUserManagementController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\TestsManageController;
 // use Illuminate\Support\Facades\Auth; 
 // Route::get('/', function () {
 //     return view('welcome');
@@ -61,6 +62,20 @@ Route::middleware(['auth.api'])->group(function () {
     Route::post('/org/add-user', [OrgUserManagementController::class, 'storeUser'])->name('org.add.user');
     Route::get('/dashboard/add-user', [DashboardController::class, 'addUser'])->name('dashboard.add-user');
     Route::get('/dashboard/users', [DashboardController::class, 'listUsers'])->name('dashboard.list-users');
+    
+    //Test Management By company_admin or school_admin  
+    Route::get('/dashboard/manage-tests', [TestsManageController::class, 'index'])->name('dashboard.manage-tests');
+    Route::get('/purchased-packages', [TestsManageController::class, 'getPurchasedPackages'])->name('purchased-packages');
+    Route::get('/assignable-users', [TestsManageController::class, 'getAssignableUsers'])->name('assignable-users');
+    Route::post('/assign-test', [TestsManageController::class, 'assignTest'])->name('assign-test');
+    // Self-assign not needed - individual users get automatic assignment on payment
+    // Route::post('/api/self-assign-test', [TestsManageController::class, 'selfAssignTest'])->name('api.self-assign-test');
+    Route::get('/subscription-stats', [TestsManageController::class, 'getSubscriptionStats'])->name('subscription-stats');
+    
+    //Test Perform by all users (view assigned tests)
+    Route::get('/dashboard/my-tests', [TestsManageController::class, 'myTests'])->name('dashboard.my-tests');
+    Route::get('/api/validate-test-access/{slug}', [TestsManageController::class, 'validateTestAccess'])->name('api.validate-test-access');
+    
     
     // Test Panel
     Route::get('/test-panel/{slug}', [TestPanelController::class, 'show'])->name('test-panel');
