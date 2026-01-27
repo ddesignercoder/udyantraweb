@@ -12,35 +12,44 @@ class TestPanelController extends Controller
      * Expects a route like: /test-panel/{slug}
      */
     public function show($slug)
-        {
-            $baseUrl = config('services.backend.url');
-            $token = session('api_token');
+    {
+        $baseUrl = config('services.backend.url');
+        $token = session('api_token');
 
-            if (!$token) {
-                return redirect()->route('login')->with('error', 'Session expired.');
-            }
-
-            $response = Http::acceptJson() 
-                ->withToken($token)
-                ->get("{$baseUrl}/psychometric/{$slug}/preview");
-
-            if ($response->successful()) {
-                $responseData = $response->json();
-
-                if (isset($responseData['status']) && $responseData['status'] === true) {
-                    $data = $responseData['data'];
-                    
-                    // dd($data['questions']);
-                    return view('user-pages.test-panel', [
-                        'test' => $data['test'],
-                        'questions' => $data['questions']
-                    ]);
-                }
-            }
-
-            $errorMessage = $response->json()['message'] ?? 'Unable to load test.';
-            return redirect()->route('welcome')->with('error', $errorMessage);
+        if (!$token) {
+            return redirect()->route('login')->with('error', 'Session expired.');
         }
+
+        // Validate test access first
+        $accessResponse = Http::withToken($token)
+            ->get("{$baseUrl}/psychometric/{$slug}/validate-access");
+
+        if (!$accessResponse->successful() || !$accessResponse->json()['status']) {
+            $errorMessage = $accessResponse->json()['message'] ?? 'You do not have access to this test.';
+            return redirect()->route('dashboard.my-tests')->with('error', $errorMessage);
+        }
+
+        // If access is granted, load the test
+        $response = Http::acceptJson() 
+            ->withToken($token)
+            ->get("{$baseUrl}/psychometric/{$slug}/preview");
+
+        if ($response->successful()) {
+            $responseData = $response->json();
+
+            if (isset($responseData['status']) && $responseData['status'] === true) {
+                $data = $responseData['data'];
+                
+                return view('user-pages.test-panel', [
+                    'test' => $data['test'],
+                    'questions' => $data['questions']
+                ]);
+            }
+        }
+
+        $errorMessage = $response->json()['message'] ?? 'Unable to load test.';
+        return redirect()->route('dashboard.my-tests')->with('error', $errorMessage);
+    }
 
 
     public function submit(Request $request)
