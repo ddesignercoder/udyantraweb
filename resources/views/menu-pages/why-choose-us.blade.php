@@ -247,8 +247,8 @@
 
     {{-- SECTION 5: Sign Up Today --}}
     
-    <section class="pt-14 lg:pt-20 pb-16 lg:pb-22 bg-gray-100 font-sans relative">
+{{--    <section class="pt-14 lg:pt-20 pb-16 lg:pb-22 bg-gray-100 font-sans relative">
         <x-register />
-    </section>
+    </section> --}}
 
 @endsection

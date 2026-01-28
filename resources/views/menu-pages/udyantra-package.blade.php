@@ -89,7 +89,7 @@
                                     </span>
                                     <span class="text-sm font-semibold text-gray-400  group-hover:text-white">/ pack</span>
                                 </div>
-                                <p class="text-xs text-gray-400 mt-1 group-hover:text-white">(Inclusive of GST)</p>
+                                <!-- <p class="text-xs text-gray-400 mt-1 group-hover:text-white">(Inclusive of GST)</p> -->
 
                                 {{-- Feature List --}}
                                 <ul class="mt-6 space-y-3 text-sm text-gray-700 group-hover:text-white">
@@ -152,9 +152,9 @@
 
     {{-- SECTION : Sign Up Today --}}
     @if(!$isLoggedIn)
-    <section class="pt-14 lg:pt-20 pb-16 lg:pb-22 bg-gray-100 font-sans relative">
+    <!-- <section class="pt-14 lg:pt-20 pb-16 lg:pb-22 bg-gray-100 font-sans relative">
         <x-register />
-    </section>
+    </section> -->
     @endif
 
 <div id="payment-loader" class="fixed inset-0 z-50 hidden flex-col items-center justify-center backdrop-blur-md transition-opacity duration-300">

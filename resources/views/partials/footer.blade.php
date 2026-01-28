@@ -30,7 +30,7 @@
                     <h3 class="text-lg font-bold mb-2 md:mb-6">Quick links</h3>
                     <ul class="space-y-3 text-base font-medium text-white/90">
                         <li><a href="{{ route('home') }}" class="hover:text-white hover:underline transition">Home</a></li>
-                        <li><a href="#" class="hover:text-white hover:underline transition">About us</a></li>
+                        <li><a href="{{ route('about-us') }}" class="hover:text-white hover:underline transition">About us</a></li>
                         <li><a href="{{ route('udyantra-package') }}" class="hover:text-white hover:underline transition">Pricing</a></li>
                         <!-- <li><a href="#" class="hover:text-white hover:underline transition">Blog</a></li> -->
                         <li><a href="#" class="hover:text-white hover:underline transition">Contact</a></li>
@@ -41,8 +41,8 @@
                 <div class="col-span-6 md:col-span-6 lg:col-span-2">
                     <h3 class="text-lg font-bold mb-2 md:mb-6">Policies</h3>
                     <ul class="space-y-3 text-base font-medium text-white/90">
-                        <li><a href="#" class="hover:text-white hover:underline transition">Terms of use</a></li>
-                        <li><a href="#" class="hover:text-white hover:underline transition">Privacy policy</a></li>
+                        <li><a href="{{ route('terms-and-conditions') }}" class="hover:text-white hover:underline transition">Terms of use</a></li>
+                        <li><a href="{{ route('privacy-policy') }}" class="hover:text-white hover:underline transition">Privacy policy</a></li>
                     </ul>
                 </div>
 

@@ -47,6 +47,11 @@ Route::get('/why-choose-us', fn () => view('menu-pages.why-choose-us'))->name('w
 Route::get('/what-we-focus-on', fn () => view('menu-pages.what-we-focus-on'))->name('what-we-focus-on');
 Route::get('/citations', fn () => view('menu-pages.citations'))->name('citations');
 
+//Footer Pages
+Route::get('/about-us', fn () => view('footer-pages.about-us'))->name('about-us');
+Route::get('/terms-and-conditions', fn () => view('footer-pages.terms-and-conditions'))->name('terms-and-conditions');
+Route::get('/privacy-policy', fn () => view('footer-pages.privacy-policy'))->name('privacy-policy');
+
 
 // ==========================================
 // PROTECTED ROUTES (Requires Session Token)
