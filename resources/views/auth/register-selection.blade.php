@@ -1,40 +1,46 @@
 @extends('layouts.app')
-@section('title', 'Register-Selection')
+@section('title', 'Join Us - Select Registration Type')
 @section('content')
-<div class="min-h-screen flex items-center justify-center bg-gray-50 py-2  px-4 sm:px-6 lg:px-8 lg:py-12">
+<div class="min-h-screen flex items-center justify-center bg-gray-50 px-4 py-12 sm:px-6 lg:px-8">
     <div class="max-w-4xl w-full space-y-8">
         <div class="text-center">
-            <h2 class="mt-2lg:mt-6 text-3xl font-extrabold text-gray-900">
+            <h2 class="text-3xl font-bold text-gray-900 sm:text-4xl">
                 Join Us
             </h2>
-            <p class="mt-2 text-sm text-gray-600">
-                Choose how you want to register
+            <p class="mt-4 text-lg text-gray-600">
+                Choose how you want to get started with Udyantra
             </p>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-10">
-            <a href="{{ route('register.org.view') }}" class="group block p-8 bg-white border border-gray-200 rounded-xl shadow-sm hover:border-blue-500 hover:shadow-md transition">
-                <div class="flex items-center justify-center h-12 w-12 rounded-md bg-blue-100 text-blue-600 mb-4">
-                    <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
-                    </svg>
+        <div class="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:gap-8">
+            <!-- Organization Card -->
+            <a href="{{ route('register.org.view') }}" class="group relative block rounded-2xl border-2 border-primary bg-white p-8 shadow-sm transition-all duration-200 hover:border-primary/80 hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2">
+                <div class="flex flex-col items-center text-center">
+                    <div class="mb-6 inline-flex h-16 w-16 items-center justify-center rounded-xl bg-blue-50 text-primary transition-colors duration-200 group-hover:bg-blue-100">
+                        <x-lucide-building-2 class="h-8 w-8" />
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 transition-colors duration-200 group-hover:text-primary">
+                        For Organizations
+                    </h3>
+                    <p class="mt-4 text-sm text-gray-500 hover:text-black leading-relaxed">
+                        Register your School or Company to manage students, employees, and assessments efficiently.
+                    </p>
                 </div>
-                <h3 class="text-lg font-medium text-gray-900 group-hover:text-blue-600">For Organizations</h3>
-                <p class="mt-2 text-sm text-gray-500">
-                    Register your School or Company to manage students and employees.
-                </p>
             </a>
 
-            <a href="{{ route('register.ind.view') }}" class="group block p-8 bg-white border border-gray-200 rounded-xl shadow-sm hover:border-green-500 hover:shadow-md transition">
-                <div class="flex items-center justify-center h-12 w-12 rounded-md bg-green-100 text-green-600 mb-4">
-                    <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
-                    </svg>
+            <!-- Individual Card -->
+            <a href="{{ route('register.ind.view') }}" class="group relative block rounded-2xl border-2 border-primary bg-white p-8 shadow-sm transition-all duration-200 hover:border-primary/80 hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2">
+                <div class="flex flex-col items-center text-center">
+                    <div class="mb-6 inline-flex h-16 w-16 items-center justify-center rounded-xl bg-blue-50 text-primary transition-colors duration-200 group-hover:bg-blue-100">
+                        <x-lucide-user class="h-8 w-8" />
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 transition-colors duration-200 group-hover:text-primary">
+                        For Individuals
+                    </h3>
+                    <p class="mt-4 text-sm text-gray-500 hover:text-black leading-relaxed">
+                        Create a personal account to access tests, track progress, and improve your skills.
+                    </p>
                 </div>
-                <h3 class="text-lg font-medium text-gray-900 group-hover:text-green-600">For Individuals</h3>
-                <p class="mt-2 text-sm text-gray-500">
-                    Create a personal account for yourself.
-                </p>
             </a>
         </div>
     </div>
