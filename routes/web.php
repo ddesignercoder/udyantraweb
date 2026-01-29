@@ -97,6 +97,7 @@ Route::middleware(['auth.api'])->group(function () {
 
     //Profile Settings
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::view('/profile/password', 'settings.edit')->name('profile.password');
     Route::post('/profile/update', [ProfileController::class, 'update'])->name('profile.update');
     Route::post('/password/update', [ProfileController::class, 'updatePassword'])->name('password.update');
 });

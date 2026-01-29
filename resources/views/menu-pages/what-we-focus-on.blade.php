@@ -2,29 +2,95 @@
 @section('title', 'What We Focus On')
 @section('css')
 <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
+    <style>
+        /* Fade in and slide up animation */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Fade in and slide from left animation */
+        @keyframes fadeInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .animate-fade-in-up {
+            animation: fadeInUp 0.8s ease-out forwards;
+            opacity: 0;
+        }
+
+        .animate-fade-in-left {
+            animation: fadeInLeft 0.6s ease-out forwards;
+            opacity: 0;
+        }
+
+        /* Animation delays */
+        .animation-delay-200 { animation-delay: 0.2s; }
+        .animation-delay-300 { animation-delay: 0.3s; }
+        .animation-delay-400 { animation-delay: 0.4s; }
+        .animation-delay-500 { animation-delay: 0.5s; }
+        .animation-delay-600 { animation-delay: 0.6s; }
+        .animation-delay-700 { animation-delay: 0.7s; }
+        .animation-delay-800 { animation-delay: 0.8s; }
+        .animation-delay-900 { animation-delay: 0.9s; }
+        .animation-delay-1000 { animation-delay: 1.0s; }
+    </style>
 @endsection
 
 @section('content')
 
     {{-- SECTION 1: HERO Section --}}
-    <section class="relative bg-linear-to-br from-cyan-50 via-teal-50 to-emerald-50 w-full pt-14 pb-16 lg:pt-20 lg:pb-22">
+    <section class="relative bg-linear-to-br from-cyan-50 via-teal-50 to-emerald-50 w-full py-6 md:py-14">
 
         <div class="max-w-7xl mx-auto px-4 md:px-6">
             <div class="grid gap-8 items-center">
                 
                 {{-- Text Content --}}
                 <div class="text-center space-y-6 w-full lg:max-w-[992px] mx-auto">
-                    <h1 class="text-sizeMobile lg:text-sizeDesktop font-semibold text-black leading-tight font-sans">
-                        THE RISEC FRAMEWORK
+                    <h1 class="text-3xl md:text-4xl font-semibold text-black leading-tight  animate-fade-in-up">
+                        Mapping strengths to future possibilities
                     </h1>
                     
-                    <p class="text-textBlack text-base md:text-lg leading-relaxed">
-                        How Udyantra connects who you are to where you can grow
-                    </p>
-
-                    <p class="text-gray-700 text-base md:text-lg leading-relaxed max-w-4xl mx-auto">
-                        Udyantra assessments are built using the <strong>RISEC Framework</strong>, a structured model that evaluates an individual across five critical dimensions:
-                    </p>
+                    <div class="text-textBlack text-base md:text-lg leading-relaxed max-w-4xl mx-auto text-left ">
+                         <p class="mb-4 animate-fade-in-up animation-delay-200">
+                            Udyantra’s Career Assessment is based on a <strong>multi-dimensional, research-informed framework</strong> that evaluates students across several key areas rather than assigning a single personality type.
+                        </p>
+                        <p class="mb-4 animate-fade-in-up animation-delay-300">Our approach integrates:</p>
+                        <ul class="mb-4 space-y-3">
+                            <li class="flex items-start gap-3 animate-fade-in-left animation-delay-400">
+                                <x-lucide-star class="w-7 h-7 text-secondary mt-1 shrink-0" />
+                                <span><strong>Interest-based mapping</strong> (inspired by RIASEC / Holland Codes)</span>
+                            </li>
+                            <li class="flex items-start gap-3 animate-fade-in-left animation-delay-500">
+                                <x-lucide-user class="w-7 h-7 text-primary mt-1 shrink-0" />
+                                <span><strong>Personality tendencies</strong> (how a student prefers to think, behave, and interact)</span>
+                            </li>
+                            <li class="flex items-start gap-3 animate-fade-in-left animation-delay-600">
+                                <x-lucide-compass class="w-7 h-7 text-secondary mt-1 shrink-0" />
+                                <span><strong>Orientation & work-style preferences</strong> (team vs individual, structure vs flexibility, creativity vs analysis)</span>
+                            </li>
+                            <li class="flex items-start gap-3 animate-fade-in-left animation-delay-700">
+                                <x-lucide-award class="w-7 h-7 text-primary mt-1 shrink-0" />
+                                <span><strong>Cognitive and aptitude indicators</strong> relevant to academic streams and career pathways</span>
+                            </li>
+                        </ul>
+                        <p class="animate-fade-in-up animation-delay-800 pt-4">
+                            This allows us to identify <strong>multiple dominant traits</strong> in a student, offering a more realistic and flexible understanding of their strengths, rather than forcing them into one category.
+                        </p>
+                    </div>
 
                 </div>
 
@@ -33,70 +99,70 @@
     </section>
 
     {{-- SECTION 2: RISEC Framework Components --}}
-    <section class="relative w-full pt-14 pb-16 lg:pt-20 lg:pb-22">
+    <section class="relative w-full py-6 md:py-14">
 
         <div class="container mx-auto px-4">
 
             {{-- Header Section --}}
             <div class="container mx-auto px-4 text-center mb-12">
-                <h2 class="text-3xl md:text-4xl font-sans font-semibold mb-4">
+                <h2 class="text-3xl md:text-4xl  font-semibold mb-4">
                     The Five Dimensions
                 </h2>
-                <p class="text-gray-600 text-base md:text-lg max-w-3xl mx-auto">
+                <p class="text-textBlack text-base md:text-lg max-w-3xl mx-auto">
                     This integrated approach ensures that recommendations are holistic, balanced, and practical.
                 </p>
             </div>
 
             {{-- RISEC Cards Grid --}}
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto text-center">
                 
                 {{-- R - Personality Traits --}}
                 <div class="group relative p-6 flex flex-col bg-white rounded-2xl shadow-lg transition-all duration-300 hover:shadow-2xl hover:-translate-y-2 border-t-4 border-primary">
-                    <div class="flex items-center justify-center w-16 h-16 mb-4 bg-linear-to-br from-primary to-secondary rounded-full">
-                        <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/>
-                        </svg>
+                    <div class="flex items-center justify-center gap-4 mb-4">
+                        <div class="flex items-center justify-center w-12 h-12 bg-linear-to-br from-primary to-secondary rounded-full shrink-0">
+                            <x-lucide-user class="w-6 h-6 text-white" />
+                        </div>
+                        <h3 class="text-xl font-bold text-textBlack m-0 text-left">Personality Traits</h3>
                     </div>
-                    <h3 class="text-xl font-bold text-black mb-3">Personality Traits</h3>
-                    <p class="text-gray-700 text-base leading-relaxed">
+                    <p class="text-textBlack text-base leading-relaxed">
                         Measures stable personality characteristics that influence behaviour, communication style, decision-making, and work preferences.
                     </p>
                 </div>
 
                 {{-- I - Interests & Motivations --}}
                 <div class="group relative p-6 flex flex-col bg-white rounded-2xl shadow-lg transition-all duration-300 hover:shadow-2xl hover:-translate-y-2 border-t-4 border-secondary">
-                    <div class="flex items-center justify-center w-16 h-16 mb-4 bg-linear-to-br from-secondary to-primary rounded-full">
-                        <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 20 20">
-                            <path fill-rule="evenodd" d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" clip-rule="evenodd"/>
-                        </svg>
+                    <div class="flex items-center justify-center gap-4 mb-4">
+                        <div class="flex items-center justify-center w-12 h-12 bg-linear-to-br from-secondary to-primary rounded-full shrink-0">
+                            <x-lucide-star class="w-6 h-6 text-white" />
+                        </div>
+                        <h3 class="text-xl font-bold text-textBlack m-0 text-left">Interests & Motivations</h3>
                     </div>
-                    <h3 class="text-xl font-bold text-black mb-3">Interests & Motivations</h3>
-                    <p class="text-gray-700 text-base leading-relaxed">
+                    <p class="text-textBlack text-base leading-relaxed">
                         Identifies areas that naturally engage curiosity and long-term motivation, helping avoid burnout and misaligned choices.
                     </p>
                 </div>
 
                 {{-- S - Skills & Strengths --}}
                 <div class="group relative p-6 flex flex-col bg-white rounded-2xl shadow-lg transition-all duration-300 hover:shadow-2xl hover:-translate-y-2 border-t-4 border-primary">
-                    <div class="flex items-center justify-center w-16 h-16 mb-4 bg-linear-to-br from-primary to-secondary rounded-full">
-                        <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 20 20">
-                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
-                        </svg>
+                    <div class="flex items-center justify-center gap-4 mb-4">
+                        <div class="flex items-center justify-center w-12 h-12 bg-linear-to-br from-primary to-secondary rounded-full shrink-0">
+                            <x-lucide-award class="w-6 h-6 text-white" />
+                        </div>
+                        <h3 class="text-xl font-bold text-textBlack m-0 text-left">Skills & Strengths</h3>
                     </div>
-                    <h3 class="text-xl font-bold text-black mb-3">Skills & Strengths</h3>
-                    <p class="text-gray-700 text-base leading-relaxed">
+                    <p class="text-textBlack text-base leading-relaxed">
                         Assesses cognitive abilities, learned skills, and natural aptitudes relevant to academic and career success.
                     </p>
                 </div>
 
                 {{-- E - Orientation & Environment Fit --}}
                 <div class="group relative p-6 flex flex-col bg-white rounded-2xl shadow-lg transition-all duration-300 hover:shadow-2xl hover:-translate-y-2 border-t-4 border-secondary">
-                    <div class="flex items-center justify-center w-16 h-16 mb-4 bg-linear-to-br from-secondary to-primary rounded-full">
-                        <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
-                        </svg>
+                    <div class="flex items-center justify-center gap-4 mb-4">
+                        <div class="flex items-center justify-center w-12 h-12 bg-linear-to-br from-secondary to-primary rounded-full shrink-0">
+                            <x-lucide-compass class="w-6 h-6 text-white" />
+                        </div>
+                        <h3 class="text-xl font-bold text-textBlack m-0 text-left">Orientation & Environment Fit</h3>
                     </div>
-                    <h3 class="text-xl font-bold text-black mb-3">Orientation & Environment Fit</h3>
                     <p class="text-gray-700 text-base leading-relaxed">
                         Evaluates how an individual aligns with different learning styles, work environments, and role expectations.
                     </p>
@@ -104,13 +170,13 @@
 
                 {{-- C - Career Mapping --}}
                 <div class="group relative p-6 flex flex-col bg-white rounded-2xl shadow-lg transition-all duration-300 hover:shadow-2xl hover:-translate-y-2 border-t-4 border-primary md:col-span-2 lg:col-span-1">
-                    <div class="flex items-center justify-center w-16 h-16 mb-4 bg-linear-to-br from-primary to-secondary rounded-full">
-                        <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
-                        </svg>
+                    <div class="flex items-center justify-center gap-4 mb-4">
+                        <div class="flex items-center justify-center w-12 h-12 bg-linear-to-br from-primary to-secondary rounded-full shrink-0">
+                            <x-lucide-briefcase class="w-6 h-6 text-white" />
+                        </div>
+                        <h3 class="text-xl font-bold text-textBlack m-0 text-left">Career Mapping</h3>
                     </div>
-                    <h3 class="text-xl font-bold text-black mb-3">Career Mapping</h3>
-                    <p class="text-gray-700 text-base leading-relaxed">
+                    <p class="text-textBlack text-base leading-relaxed">
                         Integrates all dimensions to suggest realistic, aligned, and future-ready career pathways and development directions.
                     </p>
                 </div>
@@ -122,97 +188,97 @@
     </section>
 
     {{-- SECTION 3: Development Process --}}
-    <section class="pt-14 lg:pt-20 pb-16 lg:pb-22 bg-lightgray font-sans relative">
+    <section class="py-6 md:py-14 bg-lightgray  relative">
         <div class="max-w-7xl mx-auto px-4 md:px-6">
 
-            <h2 class="text-sizeMobile lg:text-sizeDesktop font-semibold text-center text-black font-sans mb-4">
+            <h2 class="text-2xl lg:text-sizeDesktop font-semibold text-center text-black  mb-4">
                 STRUCTURED & SCIENTIFIC DEVELOPMENT PROCESS
             </h2>
 
-            <p class="text-center text-gray-600 text-base md:text-lg mb-12 max-w-3xl mx-auto">
+            <p class="text-center text-textBlack text-base md:text-lg mb-12 max-w-3xl mx-auto">
                 Every assessment is built with precision, validated through research, and designed to deliver actionable insights.
             </p>
 
             {{-- Process Steps --}}
             <div class="bg-white rounded-2xl shadow-xl p-6 md:p-10 relative">
                 
-                <div class="space-y-8">
+                <div class="space-y-4">
                     
                     {{-- Step 1 --}}
-                    <div class="flex flex-col md:flex-row gap-6 items-start">
-                        <div class="shrink-0 flex items-center justify-center w-14 h-14 bg-linear-to-br from-primary to-secondary rounded-full text-white font-bold text-xl">
-                            1
+                    <div class="flex flex-col gap-2">
+                        <div class="flex items-center gap-6">
+                            <div class="shrink-0 flex items-center justify-center w-14 h-14 bg-linear-to-br from-primary to-secondary rounded-full text-white font-bold text-xl">
+                                <x-lucide-book-open class="w-7 h-7" />
+                            </div>
+                            <h3 class="text-xl font-bold text-textBlack m-0">Construct Definition</h3>
                         </div>
-                        <div class="flex-1">
-                            <h3 class="text-xl font-bold text-black mb-2">Construct Definition</h3>
-                            <p class="text-gray-700 text-base leading-relaxed">
-                                Each section is based on clearly defined psychological constructs such as aptitude, personality traits, interests, and orientation.
-                            </p>
-                        </div>
+                        <p class="text-textBlack text-base text-center md:text-left leading-relaxed pl-0 md:pl-20">
+                            Each section is based on clearly defined psychological constructs such as aptitude, personality traits, interests, and orientation.
+                        </p>
                     </div>
 
                     {{-- Divider --}}
                     <div class="border-t border-gray-200"></div>
 
                     {{-- Step 2 --}}
-                    <div class="flex flex-col md:flex-row gap-6 items-start">
-                        <div class="shrink-0 flex items-center justify-center w-14 h-14 bg-linear-to-br from-primary to-secondary rounded-full text-white font-bold text-xl">
-                            2
+                    <div class="flex flex-col gap-2">
+                        <div class="flex items-center gap-6">
+                            <div class="shrink-0 flex items-center justify-center w-14 h-14 bg-linear-to-br from-primary to-secondary rounded-full text-white font-bold text-xl">
+                                <x-lucide-pen-tool class="w-7 h-7" />
+                            </div>
+                            <h3 class="text-xl font-bold text-textBlack m-0">Question Design</h3>
                         </div>
-                        <div class="flex-1">
-                            <h3 class="text-xl font-bold text-black mb-2">Question Design</h3>
-                            <p class="text-gray-700 text-base leading-relaxed">
-                                Questions use validated formats such as Likert scales, situational judgment items, and aptitude-based patterns.
-                            </p>
-                        </div>
+                        <p class="text-textBlack text-base text-center md:text-left leading-relaxed pl-0 md:pl-20">
+                            Questions use validated formats such as Likert scales, situational judgment items, and aptitude-based patterns.
+                        </p>
                     </div>
 
                     {{-- Divider --}}
                     <div class="border-t border-gray-200"></div>
 
                     {{-- Step 3 --}}
-                    <div class="flex flex-col md:flex-row gap-6 items-start">
-                        <div class="shrink-0 flex items-center justify-center w-14 h-14 bg-linear-to-br from-primary to-secondary rounded-full text-white font-bold text-xl">
-                            3
+                    <div class="flex flex-col gap-2">
+                        <div class="flex items-center gap-6">
+                            <div class="shrink-0 flex items-center justify-center w-14 h-14 bg-linear-to-br from-primary to-secondary rounded-full text-white font-bold text-xl">
+                                <x-lucide-scale class="w-7 h-7" />
+                            </div>
+                            <h3 class="text-xl font-bold text-textBlack m-0">Bias Reduction</h3>
                         </div>
-                        <div class="flex-1">
-                            <h3 class="text-xl font-bold text-black mb-2">Bias Reduction</h3>
-                            <p class="text-gray-700 text-base leading-relaxed">
-                                Items are reviewed to minimize cultural, academic, and gender bias.
-                            </p>
-                        </div>
+                        <p class="text-textBlack text-base text-center md:text-left leading-relaxed pl-0 md:pl-20">
+                            Items are reviewed to minimize cultural, academic, and gender bias.
+                        </p>
                     </div>
 
                     {{-- Divider --}}
                     <div class="border-t border-gray-200"></div>
 
                     {{-- Step 4 --}}
-                    <div class="flex flex-col md:flex-row gap-6 items-start">
-                        <div class="shrink-0 flex items-center justify-center w-14 h-14 bg-linear-to-br from-primary to-secondary rounded-full text-white font-bold text-xl">
-                            4
+                    <div class="flex flex-col gap-2">
+                        <div class="flex items-center gap-6">
+                            <div class="shrink-0 flex items-center justify-center w-14 h-14 bg-linear-to-br from-primary to-secondary rounded-full text-white font-bold text-xl">
+                                <x-lucide-bar-chart-2 class="w-7 h-7" />
+                            </div>
+                            <h3 class="text-xl font-bold text-textBlack m-0">Scoring & Scaling</h3>
                         </div>
-                        <div class="flex-1">
-                            <h3 class="text-xl font-bold text-black mb-2">Scoring & Scaling</h3>
-                            <p class="text-gray-700 text-base leading-relaxed">
-                                Responses are converted into standardized scores for objective comparison and interpretation.
-                            </p>
-                        </div>
+                        <p class="text-textBlack text-base text-center md:text-left leading-relaxed pl-0 md:pl-20">
+                            Responses are converted into standardized scores for objective comparison and interpretation.
+                        </p>
                     </div>
 
                     {{-- Divider --}}
                     <div class="border-t border-gray-200"></div>
 
                     {{-- Step 5 --}}
-                    <div class="flex flex-col md:flex-row gap-6 items-start">
-                        <div class="shrink-0 flex items-center justify-center w-14 h-14 bg-linear-to-br from-primary to-secondary rounded-full text-white font-bold text-xl">
-                            5
+                    <div class="flex flex-col gap-2">
+                        <div class="flex items-center gap-6">
+                            <div class="shrink-0 flex items-center justify-center w-14 h-14 bg-linear-to-br from-primary to-secondary rounded-full text-white font-bold text-xl">
+                                <x-lucide-clipboard-check class="w-7 h-7" />
+                            </div>
+                            <h3 class="text-xl font-bold text-textBlack m-0">Expert Interpretation Framework</h3>
                         </div>
-                        <div class="flex-1">
-                            <h3 class="text-xl font-bold text-black mb-2">Expert Interpretation Framework</h3>
-                            <p class="text-gray-700 text-base leading-relaxed">
-                                Results are translated into actionable insights using structured interpretation models — not random AI outputs.
-                            </p>
-                        </div>
+                        <p class="text-textBlack text-base text-center md:text-left leading-relaxed pl-0 md:pl-20">
+                            Results are translated into actionable insights using structured interpretation models — not random AI outputs.
+                        </p>
                     </div>
 
                 </div>
@@ -222,10 +288,10 @@
     </section>
 
     {{-- SECTION 4: Success Stories --}}
-    <section class="pt-14 lg:pt-20 pb-16 lg:pb-22 bg-white font-sans relative z-10">
+    <section class="py-6 md:py-14 bg-white  relative z-10">
         <div class="max-w-7xl mx-auto px-4 md:px-4">
 
-            <h2 class="text-sizeMobile lg:text-sizeDesktop font-semibold text-center text-black font-sans mb-8 md:mb-10">
+            <h2 class="text-sizeMobile lg:text-sizeDesktop font-semibold text-center text-black  mb-8 md:mb-10">
                 Success stories from our customers
             </h2>
 
@@ -240,12 +306,12 @@
     </section>
 
     {{-- Section 5: FAQs --}}
-    <section class="font-sans relative z-0 pt-56 md:pt-70 lg:pt-68 pb-16 lg:py-22">
+    <section class=" relative z-0 pt-65 md:pt-70 lg:pt-68 pb-16 lg:py-22">
         <x-faq />
     </section>
 
     {{-- SECTION 6: Sign Up Today --}}
-    <!-- <section class="pt-14 lg:pt-20 pb-16 lg:pb-22 bg-gray-100 font-sans relative">
+    <!-- <section class="pt-14 lg:pt-20 pb-16 lg:pb-22 bg-gray-100  relative">
         <x-register />
     </section> -->
 
