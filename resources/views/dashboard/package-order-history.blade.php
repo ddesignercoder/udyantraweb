@@ -46,7 +46,7 @@
                             <div class="bg-white rounded-2xl shadow-sm border border-gray-100 hover:shadow-md transition-shadow duration-300 overflow-hidden">
                                 
                                 {{-- Card Header with Status Badge --}}
-                                <div class="bg-gradient-to-r from-primary to-secondary p-4">
+                                <div class="bg-linear-to-r from-primary to-secondary p-4">
                                     <div class="flex items-center justify-between">
                                         <h3 class="text-lg font-semibold text-white">{{ $purchase['package_name'] }}</h3>
                                         @if($purchase['is_active'])
