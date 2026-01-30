@@ -28,7 +28,9 @@
             
             {{-- Title --}}
             <div class="truncate mr-2">
-                <h1 class="text-sm md:text-lg font-bold text-gray-800 uppercase truncate" x-text="test.name"></h1>
+                <h1 class="text-sm md:text-lg font-bold text-gray-800 uppercase truncate">
+                    <span x-text="test.name"></span> PSYCHOMETRIC
+                </h1>
                 <div class="text-xs text-gray-500 font-mono lg:hidden">
                    Q.<span x-text="currentIndex + 1"></span> / <span x-text="questions.length"></span>
                 </div>
@@ -48,9 +50,7 @@
                 {{-- Mobile Palette Toggle Button --}}
                 <button @click="showPalette = !showPalette" 
                         class="lg:hidden p-2 text-gray-600 hover:bg-gray-100 rounded border border-gray-300">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
-                    </svg>
+                    <x-lucide-menu class="h-6 w-6" />
                 </button>
             </div>
         </div>
@@ -176,7 +176,7 @@
                 <div class="p-4 border-b flex justify-between items-center lg:hidden bg-gray-50">
                     <h3 class="font-bold text-gray-700">Question Palette</h3>
                     <button @click="showPalette = false" class="text-gray-500 hover:text-gray-800">
-                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                        <x-lucide-x class="w-6 h-6" />
                     </button>
                 </div>
 
@@ -224,24 +224,12 @@
         </aside>
 
     </div>
-    <!-- Loader -->
-    <div x-show="isSubmitting" 
-        x-transition.opacity.duration.300ms
-        class="fixed inset-0 z-100 bg-white/90 backdrop-blur-sm flex flex-col items-center justify-center"
-        style="display: none;">
-        
-        <div class="relative w-16 h-16 mb-4">
-            <div class="absolute inset-0 rounded-full border-4 border-primary-light/30"></div>
-            <div class="absolute inset-0 rounded-full border-4 border-t-transparent border-primary animate-spin"></div>
-        </div>
 
-        <h3 class="text-xl font-bold text-primary font-sans tracking-tight">
-            Submitting Test
-        </h3>
-        <p class="text-black font-sans text-sm mt-1 animate-pulse">
-            Please do not close this window...
-        </p>
-    </div>
+    <!-- Submit Confirmation Modal -->
+    <x-test-panel.submit-modal />
+
+    <!-- Loader -->
+    <x-test-panel.submit-loader />
 
 </div>
 
@@ -253,6 +241,7 @@
             userId: userId,
             currentIndex: 0,
             showPalette: false, // New Mobile State
+            showSubmitModal: false, // Submit confirmation modal
             isSubmitting: false,
             
             // State Storage
@@ -374,8 +363,14 @@
                 this.submitTest();
             },
             
-            async submitTest() {
-                if (!confirm('Final Submit?')) return;
+            submitTest() {
+                // Show the confirmation modal instead of browser confirm
+                this.showSubmitModal = true;
+            },
+
+            async confirmSubmit() {
+                // Close modal and proceed with submission
+                this.showSubmitModal = false;
                 this.isSubmitting = true; // Start loading animation
                 clearInterval(this.timerInterval);
                 window.onbeforeunload = null;

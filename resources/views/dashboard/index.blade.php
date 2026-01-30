@@ -18,11 +18,10 @@
         @endforeach
     </div>
 
-    <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
+{{--    <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
         <h2 class="text-lg font-bold text-gray-800 mb-4">Quick Actions</h2>
         
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-            {{-- Specific Extra Buttons for School Admin --}}
             @if($role === 'school_admin')
                 <button class="p-4 border-2 border-primary rounded-lg text-black hover:bg-primary hover:text-white transition h-full font-medium flex items-center justify-center gap-2">
                     <x-lucide-bar-chart-4 class="w-5 h-5" />
@@ -30,7 +29,7 @@
                 </button>
             @endif
 
-            {{--For Company Admin --}}
+
             @if($role === 'company_admin')
                 <button class="p-4 border-2 border-primary rounded-lg text-black hover:bg-primary hover:text-white transition h-full font-medium flex items-center justify-center gap-2">
                     <x-lucide-bar-chart-4 class="w-5 h-5" />
@@ -38,13 +37,13 @@
                 </button>
             @endif
 
-            {{-- Buttons for Students / Individuals --}}
+
             @if($role === 'individual' || $role === 'student' || $role === 'employee')
                 <button class="p-4 bg-blue-600 text-white rounded-lg shadow hover:bg-blue-700 transition h-full font-semibold flex items-center justify-center gap-2">
                     <x-lucide-play-circle class="w-5 h-5" />
                     Take New Test
                 </button>
-            @endif
+            @endif --}}
 
         </div>
     {{--<div class="flex justify-center gap-4 mb-6">
