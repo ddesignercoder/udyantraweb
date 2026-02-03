@@ -93,7 +93,7 @@
                              class="w-full h-full object-cover">
                     </div>
                     
-                    <div class="bg-white border border-borderArround text-center text-lg md:text-xl rounded-lg px-3 md:px-6 py-3 md:py-3 font-bold text-black shadow-sm mb-4">
+                    <div class="bg-white border border-borderArround text-center text-lg md:text-xl rounded-lg px-3 md:px-2 py-3 md:py-3 font-bold text-black shadow-sm mb-4">
                         Schools Students (Grade 8–12)
                     </div>
                     
@@ -101,7 +101,7 @@
                         Get clear guidance on the right stream, understand your strengths and interests, and explore career paths that fit you best.
                     </p>
                     
-                    <x-button as="a" class="mt-6" href="#student-tests">Explore Student Tests</x-button>
+                    <x-button as="a" class="mt-6" href="{{ route('udyantra-package') }}">Explore Student Tests</x-button>
                 </div>
 
                 {{-- Card 2: Professionals --}}
@@ -112,14 +112,14 @@
                              class="w-full h-full object-cover">
                     </div>
                     
-                    <div class="bg-white border border-borderArround text-center text-lg md:text-xl rounded-lg px-3 md:px-6 py-3 md:py-3 font-bold md:font-bold text-black shadow-sm mb-4">
+                    <div class="bg-white border border-borderArround text-center text-lg md:text-xl rounded-lg px-3 md:px-2 py-3 md:py-3 font-bold md:font-bold text-black shadow-sm mb-4">
                         Professionals (Undergraduates and working individuals)
                     </div>
                     
                     <p class="text-textBlack leading-relaxed max-w-xl">
                         Understand your skill profile, strengths, personality traits, and align with the right career or growth path.
                     </p>
-                    <x-button as="a" class="mt-6" href="#professional-tests">Explore Professional Tests</x-button>
+                    <x-button as="a" class="mt-6" href="{{ route('udyantra-package') }}">Explore Professional Tests</x-button>
                     
                 </div>
 

@@ -99,8 +99,12 @@
                                 <td class="px-6 py-4">
                                     {{ \Carbon\Carbon::parse($user['created_at'])->format('d M, Y') }}
                                 </td>
-                                <td class="px-6 py-4 text-right">
-                                    <button class="text-blue-600 hover:text-blue-800 font-medium text-xs">Edit</button>
+                                <td class='px-6 py-4 text-right'>
+                                    <a href="{{ route('user-test-dashboard', ['id' => encrypt($user['id'])]) }}" 
+                                       class="inline-flex items-center justify-center gap-2 px-6 py-3 bg-white border-2 border-primary text-primary font-bold rounded-xl hover:bg-primary hover:text-white transition-all duration-300 shadow-sm hover:shadow-md group">
+                                       <x-lucide-bar-chart-3 class="w-5 h-5 group-hover:rotate-12 transition-transform" />
+                                       View Results
+                                    </a>
                                 </td>
                             </tr>
                         @empty
