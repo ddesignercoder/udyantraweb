@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Contracts\Encryption\DecryptException;
 
 class TestPanelController extends Controller
 {
@@ -128,6 +129,13 @@ class TestPanelController extends Controller
     */
     public function result($id)
         {
+            // Decrypt the test result ID
+            try {
+                $testResultId = decrypt($id);
+            } catch (DecryptException $e) {
+                return redirect()->route('test.report.dashboard')->with('error', 'Invalid test result ID.');
+            }
+
             $baseUrl = config('services.backend.url');
             $token = session('api_token');
             $userId = session('user_id');
@@ -137,7 +145,7 @@ class TestPanelController extends Controller
                 ->acceptJson()
                 ->get("{$baseUrl}/career-analysis", [
                     'user_id' => $userId,
-                    'test_result_id' => $id
+                    'test_result_id' => $testResultId
                 ]);
 
             if ($response->successful()) {
@@ -145,7 +153,7 @@ class TestPanelController extends Controller
                 //dd($data);
                 // 2. Pass the array directly to the View
                 return view('user-pages.test-result', [
-                    'result_id' => $id,
+                    'result_id' => $testResultId,
                     'analysis' => $data['analysis'],
                     'outcomes' => $data['outcomes'] ?? [] // Handle empty cases
                 ]);
@@ -154,6 +162,78 @@ class TestPanelController extends Controller
             return redirect()->route('user.dashboard')->with('error', 'Could not fetch results.');
         }
 
+    /**
+    * Each School or Company  access their user result dashboard
+    */
+    public function userReportDashboard($id)
+        {   
+            // Decrypt the user ID
+            try {
+                $userId = decrypt($id);
+            } catch (DecryptException $e) {
+                return redirect()->route('dashboard.list-users')->with('error', 'Invalid user ID.');
+            }
 
+            $baseUrl = config('services.backend.url');
+            $token = session('api_token');
+
+            // 1. Call the API
+            $response = Http::withToken($token)
+                ->acceptJson()
+                ->get("{$baseUrl}/user-test-history", [
+                    'user_id' => $userId
+                ]);
+
+            $history = [];
+            $totalTests = 0;
+
+            if ($response->successful()) {
+                $data = $response->json();
+                $history = $data['history'] ?? [];
+                $totalTests = $data['total_tests_taken'] ?? 0;
+                $user_id = $userId;
+            }
+
+            // 2. Pass data to View
+            return view('user-pages.user-dashboard', compact('user_id','history', 'totalTests'));
+        }
+        
+    /**
+    * Each School or Company  access their user result
+    */
+    public function userResult($userId, $testResultId)
+        {
+            // Decrypt both parameters
+            try {
+                $decryptedUserId = decrypt($userId);
+                $decryptedTestResultId = decrypt($testResultId);
+            } catch (DecryptException $e) {
+                return redirect()->route('user.dashboard')->with('error', 'Invalid parameters.');
+            }
+
+            $baseUrl = config('services.backend.url');
+            $token = session('api_token');
+
+            // 1. Call the API from the Server
+            $response = Http::withToken($token)
+                ->acceptJson()
+                ->get("{$baseUrl}/career-analysis", [
+                    'user_id' => $decryptedUserId,
+                    'test_result_id' => $decryptedTestResultId
+                ]);
+
+            if ($response->successful()) {
+                $data = $response->json();
+                //dd($data);
+                // 2. Pass the array directly to the View
+                return view('user-pages.test-result', [
+                    'result_id' => $decryptedTestResultId,
+                    'analysis' => $data['analysis'],
+                    'outcomes' => $data['outcomes'] ?? [] // Handle empty cases
+                ]);
+            }
+
+            return redirect()->route('user.dashboard')->with('error', 'Could not fetch results.');
+        }
 
 }

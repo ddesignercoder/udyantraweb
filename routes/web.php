@@ -89,6 +89,9 @@ Route::middleware(['auth.api'])->group(function () {
     // User Dashboard and Test Result
     Route::get('/test-result/{id}', [TestPanelController::class, 'result'])->name('test.result');
     Route::get('/test-report-dashboard', [TestPanelController::class, 'dashboard'])->name('test.report.dashboard');
+    //School or Company Access their user test dashboard
+    Route::get('/user-test-dashboard/{id}', [TestPanelController::class, 'userReportDashboard'])->name('user-test-dashboard');
+    Route::get('/user-test-result/{userId}/{testResultId}', [TestPanelController::class, 'userResult'])->name('user-test-result');
 
     // Payment Routes
     Route::post('/payment/initiate', [PaymentController::class, 'createOrder'])->name('payment.initiate');

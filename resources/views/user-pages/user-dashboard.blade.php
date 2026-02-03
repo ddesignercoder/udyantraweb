@@ -4,14 +4,18 @@
 
 @section('content')
 <div class="max-w-7xl mx-auto">
-    <div class="max-w-5xl mx-auto">
-        
         {{-- Header --}}
         <div class="md:flex md:items-center md:justify-between mb-8">
             <div class="flex-1 min-w-0">
+                @if(session('user_role') == 'school_admin' || session('user_role') == 'company_admin')
+                <h2 class="text-2xl font-bold leading-7 text-gray-900 sm:text-3xl sm:truncate">
+                    User Assessments
+                </h2>
+                @else
                 <h2 class="text-2xl font-bold leading-7 text-gray-900 sm:text-3xl sm:truncate">
                     My Assessments
                 </h2>
+                @endif
             </div>
         </div>
 
@@ -42,10 +46,15 @@
                                             </p>
                                         </div>
                                         <div class="mt-2 flex items-center text-sm text-gray-500 sm:mt-0">
-                                            {{-- Use Route Parameter --}}
-                                            <a href="{{ route('test.result', $item['test_result_id']) }}" class="text-indigo-600 hover:text-indigo-900">
+                                            @if(session('user_role') == 'school_admin' || session('user_role') == 'company_admin')
+                                            <a href="{{ route('user-test-result', ['userId' => encrypt($user_id), 'testResultId' => encrypt($item['test_result_id'])]) }}" class="text-indigo-600 hover:text-indigo-900">
                                                 View Analysis &rarr;
                                             </a>
+                                            @else
+                                            <a href="{{ route('test.result', encrypt($item['test_result_id'])) }}" class="text-indigo-600 hover:text-indigo-900">
+                                                View Analysis &rarr;
+                                            </a>
+                                            @endif
                                         </div>
                                     </div>
                                 </div>
@@ -59,10 +68,12 @@
             {{-- Empty State --}}
             <div class="text-center py-12">
                 <h3 class="mt-2 text-sm font-medium text-gray-900">No tests taken</h3>
+                @if(session('user_role') == 'school_admin' || session('user_role') == 'company_admin')
+                <p class="mt-1 text-sm text-gray-500">Your user does not have any tests taken.</p>
+                @else
                 <p class="mt-1 text-sm text-gray-500">Get started by taking your first psychometric test.</p>
+                @endif
             </div>
         @endif
-
-    </div>
 </div>
 @endsection
