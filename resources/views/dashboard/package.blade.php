@@ -74,6 +74,9 @@
                                         <span class="text-sm text-gray-500">/ pack</span>
                                     </div>
                                     <div class="text-xs text-gray-400 mt-1">
+                                        Validity: {{ $package['time_period'] }} {{ $package['time_period'] > 1 ? 'Months' : 'Month' }}
+                                    </div>
+                                    <div class="text-xs text-gray-400 mt-1">
                                         (₹{{ number_format((float)$package['unit_price'], 0) }} per test)
                                     </div>
                                 {{--    <div class="text-xs text-gray-400 mt-0.5">
