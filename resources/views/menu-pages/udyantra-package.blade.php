@@ -89,7 +89,7 @@
                                     </span>
                                     <span class="text-sm font-semibold text-gray-400  group-hover:text-white">/ pack</span>
                                 </div>
-                                <!-- <p class="text-xs text-gray-400 mt-1 group-hover:text-white">(Inclusive of GST)</p> -->
+                                <p class="text-xs text-gray-400 mt-1 group-hover:text-white">Validity: {{ $package['time_period'] }} {{ $package['time_period'] > 1 ? 'Months' : 'Month' }}</p>
 
                                 {{-- Feature List --}}
                                 <ul class="mt-6 space-y-3 text-sm text-gray-700 group-hover:text-white">
