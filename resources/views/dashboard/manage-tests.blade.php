@@ -89,16 +89,30 @@
             <!-- Users List -->
             <div class="space-y-2 max-h-96 overflow-y-auto">
                 <template x-for="user in filteredUsers" :key="user.id">
-                    <label class="flex items-center p-4 hover:bg-gray-50 rounded-lg cursor-pointer border border-gray-200 transition-colors">
+                    <label 
+                        class="flex items-center p-4 rounded-lg border transition-colors"
+                        :class="user.test_assigned 
+                            ? 'bg-green-50 border-green-200 cursor-not-allowed' 
+                            : 'hover:bg-gray-50 border-gray-200 cursor-pointer'"
+                    >
                         <input 
                             type="checkbox" 
                             :value="user.id"
                             @change="toggleUser(user.id)"
                             :checked="selectedUserIds.includes(user.id)"
-                            class="w-5 h-5 text-teal-600 rounded focus:ring-teal-500 mr-4"
+                            :disabled="user.test_assigned"
+                            class="w-5 h-5 text-teal-600 rounded focus:ring-teal-500 mr-4 disabled:opacity-50 disabled:cursor-not-allowed"
                         >
                         <div class="flex-1">
-                            <div class="font-medium text-gray-900" x-text="user.name"></div>
+                            <div class="flex items-center gap-2">
+                                <span class="font-medium text-gray-900" x-text="user.name"></span>
+                                <span 
+                                    x-show="user.test_assigned" 
+                                    class="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800"
+                                >
+                                    ✓ Already Assigned
+                                </span>
+                            </div>
                             <div class="text-sm text-gray-600" x-text="user.email"></div>
                             <div class="text-xs text-gray-500 mt-1">
                                 <span x-text="`${user.assigned_tests_count} tests assigned`"></span>
@@ -175,10 +189,7 @@ function manageTests() {
         successMessage: '',
 
         async init() {
-            await Promise.all([
-                this.loadPackages(),
-                this.loadUsers()
-            ]);
+            await this.loadPackages();
             this.loading = false;
         },
 
@@ -198,9 +209,12 @@ function manageTests() {
             }
         },
 
-        async loadUsers() {
+        async loadUsers(subscriptionId = null) {
             try {
-                const response = await axios.get('/assignable-users');
+                const url = subscriptionId 
+                    ? `/assignable-users?subscription_id=${subscriptionId}` 
+                    : '/assignable-users';
+                const response = await axios.get(url);
                 
                 if (response.data.status) {
                     this.users = response.data.data;
@@ -214,14 +228,20 @@ function manageTests() {
             }
         },
 
-        selectPackage(packageId) {
+        async selectPackage(packageId) {
             if (!packageId) {
                 this.selectedPackage = null;
+                this.users = [];
                 return;
             }
             
             this.selectedPackage = this.packages.find(p => p.id == packageId);
             this.selectedUserIds = [];
+            
+            // Fetch users with subscription_id to get test_assigned status
+            this.loading = true;
+            await this.loadUsers(this.selectedPackage.subscription_id);
+            this.loading = false;
         },
 
         toggleUser(userId) {
@@ -230,10 +250,17 @@ function manageTests() {
                 this.selectedUserIds.splice(index, 1);
             } else {
                 // Check if we have enough assignments
-                if (this.selectedUserIds.length >= this.selectedPackage.remaining_assignments) {
+                if(this.selectedPackage.remaining_assignments == 0){
                     Toast.fire({
                         icon: 'warning',
-                        title: `You can only assign ${this.selectedPackage.remaining_assignments} more test(s) from this package.`
+                        title: 'No test assignments left in this package.'
+                    });
+                    return;
+                }
+                else if (this.selectedUserIds.length >= this.selectedPackage.remaining_assignments) {
+                    Toast.fire({
+                        icon: 'warning',
+                        title: `You can only assign ${this.selectedPackage.remaining_assignments} test(s) from this package.`
                     });
                     return;
                 }
