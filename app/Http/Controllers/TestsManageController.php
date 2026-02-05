@@ -46,10 +46,17 @@ class TestsManageController extends Controller
     /**
      * Get assignable users (students/employees) for the admin
      */
-    public function getAssignableUsers()
+    public function getAssignableUsers(Request $request)
     {
+        $url = $this->getBaseUrl() . '/admin/assignable-users';
+        
+        // If subscription_id is provided, append it as query parameter
+        if ($request->has('subscription_id')) {
+            $url .= '?subscription_id=' . $request->subscription_id;
+        }
+        
         $response = Http::withToken($this->getToken())
-            ->get($this->getBaseUrl() . '/admin/assignable-users');
+            ->get($url);
 
         return response()->json($response->json());
     }
