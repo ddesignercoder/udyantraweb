@@ -1,0 +1,3 @@
+name,email,password,employee_code,designation
+Suresh Manager,suresh.manager@company.com,password123,1,Manager
+Neha Developer,neha.dev@company.com,password123,EMP002,Developer

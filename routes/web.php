@@ -67,6 +67,8 @@ Route::middleware(['auth.api'])->group(function () {
     Route::post('/org/add-user', [OrgUserManagementController::class, 'storeUser'])->name('org.add.user');
     Route::get('/dashboard/add-user', [DashboardController::class, 'addUser'])->name('dashboard.add-user');
     Route::get('/dashboard/users', [DashboardController::class, 'listUsers'])->name('dashboard.list-users');
+    Route::get('/dashboard/bulk-upload-users', [OrgUserManagementController::class, 'viewBulkUploadUsers'])->name('dashboard.bulk-upload-users');
+    Route::post('/org/bulk-upload-users', [OrgUserManagementController::class, 'bulkUploadUsers'])->name('org.bulk-upload-users');
     
     //Test Management By company_admin or school_admin  
     Route::get('/dashboard/manage-tests', [TestsManageController::class, 'index'])->name('dashboard.manage-tests');
