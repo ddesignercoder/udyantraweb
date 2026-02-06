@@ -84,8 +84,8 @@
     @endif
 
     <!-- Upload Card -->
-    <div class="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden">
-        <form action="{{ route('org.bulk-upload-users') }}" method="POST" enctype="multipart/form-data" id="uploadForm">
+    <div class="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden" x-data="{ isUploading: false }">
+        <form action="{{ route('org.bulk-upload-users') }}" method="POST" enctype="multipart/form-data" id="uploadForm" @submit="isUploading = true">
             @csrf
             
             <div class="p-6 md:p-8">
@@ -205,13 +205,23 @@
 
             <!-- Footer Actions -->
             <div class="flex flex-col-reverse sm:flex-row items-center justify-end gap-3 sm:gap-4 bg-gray-50 p-4 md:p-6 border-t border-gray-200">
-                <a href="{{ route('dashboard.list-users') }}" class="w-full sm:w-auto text-center text-gray-600 hover:text-gray-900 font-medium py-2.5">Cancel</a>
-                <button type="submit" x-data x-bind:disabled="!$store.csvUpload.hasFile" class="w-full sm:w-auto bg-primary text-white px-6 py-2.5 rounded-lg font-semibold shadow hover:bg-primary-dark/80 transition disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2">
-                    <x-lucide-upload class="w-5 h-5" />
-                    Upload & Register
+                <a href="{{ route('dashboard.list-users') }}" class="w-full sm:w-auto text-center text-gray-600 hover:text-gray-900 font-medium py-2.5" :class="{ 'pointer-events-none opacity-50': isUploading }">Cancel</a>
+                <button type="submit" x-data x-bind:disabled="!$store.csvUpload.hasFile || isUploading" class="w-full sm:w-auto bg-primary text-white px-6 py-2.5 rounded-lg font-semibold shadow hover:bg-primary-dark/80 transition disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2">
+                    <x-lucide-upload class="w-5 h-5" x-show="!isUploading" />
+                    <x-lucide-loader-2 class="w-5 h-5 animate-spin" x-show="isUploading" />
+                    <span x-text="isUploading ? 'Uploading...' : 'Upload & Register'">Upload & Register</span>
                 </button>
             </div>
         </form>
+
+        <!-- Loading Overlay -->
+        <div x-show="isUploading" x-cloak class="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center">
+            <div class="bg-white rounded-xl p-8 shadow-2xl max-w-sm mx-4 text-center">
+                <div class="w-16 h-16 border-4 border-primary border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
+                <h3 class="text-lg font-semibold text-gray-900 mb-2">Processing Upload</h3>
+                <p class="text-sm text-gray-600">Please wait while we register the users...</p>
+            </div>
+        </div>
     </div>
 </div>
 
