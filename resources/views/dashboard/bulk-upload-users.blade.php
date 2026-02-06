@@ -13,9 +13,11 @@
             </h1>
             <p class="text-sm md:text-base text-gray-600 mt-1">Upload a CSV file to register multiple users at once.</p>
         </div>
-        <a href="{{ route('dashboard.add-user') }}" class="w-full sm:w-auto text-center px-4 py-2.5 bg-primary hover:bg-white hover:text-primary border border-primary text-white rounded-lg font-medium text-sm flex items-center justify-center gap-2">
-            <x-lucide-plus class="w-5 h-5" />
-            Add User
+        <a href="{{ asset('assets/users-bulk-upload-sample/' . ($role === 'school_admin' ? 'students_sample.csv' : 'employees_sample.csv')) }}" 
+           download 
+           class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-4 py-2.5 bg-primary hover:bg-white text-white hover:text-primary border border-primary rounded-lg font-medium text-sm transition">
+            <x-lucide-download class="w-4 h-4" />
+            Download Sample CSV
         </a>
     </div>
 
@@ -198,15 +200,6 @@
                         </div>
                     </div>
 
-                    <!-- Download Sample CSV -->
-                    <div class="mt-4">
-                        <a href="{{ asset('assets/users-bulk-upload-sample/' . ($role === 'school_admin' ? 'students_sample.csv' : 'employees_sample.csv')) }}" 
-                           download 
-                           class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-4 py-2.5 bg-primary hover:bg-white text-white hover:text-primary border border-primary rounded-lg font-medium text-sm transition">
-                            <x-lucide-download class="w-4 h-4" />
-                            Download Sample CSV
-                        </a>
-                    </div>
                 </div>
             </div>
 
