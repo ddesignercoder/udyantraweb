@@ -1,0 +1,4 @@
+name,email,password,roll_no,class,section,guardian_name
+Rahul Sharma,rahul.sharma@test.com,password123,1,10,A,Mr. Ravi Sharma
+Priya Patel,priya.patel@test.com,password123,2,10,B,Mrs. Sunita Patel
+Amit Kumar,amit.kumar@test.com,password123,3,11,A,Mr. Vikram Kumar
