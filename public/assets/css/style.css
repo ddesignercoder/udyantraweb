@@ -67,6 +67,33 @@ body{
             scrollbar-width: thin;
             scrollbar-color: rgba(255, 255, 255, 0.5) transparent;
         }
+/*Our approach integrates*/
+        .infobox {
+    position: relative;
+    display: flex;
+    align-items: center;
+    padding: 16px 20px 16px 70px;
+    border:1px solid ;
+    border-radius: 8px;
+}
+
+
+.icon-box {
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-top-left-radius: 8px;
+    border-bottom-left-radius: 8px;
+}
+
+.content {
+    padding-left: 10px;
+}
 
     @media (max-width: 991px) {
         .fade-sides::before,

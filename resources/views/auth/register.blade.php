@@ -4,8 +4,8 @@
 
 @section('content')
 
-<div class="min-h-[80vh] flex items-center justify-center bg-lightgray">
-    <div class="max-w-md w-full space-y-8 bg-white p-4 md:p-8 rounded-2xl shadow-amber-100">
+<div class="mx-auto px-4 md:px-4  flex items-center justify-center bg-lightgray">
+    <div class="max-w-md w-full  bg-white p-4 md:p-8 rounded-2xl shadow-amber-100">
         <div class="text-center">
             <h2 class="text-3xl font-extrabold text-black">
                 Create Account
