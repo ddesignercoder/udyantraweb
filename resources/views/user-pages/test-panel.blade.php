@@ -200,16 +200,25 @@
 
                 {{-- Grid --}}
                 <div class="p-4 overflow-y-auto custom-scrollbar grow lg:max-h-[400px]">
-                    <h3 class="font-bold text-gray-800 mb-2 text-xs uppercase tracking-wide">Jump to Question</h3>
+                    <h3 class="hidden lg:block font-bold text-gray-800 mb-2 text-xs uppercase tracking-wide">Question Palette</h3>
                     <div class="grid grid-cols-5 gap-2">
                         <template x-for="(q, index) in questions" :key="q.id">
-                            <button @click="jumpTo(index); showPalette = false;"
+                            {{-- DISABLED: Question palette navigation (Uncomment below to enable clickable question navigation) --}}
+                            {{-- <button @click="jumpTo(index); showPalette = false;"
                                     class="relative w-10 h-10 lg:w-9 lg:h-9 flex items-center justify-center text-sm lg:text-xs font-bold transition-all duration-150 shadow-sm"
                                     :class="getPaletteClass(q.id, index)">
                                 <span x-text="index + 1"></span>
                                 <span x-show="marked[q.id] && answers[q.id]" 
-                                      class="absolute bottom-0 right-0 w-2.5 h-2.5 bg-green-500 rounded-full border border-white"></span>
-                            </button>
+                                        class="absolute bottom-0 right-0 w-2.5 h-2.5 bg-green-500 rounded-full border border-white"></span>
+                            </button> --}}
+                            
+                            {{-- ACTIVE: Non-clickable question palette (Comment out to disable) --}}
+                            <div class="relative w-10 h-10 lg:w-9 lg:h-9 flex items-center justify-center text-sm lg:text-xs font-bold transition-all duration-150 shadow-sm pointer-events-none cursor-not-allowed"
+                                    :class="getPaletteClass(q.id, index)">
+                                <span x-text="index + 1"></span>
+                                <span x-show="marked[q.id] && answers[q.id]" 
+                                        class="absolute bottom-0 right-0 w-2.5 h-2.5 bg-green-500 rounded-full border border-white"></span>
+                            </div>
                         </template>
                     </div>
                 </div>
