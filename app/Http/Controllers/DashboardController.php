@@ -49,40 +49,40 @@ class DashboardController extends Controller
             'school_admin' => [
                 'title' => 'School Administration',
                 'widgets' => [
-                    ['label' => 'Total Students', 'value' => $val('total_users')],
-                    ['label' => 'Packages Available', 'value' => $val('total_packages')],
-                    ['label' => 'Tests Available', 'value' => $val('total_tests_available')],
+                    ['label' => 'Total Students', 'value' => $val('total_users'), 'icon' => 'users'],
+                    ['label' => 'Packages Available', 'value' => $val('total_packages'), 'icon' => 'package'],
+                    ['label' => 'Tests Available', 'value' => $val('total_tests_available'), 'icon' => 'file-text'],
                 ],
                 // 'color' => 'blue'
             ],
             'company_admin' => [
                 'title' => 'Company Management',
                 'widgets' => [
-                    ['label' => 'Total Employees', 'value' => $val('total_users')],
-                    ['label' => 'Packages Available', 'value' => $val('total_packages')],
-                    ['label' => 'Tests Available', 'value' => $val('total_tests_available')],
+                    ['label' => 'Total Employees', 'value' => $val('total_users'), 'icon' => 'briefcase'],
+                    ['label' => 'Packages Available', 'value' => $val('total_packages'), 'icon' => 'package'],
+                    ['label' => 'Tests Available', 'value' => $val('total_tests_available'), 'icon' => 'file-text'],
                 ],
                 // 'color' => 'indigo'
             ],
             'student' => [
                 'title' => 'Student Portal',
                 'widgets' => [
-                    ['label' => 'Upcoming Tests', 'value' => '--'], 
+                    ['label' => 'Upcoming Tests', 'value' => '--', 'icon' => 'calendar'], 
                 ],
                 // 'color' => 'green'
             ],
             'employee' => [
                 'title' => 'Employee Portal',
                 'widgets' => [
-                    ['label' => 'Upcoming Tests', 'value' => '--'], 
+                    ['label' => 'Upcoming Tests', 'value' => '--', 'icon' => 'calendar'], 
                 ],
                 // 'color' => 'teal'
             ],
             'individual' => [ // 'individual'
                 'title' => 'My Dashboard',
                 'widgets' => [
-                    ['label' => 'Packages Available', 'value' => $val('total_packages')],
-                    ['label' => 'Tests Available', 'value' => $val('total_tests_available')],
+                    ['label' => 'Packages Available', 'value' => $val('total_packages'), 'icon' => 'package'],
+                    ['label' => 'Tests Available', 'value' => $val('total_tests_available'), 'icon' => 'file-text'],
                 ],
                 // 'color' => 'gray'
             ],

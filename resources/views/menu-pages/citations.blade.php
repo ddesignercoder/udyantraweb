@@ -28,7 +28,7 @@
         ],
         [
             'title' => 'Aptitude, Intelligence & Cognitive Ability',
-            'theme' => 'secondary',
+            'theme' => 'primary',
             'items' => [
                 [
                     'text' => 'Gardner, H. (1983). <em>Frames of mind: The theory of multiple intelligences</em>. Basic Books.',
@@ -64,7 +64,7 @@
         ],
         [
             'title' => 'Adolescent Development & Decision-Making',
-            'theme' => 'secondary',
+            'theme' => 'primary',
             'items' => [
                 [
                     'text' => 'Steinberg, L. (2005). Cognitive and affective development in adolescence. <em>Trends in Cognitive Sciences, 9</em>(2), 69–74.',
@@ -100,7 +100,7 @@
         ],
         [
             'title' => 'Motivation, Orientation & Self-Concept',
-            'theme' => 'secondary',
+            'theme' => 'primary',
             'items' => [
                 [
                     'text' => 'Deci, E. L., & Ryan, R. M. (2000). The "what" and "why" of goal pursuits: Human needs and the self-determination of behavior. <em>Psychological Inquiry, 11</em>(4), 227–268.',
@@ -118,43 +118,46 @@
 @section('content')
 
     {{-- SECTION 1: HERO Section --}}
-    <section class="relative bg-gray-100 w-full pt-14 pb:16 lg:pt-20 lg:pb-22">
-        <div class="max-w-7xl mx-auto px-4 md:px-6">
-            <div class="grid gap-8 items-center">
-                {{-- Text Content --}}
-                <div class="text-center space-y-6 w-full lg:max-w-[992px] mx-auto">
+    <section class="relative bg-secondary w-full">
+        <div class="max-w-7xl mx-auto px-4 md:px-6 pt-16 pb-0  relative z-10">
+            <div class="grid grid-cols-1 md:grid-cols-2 justify-between items-start">
+                
+                {{-- 2. Left Side: Text Content --}}
+                <div class="text-center md:text-left space-y-6 w-full md:max-w-xl pt-0 md:pt-12">
                     <h1 class="text-sizeMobile lg:text-sizeDesktop font-semibold text-black leading-tight font-sans">
-                        Research-Backed Citations
+                       Research-backed citations
                     </h1>
                     
-                    <p class="text-textBlack text-base md:text-lg leading-tight">
+                    <p class="text-textBlack text-lg md:text-xl leading-tight">
                         All studies are foundational, peer-reviewed, and widely accepted in psychology, education, and career development.
                     </p>
 
-                    <div class="block md:inline-flex centent-start items-center gap-3">
+                    <div class="pt-0">
                         <x-button variant="primary" as="a" class="mt-6 w-9/12 md:w-50 lg:w-60" href="#">Request a Demo</x-button>
                         <x-button variant="secondary" as="a" class="mt-6 w-9/12 md:w-50 lg:w-60" href="{{ route('register.select') }}">Start Free Trial</x-button>
                     </div>
                 </div>
+
+                {{-- 3. Right Side: OverlapDevice Mockup Image --}}
+                <div class="text-center">
+                    <img src="{{ asset('assets/image/citations.svg') }}" 
+                    alt="Research-backed citations" fetchpriority="high"
+                    class="mx-auto pointer-events-none w-[350px] mt-3 md:mt-0">
+                </div>
+
             </div>
         </div>
     </section>
-
-    {{-- SECTION 2: Citations Grid Section --}}
-    <section class="relative w-full pt-14 pb:16 lg:pt-20 lg:pb-22">
-        <div class="container mx-auto px-4">
-
+    <section class="relative w-full py-16 lg:py-22">
+        <div class="max-w-7xl mx-auto px-4 md:px-6">
             {{-- Header Section --}}
-            <div class="container mx-auto px-4 text-center mb-12">
-                <h1 class="text-3xl md:text-4xl font-sans font-semibold mb-4">
-                    Our Scientific Foundation
-                </h1>
-                <p class="text-gray-600 max-w-3xl mx-auto">
-                    Udyantra's assessments are built on decades of peer-reviewed research in psychology, education, and career development.
-                </p>
-            </div>
-
-            {{-- DYNAMIC CITATION LOOP --}}
+            <h2 class="text-sizeMobile lg:text-sizeDesktop font-semibold text-center text-black font-sans ">
+            Our scientific foundation
+            </h2>    
+            {{-- Text Content --}}   
+            <p class="lg:max-w-[992px] mx-auto text-textBlack text-center text-base md:text-lg leading-relaxed mb-8 md:mb-10">
+            Udyantra's assessments are built on decades of peer-reviewed research in psychology, education, and career development.
+            </p>
             @foreach($citationCategories as $category)
             <div class="mb-16">
                 {{-- Category Header --}}
@@ -169,7 +172,7 @@
                 {{-- Grid of Cards --}}
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                     @foreach($category['items'] as $citation)
-                    <div class="group relative p-6 bg-white rounded-2xl shadow transition-all duration-300 hover:shadow-xl hover:-translate-y-1 border-l-4 border-{{ $category['theme'] }}">
+                    <div class="group relative p-6 bg-white rounded-xl shadow transition-all duration-300 hover:shadow-xl hover:-translate-y-1 border-l-4 border-{{ $category['theme'] }}">
                         <p class="text-gray-700 leading-relaxed text-sm">
                             {{-- {!! !!} allows HTML like <em> to render --}}
                             {!! $citation['text'] !!}
@@ -186,9 +189,7 @@
                 </div>
             </div>
             @endforeach
-
-            {{-- Why This Matters Section (Static) --}}
-            <div class="bg-linear-to-br from-teal-50 to-cyan-50 rounded-2xl shadow-lg p-8 md:p-10 border-2 border-secondary relative overflow-hidden">
+            <div class="bg-linear-to-br from-teal-50 to-cyan-50 rounded-xl shadow-lg p-6  border-2 border-secondary relative overflow-hidden">
                 <div class="group relative z-10 flex flex-col md:flex-row items-start gap-6">
                       <div class="shrink-0">
                         <svg class="w-14 h-14 text-primary" fill="currentColor" viewBox="0 0 20 20">
@@ -196,10 +197,11 @@
                         </svg>
                     </div>
                     <div class="flex-1">
-                        <h2 class="text-2xl font-bold text-gray-900 mb-4">
-                            How this strengthens Udyantra
-                        </h2>
-                        <p class="text-gray-700 text-base leading-relaxed mb-4">
+                        <h2 class="text-sizeMobile lg:text-sizeDesktop font-semibold text-start text-black font-sans ">
+                             How this strengthens Udyantra
+                        </h2>    
+                         {{-- Text Content --}}   
+                        <p class="text-textBlack text-start text-base md:text-lg leading-relaxed mb-6">
                             Using these references shows that:
                         </p>
                         <ul class="space-y-3">
@@ -231,9 +233,10 @@
                     </div>
                 </div>
             </div>
-
         </div>
     </section>
+    {{-- SECTION 2: Citations Grid Section --}}
+   
 
     {{-- SECTION : Success Stories --}}
     <section class="pt-14 lg:pt-20 pb-16 lg:pb-22 bg-lightgray font-sans relative z-10">
