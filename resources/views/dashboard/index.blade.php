@@ -11,9 +11,16 @@
 
     <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
         @foreach($config['widgets'] as $widget)
-            <div class="bg-white p-6 rounded-xl shadow-sm border border-primary-light">
-                <h3 class="text-primary text-sm font-medium uppercase">{{ $widget['label'] }}</h3>
-                <p class="text-2xl font-bold text-gray-900 mt-2">{{ $widget['value'] }}</p> 
+            <div class="bg-white p-4 md:p-6 rounded-xl shadow-sm border border-primary-light flex items-center gap-4">
+                @if(isset($widget['icon']))
+                    <div class="text-primary bg-white p-2 rounded-full  mb-4">
+                        <x-dynamic-component :component="'lucide-'.$widget['icon']" class="w-8 h-8" />
+                    </div>
+                @endif
+                <div>
+                    <h3 class="text-primary text-lg font-medium">{{ $widget['label'] }}</h3>
+                    <p class="text-2xl font-bold text-textBlack mt-1">{{ $widget['value'] }}</p>
+                </div>
             </div>
         @endforeach
     </div>
