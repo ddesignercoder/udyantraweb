@@ -48,16 +48,10 @@
 @section('content')
 {{-- SECTION 1: HERO Section --}}
 <section class="relative bg-secondary w-full">
-  {{-- Background Decoration (Leaf) --}}
-  <div class="absolute bottom-[0%] right-[0%] opacity-60 pointer-events-none w-[300px] md:w-[460px] lg:w-[560px] overflow-hidden">
-    <img src="{{ asset('assets/image/home/logo-symbol.svg') }}" 
-      alt="Background Pattern" fetchpriority="high"
-      class="w-full h-auto object-contain">
-  </div>
-  <div class="max-w-7xl mx-auto px-4 md:px-6 pt-16 pb-0 md:pt-16 md:pb-8 relative z-10">
-    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center pb-30 sm:pb-36 md:pb-12 lg:pb-18">
+  <div class="max-w-7xl mx-auto px-4 md:px-6 pt-16 pb-0  relative z-10">
+    <div class="grid grid-cols-1 md:grid-cols-2 justify-between items-start">
       {{-- 2. Left Side: Text Content --}}
-      <div class="text-center md:text-left space-y-6 w-full md:max-w-xl">
+      <div class="text-center md:text-left space-y-6 w-full md:max-w-xl pt-0 md:pt-12">
         <h1 class="text-sizeMobile lg:text-sizeDesktop font-semibold text-black leading-tight font-sans">
           Mapping strengths to future possibilities
         </h1>
@@ -67,9 +61,9 @@
       </div>
       {{-- 3. Right Side: OverlapDevice Mockup Image --}}
       <div class="text-center">
-        <!-- <img src="{{ asset('assets/image/home/hero-devices.svg') }}" 
-          alt="Dashboard Preview" 
-          class="w-11/12 md:w-xl lg:w-3xl xl:w-4xl absolute right-[4%] bottom-[-10%] md:bottom-[-18%] lg:bottom-[-26%] md:right-[-5.5%] lg:right-[-6%] xl:right-[-8%]"> -->
+         <img src="{{ asset('assets/image/what-we-focus-on.svg') }}" 
+          alt="What we Focus on" fetchpriority="high"
+          class="mx-auto pointer-events-none w-[350px] mt-3 md:mt-0">
       </div>
     </div>
   </div>

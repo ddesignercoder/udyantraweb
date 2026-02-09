@@ -76,7 +76,7 @@
                 <div class="text-end">
                     
                    <img src="{{ asset('assets/image/scientific-foundation.svg') }}" 
-                        alt="Dashboard Preview"  fetchpriority="high"
+                        alt="Sceintic Foundation"  fetchpriority="high"
                         class="mx-auto pointer-events-none w-[350px] mt-3 md:mt-0">
                 
                 </div>
