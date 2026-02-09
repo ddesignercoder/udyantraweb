@@ -3,12 +3,11 @@
 @section('title', 'Register-Organization')
 
 @section('content')
-<div class="min-h-screen flex items-center justify-center bg-gray-50 py-12 px-4" x-data="{ type: 'school' }">
+<div class="flex items-center justify-center bg-gray-50 py-12 px-4" x-data="{ type: 'school' }">
     <div class="max-w-2xl w-full bg-white p-8 rounded-xl shadow-lg">
-        
-        <h2 class="text-2xl font-bold text-gray-800 mb-4 text-center">Register Organization</h2>
-
-
+         <h1 class="text-2xl text-center font-bold text-black mb-4">
+            Register Organization
+        </h1>
         <form action="{{ route('register.org.submit') }}" method="POST">
             @csrf
             
@@ -72,7 +71,7 @@
 
             </div>
 
-            <button type="submit" class="cursor-pointer w-full mt-8 bg-primary hover:bg-blue-700 text-white font-bold py-3 rounded-lg transition shadow-lg">
+            <button type="submit" class="cursor-pointer w-full mt-8 bg-primary hover:bg-primary-light transition duration-200 text-white font-bold py-3 rounded-full transition shadow-lg">
                 Create Account
             </button>
 

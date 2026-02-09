@@ -5,25 +5,21 @@
 @section('content')
 
 
-<div class="min-h-[80vh] flex items-center justify-center bg-lightgray">
-    <div class="max-w-md w-full space-y-8 bg-white p-4 md:p-8 rounded-2xl shadow-amber-100">
-       
-        
+<div class="mx-auto px-4 md:px-4 flex items-center justify-center bg-lightgray  py-8">
+    <div class="max-w-md w-full space-y-8 bg-white p-6 rounded-2xl shadow-amber-100">
         {{-- Header --}}
-        <div class="text-center">
-            <h2 class="text-3xl font-extrabold text-black">
-                Welcome Back
-            </h2>
-            <p class="mt-2 text-sm text-textBlack">
-                Sign in to manage your assessments
-            </p>
-        </div>
+        <h1 class="text-3xl text-center font-extrabold text-black mb-0">
+            Welcome Back
+        </h1>
+        <p class="mt-2 text-sm text-center text-textBlack">
+            Sign in to manage your assessments
+        </p>
 
         {{-- Login Form --}}
-        <form class="mt-8 space-y-6" action="{{ route('api.login') }}" method="POST">
+        <form class="mt-8 mb-0 space-y-6" action="{{ route('api.login') }}" method="POST">
             @csrf
             
-            <div class="rounded-md shadow-sm space-y-4">
+            <div class="rounded-md  space-y-4">
                 <div>
                     <label for="email" class="block text-sm font-medium text-textBlack mb-1">Email address</label>
                     <input id="email" name="email" type="email" required 
@@ -54,7 +50,7 @@
             </div>
 
             <div>
-                <button type="submit" class="group relative w-full flex justify-center py-3 px-4 border border-transparent text-sm font-bold rounded-2xl text-white bg-primary-dark hover:bg-primary-light focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary shadow-md transition-all hover:-translate-y-0.5 cursor-pointer">
+                <button type="submit" class="group relative w-full flex justify-center py-3 px-4 border border-transparent text-sm font-bold rounded-full text-white bg-primary-dark hover:bg-primary-light focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary shadow-md transition-all hover:-translate-y-0.5 cursor-pointer">
                     Login
                 </button>
             </div>
