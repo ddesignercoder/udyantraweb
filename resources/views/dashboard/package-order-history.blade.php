@@ -7,8 +7,8 @@
         
         {{-- Header Section --}}
         <div class="mb-8">
-            <h1 class="text-2xl font-bold text-gray-900">My Purchase History</h1>
-            <p class="text-gray-600 mt-1">View all your package purchases and their status.</p>
+            <h1 class="text-sizeMobile lg:text-sizeDesktop font-semibold text-black leading-tight font-sans">My Purchase History</h1>
+            <p class="text-textBlack text-lg md:text-xl leading-tight">View all your package purchases and their status.</p>
         </div>
 
         {{-- Purchase History by Category --}}
@@ -84,7 +84,7 @@
 
                                     {{-- Expiry Date --}}
                                     <div class="flex items-start gap-3 mb-3">
-                                        <x-lucide-calendar class="w-5 h-5 text-gray-400 mt-0.5" />
+                                        <x-lucide-hourglass class="w-5 h-5 text-gray-400 mt-0.5" />
                                         <div>
                                             <p class="text-sm text-gray-500">Expiry Date</p>
                                             <p class="text-sm font-medium text-gray-900">

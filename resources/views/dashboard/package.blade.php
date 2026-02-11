@@ -8,11 +8,11 @@
         {{-- Header Section --}}
         <div class="mb-8 flex items-center justify-between">
             <div>
-                <h1 class="text-2xl font-bold text-gray-900">Select a Package</h1>
-                <p class="text-gray-600 mt-1">Choose a plan that suits your assessment needs.</p>
+                <h1 class="text-sizeMobile lg:text-sizeDesktop font-semibold text-black leading-tight font-sans">Select a Package</h1>
+                <p class="text-textBlack text-lg md:text-xl leading-tight">Choose a plan that suits your assessment needs.</p>
             </div>
             <a href="{{ route('dashboard.my-purchases') }}" 
-               class="inline-flex items-center gap-2 bg-white hover:bg-gray-50 text-primary border border-primary font-medium py-2.5 px-5 rounded-xl transition-colors duration-200">
+               class="inline-flex items-center gap-2 bg-white hover:bg-gray-50 text-primary border border-primary font-medium py-2.5 px-5 rounded-lg transition-colors duration-200">
                 <x-lucide-history class="w-4 h-4" />
                 <span>My Purchases</span>
             </a>
@@ -26,7 +26,7 @@
         <div x-data="{ activeTab: '{{ $firstCategory }}' }">
 
             {{-- Tabs Navigation --}}
-            <div class="flex space-x-1 rounded-xl bg-lightgray p-1 mb-8 w-fit">
+            <div class="flex space-x-1 rounded-lg bg-lightgray p-1 mb-8 w-fit">
                 @foreach($groupedPackages as $category => $packages)
                     <button 
                         @click="activeTab = '{{ $category }}'"
@@ -49,7 +49,7 @@
 
                     @foreach($packages as $package)
                         {{-- Package Card --}}
-                        <div class="bg-white rounded-2xl shadow-sm border border-gray-100 hover:shadow-md transition-shadow duration-300 overflow-hidden flex flex-col relative">
+                        <div class="bg-white rounded-lg shadow-sm border border-gray-100 hover:shadow-md transition-shadow duration-300 overflow-hidden flex flex-col relative">
                             
                             @if($package['test_count'] >= 100)
                                 <div class="absolute top-0 right-0 bg-primary text-white text-xs font-bold px-3 py-1 rounded-bl-lg">
@@ -61,7 +61,7 @@
                                 {{-- Header --}}
                                 <div class="mb-4">
                                     <h3 class="text-lg font-semibold text-black">{{ $package['name'] }}</h3>
-                                    <div class="inline-flex items-center gap-1.5 mt-2 px-2.5 py-1 rounded-full bg-teal-50 text-primary text-xs font-medium">
+                                    <div class="inline-flex items-center gap-1.5 mt-2 px-3 py-1 rounded-full bg-teal-50 text-primary text-xs font-medium">
                                         <x-lucide-file-text class="w-3.5 h-3.5" />
                                         {{ $package['test_count'] }} Tests
                                     </div>
@@ -83,17 +83,25 @@
                                         + {{ number_format((float)$package['gst'], 0) }}% GST included
                                     </div>--}}
                                 </div>
+                                <div class="">
+                                <button type="button" 
+                                        onclick="initiatePayment({{ $package['id'] }})"
+                                        class="w-full flex items-center justify-center gap-2 bg-primary hover:bg-primary-dark/80 text-white font-medium py-2.5 px-4 rounded-full transition-colors duration-200 cursor-pointer">
+                                    <span class="text-textWhite leading-relaxed max-w-xl">Buy Now</span>
+                                    <x-lucide-arrow-right class="w-4 h-4" />
+                                </button>
+                            </div>
                             </div>
 
                             {{-- Footer / Action --}}
-                            <div class="p-6 pt-0 mt-auto">
+                            <!-- <div class="p-6 pt-0 mt-auto">
                                 <button type="button" 
                                         onclick="initiatePayment({{ $package['id'] }})"
                                         class="w-full flex items-center justify-center gap-2 bg-primary hover:bg-primary-dark/80 text-white font-medium py-2.5 px-4 rounded-xl transition-colors duration-200 cursor-pointer">
                                     <span>Buy Now</span>
                                     <x-lucide-arrow-right class="w-4 h-4" />
                                 </button>
-                            </div>
+                            </div> -->
                         </div>
                     @endforeach
 

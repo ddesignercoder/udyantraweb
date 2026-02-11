@@ -48,25 +48,29 @@
 @section('content')
 {{-- SECTION 1: HERO Section --}}
 <section class="relative bg-secondary w-full">
-  <div class="max-w-7xl mx-auto px-4 md:px-6 pt-16 pb-0  relative z-10">
-    <div class="grid grid-cols-1 md:grid-cols-2 justify-between items-start">
-      {{-- 2. Left Side: Text Content --}}
-      <div class="text-center md:text-left space-y-6 w-full md:max-w-xl pt-0 md:pt-12">
-        <h1 class="text-sizeMobile lg:text-sizeDesktop font-semibold text-black leading-tight font-sans">
-          Mapping strengths to future possibilities
-        </h1>
-        <p class="text-textBlack text-lg md:text-xl leading-tight">
-          Udyantra’s Career Assessment is based on a <strong>multi-dimensional, research-informed framework</strong> that evaluates students across several key areas rather than assigning a single personality type.
-        </p>
+   <div class="max-w-7xl mx-auto px-4 md:px-6 pt-16 pb-0  relative z-10">
+      <div class="grid grid-cols-1 md:grid-cols-2 justify-between items-start ">
+         {{-- 2. Left Side: Text Content --}}
+         <div class="text-center md:text-left space-y-6 w-full md:max-w-xl">
+            <h1 class="text-sizeMobile lg:text-sizeDesktop font-semibold text-black leading-tight font-sans">
+               Mapping strengths to future possibilities
+            </h1>
+            <p class="text-textBlack text-lg md:text-xl leading-tight">
+              Udyantra’s Career Assessment is based on a <strong>multi-dimensional, research-informed framework</strong> that evaluates students across several key areas rather than assigning a single personality type.
+            </p>
+            <div class="pt-0">
+                <x-button variant="primary" as="a" class="mt-6 w-9/12 md:w-50 lg:w-60" href="#">Request a Demo</x-button>
+                <x-button variant="secondary" as="a" class="mt-6 w-9/12 md:w-50 lg:w-60" href="{{ route('register.select') }}">Start Free Trial</x-button>
+            </div>
+         </div>
+         {{-- 3. Right Side: OverlapDevice Mockup Image --}}
+         <div class="text-end">
+            <img src="{{ asset('assets/image/what-we-focus-on/what-we-focus-on.svg') }}" 
+               alt="Sceintic Foundation"  fetchpriority="high"
+               class="mx-auto pointer-events-none w-[500px] mt-3 md:mt-0">
+         </div>
       </div>
-      {{-- 3. Right Side: OverlapDevice Mockup Image --}}
-      <div class="text-center">
-         <img src="{{ asset('assets/image/what-we-focus-on.svg') }}" 
-          alt="What we Focus on" fetchpriority="high"
-          class="mx-auto pointer-events-none w-[350px] mt-3 md:mt-0">
-      </div>
-    </div>
-  </div>
+   </div>
 </section>
 <section class="relative bg-gray-100 w-full py-16 lg:py-22">
   <div class="max-w-7xl mx-auto px-4 md:px-6">
@@ -78,49 +82,49 @@
             <!-- Item 1 -->
             <li class="infobox">
                 <div class="icon-box bg-secondary">
-                <x-lucide-star class="w-6 h-6 text-white" />
+                  <img src="{{ asset('assets/image/what-we-focus-on/interest-mapping.svg') }}"  alt="Interest-based mapping" loading="lazy" class="mx-auto pointer-events-none w-12 h-12">
                 </div>
                 <div class="content">
-                <strong>Interest-based mapping</strong>
-                <p class="text-sm text-gray-600">
-                    (inspired by RIASEC / Holland Codes)
-                </p>
+                  <strong>Interest-based mapping</strong>
+                  <p class="text-sm text-gray-600">
+                      (inspired by RIASEC / Holland Codes)
+                  </p>
                 </div>
             </li>
             <!-- Item 2 -->
             <li class="infobox">
                 <div class="icon-box bg-secondary">
-                <x-lucide-user class="w-6 h-6 text-white" />
+                  <img src="{{ asset('assets/image/what-we-focus-on/personality-tendencies.svg') }}"  alt="Personality tendencies" loading="lazy" class="mx-auto pointer-events-none w-12 h-12">
                 </div>
                 <div class="content">
-                <strong>Personality tendencies</strong>
-                <p class="text-sm text-gray-600">
-                    (how a student prefers to think, behave, and interact)
-                </p>
+                  <strong>Personality tendencies</strong>
+                  <p class="text-sm text-gray-600">
+                      (how a student prefers to think, behave, and interact)
+                  </p>
                 </div>
             </li>
             <!-- Item 3 -->
             <li class="infobox">
                 <div class="icon-box bg-secondary">
-                <x-lucide-compass class="w-6 h-6 text-white" />
+                  <img src="{{ asset('assets/image/what-we-focus-on/orientation.svg') }}"  alt="Orientation & work-style preferences" loading="lazy" class="mx-auto pointer-events-none w-12 h-12">
                 </div>
                 <div class="content">
-                <strong>Orientation & work-style preferences</strong>
-                <p class="text-sm text-gray-600">
-                    (team vs individual, structure vs flexibility, creativity vs analysis)
-                </p>
+                  <strong>Orientation & work-style preferences</strong>
+                  <p class="text-sm text-gray-600">
+                      (team vs individual, structure vs flexibility, creativity vs analysis)
+                  </p>
                 </div>
             </li>
             <!-- Item 4 -->
             <li class="infobox">
                 <div class="icon-box bg-secondary">
-                <x-lucide-award class="w-6 h-6 text-white" />
+                  <img src="{{ asset('assets/image/what-we-focus-on/aptitude-indicators.svg') }}"  alt="Cognitive and aptitude indicators" loading="lazy" class="mx-auto pointer-events-none  w-12 h-12">
                 </div>
                 <div class="content">
-                <strong>Cognitive and aptitude indicators</strong>
-                <p class="text-sm text-gray-600">
-                    relevant to academic streams and career pathways
-                </p>
+                  <strong>Cognitive and aptitude indicators</strong>
+                  <p class="text-sm text-gray-600">
+                      relevant to academic streams and career pathways
+                  </p>
                 </div>
             </li>
         </ul>
