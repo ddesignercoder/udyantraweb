@@ -92,12 +92,7 @@
         {{-- Mobile Menu Dropdown --}}
         <div x-show="mobileMenuOpen" 
             style="display: none;"
-            x-transition:enter="transition transform duration-300 ease-out"
-            x-transition:enter-start="translate-x-full"
-            x-transition:enter-end="translate-x-0"
-            x-transition:leave="transition transform duration-300 ease-in"
-            x-transition:leave-start="translate-x-0"
-            x-transition:leave-end="translate-x-full"
+           
             class="fixed inset-y-0 right-0 w-full sm:w-80 bg-white h-screen shadow-lg z-50"
             @click.outside="mobileMenuOpen = false">
             

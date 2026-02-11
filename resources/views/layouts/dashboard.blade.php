@@ -11,7 +11,7 @@
 <body class="bg-gray-100 font-sans" x-data="{ sidebarOpen: false }">
 
     {{-- TOP NAVIGATION --}}
-    <nav class="bg-white shadow-sm border-b border-gray-200 fixed w-full z-30">
+    <nav class=" bg-teal-50 shadow-sm border-b border-gray-200 fixed w-full z-30  ">
         <div class="px-4 py-3 flex justify-between items-center">
             <div class="flex items-center gap-4">
                 <button @click="sidebarOpen = !sidebarOpen" class="text-black hover:text-primary md:hidden">
@@ -20,14 +20,14 @@
                 <a href="{{ route('home') }}">
                   <img src="{{ asset('assets/image/Udyantra-logo.svg') }}" 
                        alt="Udyantra" 
-                       class="h-8 w-auto object-contain">
+                       class="h-16 w-auto object-contain">
                 </a>
             </div>
         </div>
     </nav>
 
     {{-- MAIN LAYOUT --}}
-    <div class="flex pt-16 h-screen overflow-hidden">
+    <div class="flex pt-23 h-screen overflow-hidden">
         
         {{-- SIDEBAR --}}
         <aside class="fixed inset-y-0 left-0 z-40 w-64 bg-teal-50 border-r border-gray-200 transform transition-transform duration-300 md:translate-x-0 md:static md:h-full flex flex-col"
