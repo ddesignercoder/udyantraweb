@@ -5,8 +5,8 @@
 @section('content')
 
     <div class="mb-8">
-        <h1 class="text-2xl font-bold text-gray-900">{{ $config['title'] }}</h1>
-        <p class="text-gray-600">Welcome back, {{ $user_name }}!</p>
+        <h1 class="text-sizeMobile lg:text-sizeDesktop font-semibold text-black leading-tight font-sans">{{ $config['title'] }}</h1>
+        <p class="text-textBlack text-lg md:text-xl leading-tight">Welcome back, {{ $user_name }}!</p>
     </div>
 
     <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">

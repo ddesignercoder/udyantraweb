@@ -142,7 +142,7 @@
                 <div class="text-center">
                     <img src="{{ asset('assets/image/citations.svg') }}" 
                     alt="Research-backed citations" fetchpriority="high"
-                    class="mx-auto pointer-events-none w-[350px] mt-3 md:mt-0">
+                    class="mx-auto pointer-events-none w-[500px] mt-3 md:mt-0">
                 </div>
 
             </div>
