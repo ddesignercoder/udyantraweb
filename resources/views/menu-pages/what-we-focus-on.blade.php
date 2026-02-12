@@ -59,8 +59,7 @@
               Udyantra’s Career Assessment is based on a <strong>multi-dimensional, research-informed framework</strong> that evaluates students across several key areas rather than assigning a single personality type.
             </p>
             <div class="pt-0">
-                <x-button variant="primary" as="a" class="mt-6 w-9/12 md:w-50 lg:w-60" href="#">Request a Demo</x-button>
-                <x-button variant="secondary" as="a" class="mt-6 w-9/12 md:w-50 lg:w-60" href="{{ route('register.select') }}">Start Free Trial</x-button>
+                <x-button variant="secondary" as="a" class="mt-6" href="{{ route('udyantra-package') }}">Explore our plan</x-button>
             </div>
          </div>
          {{-- 3. Right Side: OverlapDevice Mockup Image --}}
@@ -130,7 +129,7 @@
         </ul>
     </div>
       {{-- Text Content --}}   
-    <p class="lg:max-w-[992px] mx-auto text-textBlack text-center text-base md:text-lg leading-relaxed mt-8 md:mt-10">
+    <p class="lg:max-w-[992px] mx-auto text-textBlack text-center text-base leading-relaxed mt-8 md:mt-10">
       This allows us to identify <strong>multiple dominant traits</strong> in a student, offering a more realistic and flexible understanding of their strengths, rather than forcing them into one category.
     </p>
   </div>
@@ -142,67 +141,53 @@
       The five dimensions
     </h2>    
       {{-- Text Content --}}   
-    <p class="lg:max-w-[992px] mx-auto text-textBlack text-center text-base md:text-lg leading-relaxed  mb-8 md:mb-10 ">
+    <p class="text-textBlack text-lg mb-6 mx-auto animate-fade-in-up animation-delay-800 text-center">
       This integrated approach ensures that recommendations are holistic, balanced, and practical.
     </p>
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto text-center">
       {{-- R - Personality Traits --}}
-      <div class="group relative p-6 flex flex-col bg-white rounded-xl shadow-lg transition-all duration-300 hover:shadow-2xl hover:-translate-y-2 border-t-4 border-primary">
-        <div class="flex items-center justify-start gap-4 mb-4">
-          <div class="flex items-center justify-center w-12 h-12 bg-linear-to-br from-primary to-secondary rounded-full shrink-0">
-            <x-lucide-user class="w-6 h-6 text-white" />
+      <div class="group relative p-6 grow flex flex-col bg-white rounded-xl shadow-lg transition-all duration-300 hover:shadow-xl hover:-translate-y-2 hover:ring-2 hover:ring-primary/50 overflow-hidden border-0 text-center animate-fade-in-up animation-delay-1000">
+          <div class="flex items-center justify-center mx-auto w-18 h-18 bg-linear-to-br from-primary to-secondary rounded-full shrink-0">
+            <x-lucide-user class="w-10 h-10 text-white" />
           </div>
-          <h3 class="text-xl font-bold text-textBlack m-0 text-left">Personality Traits</h3>
-        </div>
-        <p class="text-textBlack text-base leading-relaxed text-left ">
+          <h5 class="text-base py-3 md:py-3 font-semibold text-black transition-colors duration-300 group-hover:text-primary">Personality Traits</h5>
+          <p class="mx-auto text-textBlack text-center text-base leading-relaxed">
           Measures stable personality characteristics that influence behaviour, communication style, decision-making, and work preferences.
         </p>
       </div>
-      {{-- I - Interests & Motivations --}}
-      <div class="group relative p-6 flex flex-col bg-white rounded-xl shadow-lg transition-all duration-300 hover:shadow-2xl hover:-translate-y-2 border-t-4 border-secondary">
-        <div class="flex items-center justify-start gap-4 mb-4">
-          <div class="flex items-center justify-center w-12 h-12 bg-linear-to-br from-secondary to-primary rounded-full shrink-0">
-            <x-lucide-star class="w-6 h-6 text-white" />
+      <div class="group relative p-6 grow flex flex-col bg-white rounded-xl shadow-lg transition-all duration-300 hover:shadow-xl hover:-translate-y-2 hover:ring-2 hover:ring-primary/50 overflow-hidden border-0 text-center animate-fade-in-up animation-delay-1000">
+          <div class="flex items-center justify-center mx-auto w-18 h-18 bg-linear-to-br from-primary to-secondary rounded-full shrink-0">
+            <x-lucide-heart class="w-10 h-10 text-white" />
           </div>
-          <h3 class="text-xl font-bold text-textBlack m-0 text-left">Interests & Motivations</h3>
-        </div>
-        <p class="text-textBlack text-base leading-relaxed text-left ">
+          <h5 class="text-base py-3 md:py-3 font-semibold text-black transition-colors duration-300 group-hover:text-primary">Interests & Motivations</h5>
+          <p class="mx-auto text-textBlack text-center text-base leading-relaxed">
           Identifies areas that naturally engage curiosity and long-term motivation, helping avoid burnout and misaligned choices.
         </p>
       </div>
-      {{-- S - Skills & Strengths --}}
-      <div class="group relative p-6 flex flex-col bg-white rounded-xl shadow-lg transition-all duration-300 hover:shadow-2xl hover:-translate-y-2 border-t-4 border-primary">
-        <div class="flex items-center justify-start gap-4 mb-4">
-          <div class="flex items-center justify-center w-12 h-12 bg-linear-to-br from-primary to-secondary rounded-full shrink-0">
-            <x-lucide-award class="w-6 h-6 text-white" />
+      <div class="group relative p-6 grow flex flex-col bg-white rounded-xl shadow-lg transition-all duration-300 hover:shadow-xl hover:-translate-y-2 hover:ring-2 hover:ring-primary/50 overflow-hidden border-0 text-center animate-fade-in-up animation-delay-1000">
+          <div class="flex items-center justify-center mx-auto w-18 h-18 bg-linear-to-br from-primary to-secondary rounded-full shrink-0">
+            <x-lucide-award class="w-10 h-10 text-white" />
           </div>
-          <h3 class="text-xl font-bold text-textBlack m-0 text-left">Skills & Strengths</h3>
-        </div>
-        <p class="text-textBlack text-base leading-relaxed text-left ">
+          <h5 class="text-base py-3 md:py-3 font-semibold text-black transition-colors duration-300 group-hover:text-primary">Skills & Strengths</h5>
+          <p class="mx-auto text-textBlack text-center text-base leading-relaxed">
           Assesses cognitive abilities, learned skills, and natural aptitudes relevant to academic and career success.
         </p>
       </div>
-      {{-- E - Orientation & Environment Fit --}}
-      <div class="group relative p-6 flex flex-col bg-white rounded-xl shadow-lg transition-all duration-300 hover:shadow-2xl hover:-translate-y-2 border-t-4 border-secondary">
-        <div class="flex items-center justify-start gap-4 mb-4">
-          <div class="flex items-center justify-center w-12 h-12 bg-linear-to-br from-secondary to-primary rounded-full shrink-0">
-            <x-lucide-compass class="w-6 h-6 text-white" />
+      <div class="group relative p-6 grow flex flex-col bg-white rounded-xl shadow-lg transition-all duration-300 hover:shadow-xl hover:-translate-y-2 hover:ring-2 hover:ring-primary/50 overflow-hidden border-0 text-center animate-fade-in-up animation-delay-1000">
+          <div class="flex items-center justify-center mx-auto w-18 h-18 bg-linear-to-br from-primary to-secondary rounded-full shrink-0">
+            <x-lucide-compass class="w-10 h-10 text-white" />
           </div>
-          <h3 class="text-xl font-bold text-textBlack m-0 text-left">Orientation & Environment Fit</h3>
-        </div>
-        <p class="text-gray-700 text-base leading-relaxed text-left ">
+          <h5 class="text-base py-3 md:py-3 font-semibold text-black transition-colors duration-300 group-hover:text-primary">Orientation & Environment Fit</h5>
+          <p class="mx-auto text-textBlack text-center text-base leading-relaxed">
           Evaluates how an individual aligns with different learning styles, work environments, and role expectations.
         </p>
       </div>
-      {{-- C - Career Mapping --}}
-      <div class="group relative p-6 flex flex-col bg-white rounded-xl shadow-lg transition-all duration-300 hover:shadow-2xl hover:-translate-y-2 border-t-4 border-primary md:col-span-2 lg:col-span-1">
-        <div class="flex items-center justify-start gap-4 mb-4">
-          <div class="flex items-center justify-center w-12 h-12 bg-linear-to-br from-primary to-secondary rounded-full shrink-0">
-            <x-lucide-briefcase class="w-6 h-6 text-white" />
+      <div class="group relative p-6 grow flex flex-col bg-white rounded-xl shadow-lg transition-all duration-300 hover:shadow-xl hover:-translate-y-2 hover:ring-2 hover:ring-primary/50 overflow-hidden border-0 text-center animate-fade-in-up animation-delay-1000">
+          <div class="flex items-center justify-center mx-auto w-18 h-18 bg-linear-to-br from-primary to-secondary rounded-full shrink-0">
+            <x-lucide-briefcase class="w-10 h-10 text-white" />
           </div>
-          <h3 class="text-xl font-bold text-textBlack m-0 text-left">Career Mapping</h3>
-        </div>
-        <p class="text-textBlack text-base leading-relaxed text-left ">
+          <h5 class="text-base py-3 md:py-3 font-semibold text-black transition-colors duration-300 group-hover:text-primary">Career Mapping</h5>
+          <p class="mx-auto text-textBlack text-center text-base leading-relaxed">
           Integrates all dimensions to suggest realistic, aligned, and future-ready career pathways and development directions.
         </p>
       </div>
@@ -210,117 +195,82 @@
   </div>
 </section>
 {{-- SECTION 3: Development Process --}}
-<section class="relative bg-gray-100 w-full py-16 lg:py-22">
+<section class="relative bg-gray-50 w-full py-16 lg:py-22">
   <div class="max-w-7xl mx-auto px-4 md:px-6">
     <h2 class="text-sizeMobile lg:text-sizeDesktop font-semibold text-center text-black font-sans  ">
       Structured & scientific development process
     </h2>
     {{-- Text Content --}}   
-    <p class="lg:max-w-[992px] mx-auto text-textBlack text-center text-base md:text-lg leading-relaxed mb-8 md:mb-10">
+    <p class="text-textBlack text-lg mb-6 mx-auto animate-fade-in-up animation-delay-800 text-center">
       Every assessment is built with precision, validated through research, and designed to deliver actionable insights.
     </p>
-    <div class="bg-white rounded-xl shadow-xl p-6 relative">
-      <div class="space-y-4">
-        {{-- Step 1 --}}
-        <div class="flex flex-col">
-          <div class="block md:flex items-center gap-6 pt-2 pb-4">
-            <div class="shrink-0 flex items-center justify-center w-14 h-14 bg-linear-to-br from-primary to-secondary rounded-full text-white font-bold text-xl mb-4 md:mb-0">
-              <x-lucide-book-open class="w-7 h-7" />
-            </div>
-            <div>
-            <h3 class="text-xl font-bold text-textBlack m-0">Construct Definition</h3>
-            <p class="text-textBlack text-base text-left leading-relaxed ">
-            Each section is based on clearly defined psychological constructs such as aptitude, personality traits, interests, and orientation.
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto text-center">
+      {{-- R - Personality Traits --}}
+      <div class="group relative p-4 grow flex flex-col bg-white rounded-xl shadow-lg transition-all duration-300 hover:shadow-xl hover:-translate-y-2 hover:ring-2 hover:ring-primary/50 overflow-hidden border-0 text-center animate-fade-in-up animation-delay-1000">
+          <div class="flex items-center justify-center w-12 h-12 bg-linear-to-br from-primary to-secondary rounded-full shrink-0">
+            <x-lucide-user class="w-6 h-6 text-white" />
+          </div>
+          <h5 class="text-base text-left pt-4 pb-2 font-semibold text-black transition-colors duration-300 group-hover:text-primary">Construct Definition</h5>
+        <p class="text-textBlack text-left text-base leading-relaxed">
+            Each section is based on clearly defined psychological constructs such as aptitude, personality traits, interests, and orientation
           </p>
-            </div>
+      </div>
+      <div class="group relative p-4 grow flex flex-col bg-white rounded-xl shadow-lg transition-all duration-300 hover:shadow-xl hover:-translate-y-2 hover:ring-2 hover:ring-primary/50 overflow-hidden border-0 text-center animate-fade-in-up animation-delay-1000">
+          <div class="flex items-center justify-center w-12 h-12 bg-linear-to-br from-primary to-secondary rounded-full shrink-0">
+            <x-lucide-user class="w-6 h-6 text-white" />
           </div>
-          
-        </div>
-        {{-- Divider --}}
-        <div class="border-t border-gray-200  pb-4"></div>
-        {{-- Step 2 --}}
-        <div class="flex flex-col gap-2">
-          <div class="block md:flex items-center gap-6 pb-4">
-            <div class="shrink-0 flex items-center justify-center w-14 h-14 bg-linear-to-br from-primary to-secondary rounded-full text-white font-bold text-xl mb-4 md:mb-0">
-              <x-lucide-pen-tool class="w-7 h-7" />
-            </div>
-            <div>
-              <h3 class="text-xl font-bold text-textBlack m-0">Question Design</h3>
-              <p class="text-textBlack text-base text-left leading-relaxed">
-              Questions use validated formats such as Likert scales, situational judgment items, and aptitude-based patterns.
-              </p>
-            </div>
-          </div>          
-        </div>
-        {{-- Divider --}}
-        <div class="border-t border-gray-200 pb-4"></div>
-        {{-- Step 3 --}}
-        <div class="flex flex-col gap-2">
-          <div class="block md:flex items-center gap-6 pb-4">
-            <div class="shrink-0 flex items-center justify-center w-14 h-14 bg-linear-to-br from-primary to-secondary rounded-full text-white font-bold text-xl mb-4 md:mb-0">
-              <x-lucide-scale class="w-7 h-7" />
-            </div>
-            <div>
-              <h3 class="text-xl font-bold text-textBlack m-0">Bias Reduction</h3>
-              <p class="text-textBlack text-base text-left leading-relaxed">
-                Items are reviewed to minimize cultural, academic, and gender bias.
-              </p>
-            </div>
+          <h5 class="text-base text-left pt-4 pb-2 font-semibold text-black transition-colors duration-300 group-hover:text-primary">Question Design</h5>
+        <p class="text-textBlack text-left text-base leading-relaxed">
+            Questions use validated formats such as Likert scales, situational judgment items, and aptitude-based patterns.
+          </p>
+      </div>
+      <div class="group relative p-4 grow flex flex-col bg-white rounded-xl shadow-lg transition-all duration-300 hover:shadow-xl hover:-translate-y-2 hover:ring-2 hover:ring-primary/50 overflow-hidden border-0 text-center animate-fade-in-up animation-delay-1000">
+          <div class="flex items-center justify-center w-12 h-12 bg-linear-to-br from-primary to-secondary rounded-full shrink-0">
+            <x-lucide-user class="w-6 h-6 text-white" />
           </div>
-        </div>
-        {{-- Divider --}}
-        <div class="border-t border-gray-200 pb-4"></div>
-        {{-- Step 4 --}}
-        <div class="flex flex-col gap-2">
-          <div class="block md:flex items-center gap-6 pb-4">
-            <div class="shrink-0 flex items-center justify-center w-14 h-14 bg-linear-to-br from-primary to-secondary rounded-full text-white font-bold text-xl mb-4 md:mb-0">
-              <x-lucide-bar-chart-2 class="w-7 h-7" />
-            </div>
-            <div>
-              <h3 class="text-xl font-bold text-textBlack m-0">Scoring & Scaling</h3>
-              <p class="text-textBlack text-base text-left leading-relaxed">
-                Responses are converted into standardized scores for objective comparison and interpretation.
-              </p>
-            </div>
+          <h5 class="text-base text-left pt-4 pb-2 font-semibold text-black transition-colors duration-300 group-hover:text-primary">Bias Reduction</h5>
+        <p class="text-textBlack text-left text-base leading-relaxed">
+            Items are reviewed to minimize cultural, academic, and gender bias.
+          </p>
+      </div>
+      <div class="group relative p-4 grow flex flex-col bg-white rounded-xl shadow-lg transition-all duration-300 hover:shadow-xl hover:-translate-y-2 hover:ring-2 hover:ring-primary/50 overflow-hidden border-0 text-center animate-fade-in-up animation-delay-1000">
+          <div class="flex items-center justify-center w-12 h-12 bg-linear-to-br from-primary to-secondary rounded-full shrink-0">
+            <x-lucide-user class="w-6 h-6 text-white" />
           </div>
-          
-        </div>
-        {{-- Divider --}}
-        <div class="border-t border-gray-200 pb-4"></div>
-        {{-- Step 5 --}}
-        <div class="flex flex-col gap-2">
-          <div class="block md:flex items-center gap-6 pb-2">
-            <div class="shrink-0 flex items-center justify-center w-14 h-14 bg-linear-to-br from-primary to-secondary rounded-full text-white font-bold text-xl mb-4 md:mb-0">
-              <x-lucide-clipboard-check class="w-7 h-7" />
-            </div>
-            <div>
-              <h3 class="text-xl font-bold text-textBlack m-0">Expert Interpretation Framework</h3>
-              <p class="text-textBlack text-base text-left leading-relaxed">
-                Results are translated into actionable insights using structured interpretation models — not random AI outputs.
-              </p>
-            </div>
-          </div>          
-        </div>
+          <h5 class="text-base text-left pt-4 pb-2 font-semibold text-black transition-colors duration-300 group-hover:text-primary">Scoring & Scaling</h5>
+        <p class="text-textBlack text-left text-base leading-relaxed">
+            Responses are converted into standardized scores for objective comparison and interpretation.
+          </p>
+      </div>
+      <div class="group relative p-4 grow flex flex-col bg-white rounded-xl shadow-lg transition-all duration-300 hover:shadow-xl hover:-translate-y-2 hover:ring-2 hover:ring-primary/50 overflow-hidden border-0 text-center animate-fade-in-up animation-delay-1000">
+          <div class="flex items-center justify-center w-12 h-12 bg-linear-to-br from-primary to-secondary rounded-full shrink-0">
+            <x-lucide-user class="w-6 h-6 text-white" />
+          </div>
+          <h5 class="text-base text-left pt-4 pb-2 font-semibold text-black transition-colors duration-300 group-hover:text-primary">Expert Interpretation Framework</h5>
+        <p class="text-textBlack text-left text-base leading-relaxed">
+            Results are translated into actionable insights using structured interpretation models — not random AI outputs.
+          </p>
       </div>
     </div>
+    
   </div>
 </section>
-{{-- SECTION 4: Success Stories --}}
-<section class="py-6 md:py-14 bg-white  relative z-10">
-  <div class="max-w-7xl mx-auto px-4 md:px-4">
-    <h2 class="text-sizeMobile lg:text-sizeDesktop font-semibold text-center text-black  mb-8 md:mb-10">
-      Success stories from our customers
-    </h2>
-    {{-- MOVING CONTENT STORIES --}}
-    <div class="bg-lightgray rounded-xl shadow-xl p-4 md:p-10 relative -mb-60 md:-mb-70 fade-sides">
-      {{-- Carousel Logic --}}
-      <x-testimonials />
-    </div>
-  </div>
+{{-- SECTION 3: Success Stories --}}
+<section class="pt-14 lg:pt-20 pb-16 lg:pb-22 bg-lightgray font-sans relative z-10">
+   <div class="max-w-7xl mx-auto px-4 md:px-4">
+      <h2 class="text-sizeMobile lg:text-sizeDesktop font-semibold text-center text-black font-sans mb-8 md:mb-10">
+         Success stories from our customers
+      </h2>
+      {{-- MOVING CONTENT STORIES --}}
+      <div class="bg-white rounded-xl shadow-xl p-4 md:p-10 relative -mb-60 md:-mb-70 fade-sides">
+         {{-- Carousel Logic --}}
+         <x-testimonials />
+      </div>
+   </div>
 </section>
-{{-- Section 5: FAQs --}}
-<section class=" relative z-0 pt-65 md:pt-70 lg:pt-68 pb-16 lg:py-22">
-  <x-faq />
+{{-- Section 4: FAQs --}}
+<section class="font-sans relative z-0 pt-56 md:pt-70 lg:pt-68 pb-16 lg:py-22">
+   <x-faq />
 </section>
 {{-- SECTION 6: Sign Up Today --}}
 <!-- <section class="pt-14 lg:pt-20 pb-16 lg:pb-22 bg-gray-100  relative">

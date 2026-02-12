@@ -120,10 +120,10 @@
     {{-- SECTION 1: HERO Section --}}
     <section class="relative bg-secondary w-full">
         <div class="max-w-7xl mx-auto px-4 md:px-6 pt-16 pb-0  relative z-10">
-            <div class="grid grid-cols-1 md:grid-cols-2 justify-between items-start">
+            <div class="grid grid-cols-1 md:grid-cols-2 justify-between items-center">
                 
                 {{-- 2. Left Side: Text Content --}}
-                <div class="text-center md:text-left space-y-6 w-full md:max-w-xl pt-0 md:pt-12">
+                <div class="text-center md:text-left space-y-6 w-full md:max-w-xl ">
                     <h1 class="text-sizeMobile lg:text-sizeDesktop font-semibold text-black leading-tight font-sans">
                        Research-backed citations
                     </h1>
@@ -131,10 +131,8 @@
                     <p class="text-textBlack text-lg md:text-xl leading-tight">
                         All studies are foundational, peer-reviewed, and widely accepted in psychology, education, and career development.
                     </p>
-
                     <div class="pt-0">
-                        <x-button variant="primary" as="a" class="mt-6 w-9/12 md:w-50 lg:w-60" href="#">Request a Demo</x-button>
-                        <x-button variant="secondary" as="a" class="mt-6 w-9/12 md:w-50 lg:w-60" href="{{ route('register.select') }}">Start Free Trial</x-button>
+                        <x-button variant="secondary" as="a" class="mt-6" href="{{ route('udyantra-package') }}">Explore our plan</x-button>
                     </div>
                 </div>
 
@@ -151,30 +149,29 @@
     <section class="relative w-full py-16 lg:py-22">
         <div class="max-w-7xl mx-auto px-4 md:px-6">
             {{-- Header Section --}}
-            <h2 class="text-sizeMobile lg:text-sizeDesktop font-semibold text-center text-black font-sans ">
+            <h2 class="text-sizeMobile lg:text-sizeDesktop font-semibold text-center text-black font-sans">
             Our scientific foundation
             </h2>    
-            {{-- Text Content --}}   
-            <p class="lg:max-w-[992px] mx-auto text-textBlack text-center text-base md:text-lg leading-relaxed mb-8 md:mb-10">
-            Udyantra's assessments are built on decades of peer-reviewed research in psychology, education, and career development.
+            {{-- Text Content --}}  
+            <p class="text-textBlack text-lg mx-auto animate-fade-in-up animation-delay-800 text-center mb-8 md:mb-10">
+               Udyantra's assessments are built on decades of peer-reviewed research in psychology, education, and career development.
             </p>
             @foreach($citationCategories as $category)
             <div class="mb-16">
                 {{-- Category Header --}}
-                <div class="flex items-center gap-3 mb-8">
+                <div class="flex items-center justify-center gap-3 mb-8">
                     {{-- Dynamic Color Bar (Primary/Secondary) --}}
-                    <div class="h-10 w-1.5 bg-{{ $category['theme'] }} rounded-full"></div>
-                    <h2 class="text-2xl md:text-3xl font-bold text-gray-800 tracking-tight">
+                    <!-- <div class="h-10 w-1.5 bg-{{ $category['theme'] }} rounded-full"></div> -->
+                    <h3 class="text-2xl md:text-3xl font-semibold text-gray-800 tracking-tight text-center">
                         {{ $category['title'] }}
-                    </h2>
+                    </h3>
                 </div>
                 
                 {{-- Grid of Cards --}}
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                     @foreach($category['items'] as $citation)
-                    <div class="group relative p-6 bg-white rounded-xl shadow transition-all duration-300 hover:shadow-xl hover:-translate-y-1 border-l-4 border-{{ $category['theme'] }}">
+                    <div class="group relative p-6 bg-white rounded-xl shadow transition-all duration-300 hover:shadow-xl hover:-translate-y-1 }}">
                         <p class="text-gray-700 leading-relaxed text-sm">
-                            {{-- {!! !!} allows HTML like <em> to render --}}
                             {!! $citation['text'] !!}
                             
                             @if($citation['link'])
