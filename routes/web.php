@@ -47,6 +47,7 @@ Route::get('/why-choose-us', fn () => view('menu-pages.why-choose-us'))->name('w
 Route::get('/what-we-focus-on', fn () => view('menu-pages.what-we-focus-on'))->name('what-we-focus-on');
 Route::get('/citations', fn () => view('menu-pages.citations'))->name('citations');
 Route::get('/faq', fn () => view('menu-pages.faq'))->name('faq');
+Route::get('/contact-us', fn () => view('menu-pages.contact-us'))->name('contact-us');
 
 //Footer Pages
 Route::get('/about-us', fn () => view('footer-pages.about-us'))->name('about-us');
