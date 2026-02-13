@@ -14,7 +14,8 @@
                Frequently Asked Questions
             </h1>
             <p class="text-textBlack text-lg md:text-xl leading-tight">
-             Udyantra’s assessments are built on established psychology and global assessment practices. <br/><br/>Rooted in psychometrics, they objectively measure individual traits and abilities to provide accurate, reliable, and research-backed insights for meaningful decision-making.
+             Lorem Ipsum is simply dummy text of the printing and typesetting industry.<br/><br/> 
+             Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
             </p>
          </div>
          {{-- 3. Right Side: OverlapDevice Mockup Image --}}
