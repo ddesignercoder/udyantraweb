@@ -8,7 +8,8 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\OrgUserManagementController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\TestsManageController;
-// use Illuminate\Support\Facades\Auth; 
+use App\Http\Controllers\EnquiryController;
+
 // Route::get('/', function () {
 //     return view('welcome');
 // });
@@ -47,6 +48,8 @@ Route::get('/why-choose-us', fn () => view('menu-pages.why-choose-us'))->name('w
 Route::get('/what-we-focus-on', fn () => view('menu-pages.what-we-focus-on'))->name('what-we-focus-on');
 Route::get('/citations', fn () => view('menu-pages.citations'))->name('citations');
 Route::get('/faq', fn () => view('menu-pages.faq'))->name('faq');
+Route::get('/contact-us', fn () => view('menu-pages.contact-us'))->name('contact-us');
+Route::post('/enquiry', [EnquiryController::class, 'submit'])->name('enquiry.submit');
 
 //Footer Pages
 Route::get('/about-us', fn () => view('footer-pages.about-us'))->name('about-us');
@@ -59,7 +62,6 @@ Route::get('/privacy-policy', fn () => view('footer-pages.privacy-policy'))->nam
 // ==========================================
 Route::middleware(['auth.api'])->group(function () {
     Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
-    Route::get('/welcome', fn () => view('pages.welcome'))->name('welcome');
     //Comman Dashboard
     Route::get('/my-dashboard', [DashboardController::class, 'index'])->name('user.dashboard');
     Route::get('/dashboard/packages', [PaymentController::class, 'dashboardPackages'])->name('dashboard.packages');
