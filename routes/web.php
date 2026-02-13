@@ -46,6 +46,7 @@ Route::get('/pricing', [PaymentController::class, 'udyantraPackage'])->name('udy
 Route::get('/why-choose-us', fn () => view('menu-pages.why-choose-us'))->name('why-choose-us');
 Route::get('/what-we-focus-on', fn () => view('menu-pages.what-we-focus-on'))->name('what-we-focus-on');
 Route::get('/citations', fn () => view('menu-pages.citations'))->name('citations');
+Route::get('/faq', fn () => view('menu-pages.faq'))->name('faq');
 
 //Footer Pages
 Route::get('/about-us', fn () => view('footer-pages.about-us'))->name('about-us');
