@@ -32,7 +32,7 @@
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 justify-between items-start ">
          <div>
          {{-- 2. Left Side: Text Content --}}
-            <div class="text-center md:text-left space-y-6 pe-6 lg:pe-54 p-6  lg:inline-block  rounded-xl shadow-lg transition-all duration-300 hover:shadow-xl hover:-translate-y-2 hover:ring-2 hover:ring-primary/50 overflow-hidden border-0 text-center animate-fade-in-up animation-delay-1000">
+            <div class="md:text-left space-y-6 pe-6 lg:pe-54 p-6  lg:inline-block  rounded-xl shadow-lg transition-all duration-300 hover:shadow-xl hover:-translate-y-2 hover:ring-2 hover:ring-primary/50 overflow-hidden border-0 text-center animate-fade-in-up animation-delay-1000">
                <h2 class="text-sizeMobile lg:text-sizeDesktop font-semibold text-center md:text-left text-black font-sans">
                   Contact us here
                </h2> 
@@ -47,50 +47,61 @@
             </div>
          </div>
          {{-- 3. Right Side: OverlapDevice Mockup Image --}}
-         <div  class="text-center md:text-left space-y-6  p-6  inline-block  rounded-xl shadow-lg transition-all duration-300 hover:shadow-xl hover:-translate-y-2 hover:ring-2 hover:ring-primary/50 overflow-hidden border-0 text-center animate-fade-in-up animation-delay-1000">
-            <h2 class="text-sizeMobile lg:text-sizeDesktop font-semibold text-center md:text-left text-black font-sans">
-                 Get in touch
-               </h2>
-         <form>
-   <div class="grid grid-cols-1">
-      <input type="text" name="full-name" autocomplete="full-name"
-         placeholder="Enter Name"
-         class="block w-full px-3 py-1.5 text-base text-gray-900
-         border-b border-gray-300
-         focus:outline-none focus:border-b-2 focus:border-gray-600
-         placeholder:text-gray-400 sm:text-sm/6">
-   </div>
+         <div  class="md:text-left space-y-6  p-6  inline-block  rounded-xl shadow-lg transition-all duration-300 hover:shadow-xl hover:-translate-y-2 hover:ring-2 hover:ring-primary/50 overflow-hidden border-0 text-center animate-fade-in-up animation-delay-1000">
+             <h2 class="text-sizeMobile lg:text-sizeDesktop font-semibold text-center md:text-left text-black font-sans">
+                  Get in touch
+                </h2>
 
-   <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mt-4">
-      <input type="email" name="email" autocomplete="email"
-         placeholder="Enter Email"
-         class="block w-full px-3 py-1.5 text-base text-gray-900
-         border-b border-gray-300
-         focus:outline-none focus:border-b-2 focus:border-gray-600
-         placeholder:text-gray-400 sm:text-sm/6">
 
-      <input type="text"
-         placeholder="Enter contact Number"
-         class="block w-full px-3 py-1.5 text-base text-gray-900
-         border-b border-gray-300
-         focus:outline-none focus:border-b-2 focus:border-gray-600
-         placeholder:text-gray-400 sm:text-sm/6">
-   </div>
+          <form action="{{ route('enquiry.submit') }}" method="POST">
+                @csrf
+                <div class="grid grid-cols-1">
+                   <input type="text" name="name" autocomplete="name"
+                      placeholder="Enter Name" value="{{ old('name') }}"
+                      class="block w-full px-3 py-1.5 text-base text-gray-900
+                      border-b border-gray-300
+                      focus:outline-none focus:border-b-2 focus:border-gray-600
+                      placeholder:text-gray-400 sm:text-sm/6">
+                   @error('name') <span class="text-red-500 text-sm">{{ $message }}</span> @enderror
+                </div>
 
-   <div class="grid grid-cols-1 mt-4">
-      <textarea rows="3"
-         placeholder="Your Message"
-         class="block w-full px-3 py-1.5 text-base text-gray-900
-         border-b border-gray-300
-         focus:outline-none focus:border-b-2 focus:border-gray-600
-         placeholder:text-gray-400 sm:text-sm/6"></textarea>
-   </div>
-   <div class="mt-4">
-                <x-button type="submit" variant="secondary" as="a" class="mt-6" href="#">Save</x-button>
-            </div>
-</form>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mt-4">
+                   <div>
+                      <input type="email" name="email" autocomplete="email"
+                         placeholder="Enter Email" value="{{ old('email') }}"
+                         class="block w-full px-3 py-1.5 text-base text-gray-900
+                         border-b border-gray-300
+                         focus:outline-none focus:border-b-2 focus:border-gray-600
+                         placeholder:text-gray-400 sm:text-sm/6">
+                      @error('email') <span class="text-red-500 text-sm">{{ $message }}</span> @enderror
+                   </div>
 
-         </div>
+                   <div>
+                      <input type="text" name="phone"
+                         placeholder="Enter Contact Number" value="{{ old('phone') }}"
+                         class="block w-full px-3 py-1.5 text-base text-gray-900
+                         border-b border-gray-300
+                         focus:outline-none focus:border-b-2 focus:border-gray-600
+                         placeholder:text-gray-400 sm:text-sm/6">
+                      @error('phone') <span class="text-red-500 text-sm">{{ $message }}</span> @enderror
+                   </div>
+                </div>
+
+                <div class="grid grid-cols-1 mt-4">
+                   <textarea rows="3" name="message"
+                      placeholder="Your Message"
+                      class="block w-full px-3 py-1.5 text-base text-gray-900
+                      border-b border-gray-300
+                      focus:outline-none focus:border-b-2 focus:border-gray-600
+                      placeholder:text-gray-400 sm:text-sm/6">{{ old('message') }}</textarea>
+                   @error('message') <span class="text-red-500 text-sm">{{ $message }}</span> @enderror
+                </div>
+                <div class="mt-4">
+                   <x-button type="submit" variant="secondary" class="mt-6">Submit</x-button>
+                </div>
+             </form>
+
+          </div>
       </div>
    </div>
 </section>
