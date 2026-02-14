@@ -9,38 +9,27 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
-      # ---------------- NODE BUILD ----------------
+      
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: '20'
+      
       - name: Build Frontend Assets
         run: |
           npm ci
           npm run build
           rm -rf node_modules
-      # -------------------------------------------
-      # ---------------- PHP -----------------------
+      
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
         with:
           php-version: 8.3
           tools: composer
+      
       - name: Install Composer dependencies
         run: composer install --no-dev --optimize-autoloader
-      # -------------------------------------------
-      # ---------------- PRE-DEPLOY ----------------
-      - name: Prepare deployment directory
-        uses: appleboy/ssh-action@v1.0.3
-        with:
-          host: ${{ secrets.DO_HOST }}
-          username: ${{ secrets.DO_USER }}
-          key: ${{ secrets.DO_SSH_KEY }}
-          script: |
-            sudo chown -R ${{ secrets.DO_USER }}:${{ secrets.DO_USER }} ${{ secrets.APP_DIR }}
-            sudo chmod -R 755 ${{ secrets.APP_DIR }}
-      # -------------------------------------------
-      # ---------------- UPLOAD -------------------
+      
       - name: Upload project to server
         uses: appleboy/scp-action@v0.1.7
         with:
@@ -52,8 +41,7 @@ jobs:
           overwrite: true
           strip_components: 0
           rm: true
-      # -------------------------------------------
-      # ---------------- POST DEPLOY ----------------
+      
       - name: Run Laravel commands on server
         uses: appleboy/ssh-action@v1.0.3
         with:
@@ -62,10 +50,7 @@ jobs:
           key: ${{ secrets.DO_SSH_KEY }}
           script: |
             cd ${{ secrets.APP_DIR }}
-            sudo chown -R ${{ secrets.DO_USER }}:www-data .
-            sudo chown -R www-data:www-data storage bootstrap/cache
-            sudo chmod -R 775 storage bootstrap/cache
+            chmod -R 775 storage bootstrap/cache
             php artisan storage:link || true
             php artisan optimize:clear
             php artisan optimize
-      # --------------------------------------------
