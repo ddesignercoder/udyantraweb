@@ -3,7 +3,7 @@ name: Deploy Laravel Blade to DigitalOcean
 on:
   push:
     branches:
-      - main   # or dev
+      - main
 
 jobs:
   deploy:
@@ -13,7 +13,7 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      # --- NEW: SETUP NODE & BUILD --- by pk
+      # --- SETUP NODE & BUILD ---
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
@@ -23,8 +23,8 @@ jobs:
         run: |
           npm ci
           npm run build
-          rm -rf node_modules # Remove source files to speed up upload
-      # ------------------------------- by pk
+          rm -rf node_modules
+      # --------------------------
 
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
@@ -35,6 +35,7 @@ jobs:
       - name: Install Composer dependencies
         run: composer install --no-dev --optimize-autoloader
 
+      # ✅ FIXED SCP STEP
       - name: Upload project to server
         uses: appleboy/scp-action@v0.1.7
         with:
@@ -43,7 +44,9 @@ jobs:
           key: ${{ secrets.DO_SSH_KEY }}
           source: "."
           target: ${{ secrets.APP_DIR }}
+          tar_flags: "--no-same-owner --no-same-permissions --touch"
 
+      # ✅ FIXED SSH STEP
       - name: Run Laravel commands on server
         uses: appleboy/ssh-action@v1.0.3
         with:
@@ -59,5 +62,5 @@ jobs:
             php artisan optimize:clear
             php artisan optimize
 
-            chown -R www-data:www-data .
+            chown -R deploy:www-data storage bootstrap/cache
             chmod -R 775 storage bootstrap/cache
