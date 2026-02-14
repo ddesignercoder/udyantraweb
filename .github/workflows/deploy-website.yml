@@ -1,4 +1,4 @@
-name: Deploy to DigitalOcean
+name: Deploy Laravel Blade to DigitalOcean
 
 on:
   push:
