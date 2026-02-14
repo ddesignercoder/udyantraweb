@@ -47,6 +47,10 @@ jobs:
           source: "."
           target: ${{ secrets.APP_DIR }}
           overwrite: true
+          strip_components: 0
+          exclude: |
+              .git*
+              node_modules
       # -------------------------------------------
 
       # ---------------- POST DEPLOY ----------------
