@@ -6,7 +6,7 @@
     {{-- Header --}}
     <div class="max-w-7xl mx-auto text-center mb-10">
         <h1 class="text-4xl md:text-5xl font-extrabold text-transparent bg-clip-text bg-linear-to-r from-primary to-secondary">
-            Your Career Report
+            Your Career Report 
         </h1>
         <p class="mt-3 text-lg text-gray-600">Reference ID: <span class="font-semibold text-primary">#{{ $result_id }}</span> | <br class="md:hidden"> <span class="font-semibold text-primary">{{ $test_name }}</span></p>
     </div>
