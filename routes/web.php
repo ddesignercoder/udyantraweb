@@ -56,6 +56,9 @@ Route::get('/about-us', fn () => view('footer-pages.about-us'))->name('about-us'
 Route::get('/terms-and-conditions', fn () => view('footer-pages.terms-and-conditions'))->name('terms-and-conditions');
 Route::get('/privacy-policy', fn () => view('footer-pages.privacy-policy'))->name('privacy-policy');
 
+//Demo Test Preview
+Route::get('/demo-test-preview', [TestPanelController::class, 'demoTestPreview'])->name('demo-test-preview');
+
 
 // ==========================================
 // PROTECTED ROUTES (Requires Session Token)
