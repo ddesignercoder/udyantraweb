@@ -1,32 +1,36 @@
 name: Deploy Laravel Blade to DigitalOcean
-
 on:
   push:
     branches:
       - main
-
 jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-
+      
       - name: Setup Node & Build
         uses: actions/setup-node@v4
         with:
           node-version: '20'
+      
       - run: npm ci && npm run build && rm -rf node_modules
-
+      
       - name: Setup PHP & Composer
         uses: shivammathur/setup-php@v2
         with:
           php-version: 8.3
+      
       - run: composer install --no-dev --optimize-autoloader
-
-      - name: Clean up
-        run: rm -rf .git .github
-
+      
+      - name: Clean up before upload
+        run: |
+          rm -rf .git .github
+          rm -f .env .env.example
+          # Remove storage and bootstrap/cache - we'll preserve these on server
+          rm -rf storage bootstrap/cache
+      
       - name: Upload to server
         uses: appleboy/scp-action@v0.1.7
         with:
@@ -34,10 +38,9 @@ jobs:
           username: ${{ secrets.DO_USER }}
           key: ${{ secrets.DO_SSH_KEY }}
           source: "."
-          target: ${{ secrets.APP_DIR }}
+          target: "/tmp/laravel-deploy-${{ github.sha }}"
           overwrite: true
-          rm: false
-
+      
       - name: Deploy
         uses: appleboy/ssh-action@v1.0.3
         with:
@@ -45,9 +48,34 @@ jobs:
           username: ${{ secrets.DO_USER }}
           key: ${{ secrets.DO_SSH_KEY }}
           script: |
+            # Use sudo to fix permissions first
+            sudo chown -R deploy:deploy ${{ secrets.APP_DIR }}
+            
+            # Backup critical files
+            cp ${{ secrets.APP_DIR }}/.env /tmp/.env.backup || true
+            
+            # Sync new code (exclude storage and sensitive dirs)
+            rsync -av --delete \
+              --exclude='.env' \
+              --exclude='storage' \
+              --exclude='bootstrap/cache' \
+              /tmp/laravel-deploy-${{ github.sha }}/ \
+              ${{ secrets.APP_DIR }}/
+            
+            # Restore .env
+            cp /tmp/.env.backup ${{ secrets.APP_DIR }}/.env
+            rm /tmp/.env.backup
+            
+            # Clean up temp directory
+            rm -rf /tmp/laravel-deploy-${{ github.sha }}
+            
             cd ${{ secrets.APP_DIR }}
             
-            # Fix ownership and permissions
+            # Ensure storage directories exist with correct structure
+            mkdir -p storage/{app/{public,private},framework/{cache/data,sessions,testing,views},logs}
+            mkdir -p bootstrap/cache
+            
+            # Set correct ownership
             sudo chown -R deploy:www-data .
             sudo chown -R www-data:www-data storage bootstrap/cache
             sudo chmod -R 775 storage bootstrap/cache
