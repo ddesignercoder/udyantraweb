@@ -44,7 +44,7 @@ jobs:
           key: ${{ secrets.DO_SSH_KEY }}
           source: "."
           target: ${{ secrets.APP_DIR }}
-          tar_flags: "--no-same-owner --no-same-permissions --touch"
+          overwrite: true
 
       # ✅ FIXED SSH STEP
       - name: Run Laravel commands on server
