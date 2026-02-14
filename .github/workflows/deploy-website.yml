@@ -61,4 +61,3 @@ jobs:
             php artisan optimize:clear
             php artisan optimize
 
-            chmod -R 775 storage bootstrap/cache
