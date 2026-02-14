@@ -51,7 +51,6 @@ jobs:
             sudo chown -R deploy:www-data .
             sudo chown -R www-data:www-data storage bootstrap/cache
             sudo chmod -R 775 storage bootstrap/cache
-            sudo chmod -R 755 vendor/bin 2>/dev/null || true
             
             # Clear and rebuild Laravel caches
             php artisan optimize:clear
