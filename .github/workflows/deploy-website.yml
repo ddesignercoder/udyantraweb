@@ -7,50 +7,82 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout code
+      - name: Checkout
         uses: actions/checkout@v4
       
-      - name: Setup Node.js
+      - name: Setup Node & Build
         uses: actions/setup-node@v4
         with:
           node-version: '20'
       
-      - name: Build Frontend Assets
-        run: |
-          npm ci
-          npm run build
-          rm -rf node_modules
+      - run: npm ci && npm run build && rm -rf node_modules
       
-      - name: Setup PHP
+      - name: Setup PHP & Composer
         uses: shivammathur/setup-php@v2
         with:
           php-version: 8.3
-          tools: composer
       
-      - name: Install Composer dependencies
-        run: composer install --no-dev --optimize-autoloader
+      - run: composer install --no-dev --optimize-autoloader
       
-      - name: Upload project to server
+      - name: Clean up before upload
+        run: |
+          rm -rf .git .github
+          rm -f .env .env.example
+          # Remove storage and bootstrap/cache - we'll preserve these on server
+          rm -rf storage bootstrap/cache
+      
+      - name: Upload to server
         uses: appleboy/scp-action@v0.1.7
         with:
           host: ${{ secrets.DO_HOST }}
           username: ${{ secrets.DO_USER }}
           key: ${{ secrets.DO_SSH_KEY }}
           source: "."
-          target: ${{ secrets.APP_DIR }}
+          target: "/tmp/laravel-deploy-${{ github.sha }}"
           overwrite: true
-          strip_components: 0
-          rm: false
       
-      - name: Run Laravel commands on server
+      - name: Deploy
         uses: appleboy/ssh-action@v1.0.3
         with:
           host: ${{ secrets.DO_HOST }}
           username: ${{ secrets.DO_USER }}
           key: ${{ secrets.DO_SSH_KEY }}
           script: |
+            # Use sudo to fix permissions first
+            sudo chown -R deploy:deploy ${{ secrets.APP_DIR }}
+            
+            # Backup critical files
+            cp ${{ secrets.APP_DIR }}/.env /tmp/.env.backup || true
+            
+            # Sync new code (exclude storage and sensitive dirs)
+            rsync -av --delete \
+              --exclude='.env' \
+              --exclude='storage' \
+              --exclude='bootstrap/cache' \
+              /tmp/laravel-deploy-${{ github.sha }}/ \
+              ${{ secrets.APP_DIR }}/
+            
+            # Restore .env
+            cp /tmp/.env.backup ${{ secrets.APP_DIR }}/.env
+            rm /tmp/.env.backup
+            
+            # Clean up temp directory
+            rm -rf /tmp/laravel-deploy-${{ github.sha }}
+            
             cd ${{ secrets.APP_DIR }}
-            chmod -R 775 storage bootstrap/cache
-            php artisan storage:link || true
+            
+            # Ensure storage directories exist with correct structure
+            mkdir -p storage/{app/{public,private},framework/{cache/data,sessions,testing,views},logs}
+            mkdir -p bootstrap/cache
+            
+            # Set correct ownership
+            sudo chown -R deploy:www-data .
+            sudo chown -R www-data:www-data storage bootstrap/cache
+            sudo chmod -R 775 storage bootstrap/cache
+            
+            # Clear and rebuild Laravel caches
             php artisan optimize:clear
-            php artisan optimize
+            php artisan config:cache
+            php artisan route:cache
+            php artisan view:cache
+            php artisan storage:link || true
