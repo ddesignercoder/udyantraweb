@@ -198,7 +198,7 @@
             </div>
             {{-- Static Action Buttons --}}
                 <div class="flex flex-col md:flex-row justify-center items-center gap-4 md:gap-6 mt-6  shrink-0 pb-2">
-                    <x-button as="a" class="w-9/12 md:w-4/12 lg:w-70" href="#">Try Demo Tests</x-button>
+                    <x-button as="a" class="w-9/12 md:w-4/12 lg:w-70" href="{{ route('demo-test-preview') }}">Try Demo Tests</x-button>
                     <x-button variant="secondary" as="a" class="w-9/12 md:w-4/12 lg:w-70 px-4 py-3 md:py-4" href="#sample-report">Download Sample Report</x-button>
                 </div>
         </div>
