@@ -46,5 +46,16 @@ jobs:
           key: ${{ secrets.DO_SSH_KEY }}
           script: |
             cd ${{ secrets.APP_DIR }}
-            chmod -R 775 storage bootstrap/cache
-            php artisan optimize
+            
+            # Fix ownership and permissions
+            sudo chown -R deploy:www-data .
+            sudo chown -R www-data:www-data storage bootstrap/cache
+            sudo chmod -R 775 storage bootstrap/cache
+            sudo chmod -R 755 vendor/bin 2>/dev/null || true
+            
+            # Clear and rebuild Laravel caches
+            php artisan optimize:clear
+            php artisan config:cache
+            php artisan route:cache
+            php artisan view:cache
+            php artisan storage:link || true
