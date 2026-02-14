@@ -35,7 +35,7 @@ jobs:
       - name: Install Composer dependencies
         run: composer install --no-dev --optimize-autoloader
 
-      # ✅ FIXED SCP STEP
+      # Upload
       - name: Upload project to server
         uses: appleboy/scp-action@v0.1.7
         with:
@@ -46,7 +46,7 @@ jobs:
           target: ${{ secrets.APP_DIR }}
           overwrite: true
 
-      # ✅ FIXED SSH STEP
+      # Remote commands
       - name: Run Laravel commands on server
         uses: appleboy/ssh-action@v1.0.3
         with:
@@ -56,11 +56,9 @@ jobs:
           script: |
             cd ${{ secrets.APP_DIR }}
 
-            php artisan migrate --force || true
             php artisan storage:link || true
 
             php artisan optimize:clear
             php artisan optimize
 
-            chown -R deploy:www-data storage bootstrap/cache
             chmod -R 775 storage bootstrap/cache
