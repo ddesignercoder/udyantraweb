@@ -2,10 +2,10 @@
 @section('title', 'About Us')
 @section('content')
 
-<section class="max-w-7xl mx-auto px-4 py-2 md:py-6">
-        <h1 class="text-3xl md:text-4xl font-bold text-primary mb-8 text-center bg-secondary/10 py-4 rounded-lg">About Us</h1>
+<section class="">
+        <h1 class="text-3xl md:text-4xl font-bold  mb-8 text-center bg-secondary py-6">About Us</h1>
         
-        <div class="space-y-6 text-textBlack text-base md:text-lg leading-relaxed text-justify">
+        <div class="max-w-7xl mx-auto px-4 py-2 md:py-6 space-y-6 text-textBlack text-base md:text-lg leading-relaxed text-justify">
             <p>
                 At Udyantra, we believe that every individual deserves clarity, confidence, and direction when making academic and career decisions. We are a science-driven psychometric assessment platform designed for schools, students, parents, and working professionals seeking informed guidance for the future.
             </p>

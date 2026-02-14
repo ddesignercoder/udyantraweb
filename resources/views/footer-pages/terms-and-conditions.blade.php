@@ -2,10 +2,10 @@
 @section('title', 'Terms and Conditions')
 @section('content')
 
-<section class="max-w-7xl mx-auto px-4 py-2 md:py-6 ">
-        <h1 class="text-3xl md:text-4xl font-bold text-primary mb-8 text-center bg-secondary/10 py-4 rounded-lg">Terms and Conditions</h1>
-        
-        <div class="space-y-6 text-textBlack text-base md:text-lg leading-relaxed text-justify">
+<section class="">
+        <h1 class="text-3xl md:text-4xl font-bold  mb-8 text-center bg-secondary py-6">Terms & Conditions</h1>
+         
+        <div class="max-w-7xl mx-auto px-4 py-2 md:py-6 space-y-6 text-textBlack text-base md:text-lg leading-relaxed text-justify">
             <p>
                 These Terms and Conditions (“Terms”) govern access to and use of the website, platform, assessments, reports, and related services (“Services”) provided by Udyantra (“Company”, “we”, “us”, or “our”).
             </p>
