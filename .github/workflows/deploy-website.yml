@@ -40,7 +40,7 @@ jobs:
           target: ${{ secrets.APP_DIR }}
           overwrite: true
           strip_components: 0
-          rm: true
+          rm: false
       
       - name: Run Laravel commands on server
         uses: appleboy/ssh-action@v1.0.3
