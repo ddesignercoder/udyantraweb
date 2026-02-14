@@ -240,4 +240,15 @@ class TestPanelController extends Controller
             return redirect()->route('user.dashboard')->with('error', 'Could not fetch results.');
         }
 
+    public function demoTestPreview()
+        {   
+            $baseUrl = config('services.backend.url');
+            $response = Http::acceptJson() ->get("{$baseUrl}/demo-test-preview")->json();
+            //dd($response);
+            return view('user-pages.demo-test-preview',[
+                    'test' => $response['data']['test'],
+                    'questions' => $response['data']['questions']
+                ]);
+        }
+
 }

@@ -1,43 +1,35 @@
 name: Deploy Laravel Blade to DigitalOcean
-
 on:
   push:
     branches:
       - main
-
 jobs:
   deploy:
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
-
-      # ---------------- NODE BUILD ----------------
+      
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: '20'
-
+      
       - name: Build Frontend Assets
         run: |
           npm ci
           npm run build
           rm -rf node_modules
-      # -------------------------------------------
-
-      # ---------------- PHP -----------------------
+      
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
         with:
           php-version: 8.3
           tools: composer
-
+      
       - name: Install Composer dependencies
         run: composer install --no-dev --optimize-autoloader
-      # -------------------------------------------
-
-      # ---------------- UPLOAD -------------------
+      
       - name: Upload project to server
         uses: appleboy/scp-action@v0.1.7
         with:
@@ -47,9 +39,9 @@ jobs:
           source: "."
           target: ${{ secrets.APP_DIR }}
           overwrite: true
-      # -------------------------------------------
-
-      # ---------------- POST DEPLOY ----------------
+          strip_components: 0
+          rm: true
+      
       - name: Run Laravel commands on server
         uses: appleboy/ssh-action@v1.0.3
         with:
@@ -58,12 +50,7 @@ jobs:
           key: ${{ secrets.DO_SSH_KEY }}
           script: |
             cd ${{ secrets.APP_DIR }}
-
-            sudo chown -R www-data:www-data .
-            sudo chmod -R g+rw .
-            sudo find . -type d -exec chmod g+s {} \;
-
+            chmod -R 775 storage bootstrap/cache
             php artisan storage:link || true
             php artisan optimize:clear
             php artisan optimize
-      # --------------------------------------------
