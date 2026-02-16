@@ -24,7 +24,7 @@
 
     {{-- TOP HEADER (Sticky) --}}
     <header class="bg-white shadow-sm border-b-4 border-blue-600 z-30 shrink-0">
-        <div class="max-w-7xl mx-auto px-4 py-2 flex justify-between items-center">
+        <div class="w-full px-4 py-2 flex justify-between items-center">
             
             {{-- Title --}}
             <div class="truncate mr-2">
@@ -57,7 +57,7 @@
     </header>
 
     {{-- MAIN CONTENT AREA --}}
-    <div class="grow relative max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-4 gap-4 lg:p-4 overflow-hidden">
+    <div class="grow relative w-full grid grid-cols-1 lg:grid-cols-4 gap-4 lg:p-4 overflow-hidden">
 
         {{-- LEFT COLUMN: Question Area --}}
         <main class="lg:col-span-3 flex flex-col h-full bg-white lg:rounded shadow-sm overflow-hidden relative">
