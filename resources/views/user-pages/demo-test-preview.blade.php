@@ -19,16 +19,16 @@
 @endsection
 
 @section('content')
-<div class="h-screen flex flex-col bg-gray-100 font-sans overflow-hidden"
+<div class="fixed inset-0 h-dvh z-50 flex flex-col bg-gray-100 font-sans overflow-hidden"
      x-data="testPanel({{ Js::from($questions) }}, {{ Js::from($test) }}, {{ Js::from(session('user_id')) }})">
 
     {{-- TOP HEADER (Sticky) --}}
-    <header class="bg-white shadow-sm border-b-4 border-blue-600 z-30 shrink-0">
-        <div class="w-full px-4 py-2 flex justify-between items-center">
+    <header class="bg-white shadow-sm border-b-2 border-blue-600 z-30 shrink-0">
+        <div class="w-full px-4 py-1.5 flex justify-between items-center">
             
             {{-- Title --}}
             <div class="truncate mr-2">
-                <h1 class="text-sm md:text-lg font-bold text-gray-800 uppercase truncate">
+                <h1 class="text-sm md:text-base font-bold text-gray-800 uppercase truncate">
                     <span x-text="test.name"></span> PSYCHOMETRIC
                 </h1>
                 <div class="text-xs text-gray-500 font-mono lg:hidden">
@@ -41,7 +41,7 @@
                 {{-- Timer --}}
                 <div class="flex flex-col items-end md:items-center">
                     <span class="text-[10px] text-gray-500 font-bold uppercase hidden md:block">Time Left</span>
-                    <div class="text-base md:text-xl font-mono font-bold px-2 py-0.5 md:px-3 md:py-1 rounded bg-black text-white"
+                    <div class="text-sm md:text-base font-mono font-bold px-2 py-0.5 md:px-3 md:py-1 rounded bg-black text-white"
                          :class="{'bg-red-600': timeLeft < 300}">
                         <span x-text="formatTime(timeLeft)"></span>
                     </div>
@@ -57,13 +57,13 @@
     </header>
 
     {{-- MAIN CONTENT AREA --}}
-    <div class="grow relative w-full grid grid-cols-1 lg:grid-cols-4 gap-4 lg:p-4 overflow-hidden">
+    <div class="grow relative w-full grid grid-cols-1 lg:grid-cols-4 gap-2 lg:px-4 lg:py-2 overflow-hidden">
 
         {{-- LEFT COLUMN: Question Area --}}
         <main class="lg:col-span-3 flex flex-col h-full bg-white lg:rounded shadow-sm overflow-hidden relative">
             
             {{-- Question Header --}}
-            <div class="bg-blue-50 px-4 py-2 border-b border-blue-100 flex justify-between items-center shrink-0">
+            <div class="bg-blue-50 px-4 py-1.5 border-b border-blue-100 flex justify-between items-center shrink-0">
                 <span class="font-bold text-blue-900 text-base md:text-lg">
                     Question <span x-text="currentIndex + 1"></span>
                 </span>
@@ -72,7 +72,7 @@
             </div>
             
             {{-- Scrollable Question Body --}}
-            <div class="p-4 md:p-6 grow overflow-y-auto custom-scrollbar lg:pb-6">
+            <div class="p-3 md:p-4 grow overflow-y-auto custom-scrollbar lg:pb-4">
                 
                 {{-- NEW: Mobile "Submit Test" Button (Visible at top of content) --}}
                 <div class="lg:hidden mb-6">
@@ -85,16 +85,16 @@
                 </div>
 
                 {{-- Question Text --}}
-                <div class="text-base md:text-lg text-gray-900 font-medium mb-6 border-b pb-4 leading-relaxed">
+                <div class="text-base md:text-base text-gray-900 font-medium mb-3 border-b pb-3 leading-relaxed">
                     <span x-html="currentQuestion.question_text"></span>
                 </div>
 
                 {{-- Options --}}
-                <div class="space-y-3 mb-2 md:mb-4">
+                <div class="space-y-2 mb-2 md:mb-3">
                     <template x-for="optionKey in ['a', 'b', 'c', 'd', 'e']" :key="optionKey">
                         <div x-show="currentQuestion['option_' + optionKey]"
                              @click="selectOption(optionKey)"
-                             class="flex items-start p-3 md:p-4 cursor-pointer border rounded-lg hover:bg-gray-50 transition-colors touch-manipulation select-none"
+                             class="flex items-start p-2 md:p-2.5 cursor-pointer border rounded-lg hover:bg-gray-50 transition-colors touch-manipulation select-none"
                              :class="answers[currentQuestion.id] === optionKey 
                                 ? 'border-blue-500 bg-blue-50 ring-1 ring-blue-500' 
                                 : 'border-gray-200'">
@@ -106,7 +106,7 @@
                                 <div class="w-2 h-2 md:w-2.5 md:h-2.5 bg-white rounded-full" x-show="answers[currentQuestion.id] === optionKey"></div>
                             </div>
 
-                            <div class="text-gray-800 text-sm md:text-base">
+                            <div class="text-gray-800 text-sm md:text-sm">
                                 <strong class="uppercase mr-1 text-gray-500" x-text="optionKey + '.'"></strong>
                                 <span x-text="currentQuestion['option_' + optionKey]"></span>
                             </div>
@@ -148,7 +148,7 @@
             </div>
             
             {{-- DESKTOP FOOTER (Hidden on Mobile) --}}
-            <div class="hidden lg:flex bg-gray-50 px-4 py-3 border-t border-gray-200 justify-between items-center shrink-0">
+            <div class="hidden lg:flex bg-gray-50 px-4 py-2 border-t border-gray-200 justify-between items-center shrink-0">
                 <button @click="prev()" :disabled="currentIndex === 0" class="cursor-pointer px-6 py-2 rounded bg-gray-200 text-gray-700 font-bold hover:bg-gray-300 disabled:opacity-50 text-sm">Previous</button>
                 
                 <div class="flex gap-2">
@@ -199,7 +199,7 @@
                 </div>
 
                 {{-- Grid --}}
-                <div class="p-4 overflow-y-auto custom-scrollbar grow lg:max-h-[400px]">
+                <div class="p-3 overflow-y-auto custom-scrollbar grow lg:max-h-[350px]">
                     <h3 class="hidden lg:block font-bold text-gray-800 mb-2 text-xs uppercase tracking-wide">Question Palette</h3>
                     <div class="grid grid-cols-5 gap-2">
                         <template x-for="(q, index) in questions" :key="q.id">
