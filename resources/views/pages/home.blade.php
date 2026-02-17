@@ -39,7 +39,7 @@
                 {{-- 3. Right Side: OverlapDevice Mockup Image --}}
                 <div class="text-center">
                     
-                    <img src="{{ asset('assets/image/home/dashboard.png') }}" 
+                    <img src="{{ asset('assets/image/home/dashboard.svg') }}" 
                         alt="Dashboard Preview" 
                         class="w-11/12 md:w-xl lg:w-3xl xl:w-4xl absolute right-[4%] bottom-[-10%] md:bottom-[-18%] lg:bottom-[-26%] md:right-[-5.5%] lg:right-[-6%] xl:right-[-8%]">
                 
