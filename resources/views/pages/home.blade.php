@@ -39,7 +39,7 @@
                 {{-- 3. Right Side: OverlapDevice Mockup Image --}}
                 <div class="text-center">
                     
-                    <img src="{{ asset('assets/image/home/hero-devices.svg') }}" 
+                    <img src="{{ asset('assets/image/home/dashboard.png') }}" 
                         alt="Dashboard Preview" 
                         class="w-11/12 md:w-xl lg:w-3xl xl:w-4xl absolute right-[4%] bottom-[-10%] md:bottom-[-18%] lg:bottom-[-26%] md:right-[-5.5%] lg:right-[-6%] xl:right-[-8%]">
                 
@@ -166,7 +166,7 @@
                             from any device
                         </p>
                         {{-- FIX 3: Reduced max-height to 30vh on mobile to prevent bottom clipping --}}
-                        <img src="{{ asset('assets/image/home/hero-devices.svg') }}" 
+                        <img src="{{ asset('assets/image/home/assesment.svg') }}" 
                             alt="Step 1 Dashboard" 
                             class="w-full h-auto max-h-[50vh] md:max-h-[70vh] object-contain drop-shadow-xl select-none">
                     </div>

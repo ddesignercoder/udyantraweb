@@ -38,11 +38,13 @@
                </h2> 
                <ul>
                   <li class="flex items-center"><img src="{{ asset('assets/image/contact-us/e-mail.svg') }}" 
-               alt="Email Icon"  loading="lazy" class="flex pointer-events-none w-6"/>&nbsp;&nbsp;Email: support@udyantra.com</li><br/>
+               alt="Email Icon"  loading="lazy" class="flex pointer-events-none w-6"/>&nbsp;&nbsp;Email:  <a href="mailto: care@udyantra.com">care@udyantra.com</a></li><br/>
+                  <li class="flex items-center"><img src="{{ asset('assets/image/contact-us/e-mail.svg') }}" 
+               alt="Email Icon"  loading="lazy" class="flex pointer-events-none w-6"/>&nbsp;&nbsp;Email: <a href="founder@udyantra.com">founder@udyantra.com</a></li><br/>
                   <li class="flex items-center"><img src="{{ asset('assets/image/contact-us/call.svg') }}" 
-               alt="Email Icon"  loading="lazy" class="flex pointer-events-none w-6"/>&nbsp;&nbsp;Tel: +91 XXX-XXX-XXXX</li><br/>
-                  <li class="flex items-center"><img src="{{ asset('assets/image/contact-us/location-map.svg') }}" 
-               alt="Email Icon"  loading="lazy" class="flex pointer-events-none w-6"/>&nbsp;&nbsp;Add: Delhi</li>
+               alt="Email Icon"  loading="lazy" class="flex pointer-events-none w-6"/>&nbsp;&nbsp;Tel: <a href="+918076627508">+91 807 662 7508</a></li><br/>
+                  <li class="flex items-center"><img src="{{ asset('assets/image/contact-us/call.svg') }}" 
+               alt="Email Icon"  loading="lazy" class="flex pointer-events-none w-6"/>&nbsp;&nbsp;Tel: <a href="+918273494712">+91 827 349 4712</a></li><br/>
                </ul>
             </div>
          </div>
