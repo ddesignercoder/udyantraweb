@@ -6,16 +6,16 @@
     <div class="max-w-7xl mx-auto relative">
         
         {{-- Header Section --}}
-        <div class="mb-8 flex items-center justify-between">
-            <div>
-                <h1 class="text-sizeMobile lg:text-sizeDesktop font-semibold text-black leading-tight font-sans">Select a Package</h1>
-                <p class="text-textBlack text-lg md:text-xl leading-tight">Choose a plan that suits your assessment needs.</p>
+        <div class="mb-4 md:mb-8">
+            <div class="flex items-center justify-between gap-4">
+                <h1 class="text-sizeMobile lg:text-sizeDesktop font-semibold text-black leading-tight font-sans">Select Package</h1>
+                <a href="{{ route('dashboard.my-purchases') }}" 
+                   class="inline-flex items-center gap-2 bg-white hover:bg-gray-50 text-primary border border-primary font-medium py-2.5 px-1 md:px-5 rounded-lg transition-colors duration-200 shrink-0">
+                    <x-lucide-history class="w-4 h-4" />
+                    <span>My Purchases</span>
+                </a>
             </div>
-            <a href="{{ route('dashboard.my-purchases') }}" 
-               class="inline-flex items-center gap-2 bg-white hover:bg-gray-50 text-primary border border-primary font-medium py-2.5 px-5 rounded-lg transition-colors duration-200">
-                <x-lucide-history class="w-4 h-4" />
-                <span>My Purchases</span>
-            </a>
+            <p class="text-textBlack text-lg md:text-xl leading-tight mt-1">Choose a plan that suits your assessment needs.</p>
         </div>
 
         {{-- Content with Tabs --}}
@@ -33,7 +33,7 @@
                         :class="activeTab === '{{ $category }}' 
                             ? 'bg-white text-primary shadow border border-primary' 
                             : 'text-black hover:bg-white/12 hover:text-primary hover:cursor-pointer'"
-                        class="px-6 py-2.5 text-sm font-medium leading-5 rounded-lg transition-all duration-200 capitalize focus:outline-none">
+                        class="px-2 md:px-6 py-2.5 text-sm font-medium leading-5 rounded-lg transition-all duration-200 capitalize focus:outline-none">
                         {{ ucfirst(strtolower($category)) }} Level
                     </button>
                 @endforeach
