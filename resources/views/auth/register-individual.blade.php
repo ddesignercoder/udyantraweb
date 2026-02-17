@@ -18,7 +18,7 @@
         <form class="mt-8 space-y-6" action="{{ route('register.ind.submit') }}" method="POST">
             @csrf
             
-            <div class="rounded-2xl shadow-sm space-y-4 p-2">
+            <div class="rounded-2xl  space-y-4 p-2">
                 
                 <div>
                     <label for="name" class="block text-sm font-medium text-gray-700">Full Name</label>
