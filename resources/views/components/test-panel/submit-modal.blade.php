@@ -12,10 +12,10 @@
         x-transition:leave="transition ease-in duration-200"
         x-transition:leave-start="opacity-100 scale-100"
         x-transition:leave-end="opacity-0 scale-95"
-        class="bg-white rounded-lg shadow-2xl max-w-md w-full overflow-hidden">
+        class="bg-white rounded-lg shadow-2xl  max-w-4xl w-full  max-h-9/10  overflow-y-auto px-6 py-4">
         
         <!-- Modal Header -->
-        <div class="bg-linear-to-r from-primary to-primary/80 px-6 py-4">
+        <div class="bg-linear-to-r from-primary to-primary/80 px-4 py-3">
             <div class="flex items-center gap-3">
                 <div class="w-10 h-10 bg-white/20 rounded-full flex items-center justify-center">
                     <x-lucide-circle-check class="w-6 h-6 text-white" />
@@ -25,9 +25,25 @@
         </div>
 
         <!-- Modal Body -->
-        <div class="px-6 py-6">
+        <div>
+            <h3 class="text-xl font-bold text-primary my-4">Disclaimer </h3>
+            <p class="text-gray-900 font-bold text-base leading-relaxed mb-1">
+               1. For Guidance Only
+            </p>
+            <p class="text-gray-700 font-medium text-base leading-relaxed mb-4">
+               The results of this psychometric assessment are meant only for guidance and counselling purposes. They are not a final judgment or prediction.
+            </p>
+            <p class="text-gray-900 font-bold text-base leading-relaxed mb-1">
+               2. To Support Better Decisions
+            </p>
+            <p class="text-gray-700 font-medium text-base leading-relaxed mb-4">
+                The report is designed to help you, your parents, teachers, and counselors understand your strengths and areas of improvement so you can make informed choices.
+            </p>
+            <p class="text-gray-900 font-bold text-base leading-relaxed mb-1">
+               3. One of Many Factors
+            </p>
             <p class="text-gray-700 text-base leading-relaxed mb-4">
-                Are you sure you want to submit your test? Once submitted, you won't be able to make any changes.
+                Career or academic decisions should not be based only on this assessment. Your interests, efforts, opportunities, and discussions with parents and mentors are equally important.
             </p>
             
             <div class="bg-blue-50 border border-blue-200 rounded-lg p-4 space-y-2">

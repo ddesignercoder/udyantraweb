@@ -37,7 +37,7 @@
                     </div>
                     <div class="md:col-span-2">
                         <label class="block text-sm font-medium text-gray-700 mb-1">Default Password</label>
-                        <input type="text" name="password" value="Password@123" required class="w-full bg-gray-50 border-gray-300 rounded-lg shadow-sm text-gray-500 border p-2.5">
+                        <input type="text" name="password" placeholder="password@123" required class="w-full bg-gray-50 border-gray-300 rounded-lg shadow-sm text-gray-500 border p-2.5">
                         <p class="text-xs text-gray-500 mt-1">You can change this default password.</p>
                     </div>
                 </div>

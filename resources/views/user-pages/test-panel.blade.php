@@ -19,6 +19,7 @@
 @endsection
 
 @section('content')
+
 <div class="h-screen flex flex-col bg-gray-100 font-sans overflow-hidden"
      x-data="testPanel({{ Js::from($questions) }}, {{ Js::from($test) }}, {{ Js::from(session('user_id')) }})">
 
@@ -251,6 +252,7 @@
             currentIndex: 0,
             showPalette: false, // New Mobile State
             showSubmitModal: false, // Submit confirmation modal
+            showInstructionModal: true,
             isSubmitting: false,
             
             // State Storage
@@ -261,19 +263,21 @@
             timeLeft: (testData.duration_minutes * 60), 
             timerInterval: null,
 
-            init() {
-                const saved = localStorage.getItem('test_progress_' + this.test.id);
-                if (saved) {
-                    const data = JSON.parse(saved);
-                    this.answers = data.answers || {};
-                    this.marked = data.marked || {};
-                    this.visited = data.visited || {};
-                }
-                this.visitCurrent();
-                this.startTimer();
-                window.onbeforeunload = () => "Are you sure? Progress might be lost.";
-            },
+init() {
+    this.showInstructionModal = true; 
 
+    const saved = localStorage.getItem('test_progress_' + this.test.id);
+    if (saved) {
+        const data = JSON.parse(saved);
+        this.answers = data.answers || {};
+        this.marked = data.marked || {};
+        this.visited = data.visited || {};
+    }
+
+    this.visitCurrent();
+    this.startTimer();
+    window.onbeforeunload = () => "Are you sure? Progress might be lost.";
+},
             get currentQuestion() { return this.questions[this.currentIndex]; },
 
             visitCurrent() {
@@ -351,6 +355,7 @@
 
                 return baseClass + "bg-gray-100 text-gray-700 rounded";
             },
+            
 
             startTimer() {
                 this.timerInterval = setInterval(() => {
