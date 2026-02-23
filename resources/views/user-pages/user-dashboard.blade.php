@@ -30,7 +30,7 @@
                             <div class="block hover:bg-gray-50 transition duration-150 ease-in-out">
                                 <div class="px-4 py-4 sm:px-6">
                                     <div class="flex items-center justify-between">
-                                        <p class="text-sm font-medium text-indigo-600 truncate">
+                                        <p class="text-sm font-medium text-black-600 truncate">
                                             Psychometric Assessment #{{ $item['test_id'] }}
                                         </p>
                                         <div class="ml-2 shrink-0 flex">
