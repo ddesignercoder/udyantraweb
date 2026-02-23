@@ -28,8 +28,7 @@
 
             <div class="mb-4">
                 <label class="block text-sm font-medium text-gray-700 mb-2">Choose Package:</label>
-                <select 
-                    @change="selectPackage($event.target.value)" 
+                <select @change="selectPackage($event.target.value)" 
                     class="w-full border border-gray-300 rounded-lg px-4 py-3 focus:ring-2 focus:ring-teal-500 focus:border-teal-500"
                 >
                     <option value="">-- Select a package --</option>

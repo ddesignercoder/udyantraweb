@@ -77,7 +77,7 @@
                                 {{-- Dynamic Columns based on Role --}}
                                 @if($role === 'school_admin')
                                     <td class="px-6 py-4">
-                                        <span class="bg-blue-50 text-blue-700 px-2 py-1 rounded text-xs font-bold">
+                                        <span class="text-center text-xs font-bold">
                                             {{ $user['student_profile']['roll_no'] ?? 'N/A' }}
                                         </span>
                                     </td>
