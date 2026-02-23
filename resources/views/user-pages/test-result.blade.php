@@ -9,6 +9,11 @@
             Your Career Report 
         </h1>
         <p class="mt-3 text-lg text-gray-600">Reference ID: <span class="font-semibold text-primary">#{{ $result_id }}</span> | <br class="md:hidden"> <span class="font-semibold text-primary">{{ $test_name }}</span></p>
+        <a href="{{ route('pdf-report', [encrypt($user_id), encrypt($result_id)]) }}" target="_blank"
+           class="mt-4 inline-flex items-center justify-center w-full sm:w-auto gap-2 px-6 py-3 bg-linear-to-r from-primary to-secondary text-white font-semibold rounded-xl shadow-lg hover:shadow-xl hover:scale-105 active:scale-95 transition-all duration-200">
+            <x-lucide-download class="w-5 h-5" />
+            Download PDF Report
+        </a>
     </div>
 
     {{-- Result Container --}}

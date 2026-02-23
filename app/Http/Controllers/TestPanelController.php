@@ -153,6 +153,7 @@ class TestPanelController extends Controller
                 //dd($data);
                 // 2. Pass the array directly to the View
                 return view('user-pages.test-result', [
+                    'user_id' => $userId,
                     'result_id' => $testResultId,
                     'test_name' => $data['test_name'],
                     'user_name' => $data['user_name'],
@@ -229,6 +230,7 @@ class TestPanelController extends Controller
                 //dd($data);
                 // 2. Pass the array directly to the View
                 return view('user-pages.test-result', [
+                    'user_id' => $decryptedUserId,
                     'result_id' => $decryptedTestResultId,
                     'test_name' => $data['test_name'],
                     'user_name' => $data['user_name'],

@@ -1,0 +1,120 @@
+{
+  "traits": {
+    "PERSONALITY": [
+      {
+        "id": 1,
+        "name": "Openness",
+        "for_students": "Openness means how curious you are about new ideas, experiences, and learning new things. Students high in openness enjoy creativity, imagination, and exploring different perspectives.",
+        "for_professionals": "Openness reflects an individual's willingness to embrace new ideas, adapt to change, think innovatively, and explore unconventional solutions in professional settings."
+      },
+      {
+        "id": 2,
+        "name": "Agreeableness",
+        "for_students": "Agreeableness shows how kind, cooperative, and understanding you are with others. Students high in agreeableness are supportive, friendly, and good team players.",
+        "for_professionals": "Agreeableness represents the ability to collaborate effectively, demonstrate empathy, maintain harmonious relationships, and work cooperatively within teams."
+      },
+      {
+        "id": 3,
+        "name": "Conscientiousness",
+        "for_students": "Conscientiousness means how responsible, organized, and disciplined you are. Students high in this trait complete assignments on time and stay focused on goals.",
+        "for_professionals": "Conscientiousness indicates reliability, strong work ethic, goal orientation, time management, and the ability to maintain consistency in performance."
+      },
+      {
+        "id": 4,
+        "name": "Extraversion",
+        "for_students": "Extraversion shows how energetic and social you are. Students high in extraversion enjoy group activities, speaking up, and interacting with others.",
+        "for_professionals": "Extraversion reflects confidence, assertiveness, enthusiasm, and comfort in networking, leadership roles, and client-facing situations."
+      },
+      {
+        "id": 5,
+        "name": "Neuroticism",
+        "for_students": "Neuroticism measures how emotionally sensitive or reactive you are. Students with higher levels may feel stress or worry more easily.",
+        "for_professionals": "Neuroticism indicates emotional reactivity and stress sensitivity. Lower levels are associated with emotional stability, resilience, and calm decision-making under pressure."
+      }
+    ],
+    "ORIENTATION": [
+      {
+        "id": 6,
+        "name": "Creative Orientation",
+        "for_students": "Creative orientation means you enjoy imagination, designing, storytelling, art, or thinking differently.",
+        "for_professionals": "Creative orientation reflects innovation-driven thinking, ideation capability, and the ability to develop original concepts and solutions."
+      },
+      {
+        "id": 7,
+        "name": "Practical Orientation",
+        "for_students": "Practical orientation means you like real-world tasks, hands-on work, and solving everyday problems.",
+        "for_professionals": "Practical orientation indicates a results-focused mindset, preference for implementation, and efficiency in executing tangible solutions."
+      },
+      {
+        "id": 8,
+        "name": "Social Orientation",
+        "for_students": "Social orientation means you enjoy helping, teaching, or interacting with people.",
+        "for_professionals": "Social orientation reflects strong interpersonal engagement, people-centered motivation, and preference for collaborative environments."
+      },
+      {
+        "id": 9,
+        "name": "Analytical Orientation",
+        "for_students": "Analytical orientation means you enjoy thinking deeply, solving puzzles, and understanding how things work.",
+        "for_professionals": "Analytical orientation represents structured thinking, data-driven decision-making, problem-solving ability, and logical evaluation skills."
+      }
+    ],
+    "APTITUDE": [
+      {
+        "id": 10,
+        "name": "Logical Aptitude",
+        "for_students": "Logical aptitude is your ability to think clearly, find patterns, and solve reasoning problems.",
+        "for_professionals": "Logical aptitude reflects structured reasoning, systematic analysis, and the ability to derive conclusions through critical thinking."
+      },
+      {
+        "id": 11,
+        "name": "Spatial Aptitude",
+        "for_students": "Spatial aptitude is your ability to imagine shapes, designs, and how objects fit together.",
+        "for_professionals": "Spatial aptitude indicates visualization capability, design interpretation skills, and proficiency in understanding structures, layouts, and models."
+      },
+      {
+        "id": 12,
+        "name": "Verbal Aptitude",
+        "for_students": "Verbal aptitude is your ability to understand language, express ideas clearly, and communicate effectively.",
+        "for_professionals": "Verbal aptitude reflects strong communication skills, comprehension ability, articulation, and clarity in written and spoken expression."
+      },
+      {
+        "id": 13,
+        "name": "Numerical Aptitude",
+        "for_students": "Numerical aptitude is your ability to work with numbers, calculations, and data.",
+        "for_professionals": "Numerical aptitude represents quantitative reasoning, data interpretation, financial analysis, and accuracy in numerical problem-solving."
+      }
+    ],
+    "MOTIVATION": [
+      {
+        "id": 14,
+        "name": "Achievement Motivation",
+        "for_students": "Achievement motivation means you like setting goals and working hard to succeed.",
+        "for_professionals": "Achievement motivation reflects goal orientation, performance drive, competitiveness, and the pursuit of excellence."
+      },
+      {
+        "id": 15,
+        "name": "Leadership Motivation",
+        "for_students": "Leadership motivation means you like guiding others and taking responsibility in group tasks.",
+        "for_professionals": "Leadership motivation indicates a desire to influence, direct teams, take ownership, and drive organizational outcomes."
+      },
+      {
+        "id": 16,
+        "name": "Helping Motivation",
+        "for_students": "Helping motivation means you feel happy when you support or assist others.",
+        "for_professionals": "Helping motivation reflects service orientation, mentoring tendencies, empathy-driven engagement, and commitment to others' growth."
+      },
+      {
+        "id": 17,
+        "name": "Creativity Motivation",
+        "for_students": "Creativity motivation means you enjoy making new ideas, designs, or solutions.",
+        "for_professionals": "Creativity motivation indicates intrinsic drive toward innovation, experimentation, and generating novel approaches in work settings."
+      },
+      {
+        "id": 18,
+        "name": "Security Motivation",
+        "for_students": "Security motivation means you prefer stability, clear plans, and safe choices.",
+        "for_professionals": "Security motivation reflects preference for structured environments, job stability, predictable systems, and long-term security."
+      }
+    ]
+  }
+}
