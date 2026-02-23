@@ -9,6 +9,7 @@ use App\Http\Controllers\OrgUserManagementController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\TestsManageController;
 use App\Http\Controllers\EnquiryController;
+use App\Http\Controllers\PdfReportController;
 
 // Route::get('/', function () {
 //     return view('welcome');
@@ -59,6 +60,10 @@ Route::get('/privacy-policy', fn () => view('footer-pages.privacy-policy'))->nam
 //Demo Test Preview
 Route::get('/demo-test-preview', [TestPanelController::class, 'demoTestPreview'])->name('demo-test-preview');
 
+// Test PDF Report
+// Route::get('/pdf-report', [PdfReportController::class, 'pdfReport'])->name('pdf-report');
+
+
 
 // ==========================================
 // PROTECTED ROUTES (Requires Session Token)
@@ -100,6 +105,8 @@ Route::middleware(['auth.api'])->group(function () {
     //School or Company Access their user test dashboard
     Route::get('/user-test-dashboard/{id}', [TestPanelController::class, 'userReportDashboard'])->name('user-test-dashboard');
     Route::get('/user-test-result/{userId}/{testResultId}', [TestPanelController::class, 'userResult'])->name('user-test-result');
+    //PDF Report
+    Route::get('/pdf-report/{userId}/{testResultId}', [PdfReportController::class, 'pdfReport'])->name('pdf-report');
 
     // Payment Routes
     Route::post('/payment/initiate', [PaymentController::class, 'createOrder'])->name('payment.initiate');

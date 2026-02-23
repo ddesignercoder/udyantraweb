@@ -1,0 +1,46 @@
+{
+  "report_interpretations": [
+    {
+      "id": 1,
+      "skill_name": "Communication",
+      "student": "The student expresses thoughts clearly and engages actively in discussions. This strength facilitates better understanding, collaborative learning, and effective presentation of ideas.",
+      "professional": "The individual demonstrates the ability to convey information clearly and persuasively across various mediums. This strength promotes effective collaboration, reduces misunderstandings, and enhances leadership potential."
+    },
+    {
+      "id": 2,
+      "skill_name": "Teamwork",
+      "student": "The student works well with peers, contributes effectively to group projects, and respects diverse viewpoints. This fosters a supportive learning environment and successful collaborative efforts.",
+      "professional": "The individual excels in collaborative environments, actively supporting colleagues and working towards shared goals. This strength leads to higher team productivity, improved morale, and successful project outcomes."
+    },
+    {
+      "id": 3,
+      "skill_name": "Enthusiasm",
+      "student": "The student approaches learning with energy and a positive attitude. This intrinsic motivation helps in overcoming challenges, staying engaged in subjects, and inspiring peers.",
+      "professional": "The individual approaches tasks with high energy and deep interest. This proactive mindset drives personal productivity, encourages innovation, and positively influences the overall workplace culture."
+    },
+    {
+      "id": 4,
+      "skill_name": "Strong pattern recognition and deductive reasoning.",
+      "student": "The student excels at identifying logical sequences, trends, and relationships between concepts. This strength aids in solving complex problems, understanding scientific principles, and mastering mathematical concepts.",
+      "professional": "The individual is highly capable of analyzing data to identify trends, draw logical conclusions, and solve complex problems. This analytical capability is crucial for strategic planning, troubleshooting, and making informed decisions."
+    },
+    {
+      "id": 5,
+      "skill_name": "Good at calculations, number sense and quantitative analysis.",
+      "student": "The student demonstrates a strong aptitude for working with numbers, understanding mathematical operations, and interpreting data. This provides a significant advantage in STEM subjects.",
+      "professional": "The individual processes quantitative data efficiently and accurately. This numerical proficiency is essential in finance, engineering, data analysis, and any role requiring precise measurement and statistical evaluation."
+    },
+    {
+      "id": 6,
+      "skill_name": "Strong language skills, reading comprehension and writing.",
+      "student": "The student shows excellent capability in understanding written texts, articulating ideas through writing, and mastering vocabulary. This is highly beneficial across humanities, literature, and essay-based subjects.",
+      "professional": "The individual possesses superior written communication and text comprehension skills. This allows for drafting clear reports, structuring compelling arguments, interpreting complex documentation, and engaging effectively with stakeholders."
+    },
+    {
+      "id": 7,
+      "skill_name": "Good at visualising shapes, patterns and spatial arrangements.",
+      "student": "The student has a strong spatial awareness and can mentally manipulate objects and designs. This strength is valuable in subjects like geometry, art, architecture, and design-related coursework.",
+      "professional": "The individual can easily interpret visual information, blueprints, and spatial relationships. This aptitude is highly advantageous in fields such as engineering, architecture, graphic design, and logistics planning."
+    }
+  ]
+}
