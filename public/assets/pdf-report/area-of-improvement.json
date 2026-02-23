@@ -1,0 +1,752 @@
+{
+  "personalDevelopmentSkills": [
+    {
+      "id": 1,
+      "title": "Self-Awareness & Emotional Intelligence",
+      "forStudents": {
+        "definition": "Understanding your emotions, strengths, weaknesses, and reactions so you can make better choices in studies and relationships.",
+        "howToImprove": [
+          "Notice what subjects energize vs drain you",
+          "Learn to name emotions (not just \"good/bad\")",
+          "Reflect after success or failure"
+        ],
+        "exercises": [
+          "Daily mood journal (1 line/day)",
+          "\"What went well / What didn't\" after exams",
+          "Personality & interest assessments"
+        ]
+      },
+      "forProfessionals": {
+        "definition": "The ability to understand your emotional triggers, strengths, blind spots, and impact on others at work.",
+        "howToImprove": [
+          "Track emotional patterns at work",
+          "Accept feedback without defensiveness",
+          "Understand stress responses"
+        ],
+        "exercises": [
+          "Weekly reflection: What triggered me this week?",
+          "360-degree feedback",
+          "Emotional regulation techniques (pause, label, respond)"
+        ]
+      }
+    },
+    {
+      "id": 2,
+      "title": "Communication Skills",
+      "forStudents": {
+        "definition": "The ability to clearly express thoughts, ask questions, and confidently speak in class and social settings.",
+        "howToImprove": [
+          "Practice speaking instead of memorizing",
+          "Learn basic structure: intro → point → example",
+          "Ask questions without fear"
+        ],
+        "exercises": [
+          "Daily 2-minute speaking practice",
+          "Classroom debates",
+          "Reading aloud to improve clarity"
+        ]
+      },
+      "forProfessionals": {
+        "definition": "The skill of conveying ideas clearly, persuasively, and professionally across meetings, emails, and presentations.",
+        "howToImprove": [
+          "Be concise and structured",
+          "Adapt tone to audience",
+          "Listen more than you speak"
+        ],
+        "exercises": [
+          "Record and review presentations",
+          "Rewrite emails for clarity",
+          "Practice assertive communication"
+        ]
+      }
+    },
+    {
+      "id": 3,
+      "title": "Time Management & Discipline",
+      "forStudents": {
+        "definition": "Managing study time, schoolwork, and personal life without last-minute stress.",
+        "howToImprove": [
+          "Create realistic study schedules",
+          "Break tasks into smaller steps",
+          "Reduce distractions (phone!)"
+        ],
+        "exercises": [
+          "Weekly planner",
+          "Pomodoro study technique",
+          "\"Top 3 tasks of the day\""
+        ]
+      },
+      "forProfessionals": {
+        "definition": "Prioritizing tasks, managing deadlines, and balancing work and personal life effectively.",
+        "howToImprove": [
+          "Identify high-impact tasks",
+          "Set boundaries",
+          "Delegate when needed"
+        ],
+        "exercises": [
+          "Eisenhower Matrix",
+          "Time-audit for 7 days",
+          "Daily shutdown routine"
+        ]
+      }
+    },
+    {
+      "id": 4,
+      "title": "Critical Thinking & Problem Solving",
+      "forStudents": {
+        "definition": "The ability to analyze problems, think logically, and find solutions instead of memorizing answers.",
+        "howToImprove": [
+          "Ask \"why\" and \"how\"",
+          "Learn to break problems into parts",
+          "Apply concepts to real life"
+        ],
+        "exercises": [
+          "Case-based questions",
+          "Brain teasers & puzzles",
+          "Project-based learning"
+        ]
+      },
+      "forProfessionals": {
+        "definition": "Analyzing complex situations, making data-driven decisions, and solving problems efficiently.",
+        "howToImprove": [
+          "Avoid emotional decision-making",
+          "Use frameworks",
+          "Consider multiple perspectives"
+        ],
+        "exercises": [
+          "Root cause analysis",
+          "Post-mortem reviews",
+          "Scenario planning"
+        ]
+      }
+    },
+    {
+      "id": 5,
+      "title": "Self-confidence",
+      "forStudents": {
+        "definition": "Believing in your ability to learn, improve, and express yourself without fear of judgment.",
+        "howToImprove": [
+          "Celebrate small wins",
+          "Reduce comparison",
+          "Build competence through practice"
+        ],
+        "exercises": [
+          "Achievement journal",
+          "Stage exposure (presentations, competitions)",
+          "Positive self-talk practice"
+        ]
+      },
+      "forProfessionals": {
+        "definition": "Trusting your skills, experience, and judgment while handling responsibility and pressure.",
+        "howToImprove": [
+          "Own your achievements",
+          "Speak up in meetings",
+          "Stop seeking constant validation"
+        ],
+        "exercises": [
+          "Confidence scripting",
+          "Power posture practice",
+          "Professional wins tracker"
+        ]
+      }
+    },
+    {
+      "id": 6,
+      "title": "Stress management",
+      "forStudents": {
+        "definition": "Handling exam pressure, expectations, and emotions in a healthy way.",
+        "howToImprove": [
+          "Normalize stress",
+          "Build healthy routines",
+          "Talk about emotions"
+        ],
+        "exercises": [
+          "Breathing techniques",
+          "Physical activity",
+          "Guided relaxation"
+        ]
+      },
+      "forProfessionals": {
+        "definition": "Managing workplace stress, burnout, and emotional overload while staying productive.",
+        "howToImprove": [
+          "Identify burnout signs early",
+          "Practice detachment after work",
+          "Seek support"
+        ],
+        "exercises": [
+          "Mindfulness",
+          "Digital detox hours",
+          "Physical exercise + sleep hygiene"
+        ]
+      }
+    },
+    {
+      "id": 7,
+      "title": "Goal Setting & Vision",
+      "forStudents": {
+        "definition": "Understanding where you want to go academically and personally, and working step by step toward it.",
+        "howToImprove": [
+          "Set short-term goals",
+          "Align subjects with interests",
+          "Review goals regularly"
+        ],
+        "exercises": [
+          "Vision board",
+          "SMART goals",
+          "Monthly progress check"
+        ]
+      },
+      "forProfessionals": {
+        "definition": "Having clarity on career direction, growth, and life priorities.",
+        "howToImprove": [
+          "Align career with values",
+          "Upskill intentionally",
+          "Review career trajectory yearly"
+        ],
+        "exercises": [
+          "5-year career map",
+          "Skill gap analysis",
+          "Mentorship sessions"
+        ]
+      }
+    },
+    {
+      "id": 8,
+      "title": "Adaptability & Learning Mindset",
+      "forStudents": {
+        "definition": "The ability to learn new skills, adapt to change, and not fear failure.",
+        "howToImprove": [
+          "Embrace mistakes",
+          "Try new activities",
+          "Learn beyond syllabus"
+        ],
+        "exercises": [
+          "Skill challenges",
+          "Reflection after failures",
+          "Exposure to new environments"
+        ]
+      },
+      "forProfessionals": {
+        "definition": "Staying relevant, flexible, and open to change in a fast-evolving work environment.",
+        "howToImprove": [
+          "Continuous learning",
+          "Accept change proactively",
+          "Reskill regularly"
+        ],
+        "exercises": [
+          "Quarterly learning goals",
+          "Cross-functional exposure",
+          "Industry trend tracking"
+        ]
+      }
+    },
+    {
+      "id": 9,
+      "title": "Ethics, Values & Responsibility",
+      "forStudents": {
+        "definition": "Developing honesty, accountability, and respect in academics and relationships.",
+        "howToImprove": [
+          "Understand consequences of actions",
+          "Practice integrity",
+          "Take responsibility"
+        ],
+        "exercises": [
+          "Ethical dilemma discussions",
+          "Reflection journaling",
+          "Community service"
+        ]
+      },
+      "forProfessionals": {
+        "definition": "Acting with integrity, accountability, and professionalism in decision-making.",
+        "howToImprove": [
+          "Align actions with values",
+          "Own mistakes",
+          "Lead by example"
+        ],
+        "exercises": [
+          "Values clarification",
+          "Ethical case studies",
+          "Accountability check-ins"
+        ]
+      }
+    },
+    {
+      "id": 10,
+      "title": "Social Skills & Relationships",
+      "forStudents": {
+        "definition": "Building healthy friendships, teamwork, and social confidence.",
+        "howToImprove": [
+          "Active listening",
+          "Respect boundaries",
+          "Empathy development"
+        ],
+        "exercises": [
+          "Group projects",
+          "Role-plays",
+          "Peer feedback"
+        ]
+      },
+      "forProfessionals": {
+        "definition": "Building professional relationships, collaboration, and leadership presence.",
+        "howToImprove": [
+          "Networking intentionally",
+          "Conflict resolution skills",
+          "Emotional maturity"
+        ],
+        "exercises": [
+          "Networking challenges",
+          "Difficult conversation practice",
+          "Team retrospectives"
+        ]
+      }
+    },
+    {
+      "id": 11,
+      "title": "Listening skills",
+      "forStudents": {
+        "definition": "The ability to fully pay attention to teachers, peers, and instructions without distraction, so learning and relationships improve.",
+        "howToImprove": [
+          "Listen to understand, not just to reply",
+          "Reduce multitasking while listening",
+          "Clarify doubts instead of assuming"
+        ],
+        "exercises": [
+          "Paraphrase what the teacher said",
+          "Active listening role-plays",
+          "Note-taking during discussions"
+        ]
+      },
+      "forProfessionals": {
+        "definition": "The ability to listen actively, interpret verbal and non-verbal cues, and respond thoughtfully in professional interactions.",
+        "howToImprove": [
+          "Avoid interrupting",
+          "Listen for intent, not just words",
+          "Ask clarifying questions"
+        ],
+        "exercises": [
+          "Meeting summaries in your own words",
+          "Listening audits after conversations",
+          "Empathy-based listening practice"
+        ]
+      }
+    },
+    {
+      "id": 12,
+      "title": "Focused solitary work",
+      "forStudents": {
+        "definition": "The ability to study independently with concentration and minimal distractions.",
+        "howToImprove": [
+          "Build a distraction-free study space",
+          "Practice deep focus sessions",
+          "Avoid constant checking of phone"
+        ],
+        "exercises": [
+          "25–40 min deep study blocks",
+          "Single-task assignments",
+          "Focus stamina challenges"
+        ]
+      },
+      "forProfessionals": {
+        "definition": "The ability to work independently on complex tasks requiring sustained attention and accountability.",
+        "howToImprove": [
+          "Time-block deep work",
+          "Reduce unnecessary meetings",
+          "Communicate availability clearly"
+        ],
+        "exercises": [
+          "\"No-meeting\" focus hours",
+          "Deep-work scheduling",
+          "Output-based work reviews"
+        ]
+      }
+    },
+    {
+      "id": 13,
+      "title": "Patience",
+      "forStudents": {
+        "definition": "The ability to tolerate delays, learning curves, and challenges without frustration.",
+        "howToImprove": [
+          "Accept slow progress",
+          "Delay instant gratification",
+          "Practice emotional regulation"
+        ],
+        "exercises": [
+          "Long-term projects",
+          "Mindfulness practices",
+          "Reflective journaling"
+        ]
+      },
+      "forProfessionals": {
+        "definition": "The ability to stay calm and composed during delays, conflicts, or slow results.",
+        "howToImprove": [
+          "Separate urgency from importance",
+          "Practice response-pause-respond",
+          "Manage expectations"
+        ],
+        "exercises": [
+          "Trigger tracking",
+          "Breathing before responding",
+          "Perspective-shifting exercises"
+        ]
+      }
+    },
+    {
+      "id": 14,
+      "title": "Assertiveness",
+      "forStudents": {
+        "definition": "The ability to express thoughts, needs, and opinions respectfully without fear or aggression.",
+        "howToImprove": [
+          "Use \"I\" statements",
+          "Practice saying no politely",
+          "Speak up in group work"
+        ],
+        "exercises": [
+          "Role-playing scenarios",
+          "Classroom discussions",
+          "Confidence scripting"
+        ]
+      },
+      "forProfessionals": {
+        "definition": "The ability to communicate needs, boundaries, and viewpoints clearly while maintaining professionalism.",
+        "howToImprove": [
+          "Be direct, not defensive",
+          "Set expectations early",
+          "Balance confidence with empathy"
+        ],
+        "exercises": [
+          "Assertive communication scripts",
+          "Feedback role-plays",
+          "Boundary-setting practice"
+        ]
+      }
+    },
+    {
+      "id": 15,
+      "title": "Boundary Setting",
+      "forStudents": {
+        "definition": "Knowing personal limits related to time, energy, and social interactions.",
+        "howToImprove": [
+          "Learn to say no",
+          "Protect study time",
+          "Respect personal space"
+        ],
+        "exercises": [
+          "Time-boundary planning",
+          "Social scenario role-plays",
+          "Priority lists"
+        ]
+      },
+      "forProfessionals": {
+        "definition": "The ability to define and maintain professional, emotional, and time boundaries at work.",
+        "howToImprove": [
+          "Set availability expectations",
+          "Avoid over-commitment",
+          "Communicate limits clearly"
+        ],
+        "exercises": [
+          "Boundary scripts",
+          "Work-life audit",
+          "Assertive refusal practice"
+        ]
+      }
+    },
+    {
+      "id": 16,
+      "title": "Decision-Making Under Pressure",
+      "forStudents": {
+        "definition": "The ability to make sensible choices during exams, competitions, or stressful situations.",
+        "howToImprove": [
+          "Practice calm thinking",
+          "Break problems into steps",
+          "Avoid panic-based choices"
+        ],
+        "exercises": [
+          "Timed mock tests",
+          "Scenario-based questions",
+          "Breathing + decision drills"
+        ]
+      },
+      "forProfessionals": {
+        "definition": "The ability to make clear, timely decisions under stress and uncertainty.",
+        "howToImprove": [
+          "Use frameworks",
+          "Avoid emotional hijacking",
+          "Trust experience + data"
+        ],
+        "exercises": [
+          "Case simulations",
+          "Decision trees",
+          "Post-decision reviews"
+        ]
+      }
+    },
+    {
+      "id": 17,
+      "title": "Flexibility",
+      "forStudents": {
+        "definition": "The ability to adapt to changing schedules, subjects, and expectations.",
+        "howToImprove": [
+          "Accept change",
+          "Try alternate methods",
+          "Stay open to feedback"
+        ],
+        "exercises": [
+          "New learning styles",
+          "Group rotations",
+          "Reflection after change"
+        ]
+      },
+      "forProfessionals": {
+        "definition": "The ability to adapt to evolving roles, priorities, and work environments.",
+        "howToImprove": [
+          "Embrace change proactively",
+          "Learn new tools",
+          "Avoid rigid thinking"
+        ],
+        "exercises": [
+          "Role-switch exercises",
+          "Upskilling sprints",
+          "Change adaptation reviews"
+        ]
+      }
+    },
+    {
+      "id": 18,
+      "title": "Creative Risk-Taking",
+      "forStudents": {
+        "definition": "Trying new ideas, answers, or approaches without fear of failure.",
+        "howToImprove": [
+          "Normalize mistakes",
+          "Encourage curiosity",
+          "Explore beyond syllabus"
+        ],
+        "exercises": [
+          "Open-ended projects",
+          "Idea-generation tasks",
+          "Creativity challenges"
+        ]
+      },
+      "forProfessionals": {
+        "definition": "The ability to innovate, suggest new ideas, and take calculated risks.",
+        "howToImprove": [
+          "Test ideas on small scale",
+          "Encourage experimentation",
+          "Learn from failure"
+        ],
+        "exercises": [
+          "Innovation sprints",
+          "Pilot projects",
+          "Risk-reward analysis"
+        ]
+      }
+    },
+    {
+      "id": 19,
+      "title": "Delegation",
+      "forStudents": {
+        "definition": "Sharing responsibilities during group work instead of doing everything alone.",
+        "howToImprove": [
+          "Trust peers",
+          "Assign roles",
+          "Follow up respectfully"
+        ],
+        "exercises": [
+          "Group leadership tasks",
+          "Role allocation games",
+          "Team reflections"
+        ]
+      },
+      "forProfessionals": {
+        "definition": "Assigning tasks effectively while maintaining accountability and trust.",
+        "howToImprove": [
+          "Delegate outcomes, not just tasks",
+          "Match tasks to strengths",
+          "Avoid micromanagement"
+        ],
+        "exercises": [
+          "Delegation planning sheets",
+          "Feedback loops",
+          "Responsibility matrices"
+        ]
+      }
+    },
+    {
+      "id": 20,
+      "title": "Resilience",
+      "forStudents": {
+        "definition": "The ability to recover from academic or personal setbacks.",
+        "howToImprove": [
+          "Learn from failure",
+          "Maintain perspective",
+          "Build emotional strength"
+        ],
+        "exercises": [
+          "Failure reflection sheets",
+          "Growth mindset journaling",
+          "Stress resilience drills"
+        ]
+      },
+      "forProfessionals": {
+        "definition": "The ability to withstand challenges, pressure, and setbacks without burnout.",
+        "howToImprove": [
+          "Reframe adversity",
+          "Build emotional stamina",
+          "Seek support when needed"
+        ],
+        "exercises": [
+          "Resilience training",
+          "Recovery routines",
+          "Reflection coaching"
+        ]
+      }
+    },
+    {
+      "id": 21,
+      "title": "Routine discipline",
+      "forStudents": {
+        "definition": "The ability to stick to daily routines and complete boring but necessary tasks.",
+        "howToImprove": [
+          "Build habits",
+          "Avoid procrastination",
+          "Reward consistency"
+        ],
+        "exercises": [
+          "Habit trackers",
+          "Routine audits",
+          "Accountability charts"
+        ]
+      },
+      "forProfessionals": {
+        "definition": "Consistent execution of routine, detail-oriented, and repetitive work.",
+        "howToImprove": [
+          "Systems over motivation",
+          "Automate where possible",
+          "Track completion"
+        ],
+        "exercises": [
+          "SOP checklists",
+          "Daily execution reviews",
+          "Habit stacking"
+        ]
+      }
+    },
+    {
+      "id": 22,
+      "title": "Evidence-based detail work",
+      "forStudents": {
+        "definition": "Paying attention to details, accuracy, and facts while completing academic tasks.",
+        "howToImprove": [
+          "Double-check work",
+          "Understand instructions fully",
+          "Avoid careless mistakes"
+        ],
+        "exercises": [
+          "Error-spotting tasks",
+          "Step-by-step problem solving",
+          "Data-based assignments"
+        ]
+      },
+      "forProfessionals": {
+        "definition": "Using data, facts, and evidence to support decisions and outputs.",
+        "howToImprove": [
+          "Validate assumptions",
+          "Cross-check information",
+          "Maintain documentation"
+        ],
+        "exercises": [
+          "Data analysis tasks",
+          "Quality audits",
+          "Evidence-based reporting"
+        ]
+      }
+    },
+    {
+      "id": 23,
+      "title": "Stress coping strategies",
+      "forStudents": {
+        "definition": "Specific techniques to manage and reduce stress during exams and busy academic periods.",
+        "howToImprove": [
+          "Practice progressive muscle relaxation",
+          "Use positive visualization",
+          "Engage in rhythmic breathing"
+        ],
+        "exercises": [
+          "5-4-3-2-1 grounding technique",
+          "Guided imagery sessions",
+          "Box breathing drills"
+        ]
+      },
+      "forProfessionals": {
+        "definition": "Developing a toolkit of techniques to handle high-pressure situations and prevent professional burnout.",
+        "howToImprove": [
+          "Implement regular micro-breaks",
+          "Practice stress reframing",
+          "Build a support network for venting"
+        ],
+        "exercises": [
+          "Work-stress trigger mapping",
+          "Perspective-shifting journal",
+          "Active detach routines"
+        ]
+      }
+    },
+    {
+      "id": 24,
+      "title": "Follow-through on mundane tasks",
+      "forStudents": {
+        "definition": "The ability to complete repetitive or uninteresting assignments with consistent effort and quality.",
+        "howToImprove": [
+          "Gamify boring tasks",
+          "Use the 5-minute rule to start",
+          "Stack mundane tasks with rewards"
+        ],
+        "exercises": [
+          "Checklist completion streaks",
+          "Timed 'admin' sprints",
+          "Focus stamina building"
+        ]
+      },
+      "forProfessionals": {
+        "definition": "Maintaining high standards and completion rates for routine, administrative, or repetitive professional duties.",
+        "howToImprove": [
+          "Batch routine tasks",
+          "Create standard operating procedures",
+          "Leverage habit-stacking"
+        ],
+        "exercises": [
+          "Daily admin-cleanup hour",
+          "Consistency audit tracker",
+          "SOP creation drills"
+        ]
+      }
+    }
+  ],
+  "stressManagementContextualized": {
+    "forStudents": {
+      "focus": "Exams, peer pressure, expectations",
+      "tools": [
+        "Breathing",
+        "Routines",
+        "Emotional expression"
+      ],
+      "exercises": [
+        "Mindfulness",
+        "Sports",
+        "Guided relaxation"
+      ]
+    },
+    "forProfessionals": {
+      "focus": "Deadlines, responsibility, burnout",
+      "tools": [
+        "Boundaries",
+        "Recovery routines",
+        "Prioritization"
+      ],
+      "exercises": [
+        "Mindfulness",
+        "Physical activity",
+        "Digital detox"
+      ]
+    }
+  }
+}
