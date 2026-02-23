@@ -48,7 +48,7 @@
                             $url = Route::has($item['route']) ? route($item['route']) : '#';
                             $isActive = Route::has($item['route']) && request()->routeIs($item['route']);
                             $baseClass = "flex items-center gap-3 px-3 py-2 rounded-lg transition cursor-pointer";
-                            $activeClass = "bg-primary text-white  font-medium rounded-none";
+                            $activeClass = "bg-teal-50 text-black  font-medium rounded-none";
                             $inactiveClass = "text-primary hover:bg-gray-100 px-4";
                         @endphp
 
