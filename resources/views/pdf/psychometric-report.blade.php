@@ -378,7 +378,7 @@
                         </ul>
                     </div>
                     <div class="col-6">
-                        <strong>Areas to Improve:</strong>
+                        <strong>Areas of Improvement:</strong>
                         <ul style="margin-top: 2px; padding-left: 18px; margin-bottom: 0;">
                             @foreach(explode(';', $outcome['areas_to_improve']) as $area)
                                 <li>{{ trim($area) }}</li>
