@@ -394,7 +394,7 @@
         <p>A deeper look into your key strengths and areas for growth, with actionable steps for improvement.</p>
 
         @if(!empty($detailed_areas))
-            <h3 style="color: #c0392b; font-size: 18px;">AREAS TO IMPROVE & MASTER</h3>
+            <h3 style="color: #c0392b; font-size: 18px;">AREAS OF IMPROVEMENT & MASTER</h3>
             @foreach($detailed_areas as $skill)
                 @if($loop->index > 0 && $loop->index % 2 == 0)
                     <div class="page-break"></div>
