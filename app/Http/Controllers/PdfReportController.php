@@ -8,6 +8,7 @@ use CpChart\Data;
 use CpChart\Image;
 use CpChart\Chart\Pie;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Cache;
 
 class PdfReportController extends Controller
 {
@@ -138,6 +139,18 @@ class PdfReportController extends Controller
 
     public function pdfReport($user_id, $test_result_id)
     {
+        // Cache key unique per user + test result
+        $cacheKey = 'pdf_report_' . md5($user_id . '_' . $test_result_id);
+
+        // Check if cached PDF exists (cached for 24 hours)
+        $cachedPdf = Cache::get($cacheKey);
+        if ($cachedPdf) {
+            return response($cachedPdf, 200, [
+                'Content-Type' => 'application/pdf',
+                'Content-Disposition' => 'inline; filename="udyantra-psychometric-report.pdf"',
+            ]);
+        }
+
         // Fetch real data from the API
         $data = $this->fetchPdfReport($user_id, $test_result_id);
 
@@ -231,7 +244,15 @@ class PdfReportController extends Controller
         // Generate pie chart images
         $data['chart_images'] = $this->buildChartImages($data['subsection_analysis']);
 
-        return $this->pdfGenerator->generate('pdf.psychometric-report', $data, 'udyantra-psychometric-report.pdf');
+        // Generate PDF and cache the output for 24 hours
+        $pdf = $this->pdfGenerator->generate('pdf.psychometric-report', $data, 'udyantra-psychometric-report.pdf', false);
+        $pdfContent = $pdf->output();
+        Cache::put($cacheKey, $pdfContent, now()->addHours(24));
+
+        return response($pdfContent, 200, [
+            'Content-Type' => 'application/pdf',
+            'Content-Disposition' => 'inline; filename="udyantra-psychometric-report.pdf"',
+        ]);
     }
 
 
