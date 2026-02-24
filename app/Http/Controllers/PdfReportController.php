@@ -70,9 +70,9 @@ class PdfReportController extends Controller
         }
 
         // A4-optimized: reduced canvas to fit chart + descriptions on one page
-        $image = new Image(2400, 1500, $data);
+        $image = new Image(1200, 750, $data);
         $fontPath = base_path('vendor/szymach/c-pchart/resources/fonts/verdana.ttf');
-        $image->setFontProperties(['FontName' => $fontPath, 'FontSize' => 34]);
+        $image->setFontProperties(['FontName' => $fontPath, 'FontSize' => 17]);
 
         // Apply custom palette
         foreach ($palette as $idx => $color) {
@@ -89,8 +89,8 @@ class PdfReportController extends Controller
         }
 
         // Pie centered horizontally, upper portion of canvas
-        $pie->draw2DPie(1200, 650, [
-            'Radius' => 500,
+        $pie->draw2DPie(600, 325, [
+            'Radius' => 250,
             'StartAngle' => 120,
             'Border' => true,
             'BorderR' => 255, 'BorderG' => 255, 'BorderB' => 255,
