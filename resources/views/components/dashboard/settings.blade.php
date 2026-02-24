@@ -53,14 +53,20 @@
                 {{ substr(session('user_name', 'P'), 0, 1) }}
             </div>
             
-            {{-- Name --}}
-            <span class="text-sm font-medium text-gray-700 truncate group-hover:text-gray-900">
-                {{ session('user_name') }}
-            </span>
+            {{-- Name + ID --}}
+            <div class="overflow-hidden">
+                <span class="text-sm font-medium text-gray-700 truncate group-hover:text-gray-900 block">
+                    {{ session('user_name') }}
+                </span>
+                <span class="text-sm text-primary font-medium truncate block md:hidden">
+                    {{ session('udyantra_id') }}
+                </span>
+            </div>
         </div>
 
         {{-- Up/Down Chevron Icon --}}
         <x-lucide-chevrons-up-down class="w-4 h-4 text-black" />
     </button>
+
 
 </div>

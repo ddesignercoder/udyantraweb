@@ -56,6 +56,7 @@ class AuthController extends Controller
                 // Safe fallbacks for roles
                 'user_role'       => $data['user']['roles'][0] ?? 'individual', 
                 'organization_id' => $data['user']['organization_id'] ?? null,
+                'udyantra_id'     => $data['user']['udyantra_id'] ?? null,
             ]);
 
             // ✅ CHANGED: Redirect to the new Dashboard
@@ -87,6 +88,7 @@ class AuthController extends Controller
                 'user_email'      => $data['user']['email'],
                 'user_role'       => $data['role'], // e.g., 'school_admin'
                 'organization_id' => $data['organization_id'],
+                'udyantra_id'     => $data['user']['udyantra_id'] ?? null,
             ]);
 
             // ✅ CHANGED: Redirect to the new Dashboard
@@ -122,6 +124,7 @@ class AuthController extends Controller
                 'user_name'  => $data['user']['name'],
                 'user_email' => $data['user']['email'],
                 'user_role'  => 'individual',
+                'udyantra_id'     => $data['user']['udyantra_id'] ?? null,
             ]);
 
             // ✅ CHANGED: Redirect to the new Dashboard
