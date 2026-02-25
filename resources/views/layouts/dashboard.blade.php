@@ -25,7 +25,8 @@
             </div>
             {{-- Udyantra ID (desktop only) --}}
             <span class="hidden md:inline-flex items-center gap-1.5 text-lg text-primary font-medium tracking-wide">
-                <x-lucide-fingerprint class="w-4 h-4 text-primary" />
+                <x-lucide-fingerprint class="w-4 h-4 text-primary" />    
+                Udyantra ID : 
                 {{ session('udyantra_id') }}
             </span>
         </div>
