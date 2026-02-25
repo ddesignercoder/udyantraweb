@@ -192,8 +192,8 @@ class PdfReportController extends Controller
 
         // Extract Strengths and Areas from Outcome 0 (Primary Outcome)
         $outcome = $data['outcomes'][0];
-        //$strengthsList = array_filter(array_map('trim', preg_split('/[,;]|\band\b/i', $outcome['strengths'])));
-        $strengthsList = array_map('trim', explode(';', $outcome['strengths']));
+        $strengthsList = array_filter(array_map('trim', preg_split('/[,;]|\band\b/i', $outcome['strengths'])));
+        //$strengthsList = array_map('trim', explode(';', $outcome['strengths']));
         $areasList = array_map('trim', explode(';', $outcome['areas_to_improve']));
         // $areasList = array_filter(array_map('trim', preg_split('/[,;]|\band\b/i', $outcome['areas_to_improve']))); 
 

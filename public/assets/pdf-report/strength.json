@@ -3,44 +3,158 @@
     {
       "id": 1,
       "skill_name": "Communication",
-      "student": "The student expresses thoughts clearly and engages actively in discussions. This strength facilitates better understanding, collaborative learning, and effective presentation of ideas.",
-      "professional": "The individual demonstrates the ability to convey information clearly and persuasively across various mediums. This strength promotes effective collaboration, reduces misunderstandings, and enhances leadership potential."
+      "student": "Communication is your ability to express your thoughts clearly and understand others while speaking, writing, or listening.",
+      "professional": "Communication reflects clarity of expression, active listening, articulation of ideas, and the ability to influence and inform effectively in workplace interactions."
     },
     {
       "id": 2,
       "skill_name": "Teamwork",
-      "student": "The student works well with peers, contributes effectively to group projects, and respects diverse viewpoints. This fosters a supportive learning environment and successful collaborative efforts.",
-      "professional": "The individual excels in collaborative environments, actively supporting colleagues and working towards shared goals. This strength leads to higher team productivity, improved morale, and successful project outcomes."
+      "student": "Teamwork means working well with others to complete group tasks and achieve shared goals.",
+      "professional": "Teamwork represents the ability to collaborate effectively, contribute to group objectives, and maintain positive working relationships."
     },
     {
       "id": 3,
       "skill_name": "Enthusiasm",
-      "student": "The student approaches learning with energy and a positive attitude. This intrinsic motivation helps in overcoming challenges, staying engaged in subjects, and inspiring peers.",
-      "professional": "The individual approaches tasks with high energy and deep interest. This proactive mindset drives personal productivity, encourages innovation, and positively influences the overall workplace culture."
+      "student": "Enthusiasm is your energy and excitement toward learning, activities, and new opportunities.",
+      "professional": "Enthusiasm reflects proactive engagement, positive attitude, and motivational energy toward tasks and organizational goals."
     },
     {
       "id": 4,
-      "skill_name": "Strong pattern recognition and deductive reasoning.",
-      "student": "The student excels at identifying logical sequences, trends, and relationships between concepts. This strength aids in solving complex problems, understanding scientific principles, and mastering mathematical concepts.",
-      "professional": "The individual is highly capable of analyzing data to identify trends, draw logical conclusions, and solve complex problems. This analytical capability is crucial for strategic planning, troubleshooting, and making informed decisions."
+      "skill_name": "Empathy",
+      "student": "Empathy means understanding how others feel and being kind and supportive toward them.",
+      "professional": "Empathy represents emotional intelligence, sensitivity to others’ perspectives, and the ability to build trust-based relationships."
     },
     {
       "id": 5,
-      "skill_name": "Good at calculations, number sense and quantitative analysis.",
-      "student": "The student demonstrates a strong aptitude for working with numbers, understanding mathematical operations, and interpreting data. This provides a significant advantage in STEM subjects.",
-      "professional": "The individual processes quantitative data efficiently and accurately. This numerical proficiency is essential in finance, engineering, data analysis, and any role requiring precise measurement and statistical evaluation."
+      "skill_name": "Collaboration",
+      "student": "Collaboration means sharing ideas and responsibilities while working together on projects.",
+      "professional": "Collaboration reflects cooperative engagement, shared accountability, and cross-functional coordination to achieve outcomes."
     },
     {
       "id": 6,
-      "skill_name": "Strong language skills, reading comprehension and writing.",
-      "student": "The student shows excellent capability in understanding written texts, articulating ideas through writing, and mastering vocabulary. This is highly beneficial across humanities, literature, and essay-based subjects.",
-      "professional": "The individual possesses superior written communication and text comprehension skills. This allows for drafting clear reports, structuring compelling arguments, interpreting complex documentation, and engaging effectively with stakeholders."
+      "skill_name": "Supportive Leadership",
+      "student": "Supportive leadership means guiding others while encouraging and helping them grow.",
+      "professional": "Supportive leadership indicates mentoring capability, empowering team members, and fostering a positive and growth-oriented work culture."
     },
     {
       "id": 7,
-      "skill_name": "Good at visualising shapes, patterns and spatial arrangements.",
-      "student": "The student has a strong spatial awareness and can mentally manipulate objects and designs. This strength is valuable in subjects like geometry, art, architecture, and design-related coursework.",
-      "professional": "The individual can easily interpret visual information, blueprints, and spatial relationships. This aptitude is highly advantageous in fields such as engineering, architecture, graphic design, and logistics planning."
+      "skill_name": "Reliability",
+      "student": "Reliability means others can trust you to complete your work on time and keep your promises.",
+      "professional": "Reliability reflects dependability, consistency in performance, and accountability in fulfilling responsibilities."
+    },
+    {
+      "id": 8,
+      "skill_name": "Attention to Detail",
+      "student": "Attention to detail means noticing small mistakes and focusing carefully on tasks.",
+      "professional": "Attention to detail represents precision, accuracy, quality control, and thoroughness in execution."
+    },
+    {
+      "id": 9,
+      "skill_name": "Consistency",
+      "student": "Consistency means putting in steady effort and performing well regularly.",
+      "professional": "Consistency reflects stable performance, disciplined execution, and sustained productivity over time."
+    },
+    {
+      "id": 10,
+      "skill_name": "Sensitivity",
+      "student": "Sensitivity means being aware of others’ feelings and reacting thoughtfully.",
+      "professional": "Sensitivity represents emotional awareness and responsiveness to interpersonal dynamics in professional settings."
+    },
+    {
+      "id": 11,
+      "skill_name": "Carefulness",
+      "student": "Carefulness means thinking before acting and avoiding careless mistakes.",
+      "professional": "Carefulness reflects risk awareness, thoughtful decision-making, and responsible handling of tasks."
+    },
+    {
+      "id": 12,
+      "skill_name": "Thoughtful Reflection",
+      "student": "Thoughtful reflection means thinking deeply about your actions and learning from experiences.",
+      "professional": "Thoughtful reflection represents self-awareness, strategic thinking, and the ability to evaluate decisions for continuous improvement."
+    },
+    {
+      "id": 13,
+      "skill_name": "Innovation",
+      "student": "Innovation means coming up with new and better ways of doing things.",
+      "professional": "Innovation reflects the ability to introduce creative improvements, challenge conventional thinking, and drive change."
+    },
+    {
+      "id": 14,
+      "skill_name": "Idea Generation",
+      "student": "Idea generation means thinking of many creative solutions or suggestions.",
+      "professional": "Idea generation represents ideation strength, brainstorming capability, and solution-oriented creativity."
+    },
+    {
+      "id": 15,
+      "skill_name": "Adaptability",
+      "student": "Adaptability means adjusting easily to new situations or changes.",
+      "professional": "Adaptability reflects flexibility, resilience, and the ability to perform effectively in dynamic environments."
+    },
+    {
+      "id": 16,
+      "skill_name": "Strong Pattern Recognition",
+      "student": "This means you can quickly notice patterns in numbers, shapes, or ideas.",
+      "professional": "Strong pattern recognition represents analytical ability to identify trends, connections, and recurring structures in data or situations."
+    },
+    {
+      "id": 17,
+      "skill_name": "Deductive Reasoning",
+      "student": "Deductive reasoning means using given facts to reach logical conclusions.",
+      "professional": "Deductive reasoning reflects structured logical thinking and the ability to draw valid conclusions from established principles or data."
+    },
+    {
+      "id": 18,
+      "skill_name": "Good at Calculations",
+      "student": "This means you can solve math problems quickly and accurately.",
+      "professional": "Good at calculations reflects numerical fluency, computational accuracy, and efficiency in quantitative tasks."
+    },
+    {
+      "id": 19,
+      "skill_name": "Number Sense",
+      "student": "Number sense means understanding how numbers work and making quick mental calculations.",
+      "professional": "Number sense represents intuitive understanding of numerical relationships, financial logic, and quantitative estimation."
+    },
+    {
+      "id": 20,
+      "skill_name": "Quantitative Analysis",
+      "student": "Quantitative analysis means solving problems using numbers and data.",
+      "professional": "Quantitative analysis reflects data interpretation, statistical reasoning, and evidence-based decision-making."
+    },
+    {
+      "id": 21,
+      "skill_name": "Strong Language Skills",
+      "student": "Strong language skills mean you understand and use words effectively in reading and speaking.",
+      "professional": "Strong language skills reflect advanced communication capability, vocabulary proficiency, and structured articulation."
+    },
+    {
+      "id": 22,
+      "skill_name": "Reading Comprehension",
+      "student": "Reading comprehension means understanding what you read clearly.",
+      "professional": "Reading comprehension represents the ability to interpret complex information, documents, and written materials accurately."
+    },
+    {
+      "id": 23,
+      "skill_name": "Writing",
+      "student": "Writing means expressing your thoughts clearly through essays, answers, or creative work.",
+      "professional": "Writing reflects structured documentation, persuasive communication, and clarity in professional correspondence."
+    },
+    {
+      "id": 24,
+      "skill_name": "Good at Visualising Shapes",
+      "student": "This means you can imagine how shapes look and move in your mind.",
+      "professional": "This reflects spatial visualization ability, essential for design, engineering, architecture, and structural planning."
+    },
+    {
+      "id": 25,
+      "skill_name": "Patterns",
+      "student": "Patterns mean recognizing repeating designs, sequences, or relationships.",
+      "professional": "Pattern recognition reflects the ability to detect systematic structures in data, processes, or behavior."
+    },
+    {
+      "id": 26,
+      "skill_name": "Spatial Arrangements",
+      "student": "Spatial arrangements mean understanding how objects fit together in space.",
+      "professional": "Spatial arrangements represent the ability to conceptualize layouts, structures, and 3D configurations accurately."
     }
   ]
 }
