@@ -135,7 +135,28 @@
             </div>
         </div>
 
-        <!-- Step 3: Assign Button -->
+        <!-- Step 3: Report Permission -->
+        <div class="bg-white rounded-lg shadow-md p-6" x-show="selectedPackage && selectedUserIds.length > 0">
+            <h2 class="text-xl font-semibold mb-4 flex items-center">
+                <span class="bg-teal-600 text-white rounded-full w-8 h-8 flex items-center justify-center mr-3">3</span>
+                Report Permission
+            </h2>
+            <div class="bg-amber-50 border border-amber-200 rounded-lg p-4">
+                <label class="flex items-center gap-3 cursor-pointer">
+                    <input type="checkbox" x-model="canViewReport"
+                           class="w-5 h-5 text-teal-600 rounded focus:ring-teal-500">
+                    <div>
+                        <span class="font-medium text-gray-900">Allow Report Viewing</span>
+                        <p class="text-sm text-gray-600">
+                            {{ $role === 'school_admin' ? 'Students' : 'Employees' }} can view their test report after completing the test.
+                            You can change this later from <a href="{{ route('dashboard.manage-report-permissions') }}" class="text-teal-600 underline hover:text-teal-700">Manage Report Permissions</a>.
+                        </p>
+                    </div>
+                </label>
+            </div>
+        </div>
+
+        <!-- Step 4: Assign Button -->
         <div class="text-center" x-show="selectedPackage && selectedUserIds.length > 0">
             <button 
                 @click="assignTest()"
@@ -186,6 +207,7 @@ function manageTests() {
         assigning: false,
         showSuccessModal: false,
         successMessage: '',
+        canViewReport: true,
 
         async init() {
             await this.loadPackages();
@@ -292,7 +314,8 @@ function manageTests() {
                 const response = await axios.post('/assign-test', {
                     subscription_id: this.selectedPackage.id,
                     test_slug: this.selectedPackage.test_slugs[0].slug,
-                    user_ids: this.selectedUserIds
+                    user_ids: this.selectedUserIds,
+                    can_view_report: this.canViewReport
                 });
 
                 if (response.data.status) {
@@ -325,6 +348,7 @@ function manageTests() {
             this.selectedPackage = null;
             this.selectedUserIds = [];
             this.searchQuery = '';
+            this.canViewReport = true;
         }
     }
 }
