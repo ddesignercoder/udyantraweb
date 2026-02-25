@@ -429,14 +429,14 @@
         @endif
 
         @if(!empty($detailed_strengths)) 
-            <h3 style="color: #27ae60; font-size: 18px; page-break-before: always;">YOUR STRENGTH BUILDERS</h3>
+            <h3 style="color: #27ae60; font-size: 18px; page-break-before: always; margin-bottom: 40px;">YOUR STRENGTH BUILDERS</h3>
             @foreach($detailed_strengths as $skill)
-                @if($loop->index > 0 && $loop->index % 4 == 0)
+                @if($loop->index > 0 && $loop->index % 7 == 0)
                     <div class="page-break"></div>
                 @endif
-                <div class="summary-box" style="border-left-color: #27ae60; font-size: 14px; margin-top: 50px;">
+                <div class="summary-box" style="border-left-color: #27ae60; font-size: 14px;">
 
-                    <span class="summary-title" style="color: #27ae60; font-size: 16px;">{{ $skill['title'] }}</span>
+                    <span class="summary-title" style="color: #27ae60; font-size: 14px;">{{ $skill['title'] }}</span>
                     <p> {{ $skill[$profile_key]['definition'] }}</p>
                 </div>
             @endforeach
