@@ -44,6 +44,19 @@
                                             <p class="flex items-center text-sm text-gray-500">
                                                 {{ $item['date'] }}
                                             </p>
+                                            @if(isset($item['can_view_report']))
+                                                @if(session('user_role') == 'school_admin' || session('user_role') == 'company_admin')
+                                                    @if($item['can_view_report'])
+                                                        <span class="ml-3 inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-700">
+                                                            📊 Report Allowed
+                                                        </span>
+                                                    @else
+                                                        <span class="ml-3 inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium bg-red-100 text-red-600">
+                                                            🔒 Report Restricted
+                                                        </span>
+                                                    @endif
+                                                @endif
+                                            @endif
                                         </div>
                                         <div class="mt-2 flex items-center text-sm text-gray-500 sm:mt-0">
                                             @if(session('user_role') == 'school_admin' || session('user_role') == 'company_admin')
@@ -51,9 +64,15 @@
                                                 View Analysis &rarr;
                                             </a>
                                             @else
-                                            <a href="{{ route('test.result', encrypt($item['test_result_id'])) }}" class="text-indigo-600 hover:text-indigo-900">
-                                                View Analysis &rarr;
-                                            </a>
+                                                @if(!isset($item['can_view_report']) || $item['can_view_report'])
+                                                <a href="{{ route('test.result', encrypt($item['test_result_id'])) }}" class="text-indigo-600 hover:text-indigo-900">
+                                                    View Analysis &rarr;
+                                                </a>
+                                                @else
+                                                <span class="text-gray-400 text-sm">
+                                                    🔒 Contact your admin for report access
+                                                </span>
+                                                @endif
                                             @endif
                                         </div>
                                     </div>
