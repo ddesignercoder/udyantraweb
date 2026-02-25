@@ -89,6 +89,9 @@ Route::middleware(['auth.api'])->group(function () {
     // Self-assign not needed - individual users get automatic assignment on payment
     // Route::post('/api/self-assign-test', [TestsManageController::class, 'selfAssignTest'])->name('api.self-assign-test');
     Route::get('/subscription-stats', [TestsManageController::class, 'getSubscriptionStats'])->name('subscription-stats');
+    Route::patch('/toggle-report-permission', [TestsManageController::class, 'toggleReportPermission'])->name('toggle-report-permission');
+    Route::get('/dashboard/manage-report-permissions', [TestsManageController::class, 'manageReportPermissions'])->name('dashboard.manage-report-permissions');
+    Route::get('/users-with-test-history', [TestsManageController::class, 'getUsersWithTestHistory'])->name('users-with-test-history');
     
     //Test Perform by all users (view assigned tests)
     Route::get('/dashboard/my-tests', [TestsManageController::class, 'myTests'])->name('dashboard.my-tests');
