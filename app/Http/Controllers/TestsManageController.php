@@ -191,17 +191,9 @@ class TestsManageController extends Controller
      */
     public function getUsersWithTestHistory(Request $request)
     {
-        $request->validate([
-            'subscription_id' => 'required|integer',
-        ]);
-
-        $subscriptionId = $request->subscription_id;
-
-        // Step 1: Get users assigned to this specific package
+        // Step 1: Get assignable users
         $usersResponse = Http::withToken($this->getToken())
-            ->get($this->getBaseUrl() . '/admin/assignable-users', [
-                'subscription_id' => $subscriptionId
-            ]);
+            ->get($this->getBaseUrl() . '/admin/assignable-users');
 
         if (!$usersResponse->successful() || !$usersResponse->json('status')) {
             return response()->json(['status' => false, 'message' => 'Failed to fetch users']);
@@ -209,14 +201,9 @@ class TestsManageController extends Controller
 
         $users = $usersResponse->json('data');
 
-        // Step 2: For users who have been assigned this package's test, get their test history
+        // Step 2: For each user, get their test history (with can_view_report)
         $usersWithHistory = [];
         foreach ($users as $user) {
-            // Only fetch history for users who have been assigned this test
-            if (!isset($user['test_assigned']) || !$user['test_assigned']) {
-                continue;
-            }
-
             $historyResponse = Http::withToken($this->getToken())
                 ->get($this->getBaseUrl() . '/user-test-history', [
                     'user_id' => $user['id']
@@ -228,8 +215,11 @@ class TestsManageController extends Controller
                 $history = $historyData['history'] ?? [];
             }
 
-            $user['test_history'] = $history;
-            $usersWithHistory[] = $user;
+            // Only include users who have completed tests
+            if (!empty($history)) {
+                $user['test_history'] = $history;
+                $usersWithHistory[] = $user;
+            }
         }
 
         return response()->json([
