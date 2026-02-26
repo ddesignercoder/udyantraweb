@@ -29,74 +29,15 @@
     <!-- Loading State -->
     <div x-show="loading" class="text-center py-12">
         <div class="inline-block animate-spin rounded-full h-12 w-12 border-b-2 border-teal-600"></div>
-        <p class="mt-4 text-gray-600">Loading...</p>
+        <p class="mt-4 text-gray-600">Loading users and test data...</p>
     </div>
 
     <!-- Main Content -->
-    <div x-show="!loading" class="space-y-6">
-
-        <!-- Step 1: Select Package -->
-        <div class="bg-white rounded-lg shadow-md p-6">
-            <h2 class="text-xl font-semibold mb-4 flex items-center">
-                <span class="bg-teal-600 text-white rounded-full w-8 h-8 flex items-center justify-center mr-3">1</span>
-                Select a Package
-            </h2>
-
-            <div class="mb-4">
-                <label class="block text-sm font-medium text-gray-700 mb-2">Choose Package:</label>
-                <select @change="selectPackage($event.target.value)" 
-                    class="w-full border border-gray-300 rounded-lg px-4 py-3 focus:ring-2 focus:ring-teal-500 focus:border-teal-500"
-                >
-                    <option value="">-- Select a package --</option>
-                    <template x-for="pkg in packages" :key="pkg.id">
-                        <option 
-                            :value="pkg.id" 
-                            x-text="`${pkg.package_name} - ${pkg.category}`"
-                        ></option>
-                    </template>
-                </select>
-            </div>
-
-            <!-- Package Details -->
-            <div x-show="selectedPackage" class="bg-linear-to-r from-teal-50 to-cyan-50 p-4 rounded-lg border border-teal-200">
-                <h3 class="font-semibold text-teal-900 mb-3">📦 Package Details:</h3>
-                <div class="grid grid-cols-2 md:grid-cols-4 gap-4 text-sm">
-                    <div>
-                        <span class="text-gray-600">Package:</span>
-                        <p class="font-semibold text-gray-900" x-text="selectedPackage?.package_name"></p>
-                    </div>
-                    <div>
-                        <span class="text-gray-600">Category:</span>
-                        <p class="font-semibold text-gray-900" x-text="selectedPackage?.category"></p>
-                    </div>
-                    <div>
-                        <span class="text-gray-600">Test:</span>
-                        <p class="font-semibold text-gray-900" x-text="selectedPackage?.test_slugs[0]?.name"></p>
-                    </div>
-                    <div>
-                        <span class="text-gray-600">Expiry:</span>
-                        <p class="font-semibold text-gray-900" x-text="selectedPackage?.expiry_date"></p>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Step 2: Users & Permissions -->
-        <div class="bg-white rounded-lg shadow-md p-6" x-show="selectedPackage">
-            <h2 class="text-xl font-semibold mb-4 flex items-center">
-                <span class="bg-teal-600 text-white rounded-full w-8 h-8 flex items-center justify-center mr-3">2</span>
-                Report Permissions for {{ $role === 'school_admin' ? 'Students' : 'Employees' }}
-            </h2>
-
-            <!-- Loading users -->
-            <div x-show="loadingUsers" class="text-center py-8">
-                <div class="inline-block animate-spin rounded-full h-8 w-8 border-b-2 border-teal-600"></div>
-                <p class="mt-3 text-gray-600 text-sm">Loading users...</p>
-            </div>
-
-            <div x-show="!loadingUsers">
-                <!-- Search -->
-                <div class="mb-4">
+    <div x-show="!loading">
+        <!-- Search & Filters -->
+        <div class="mb-6">
+            <div class="flex flex-col sm:flex-row gap-4">
+                <div class="flex-1">
                     <input 
                         type="text" 
                         x-model="searchQuery"
@@ -104,96 +45,120 @@
                         class="w-full border border-gray-300 rounded-lg px-4 py-2.5 focus:ring-2 focus:ring-teal-500 focus:border-teal-500"
                     >
                 </div>
+                <select x-model="filterStatus" 
+                        class="border border-gray-300 rounded-lg px-4 py-2.5 focus:ring-2 focus:ring-teal-500 focus:border-teal-500">
+                    <option value="all">All Permissions</option>
+                    <option value="allowed">Report Allowed</option>
+                    <option value="restricted">Report Restricted</option>
+                </select>
+            </div>
+        </div>
 
-                <!-- Stats -->
-                <div class="grid grid-cols-3 gap-3 mb-4">
-                    <div class="bg-blue-50 border border-blue-200 rounded-lg p-3 text-center">
-                        <p class="text-lg font-bold text-blue-700" x-text="users.length"></p>
-                        <p class="text-xs text-blue-600">Assigned Users</p>
+        <!-- Stats Summary -->
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-6">
+            <div class="bg-white rounded-lg shadow-sm border border-gray-200 p-4">
+                <div class="flex items-center gap-3">
+                    <div class="p-2 bg-blue-50 rounded-lg">
+                        <x-lucide-users class="w-5 h-5 text-blue-600" />
                     </div>
-                    <div class="bg-green-50 border border-green-200 rounded-lg p-3 text-center">
-                        <p class="text-lg font-bold text-green-700" x-text="totalAllowed"></p>
-                        <p class="text-xs text-green-600">Reports Allowed</p>
-                    </div>
-                    <div class="bg-red-50 border border-red-200 rounded-lg p-3 text-center">
-                        <p class="text-lg font-bold text-red-700" x-text="totalRestricted"></p>
-                        <p class="text-xs text-red-600">Reports Restricted</p>
+                    <div>
+                        <p class="text-sm text-gray-500">Total Users with Tests</p>
+                        <p class="text-xl font-bold text-gray-900" x-text="users.length"></p>
                     </div>
                 </div>
+            </div>
+            <div class="bg-white rounded-lg shadow-sm border border-gray-200 p-4">
+                <div class="flex items-center gap-3">
+                    <div class="p-2 bg-green-50 rounded-lg">
+                        <x-lucide-eye class="w-5 h-5 text-green-600" />
+                    </div>
+                    <div>
+                        <p class="text-sm text-gray-500">Reports Allowed</p>
+                        <p class="text-xl font-bold text-green-600" x-text="totalAllowed"></p>
+                    </div>
+                </div>
+            </div>
+            <div class="bg-white rounded-lg shadow-sm border border-gray-200 p-4">
+                <div class="flex items-center gap-3">
+                    <div class="p-2 bg-red-50 rounded-lg">
+                        <x-lucide-eye-off class="w-5 h-5 text-red-600" />
+                    </div>
+                    <div>
+                        <p class="text-sm text-gray-500">Reports Restricted</p>
+                        <p class="text-xl font-bold text-red-600" x-text="totalRestricted"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-                <!-- Users List -->
-                <div class="space-y-3 max-h-[500px] overflow-y-auto">
-                    <template x-for="user in filteredUsers" :key="user.id">
-                        <div class="border border-gray-200 rounded-lg overflow-hidden">
-                            <!-- User Row -->
-                            <div class="px-4 py-3 bg-gray-50 flex items-center justify-between cursor-pointer"
-                                 @click="user._expanded = !user._expanded">
-                                <div class="flex items-center gap-3">
-                                    <div class="w-9 h-9 rounded-full bg-teal-100 flex items-center justify-center">
-                                        <span class="text-teal-700 font-bold text-sm" x-text="user.name.charAt(0).toUpperCase()"></span>
-                                    </div>
-                                    <div>
-                                        <h3 class="font-semibold text-gray-900 text-sm" x-text="user.name"></h3>
-                                        <p class="text-xs text-gray-500" x-text="user.email"></p>
-                                    </div>
-                                </div>
-                                <div class="flex items-center gap-3">
-                                    <template x-if="user.test_history.length > 0">
-                                        <span class="text-xs text-gray-500" x-text="`${user.test_history.length} test(s) taken`"></span>
-                                    </template>
-                                    <template x-if="user.test_history.length === 0">
-                                        <span class="text-xs text-amber-500">No tests taken yet</span>
-                                    </template>
-                                    <x-lucide-chevron-down class="w-4 h-4 text-gray-400 transition-transform duration-200" 
-                                                           ::class="user._expanded ? 'rotate-180' : ''" />
-                                </div>
+        <!-- Users List -->
+        <div class="space-y-4">
+            <template x-for="user in filteredUsers" :key="user.id">
+                <div class="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden">
+                    <!-- User Header -->
+                    <div class="px-6 py-4 bg-gray-50 border-b border-gray-200 flex items-center justify-between cursor-pointer"
+                         @click="user._expanded = !user._expanded">
+                        <div class="flex items-center gap-3">
+                            <div class="w-10 h-10 rounded-full bg-teal-100 flex items-center justify-center">
+                                <span class="text-teal-700 font-bold text-sm" x-text="user.name.charAt(0).toUpperCase()"></span>
                             </div>
-
-                            <!-- Expanded: Test History with Toggles -->
-                            <div x-show="user._expanded && user.test_history.length > 0" x-collapse>
-                                <div class="divide-y divide-gray-100">
-                                    <template x-for="test in user.test_history" :key="test.test_result_id">
-                                        <div class="px-4 py-3 flex items-center justify-between gap-3">
-                                            <div class="flex-1">
-                                                <p class="text-sm font-medium text-gray-900" x-text="`Assessment #${test.test_id}`"></p>
-                                                <p class="text-xs text-gray-500" x-text="test.date"></p>
-                                            </div>
-
-                                            <!-- Toggle -->
-                                            <div class="flex items-center gap-2">
-                                                <span class="text-xs font-medium hidden sm:inline"
-                                                      :class="test.can_view_report ? 'text-green-600' : 'text-red-500'"
-                                                      x-text="test.can_view_report ? '📊 Allowed' : '🔒 Restricted'">
-                                                </span>
-                                                <button 
-                                                    @click="togglePermission(test)"
-                                                    :disabled="test._toggling || !test.assignment_id"
-                                                    class="relative inline-flex h-6 w-11 items-center rounded-full transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-teal-500 focus:ring-offset-2 disabled:opacity-50"
-                                                    :class="test.can_view_report ? 'bg-green-500' : 'bg-gray-300'">
-                                                    <span class="inline-block h-4 w-4 transform rounded-full bg-white transition-transform duration-200 shadow-sm"
-                                                          :class="test.can_view_report ? 'translate-x-6' : 'translate-x-1'">
-                                                    </span>
-                                                </button>
-                                            </div>
-                                        </div>
-                                    </template>
-                                </div>
-                            </div>
-
-                            <!-- No tests message -->
-                            <div x-show="user._expanded && user.test_history.length === 0" x-collapse>
-                                <div class="px-4 py-3 text-center">
-                                    <p class="text-sm text-gray-400">This user hasn't completed any tests yet</p>
-                                </div>
+                            <div>
+                                <h3 class="font-semibold text-gray-900" x-text="user.name"></h3>
+                                <p class="text-sm text-gray-500" x-text="user.email"></p>
                             </div>
                         </div>
-                    </template>
+                        <div class="flex items-center gap-3">
+                            <span class="text-sm text-gray-500" x-text="`${user.test_history.length} test(s)`"></span>
+                            <x-lucide-chevron-down class="w-5 h-5 text-gray-400 transition-transform duration-200" 
+                                                   ::class="user._expanded ? 'rotate-180' : ''" />
+                        </div>
+                    </div>
 
-                    <!-- No users found -->
-                    <div x-show="filteredUsers.length === 0 && !loadingUsers" class="text-center py-8">
-                        <p class="text-gray-500 text-sm">No assigned {{ $role === 'school_admin' ? 'students' : 'employees' }} found for this package</p>
+                    <!-- Test History (Expandable) -->
+                    <div x-show="user._expanded" x-collapse>
+                        <div class="divide-y divide-gray-100">
+                            <template x-for="test in user.test_history" :key="test.test_result_id">
+                                <div class="px-6 py-4 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
+                                    <div class="flex-1">
+                                        <div class="flex items-center gap-2">
+                                            <p class="font-medium text-gray-900" x-text="`Assessment #${test.test_id}`"></p>
+                                            <span class="px-2 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">
+                                                Completed
+                                            </span>
+                                        </div>
+                                        <p class="text-sm text-gray-500 mt-1" x-text="test.date"></p>
+                                    </div>
+
+                                    <!-- Toggle Switch -->
+                                    <div class="flex items-center gap-3">
+                                        <span class="text-sm font-medium"
+                                              :class="test.can_view_report ? 'text-green-600' : 'text-red-500'"
+                                              x-text="test.can_view_report ? '📊 Report Allowed' : '🔒 Report Restricted'">
+                                        </span>
+                                        <button 
+                                            @click="togglePermission(test)"
+                                            :disabled="test._toggling"
+                                            class="relative inline-flex h-6 w-11 items-center rounded-full transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-teal-500 focus:ring-offset-2 disabled:opacity-50"
+                                            :class="test.can_view_report ? 'bg-green-500' : 'bg-gray-300'">
+                                            <span class="inline-block h-4 w-4 transform rounded-full bg-white transition-transform duration-200 shadow-sm"
+                                                  :class="test.can_view_report ? 'translate-x-6' : 'translate-x-1'">
+                                            </span>
+                                        </button>
+                                    </div>
+                                </div>
+                            </template>
+                        </div>
                     </div>
                 </div>
+            </template>
+
+            <!-- No Users Found -->
+            <div x-show="filteredUsers.length === 0 && !loading" class="bg-white rounded-lg shadow-sm border border-gray-200 p-12 text-center">
+                <div class="mx-auto w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mb-4">
+                    <x-lucide-search-x class="w-8 h-8 text-gray-400" />
+                </div>
+                <h3 class="text-lg font-bold text-gray-900 mb-1">No matching users found</h3>
+                <p class="text-gray-500 text-sm">Try adjusting your search or filter criteria</p>
             </div>
         </div>
     </div>
@@ -204,71 +169,39 @@
 <script>
 function reportPermissions() {
     return {
-        packages: [],
         users: [],
-        selectedPackage: null,
         searchQuery: '',
+        filterStatus: 'all',
         loading: true,
-        loadingUsers: false,
 
         async init() {
-            await this.loadPackages();
+            await this.loadData();
             this.loading = false;
         },
 
-        async loadPackages() {
+        async loadData() {
             try {
-                const response = await axios.get('/purchased-packages');
-                if (response.data.status) {
-                    this.packages = response.data.data;
-                }
-            } catch (error) {
-                console.error('Failed to load packages:', error);
-                Toast.fire({ icon: 'error', title: 'Failed to load packages.' });
-            }
-        },
-
-        async selectPackage(packageId) {
-            if (!packageId) {
-                this.selectedPackage = null;
-                this.users = [];
-                return;
-            }
-
-            this.selectedPackage = this.packages.find(p => p.id == packageId);
-            this.users = [];
-            this.searchQuery = '';
-
-            // Load users for this package
-            this.loadingUsers = true;
-            try {
-                const response = await axios.get('/users-with-test-history', {
-                    params: { subscription_id: this.selectedPackage.subscription_id }
-                });
+                const response = await axios.get('/users-with-test-history');
                 if (response.data.status) {
                     this.users = response.data.data.map(user => ({
                         ...user,
                         _expanded: true,
-                        test_history: (user.test_history || []).map(test => ({
+                        test_history: user.test_history.map(test => ({
                             ...test,
                             _toggling: false
                         }))
                     }));
                 }
             } catch (error) {
-                console.error('Failed to load users:', error);
-                Toast.fire({ icon: 'error', title: 'Failed to load users.' });
-            } finally {
-                this.loadingUsers = false;
+                console.error('Failed to load data:', error);
+                Toast.fire({
+                    icon: 'error',
+                    title: 'Failed to load data. Please refresh the page.'
+                });
             }
         },
 
         async togglePermission(test) {
-            if (!test.assignment_id) {
-                Toast.fire({ icon: 'warning', title: 'No assignment found for this test' });
-                return;
-            }
-
             test._toggling = true;
             const newValue = !test.can_view_report;
 
@@ -285,23 +218,44 @@ function reportPermissions() {
                         title: newValue ? 'Report access granted' : 'Report access restricted'
                     });
                 } else {
-                    Toast.fire({ icon: 'error', title: response.data.message || 'Failed to update' });
+                    Toast.fire({
+                        icon: 'error',
+                        title: response.data.message || 'Failed to update permission'
+                    });
                 }
             } catch (error) {
                 console.error('Toggle failed:', error);
-                Toast.fire({ icon: 'error', title: 'Failed to update permission' });
+                Toast.fire({
+                    icon: 'error',
+                    title: 'Failed to update permission'
+                });
             } finally {
                 test._toggling = false;
             }
         },
 
         get filteredUsers() {
-            if (!this.searchQuery) return this.users;
-            const query = this.searchQuery.toLowerCase();
-            return this.users.filter(user =>
-                user.name.toLowerCase().includes(query) ||
-                user.email.toLowerCase().includes(query)
-            );
+            let result = this.users;
+
+            if (this.searchQuery) {
+                const query = this.searchQuery.toLowerCase();
+                result = result.filter(user =>
+                    user.name.toLowerCase().includes(query) ||
+                    user.email.toLowerCase().includes(query)
+                );
+            }
+
+            if (this.filterStatus !== 'all') {
+                result = result.filter(user => {
+                    return user.test_history.some(test => {
+                        if (this.filterStatus === 'allowed') return test.can_view_report;
+                        if (this.filterStatus === 'restricted') return !test.can_view_report;
+                        return true;
+                    });
+                });
+            }
+
+            return result;
         },
 
         get totalAllowed() {
