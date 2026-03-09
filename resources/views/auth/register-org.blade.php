@@ -15,12 +15,12 @@
                 <input type="hidden" name="type" x-model="type">
                 
                 <button type="button" @click="type = 'school'"
-                    :class="type === 'school' ? 'bg-white shadow text-primary' : 'text-black'"
+                    :class="type === 'school' ? 'bg-white shadow text-primary' : 'text-black cursor-pointer'"
                     class="flex-1 py-2 rounded-md font-semibold transition">
                     School
                 </button>
                 <button type="button" @click="type = 'company'"
-                    :class="type === 'company' ? 'bg-white shadow text-primary' : 'text-black'"
+                    :class="type === 'company' ? 'bg-white shadow text-primary' : 'text-black cursor-pointer'"
                     class="flex-1 py-2 rounded-md font-semibold transition">
                     Company
                 </button>
@@ -74,10 +74,6 @@
             <button type="submit" class="cursor-pointer w-full mt-8 bg-primary hover:bg-primary-light transition duration-200 text-white font-bold py-3 rounded-full transition shadow-lg">
                 Create Account
             </button>
-
-            <!-- <div class="text-center mt-4">
-                <a href="{{ route('register.select') }}" class="text-sm text-gray-500 hover:text-gray-900">Cancel</a>
-            </div> -->
 
         </form>
         <div class="text-center mt-4">

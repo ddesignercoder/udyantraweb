@@ -62,8 +62,8 @@
                             <input type="text" name="section" placeholder="e.g. A" class="w-full border-gray-300 rounded-lg shadow-sm border p-2.5">
                         </div>
                         <div>
-                            <label class="block text-sm font-medium text-gray-700 mb-1">Guardian Name</label>
-                            <input type="text" name="guardian_name" required placeholder="Enter guardian's name" class="w-full border-gray-300 rounded-lg shadow-sm border p-2.5">
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Guardian/Parent's Name</label>
+                            <input type="text" name="guardian_name" required placeholder="Enter guardian's/parent's name" class="w-full border-gray-300 rounded-lg shadow-sm border p-2.5">
                         </div>
                     @endif
 
