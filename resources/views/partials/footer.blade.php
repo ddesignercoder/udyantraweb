@@ -51,35 +51,35 @@
                     <h3 class="text-lg font-bold mb-2 md:mb-6">Follow Us</h3>
                     <div class="flex gap-4">
                         {{-- Facebook --}}
-                        <a href="#" class="w-6 text-center">
+                        <!-- <a href="#" class="w-6 text-center">
                             <img src="{{ asset('assets/image/Facebook.svg') }}" 
                              alt="Facebook" 
                              class="w-5">
-                        </a>
+                        </a> -->
                         
                         {{-- Instagram --}}
-                        <a href="#" class="w-6 text-center">
+                        <a href="https://www.instagram.com/udyantra_edutech/" class="w-6 text-center" target="_blank">
                             <img src="{{ asset('assets/image/Instagram.svg') }}" 
                              alt="Instagram" 
                              class="w-5">
                         </a>
 
                         {{-- X (Twitter) --}}
-                        <a href="#" class="w-6 text-center">
+                        <!-- <a href="#" class="w-6 text-center">
                             <img src="{{ asset('assets/image/Twitter-X.svg') }}" 
                              alt="X" 
                              class="w-5">
-                        </a>
+                        </a> -->
 
                         {{-- YouTube --}}
-                        <a href="#" class="w-6 text-center">
+                        <!-- <a href="#" class="w-6 text-center">
                             <img src="{{ asset('assets/image/Youtube.svg') }}" 
                              alt="Youtube" 
                              class="w-5">
-                        </a>
+                        </a> -->
 
                         {{-- LinkedIn --}}
-                        <a href="#" class="w-6 text-center">
+                        <a href="https://www.linkedin.com/company/udyantra/" class="w-6 text-center" target="_blank">
                             <img src="{{ asset('assets/image/Linkedin.svg') }}" 
                              alt="Linkedin" 
                              class="w-5">
