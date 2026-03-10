@@ -50,6 +50,7 @@ Route::get('/what-we-focus-on', fn () => view('menu-pages.what-we-focus-on'))->n
 Route::get('/citations', fn () => view('menu-pages.citations'))->name('citations');
 Route::get('/faq', fn () => view('menu-pages.faq'))->name('faq');
 Route::get('/contact-us', fn () => view('menu-pages.contact-us'))->name('contact-us');
+Route::get('/helplink', fn () => view('menu-pages.helplink'))->name('helplink');
 Route::post('/enquiry', [EnquiryController::class, 'submit'])->name('enquiry.submit');
 
 //Footer Pages
