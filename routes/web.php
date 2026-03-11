@@ -39,6 +39,10 @@ Route::middleware('guest')->group(function () {
     // Step 2b: Individual Registration
     Route::get('/register/individual', [AuthController::class, 'showIndividualRegister'])->name('register.ind.view');
     Route::post('/register/individual', [AuthController::class, 'registerIndividual'])->name('register.ind.submit');
+
+    // --- Forgot Password ---
+    Route::get('/forgot-password', fn () => view('auth.forgot-password'))->name('password.request');
+    Route::get('/reset-password', fn () => view('auth.reset-password'))->name('password.reset');
 });
 
 // ==========================================
