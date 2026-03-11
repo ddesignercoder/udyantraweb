@@ -54,8 +54,6 @@
 </div>
 
 <script>
-    const apiBase = "{{ rtrim(config('services.backend.url', ''), '/') }}";
-
     document.getElementById('forgot-password-form').addEventListener('submit', async function (e) {
         e.preventDefault();
 
@@ -74,9 +72,13 @@
         btnLoad.classList.remove('hidden');
 
         try {
-            const response = await fetch(`${apiBase}/forgot-password`, {
+            const response = await fetch("{{ route('password.forgot') }}", {
                 method: 'POST',
-                headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json',
+                    'X-CSRF-TOKEN': '{{ csrf_token() }}',
+                },
                 body: JSON.stringify({ email }),
             });
 
