@@ -42,7 +42,9 @@ Route::middleware('guest')->group(function () {
 
     // --- Forgot Password ---
     Route::get('/forgot-password', fn () => view('auth.forgot-password'))->name('password.request');
+    Route::post('/forgot-password', [AuthController::class, 'forgotPassword'])->name('password.forgot');
     Route::get('/reset-password', fn () => view('auth.reset-password'))->name('password.reset');
+    Route::post('/reset-password', [AuthController::class, 'resetPassword'])->name('password.reset.submit');
 });
 
 // ==========================================
