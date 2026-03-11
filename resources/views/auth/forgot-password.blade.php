@@ -74,7 +74,7 @@
         btnLoad.classList.remove('hidden');
 
         try {
-            const response = await fetch(`${apiBase}/api/forgot-password`, {
+            const response = await fetch(`${apiBase}/forgot-password`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
                 body: JSON.stringify({ email }),
