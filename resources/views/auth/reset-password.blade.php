@@ -66,8 +66,6 @@
 </div>
 
 <script>
-    const apiBase = "{{ rtrim(config('services.backend.url', ''), '/') }}";
-
     const params = new URLSearchParams(window.location.search);
     const token  = params.get('token');
     const email  = params.get('email');
@@ -104,9 +102,13 @@
         btnLoad.classList.remove('hidden');
 
         try {
-            const response = await fetch(`${apiBase}/reset-password`, {
+            const response = await fetch("{{ route('password.reset.submit') }}", {
                 method: 'POST',
-                headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json',
+                    'X-CSRF-TOKEN': '{{ csrf_token() }}',
+                },
                 body: JSON.stringify({ email, token, password, password_confirmation }),
             });
 

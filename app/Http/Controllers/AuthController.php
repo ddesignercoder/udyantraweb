@@ -137,7 +137,49 @@ class AuthController extends Controller
     }
 
     // ==========================================
-    // 5. LOGOUT
+    // 5. FORGOT PASSWORD
+    // ==========================================
+    public function forgotPassword(Request $request)
+    {
+        $request->validate(['email' => 'required|email']);
+
+        $baseUrl  = config('services.backend.url');
+        $response = Http::post("{$baseUrl}/forgot-password", [
+            'email' => $request->email,
+        ]);
+
+        $data = $response->json();
+
+        return response()->json($data, $response->status());
+    }
+
+    // ==========================================
+    // 6. RESET PASSWORD
+    // ==========================================
+    public function resetPassword(Request $request)
+    {
+        $request->validate([
+            'email'                 => 'required|email',
+            'token'                 => 'required|string',
+            'password'              => 'required|string|min:8',
+            'password_confirmation' => 'required|string|same:password',
+        ]);
+
+        $baseUrl  = config('services.backend.url');
+        $response = Http::post("{$baseUrl}/reset-password", [
+            'email'                 => $request->email,
+            'token'                 => $request->token,
+            'password'              => $request->password,
+            'password_confirmation' => $request->password_confirmation,
+        ]);
+
+        $data = $response->json();
+
+        return response()->json($data, $response->status());
+    }
+
+    // ==========================================
+    // 7. LOGOUT
     // ==========================================
     public function logout()
     {
