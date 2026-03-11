@@ -8,7 +8,10 @@ body{
         -ms-overflow-style: none;
         scrollbar-width: none;
     }
+.border-current{
+        border-color: #018580;
 
+    }
 .fade-sides::before,
     .fade-sides::after {
     content: "";

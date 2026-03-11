@@ -207,47 +207,47 @@
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto text-center">
       {{-- R - Personality Traits --}}
       <div class="group relative p-4 grow flex flex-col bg-white rounded-xl shadow-lg transition-all duration-300 hover:shadow-xl hover:-translate-y-2 hover:ring-2 hover:ring-primary/50 overflow-hidden border-0 text-center animate-fade-in-up animation-delay-1000">
-          <div class="flex items-center justify-center w-12 h-12 bg-linear-to-br from-primary to-secondary rounded-full shrink-0">
+          <div class="mx-auto flex items-center justify-center w-12 h-12 bg-linear-to-br from-primary to-secondary rounded-full shrink-0">
             <x-lucide-user class="w-6 h-6 text-white" />
           </div>
-          <h5 class="text-base text-left pt-4 pb-2 font-semibold text-black transition-colors duration-300 group-hover:text-primary">Construct Definition</h5>
-        <p class="text-textBlack text-left text-base leading-relaxed">
+          <h5 class="text-base text-center pt-4 pb-2 font-semibold text-black transition-colors duration-300 group-hover:text-primary">Construct Definition</h5>
+        <p class="text-textBlack text-center text-base leading-relaxed">
             Each section is based on clearly defined psychological constructs such as aptitude, personality traits, interests, and orientation
           </p>
       </div>
       <div class="group relative p-4 grow flex flex-col bg-white rounded-xl shadow-lg transition-all duration-300 hover:shadow-xl hover:-translate-y-2 hover:ring-2 hover:ring-primary/50 overflow-hidden border-0 text-center animate-fade-in-up animation-delay-1000">
-          <div class="flex items-center justify-center w-12 h-12 bg-linear-to-br from-primary to-secondary rounded-full shrink-0">
+          <div class="mx-auto flex items-center justify-center w-12 h-12 bg-linear-to-br from-primary to-secondary rounded-full shrink-0">
             <x-lucide-user class="w-6 h-6 text-white" />
           </div>
-          <h5 class="text-base text-left pt-4 pb-2 font-semibold text-black transition-colors duration-300 group-hover:text-primary">Question Design</h5>
-        <p class="text-textBlack text-left text-base leading-relaxed">
+          <h5 class="text-base text-center pt-4 pb-2 font-semibold text-black transition-colors duration-300 group-hover:text-primary">Question Design</h5>
+        <p class="text-textBlack text-center text-base leading-relaxed">
             Questions use validated formats such as Likert scales, situational judgment items, and aptitude-based patterns.
           </p>
       </div>
       <div class="group relative p-4 grow flex flex-col bg-white rounded-xl shadow-lg transition-all duration-300 hover:shadow-xl hover:-translate-y-2 hover:ring-2 hover:ring-primary/50 overflow-hidden border-0 text-center animate-fade-in-up animation-delay-1000">
-          <div class="flex items-center justify-center w-12 h-12 bg-linear-to-br from-primary to-secondary rounded-full shrink-0">
+          <div class="mx-auto flex items-center justify-center w-12 h-12 bg-linear-to-br from-primary to-secondary rounded-full shrink-0">
             <x-lucide-user class="w-6 h-6 text-white" />
           </div>
-          <h5 class="text-base text-left pt-4 pb-2 font-semibold text-black transition-colors duration-300 group-hover:text-primary">Bias Reduction</h5>
-        <p class="text-textBlack text-left text-base leading-relaxed">
+          <h5 class="text-base text-center pt-4 pb-2 font-semibold text-black transition-colors duration-300 group-hover:text-primary">Bias Reduction</h5>
+        <p class="text-textBlack text-center text-base leading-relaxed">
             Items are reviewed to minimize cultural, academic, and gender bias.
           </p>
       </div>
       <div class="group relative p-4 grow flex flex-col bg-white rounded-xl shadow-lg transition-all duration-300 hover:shadow-xl hover:-translate-y-2 hover:ring-2 hover:ring-primary/50 overflow-hidden border-0 text-center animate-fade-in-up animation-delay-1000">
-          <div class="flex items-center justify-center w-12 h-12 bg-linear-to-br from-primary to-secondary rounded-full shrink-0">
+          <div class="mx-auto flex items-center justify-center w-12 h-12 bg-linear-to-br from-primary to-secondary rounded-full shrink-0">
             <x-lucide-user class="w-6 h-6 text-white" />
           </div>
-          <h5 class="text-base text-left pt-4 pb-2 font-semibold text-black transition-colors duration-300 group-hover:text-primary">Scoring & Scaling</h5>
-        <p class="text-textBlack text-left text-base leading-relaxed">
+          <h5 class="text-base text-center pt-4 pb-2 font-semibold text-black transition-colors duration-300 group-hover:text-primary">Scoring & Scaling</h5>
+        <p class="text-textBlack text-center text-base leading-relaxed">
             Responses are converted into standardized scores for objective comparison and interpretation.
           </p>
       </div>
       <div class="group relative p-4 grow flex flex-col bg-white rounded-xl shadow-lg transition-all duration-300 hover:shadow-xl hover:-translate-y-2 hover:ring-2 hover:ring-primary/50 overflow-hidden border-0 text-center animate-fade-in-up animation-delay-1000">
-          <div class="flex items-center justify-center w-12 h-12 bg-linear-to-br from-primary to-secondary rounded-full shrink-0">
+          <div class="mx-auto flex items-center justify-center w-12 h-12 bg-linear-to-br from-primary to-secondary rounded-full shrink-0">
             <x-lucide-user class="w-6 h-6 text-white" />
           </div>
-          <h5 class="text-base text-left pt-4 pb-2 font-semibold text-black transition-colors duration-300 group-hover:text-primary">Expert Interpretation Framework</h5>
-        <p class="text-textBlack text-left text-base leading-relaxed">
+          <h5 class="text-base text-center pt-4 pb-2 font-semibold text-black transition-colors duration-300 group-hover:text-primary">Expert Interpretation Framework</h5>
+        <p class="text-textBlack text-center text-base leading-relaxed">
             Results are translated into actionable insights using structured interpretation models — not random AI outputs.
           </p>
       </div>
