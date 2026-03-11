@@ -253,4 +253,30 @@ class TestPanelController extends Controller
                 ]);
         }
 
+    /**
+     * Submit Feedback Survey
+     */
+    public function feedbackFormSubmit(Request $request)
+    {
+        $token = session('api_token');
+        $baseUrl = config('services.backend.url');
+
+        // Forward the request to backend
+        $response = Http::withToken($token)
+            ->acceptJson()
+            ->post("{$baseUrl}/submit-survey", $request->all());
+
+        if ($response->successful()) {
+            return response()->json([
+                'status' => true, 
+                'message' => $response->json()['message'] ?? 'Survey submitted successfully.'
+            ]);
+        }
+
+        return response()->json([
+            'status' => false,
+            'message' => $response->json()['message'] ?? 'Survey submission failed.',
+        ], $response->status());
+    }
+
 }

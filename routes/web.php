@@ -102,6 +102,7 @@ Route::middleware(['auth.api'])->group(function () {
     // Test Panel
     Route::get('/test-panel/{slug}', [TestPanelController::class, 'show'])->name('test-panel');
     Route::post('/test-panel/submit', [TestPanelController::class, 'submit'])->name('test.submit');
+    Route::post('/feedback-form/submit', [TestPanelController::class, 'feedbackFormSubmit'])->name('feedback-form.submit');
     Route::get('/test-submit-response/{id}', [TestPanelController::class, 'testSubmittedResponse'])->name('test.submit_response');
     // User Dashboard and Test Result
     Route::get('/test-result/{id}', [TestPanelController::class, 'result'])->name('test.result');
