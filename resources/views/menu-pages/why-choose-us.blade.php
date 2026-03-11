@@ -207,106 +207,8 @@
       </div>
    </div>
 </section>
-<!-- <section class="relative w-full pt-14 pb:16 lg:pt-18 lg:pb-22">
-   <div class="container mx-auto px-4">
-   
-       {{-- Header Section --}}
-       <div class="container mx-auto px-4 text-center">
-           <h1 class="text-3xl md:text-4xl font-sans font-semibold mb-4 animate-fade-in-up">
-               RESEARCH & EVIDENCE BASE
-           </h1>
-           
-           <p class="text-textBlack text-base md:text-lg mb-8 md:mb-4 animate-fade-in-up animation-delay-200">
-               Grounded in established psychological research
-           </p>
-   
-           <p class="text-textBlack text-base md:text-lg mb-8 max-w-5xl mx-auto animate-fade-in-up animation-delay-300">
-               The principles behind Udyantra's assessments align with widely accepted research and practices used in:
-           </p>
-   
-           <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
-                   
-               <div class="group relative p-6 grow flex flex-col bg-white rounded-xl shadow transition-all duration-300 hover:shadow-xl hover:-translate-y-2 hover:ring-2 hover:ring-primary/50 overflow-hidden border-0 text-center animate-fade-in-up animation-delay-400">
-                   <div class="w-12 h-12 md:w-30 md:h-30 flex items-center justify-center overflow-hidden mx-auto transition-transform duration-300 group-hover:scale-110">
-                       <img src="{{ asset('assets/image/whychooseus/backed-icon.svg') }}" 
-                           alt="Educational psychology" 
-                           class="w-full h-full object-cover">
-                   </div>
-                   <h5 class="text-base py-3 md:py-3 font-semibold text-black transition-colors duration-300 group-hover:text-primary">Educational psychology</h5>
-               </div>
-               
-               <div class="group relative p-6 grow flex flex-col bg-white rounded-xl shadow transition-all duration-300 hover:shadow-xl hover:-translate-y-2 hover:ring-2 hover:ring-primary/50 overflow-hidden border-0 text-center animate-fade-in-up animation-delay-500">
-                   <div class="w-12 h-12 md:w-30 md:h-30 flex items-center justify-center overflow-hidden mx-auto transition-transform duration-300 group-hover:scale-110">
-                       <img src="{{ asset('assets/image/whychooseus/backed-icon.svg') }}" 
-                           alt="Career guidance and counseling" 
-                           class="w-full h-full object-cover">
-                   </div>
-                   <h5 class="text-base py-3 md:py-3 font-semibold text-black transition-colors duration-300 group-hover:text-primary">Career guidance and counseling</h5>
-               </div>
-               
-               <div class="group relative p-6 grow flex flex-col bg-white rounded-xl shadow transition-all duration-300 hover:shadow-xl hover:-translate-y-2 hover:ring-2 hover:ring-primary/50 overflow-hidden border-0 text-center animate-fade-in-up animation-delay-600">
-                   <div class="w-12 h-12 md:w-30 md:h-30 flex items-center justify-center overflow-hidden mx-auto transition-transform duration-300 group-hover:scale-110">
-                       <img src="{{ asset('assets/image/whychooseus/backed-icon.svg') }}" 
-                           alt="Talent assessment and development" 
-                           class="w-full h-full object-cover">
-                   </div>
-                   <h5 class="text-base py-3 md:py-3 font-semibold text-black transition-colors duration-300 group-hover:text-primary">Talent assessment and development</h5>
-               </div>
-               
-               <div class="group relative p-6 grow flex flex-col bg-white rounded-xl shadow transition-all duration-300 hover:shadow-xl hover:-translate-y-2 hover:ring-2 hover:ring-primary/50 overflow-hidden border-0 text-center animate-fade-in-up animation-delay-700">
-                   <div class="w-12 h-12 md:w-30 md:h-30 flex items-center justify-center overflow-hidden mx-auto transition-transform duration-300 group-hover:scale-110">
-                       <img src="{{ asset('assets/image/whychooseus/backed-icon.svg') }}" 
-                           alt="Vocational and aptitude testing" 
-                           class="w-full h-full object-cover">
-                   </div>
-                   <h5 class="text-base py-3 md:py-3 font-semibold text-black transition-colors duration-300 group-hover:text-primary">Vocational and aptitude testing</h5>
-               </div>
-           </div>
-   
-           <p class="text-textBlack text-base md:text-lg mb-6 max-w-4xl mx-auto animate-fade-in-up animation-delay-800">
-               Similar psychometric principles are used globally by:
-           </p>
-   
-           <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                   
-               <div class="group relative p-6 grow flex flex-col bg-white rounded-xl shadow transition-all duration-300 hover:shadow-xl hover:-translate-y-2 hover:ring-2 hover:ring-primary/50 overflow-hidden border-0 text-center animate-fade-in-up animation-delay-900">
-                   <div class="w-12 h-12 md:w-30 md:h-30 flex items-center justify-center overflow-hidden mx-auto transition-transform duration-300 group-hover:scale-110">
-                       <img src="{{ asset('assets/image/whychooseus/backed-icon.svg') }}" 
-                           alt="Educational institutions" 
-                           class="w-full h-full object-cover">
-                   </div>
-                   <h5 class="text-base py-3 md:py-3 font-semibold text-black transition-colors duration-300 group-hover:text-primary">Educational institutions</h5>
-               </div>
-               
-               <div class="group relative p-6 grow flex flex-col bg-white rounded-xl shadow transition-all duration-300 hover:shadow-xl hover:-translate-y-2 hover:ring-2 hover:ring-primary/50 overflow-hidden border-0 text-center animate-fade-in-up animation-delay-1000">
-                   <div class="w-12 h-12 md:w-30 md:h-30 flex items-center justify-center overflow-hidden mx-auto transition-transform duration-300 group-hover:scale-110">
-                       <img src="{{ asset('assets/image/whychooseus/backed-icon.svg') }}" 
-                           alt="Career counselors and psychologists" 
-                           class="w-full h-full object-cover">
-                   </div>
-                   <h5 class="text-base py-3 md:py-3 font-semibold text-black transition-colors duration-300 group-hover:text-primary">Career counselors and psychologists</h5>
-               </div>
-               
-               <div class="group relative p-6 grow flex flex-col bg-white rounded-xl shadow transition-all duration-300 hover:shadow-xl hover:-translate-y-2 hover:ring-2 hover:ring-primary/50 overflow-hidden border-0 text-center animate-fade-in-up animation-delay-1000">
-                   <div class="w-12 h-12 md:w-30 md:h-30 flex items-center justify-center overflow-hidden mx-auto transition-transform duration-300 group-hover:scale-110">
-                       <img src="{{ asset('assets/image/whychooseus/backed-icon.svg') }}" 
-                           alt="Corporate hiring and development programs" 
-                           class="w-full h-full object-cover">
-                   </div>
-                   <h5 class="text-base py-3 md:py-3 font-semibold text-black transition-colors duration-300 group-hover:text-primary">Corporate hiring and development programs</h5>
-               </div>
-           </div>
-   
-           <p class="text-textBlack text-base md:text-lg mt-10 max-w-4xl mx-auto animate-fade-in-up animation-delay-1000">
-               Udyantra adapts these principles for Indian students and professionals, ensuring relevance, clarity, and practical application.
-           </p>
-                           
-       </div>
-   </div>
-   
-   </section> -->
 {{-- SECTION 3: Success Stories --}}
-<section class="pt-14 lg:pt-20 pb-16 lg:pb-22 bg-lightgray font-sans relative z-10">
+<!-- <section class="pt-14 lg:pt-20 pb-16 lg:pb-22 bg-lightgray font-sans relative z-10">
    <div class="max-w-7xl mx-auto px-4 md:px-4">
       <h2 class="text-sizeMobile lg:text-sizeDesktop font-semibold text-center text-black font-sans mb-8 md:mb-10">
          Success stories from our customers
@@ -317,10 +219,11 @@
          <x-testimonials />
       </div>
    </div>
-</section>
+</section> -->
 {{-- Section 4: FAQs --}}
-<section class="font-sans relative z-0 pt-56 md:pt-70 lg:pt-68 pb-16 lg:py-22">
-   <x-faq />
+<!-- <section class="font-sans relative z-0 pt-56 md:pt-70 lg:pt-68 pb-16 lg:py-22"> -->
+<section class="pt-10 lg:pt-18 pb-8 lg:py-22 bg-lightgray font-sans relative z-0">
+    <x-faq />
 </section>
 {{-- SECTION 5: Sign Up Today --}}
 {{--    

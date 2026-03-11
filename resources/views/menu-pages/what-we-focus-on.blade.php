@@ -256,7 +256,7 @@
   </div>
 </section>
 {{-- SECTION 3: Success Stories --}}
-<section class="pt-14 lg:pt-20 pb-16 lg:pb-22 bg-lightgray font-sans relative z-10">
+<!-- <section class="pt-14 lg:pt-20 pb-16 lg:pb-22 bg-lightgray font-sans relative z-10">
    <div class="max-w-7xl mx-auto px-4 md:px-4">
       <h2 class="text-sizeMobile lg:text-sizeDesktop font-semibold text-center text-black font-sans mb-8 md:mb-10">
          Success stories from our customers
@@ -267,9 +267,10 @@
          <x-testimonials />
       </div>
    </div>
-</section>
+</section> -->
 {{-- Section 4: FAQs --}}
-<section class="font-sans relative z-0 pt-56 md:pt-70 lg:pt-68 pb-16 lg:py-22">
+<!-- <section class="font-sans relative z-0 pt-56 md:pt-70 lg:pt-68 pb-16 lg:py-22"> -->
+<section class="pt-10 lg:pt-18 pb-8 lg:py-22 bg-lightgray font-sans relative z-0">
    <x-faq />
 </section>
 {{-- SECTION 6: Sign Up Today --}}
