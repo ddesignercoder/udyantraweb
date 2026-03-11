@@ -29,6 +29,7 @@
             </div>
         </div>
     </section>
+    
 <!-- <section class="relative w-full bg-gray-50 min-h-screen">
    <div class="max-w-6xl mx-auto px-4 md:px-6 py-8 md:py-16 relative z-10">
       <div class="bg-white space-y-6 p-8 md:p-12 rounded-2xl shadow-lg transition-all duration-300">
