@@ -43,4 +43,5 @@
         </div>
     </div>
 </div>
+<x-test-panel.feedback-form-modal />
 @endsection
