@@ -162,6 +162,23 @@
         .text-center { text-align: center; }
         .mt-4 { margin-top: 20px; }
         .mb-4 { margin-bottom: 20px; }
+        .closing-page {
+            page-break-before: always;
+            text-align: center;
+            padding-top: 220px;
+        }
+        .closing-slogan {
+            max-width: 520px;
+            margin: 0 auto;
+            padding: 24px 28px;
+            border: 2px solid #018580;
+            border-radius: 14px;
+            background-color: #f4fbfb;
+            color: #0e141a;
+            font-size: 20px;
+            font-weight: bold;
+            line-height: 1.8;
+        }
     </style>
 </head>
 <body>
@@ -429,20 +446,24 @@
         @endif
 
         @if(!empty($detailed_strengths)) 
-            <h3 style="color: #27ae60; font-size: 18px; page-break-before: always; margin-bottom: 40px;">YOUR STRENGTH BUILDERS</h3>
+            <h3 style="color: #27ae60; font-size: 20px; page-break-before: always; margin-bottom: 60px;">YOUR STRENGTH BUILDERS</h3>
             @foreach($detailed_strengths as $skill)
-                @if($loop->index > 0 && $loop->index % 7 == 0)
+                @if($loop->index > 0 && $loop->index % 4 == 0)
                     <div class="page-break"></div>
                 @endif
                 <div class="summary-box" style="border-left-color: #27ae60; font-size: 14px;">
 
-                    <span class="summary-title" style="color: #27ae60; font-size: 14px;">{{ $skill['title'] }}</span>
+                    <span class="summary-title" style="color: #27ae60; font-size: 16px;">{{ $skill['title'] }}</span>
                     <p> {{ $skill[$profile_key]['definition'] }}</p>
                 </div>
             @endforeach
         @endif
 
-        <!-- <p style="text-align: center; color: #6fc7c4; margin-top: 50px;">- End of Report -</p> -->
+        <div class="closing-page">
+            <div class="closing-slogan">
+                Growth is a continuous process. Work on the areas highlighted in this report and take the assessment again after a few months to evaluate your progress and refine your direction.
+            </div>
+        </div>
     </div>
 
 </body>
