@@ -111,7 +111,7 @@ class PaymentController extends Controller
         $message = $response->json('message') ?? 'Payment could not be verified.';
         Log::error('HDFC Frontend Callback: Verification Failed', ['message' => $message]);
         
-        return redirect()->route('dashboard.packages')->with('error', $message);
+        return redirect()->route('payment.failed', ['orderId' => $orderId, 'error' => $message]);
     }
 
 
@@ -152,6 +152,26 @@ class PaymentController extends Controller
         }
 
         return redirect()->route('user.dashboard')->with('error', 'Could not retrieve transaction details.');
+    }
+
+    // 6. Payment Failed Page
+    public function paymentFailed($orderId)
+    {
+        $baseUrl = config('services.backend.url');
+        $token = session('api_token');
+
+        // 1. Fetch transaction details from Backend API
+        $response = Http::withToken($token)
+            ->get("{$baseUrl}/transaction/{$orderId}");
+
+        if ($response->successful() && $response['status']) {
+            $transaction = $response['data'];
+            
+            // 2. Show the Failed View
+            return view('pages.payment-failed', ['transaction' => $transaction]);
+        }
+
+        return redirect()->route('dashboard.packages')->with('error', 'Could not retrieve transaction details.');
     }
     
     //Dashboard Packages Page
