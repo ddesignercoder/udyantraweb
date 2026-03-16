@@ -129,6 +129,7 @@ Route::middleware(['auth.api'])->group(function () {
     Route::post('/payment/initiate', [PaymentController::class, 'createOrder'])->name('payment.initiate');
     Route::post('/payment/verify', [PaymentController::class, 'verifyPayment'])->name('payment.verify'); // Kept for potential AJAX fallback
     Route::get('/payment/thank-you/{orderId}', [PaymentController::class, 'thankYou'])->name('payment.thankyou');
+    Route::get('/payment/failed/{orderId}', [PaymentController::class, 'paymentFailed'])->name('payment.failed');
 
     //Profile Settings
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
