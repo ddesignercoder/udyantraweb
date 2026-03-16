@@ -5,10 +5,11 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
 
 class PaymentController extends Controller
 {
-    // 1. Show the Packages Page
+    // 1. Show the Packages Page (Public)
     public function udyantraPackage()
     {
         $baseUrl = config('services.backend.url');
@@ -43,7 +44,7 @@ class PaymentController extends Controller
         ])->with('error', 'Unable to fetch packages.');
     }
 
-    // 2. Proxy: Create Order
+    // 2. Proxy: Create Order (HDFC Juspay)
     public function createOrder(Request $request)
     {
         $baseUrl = config('services.backend.url');
@@ -62,15 +63,69 @@ class PaymentController extends Controller
         return response()->json(['error' => 'Failed to create order'], 500);
     }
 
-    // 3. Proxy: Verify Payment
+    // 3. Payment Callback (Return URL from HDFC Juspay)
+    // User is redirected here after completing/cancelling payment on SmartGateway
+    public function paymentCallback(Request $request)
+    {
+        $baseUrl = config('services.backend.url');
+        $token = session('api_token');
+
+        Log::info('HDFC Frontend Callback Received', [
+            'method' => $request->method(),
+            'all_input' => $request->all()
+        ]);
+
+        // Extract order_id from the return URL (Juspay POSTs this data back or GET query params)
+        $orderId = $request->input('order_id') ?? $request->query('order_id');
+        $status  = $request->input('status') ?? $request->query('status');
+
+        if (!$orderId) {
+            Log::error('HDFC Frontend Callback: Missing order_id');
+            return redirect()->route('dashboard.packages')->with('error', 'Invalid payment response.');
+        }
+
+        Log::info('HDFC Frontend Callback: Verifying payment with backend', [
+            'order_id' => $orderId,
+            'status_from_juspay' => $status
+        ]);
+
+        // Verify payment status via backend's Server-to-Server call
+        $response = Http::withToken($token)
+            ->acceptJson()
+            ->post("{$baseUrl}/verify-payment", [
+                'order_id' => $orderId
+            ]);
+
+        Log::info('HDFC Frontend Callback: Backend Verification Response', [
+            'status_code' => $response->status(),
+            'parsed_json' => $response->json(),
+            'raw_body'    => $response->body(),
+            'is_successful' => $response->successful()
+        ]);
+
+        if ($response->successful() && $response->json('status') === true) {
+            return redirect()->route('payment.thankyou', ['orderId' => $orderId]);
+        }
+
+        // Payment failed or pending
+        $message = $response->json('message') ?? 'Payment could not be verified.';
+        Log::error('HDFC Frontend Callback: Verification Failed', ['message' => $message]);
+        
+        return redirect()->route('dashboard.packages')->with('error', $message);
+    }
+
+
+    // 4. Proxy: Verify Payment (AJAX call from frontend)
     public function verifyPayment(Request $request)
     {
         $baseUrl = config('services.backend.url');
         $token = session('api_token');
 
-        // Forward the payment details to Backend API for verification
+        // Forward the order_id to Backend API for verification
         $response = Http::withToken($token)
-            ->post("{$baseUrl}/verify-payment", $request->all());
+            ->post("{$baseUrl}/verify-payment", [
+                'order_id' => $request->order_id
+            ]);
 
         if ($response->successful()) {
             return response()->json($response->json());
@@ -79,7 +134,7 @@ class PaymentController extends Controller
         return response()->json(['error' => 'Payment verification failed'], 400);
     }
     
-    // 4. Proxy: Thank You Page
+    // 5. Thank You Page
     public function thankYou($orderId)
     {
         $baseUrl = config('services.backend.url');
@@ -96,7 +151,7 @@ class PaymentController extends Controller
             return view('pages.thank-you', ['transaction' => $transaction]);
         }
 
-        return redirect()->route('dashboard')->with('error', 'Could not retrieve transaction details.');
+        return redirect()->route('user.dashboard')->with('error', 'Could not retrieve transaction details.');
     }
     
     //Dashboard Packages Page
