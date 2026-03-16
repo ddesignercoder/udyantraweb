@@ -73,6 +73,12 @@ Route::get('/demo-test-preview', [TestPanelController::class, 'demoTestPreview']
 
 
 // ==========================================
+// PUBLIC PAYMENT CALLBACK (From HDFC Juspay)
+// ==========================================
+Route::match(['get', 'post'], '/payment/callback', [PaymentController::class, 'paymentCallback'])->name('payment.callback'); // Works for Juspay POST redirect
+
+
+// ==========================================
 // PROTECTED ROUTES (Requires Session Token)
 // ==========================================
 Route::middleware(['auth.api'])->group(function () {
@@ -121,7 +127,7 @@ Route::middleware(['auth.api'])->group(function () {
 
     // Payment Routes
     Route::post('/payment/initiate', [PaymentController::class, 'createOrder'])->name('payment.initiate');
-    Route::post('/payment/verify', [PaymentController::class, 'verifyPayment'])->name('payment.verify');
+    Route::post('/payment/verify', [PaymentController::class, 'verifyPayment'])->name('payment.verify'); // Kept for potential AJAX fallback
     Route::get('/payment/thank-you/{orderId}', [PaymentController::class, 'thankYou'])->name('payment.thankyou');
 
     //Profile Settings

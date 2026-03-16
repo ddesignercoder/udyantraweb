@@ -171,9 +171,7 @@
     </div>
 </div>
 
-{{-- SCRIPTS --}}
-<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
-
+{{-- Custom Payment Logic --}}
 <script>
     // Helper functions for Loader
     const loader = document.getElementById('payment-loader');
@@ -190,7 +188,7 @@
         loader.classList.remove('flex');
     }
 
-    // Main Payment Logic
+    // Main Payment Logic for HDFC Juspay (SmartGateway)
     function initiatePayment(packageId) {
         
         showLoader("Connecting to secure payment gateway...");
@@ -206,71 +204,24 @@
             _token: "{{ csrf_token() }}" 
         })
         .then(function (response) {
-            hideLoader();
-
-            if (response.data.status) {
-                const data = response.data.data;
-                
-                var options = {
-                    "key": data.key, 
-                    "amount": data.amount, 
-                    "currency": "INR",
-                    "name": "Udyantra",
-                    "description": "Package Purchase",
-                    "order_id": data.order_id, 
-                    "handler": function (response){
-                        verifyPayment(response);
-                    },
-                    "modal": {
-                        "ondismiss": function(){ }
-                    },
-                    "prefill": {
-                        "name": data.name,
-                        "email": data.email,
-                        "contact": data.contact
-                    },
-                    "theme": {
-                        "color": "#018580"
-                    }
-                };
-                
-                var rzp1 = new Razorpay(options);
-                rzp1.on('payment.failed', function (response){
-                    alert("Payment Failed: " + response.error.description);
-                });
-                rzp1.open();
+            if (response.data.status && response.data.data.payment_links && response.data.data.payment_links.web) {
+                loaderText.innerText = "Redirecting to bank...";
+                // Redirect user to HDFC Juspay Checkout page
+                window.location.href = response.data.data.payment_links.web;
             } else {
-                alert("Error: " + response.data.message);
+                hideLoader();
+                alert("Error: " + (response.data.message || "Could not generate payment link."));
             }
         })
         .catch(function (error) {
             hideLoader();
             console.error(error);
-            alert("Could not initiate payment. Please try again.");
-        });
-    }
-
-    function verifyPayment(paymentData) {
-        showLoader("Verifying your payment...");
-
-        axios.post("{{ route('payment.verify') }}", {
-            razorpay_order_id: paymentData.razorpay_order_id,
-            razorpay_payment_id: paymentData.razorpay_payment_id,
-            razorpay_signature: paymentData.razorpay_signature,
-            _token: "{{ csrf_token() }}"
-        })
-        .then(function (response) {
-            if(response.data.status) {
-                loaderText.innerText = "Success! Redirecting...";
-                window.location.href = "/payment/thank-you/" + paymentData.razorpay_order_id;
-            } else {
-                hideLoader();
-                alert("Payment Verification Failed.");
+            
+            let msg = "Could not initiate payment. Please try again.";
+            if(error.response && error.response.data && error.response.data.message) {
+                msg = error.response.data.message;
             }
-        })
-        .catch(function (error) {
-            hideLoader();
-            alert("Server error during verification.");
+            alert(msg);
         });
     }
 </script>

@@ -20,11 +20,11 @@
             <div class="border-b border-gray-200 pb-6 mb-6">
                 <div class="flex justify-between mb-4">
                     <span class="text-gray-600">Payment ID</span>
-                    <span class="font-medium text-gray-900">{{ $transaction['razorpay_payment_id'] }}</span>
+                    <span class="font-medium text-gray-900">{{ $transaction['gateway_payment_id'] ?? $transaction['razorpay_payment_id'] }}</span>
                 </div>
                 <div class="flex justify-between mb-4">
                     <span class="text-gray-600">Order ID</span>
-                    <span class="font-medium text-gray-900 text-sm">{{ $transaction['razorpay_order_id'] }}</span>
+                    <span class="font-medium text-gray-900 text-sm">{{ $transaction['gateway_order_id'] ?? $transaction['razorpay_order_id'] }}</span>
                 </div>
                 <div class="flex justify-between">
                     <span class="text-gray-600">Date</span>
