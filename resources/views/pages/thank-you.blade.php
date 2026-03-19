@@ -29,7 +29,7 @@
                 <div class="flex justify-between">
                     <span class="text-gray-600">Date</span>
                     <span class="font-medium text-gray-900">
-                        {{ \Carbon\Carbon::parse($transaction['created_at'])->format('d M Y, h:i A') }}
+                        {{ \Carbon\Carbon::parse($transaction['created_at'])->setTimezone('Asia/Kolkata')->format('d M Y, h:i A') }}
                     </span>
                 </div>
             </div>
