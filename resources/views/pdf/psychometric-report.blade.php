@@ -215,7 +215,7 @@
         <div style="margin-top: 50px; border: 1px solid #000000; display: inline-block; padding: 20px 40px; background-color: #f9f9f9;">
             <p><strong>Prepared For:</strong></p>
             <h2 style="margin: 0; padding: 0; border: none; color: #0e141a;">{{ $user_name }}</h2>
-            @if($school_name)
+            @if(isset($school_name) && $school_name)
                 <h2 style="margin: 0; padding: 0; border: none; color: #0e141a;">{{$school_name}}</h2>
                 <h2 style="margin: 0; padding: 0; border: none; color: #0e141a;">Class: {{$class}} | Section: {{$section}}</h2>
                 <h2 style="margin: 0; padding: 0; border: none; color: #0e141a;">Roll No: {{$roll_no}}</h2>
