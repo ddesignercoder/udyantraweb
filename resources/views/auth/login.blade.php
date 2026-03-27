@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title', 'Udyantra Login | Access Your Career Assessment Dashboard')
-@section('description', 'Explore Udyantra pricing plans for psychometric tests and career guidance. Choose affordable options designed for students and professionals.')
+@section('description', 'Login to Udyantra to access your psychometric test dashboard, reports, and personalized career insights. Start your journey to the right career path.')
 
 @section('content')
 
