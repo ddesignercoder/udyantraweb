@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
-@section('title', 'Register-Organization')
+@section('title', 'Register-Organization | Udyantra Career Assessment Tools')
+@section('description', 'Register your organization on Udyantra to access psychometric tests, career tools, and insights for student guidance and talent development programs')
 
 @section('content')
 <div class="flex items-center justify-center bg-gray-50 py-12 px-4" x-data="{ type: 'school' }">

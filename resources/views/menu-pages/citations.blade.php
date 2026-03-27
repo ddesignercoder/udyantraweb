@@ -1,6 +1,7 @@
 @extends('layouts.app') 
-@section('title', 'Citations')
-
+@section('title', 'Udyantra Citations | Research & Scientific References')
+@section('description', 'Explore Udyantra’s citations, research sources, and scientific references supporting our psychometric assessments and career guidance methods.')
+@section('canonical', url()->current())
 @section('css')
 <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
 @endsection

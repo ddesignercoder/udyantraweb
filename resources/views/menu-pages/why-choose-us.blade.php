@@ -1,5 +1,7 @@
 @extends('layouts.app') 
-@section('title', 'Why Choose Us')
+@section('title', 'Why Choose Udyantra | Scientific Career Assessment')
+@section('description', 'Choose Udyantra for science-based psychometric tests, accurate career insights, and expert guidance designed for students and professionals in India')
+@section('canonical', url()->current())
 @section('css')
 <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
 <style>

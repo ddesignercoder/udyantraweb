@@ -1,9 +1,41 @@
 @extends('layouts.app')
 
-@section('title', 'Home')
+@section('title', ' Udyantra Career Assessment & Psychometric Tests India')
+@section('description', 'Discover the right career with Udyantra’s psychometric tests. Get insights on personality, aptitude, and interests with expert guidance in India.')
+@section('canonical', url()->current())
 @section('css')
+@section('schema')
+<script type="application/ld+json">
+{
+  "@@context": "https://schema.org/",
+  "@@type": "WebSite",
+  "name": "Udyantra",
+  "url": "https://udyantra.com/",
+  "potentialAction": {
+    "@@type": "SearchAction",
+    "target": "https://udyantra.com/search?q={search_term_string}",
+    "query-input": "required name=search_term_string"
+  }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@@context": "https://schema.org",
+  "@@type": "Organization",
+  "name": "Udyantra",
+  "alternateName": "Udyantra",
+  "url": "https://udyantra.com/",
+  "logo": "https://udyantra.com/assets/image/Udyantra-logo.svg",
+  "contactPoint": {
+    "@@type": "ContactPoint",
+    "telephone": "",
+    "contactType": ""
+  }
+}
+</script>
+
+@endsection
 <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
- 
 @endsection
 
 @section('content')

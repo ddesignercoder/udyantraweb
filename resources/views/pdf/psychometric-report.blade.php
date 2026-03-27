@@ -2,8 +2,7 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <title>Psychometric Test Report</title>
-
+    <title>Udyantra Psychometric Report | Sample Career Analysis</title>
 
     <style>
         @page {

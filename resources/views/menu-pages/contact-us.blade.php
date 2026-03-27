@@ -1,5 +1,6 @@
 @extends('layouts.app') 
-@section('title', 'Contact Us')
+@section('title', 'Contact Udyantra | Career Guidance & Support Team India')
+@section('description', 'Get in touch with Udyantra for career guidance, psychometric tests, and support. Our team is here to help you choose the right career path.')
 @section('css')
 <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
 @endsection
