@@ -1,5 +1,6 @@
 @extends('layouts.app') 
-@section('title', 'Udyantra Package')
+@section('title', 'Udyantra Pricing | Affordable Career Assessment Plans')
+@section('description', 'Explore Udyantra pricing plans for psychometric tests and career guidance. Choose affordable options designed for students and professionals.')
 @section('css')
 <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
 @endsection

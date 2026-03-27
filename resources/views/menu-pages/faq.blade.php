@@ -1,5 +1,6 @@
 @extends('layouts.app') 
-@section('title', 'FAQ')
+@section('title', 'Udyantra FAQs | Career Assessment & Psychometric Help')
+@section('description', 'Find answers about Udyantra’s psychometric tests, career reports, and guidance. Get clear insights on how our assessments help your career path.')
 @section('css')
 <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
 @endsection

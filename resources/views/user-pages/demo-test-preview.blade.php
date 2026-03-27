@@ -1,5 +1,7 @@
 @extends('layouts.testpanel')
-@section('title', 'Test Panel')
+@section('title', 'Udyantra Demo Test Preview | Try Psychometric Assessment')
+@section('description', 'Try Udyantra’s demo psychometric test and experience career assessment. Explore how personality, aptitude, and interests are analyzed.')
+
 
 @section('css')
     <style>

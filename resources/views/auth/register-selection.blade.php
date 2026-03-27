@@ -1,5 +1,6 @@
 @extends('layouts.app')
-@section('title', 'Join Us - Select Registration Type')
+@section('title', 'Register on Udyantra | Start Career Assessment Online    ')
+@section('description', 'Sign up on Udyantra to begin your psychometric career assessment. Get personalized insights on personality, aptitude, and career path')
 @section('content')
 <div class=" flex items-center justify-center bg-gray-50 p-6 md:p-22">
     <div class="max-w-4xl w-full space-y-8">
