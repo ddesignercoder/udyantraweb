@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
-@section('title', 'Register as Individual')
+@section('title', 'Individual Registration | Udyantra Career Assessment Tool')
+@section('description', ' Register as an individual on Udyantra to start your psychometric career test. Get insights on personality, aptitude, and career options easily.')
 
 @section('content')
 <div class="min-h-screen flex items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">

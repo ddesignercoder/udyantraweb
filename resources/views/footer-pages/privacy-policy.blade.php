@@ -1,5 +1,6 @@
 @extends('layouts.app') 
-@section('title', 'Privacy Policy')
+@section('title', 'Privacy Policy | Udyantra Career Assessment Platform')
+@section('description', 'Read Udyantra’s privacy policy to understand how we collect, use, and protect your data while providing secure psychometric assessments.')
 @section('content')
 
 <section class="">

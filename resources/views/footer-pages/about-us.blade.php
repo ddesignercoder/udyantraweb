@@ -1,5 +1,6 @@
 @extends('layouts.app') 
-@section('title', 'About Us')
+@section('title', 'About Udyantra | Psychometric Career Assessment Platform')
+@section('description', 'Learn about Udyantra, a platform offering science-based psychometric tests and career guidance for students and professionals across India.')
 @section('content')
 
 <section class="">

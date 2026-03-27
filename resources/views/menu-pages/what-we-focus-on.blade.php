@@ -1,5 +1,6 @@
 @extends('layouts.app') 
-@section('title', 'What We Focus On')
+@section('title', 'What We Focus On | Udyantra Career Assessment Platform')
+@section('description', 'Explore Udyantra’s focus on psychometric testing, career clarity, and skill analysis to help students and professionals choose the right path.')
 @section('css')
 <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
 <style>

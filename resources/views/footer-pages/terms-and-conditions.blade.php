@@ -1,5 +1,6 @@
 @extends('layouts.app') 
-@section('title', 'Terms and Conditions')
+@section('title', 'Terms & Conditions | Udyantra Career Assessment Platform')
+@section('description', 'Read Udyantra’s terms and conditions to understand usage policies, user responsibilities, and guidelines for accessing our services and platform.')
 @section('content')
 
 <section class="">
