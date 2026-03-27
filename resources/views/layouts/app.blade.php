@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="canonical" href="@yield('canonical', url()->current())" />
-    <title>@yield('title', 'Udyantra') - Udyantra</title>
+    <title>@yield('title', 'Udyantra')</title>
     <link rel="icon" type="image/png" href="{{ asset('assets/image/favicon.png') }}"> 
     <meta name="description" content="@yield('description', 'Default meta description')">
     
