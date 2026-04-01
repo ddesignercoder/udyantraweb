@@ -11,7 +11,8 @@
         x-transition:leave="transition ease-in duration-200"
         x-transition:leave-start="opacity-100 scale-100"
         x-transition:leave-end="opacity-0 scale-95"
-        class="bg-white rounded-lg shadow-2xl max-w-4xl w-full  max-h-9/10 md:max-h-screen overflow-y-auto px-6 py-4">
+        {{-- class="bg-white rounded-lg shadow-2xl max-w-4xl w-full  max-h-9/10 md:max-h-screen overflow-y-auto px-6 py-4" --}}
+        class="bg-white rounded-lg shadow-2xl max-w-4xl w-full max-h-[90vh] overflow-y-auto px-6 py-4">
         
         <!-- Modal Header -->
         <div class="bg-white">
