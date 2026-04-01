@@ -168,11 +168,12 @@
              class="fixed inset-0 bg-white bg-opacity-90 z-40 lg:hidden"></div>
 
         {{-- The Palette Sidebar --}}
-        <aside class="fixed inset-y-0 right-0 w-80 bg-white shadow-xl transform transition-transform duration-300 ease-in-out z-50 lg:translate-x-0 lg:static lg:w-auto lg:shadow-none lg:z-auto flex flex-col lg:h-full lg:bg-transparent"
+        {{-- <aside class="fixed inset-y-0 right-0 w-80 bg-white shadow-xl transform transition-transform duration-300 ease-in-out z-50 lg:translate-x-0 lg:static lg:w-auto lg:shadow-none lg:z-auto flex flex-col lg:h-full lg:bg-transparent" --}}
+        <aside class="fixed inset-y-0 right-0 w-80 bg-white shadow-xl transform transition-transform duration-300 ease-in-out z-50 lg:translate-x-0 lg:static lg:w-auto lg:shadow-none lg:z-auto flex flex-col lg:h-full lg:overflow-hidden lg:bg-transparent"
                :class="showPalette ? 'translate-x-0' : 'translate-x-full lg:translate-x-0'">
             
             {{-- <div class="bg-white rounded shadow-sm border border-gray-200 flex flex-col h-full lg:h-auto max-h-screen"> --}}
-            <div class="bg-white rounded shadow-sm border border-gray-200 flex flex-col h-full max-h-full">
+            <div class="bg-white rounded shadow-sm border border-gray-200 flex flex-col h-full min-h-0">
                 
                 {{-- Drawer Header (Mobile Only) --}}
                 <div class="p-4 border-b flex justify-between items-center lg:hidden bg-gray-50">
@@ -183,7 +184,7 @@
                 </div>
 
                 {{-- User Info --}}
-                <div class="p-4 border-b flex items-center gap-3 bg-gray-50 lg:bg-white lg:rounded-t">
+                <div class="p-4 border-b flex items-center gap-3 bg-gray-50 lg:bg-white lg:rounded-t shrink-0">
                     <div class="w-8 h-8 rounded-full bg-blue-100 flex items-center justify-center text-blue-600 font-bold text-xs">
                         {{ substr(session('user_name', 'Student'), 0, 1) }}
                     </div>
@@ -191,7 +192,7 @@
                 </div>
 
                 {{-- Legend --}}
-                <div class="p-4 border-b bg-white">
+                <div class="p-4 border-b bg-white shrink-0">
                     <div class="grid grid-cols-2 gap-y-2 text-[10px] md:text-xs text-gray-600">
                         <div class="flex items-center"><span class="w-4 h-4 bg-green-500 rounded mr-1"></span> Answered</div>
                         <div class="flex items-center"><span class="w-4 h-4 bg-red-500 rounded mr-1"></span> Not Ans</div>
@@ -201,7 +202,8 @@
                 </div>
 
                 {{-- Grid --}}
-                <div class="p-3 overflow-y-auto custom-scrollbar grow lg:max-h-[350px]">
+                {{-- <div class="p-3 overflow-y-auto custom-scrollbar grow lg:max-h-[350px]"> --}}
+                <div class="p-3 overflow-y-auto custom-scrollbar grow min-h-0">
                     <h3 class="hidden lg:block font-bold text-gray-800 mb-2 text-xs uppercase tracking-wide">Question Palette</h3>
                     <div class="grid grid-cols-5 gap-2">
                         <template x-for="(q, index) in questions" :key="q.id">
@@ -226,7 +228,7 @@
                 </div>
 
                 {{-- Submit Button (Drawer Footer) --}}
-                <div class="p-4 border-t bg-gray-50 lg:bg-white lg:rounded-b">
+                <div class="p-4 border-t bg-gray-50 lg:bg-white lg:rounded-b shrink-0">
                     <button @click="submitTest()" class="cursor-pointer w-full py-3 bg-blue-800 text-white font-bold rounded shadow hover:bg-blue-900 transition text-sm">
                         SUBMIT TEST
                     </button>
