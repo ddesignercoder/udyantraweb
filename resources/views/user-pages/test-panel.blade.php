@@ -171,7 +171,8 @@
         <aside class="fixed inset-y-0 right-0 w-80 bg-white shadow-xl transform transition-transform duration-300 ease-in-out z-50 lg:translate-x-0 lg:static lg:w-auto lg:shadow-none lg:z-auto flex flex-col lg:h-full lg:bg-transparent"
                :class="showPalette ? 'translate-x-0' : 'translate-x-full lg:translate-x-0'">
             
-            <div class="bg-white rounded shadow-sm border border-gray-200 flex flex-col h-full lg:h-auto max-h-screen">
+            {{-- <div class="bg-white rounded shadow-sm border border-gray-200 flex flex-col h-full lg:h-auto max-h-screen"> --}}
+            <div class="bg-white rounded shadow-sm border border-gray-200 flex flex-col h-full max-h-full">
                 
                 {{-- Drawer Header (Mobile Only) --}}
                 <div class="p-4 border-b flex justify-between items-center lg:hidden bg-gray-50">
