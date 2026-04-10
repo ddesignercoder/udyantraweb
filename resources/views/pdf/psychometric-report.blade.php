@@ -340,7 +340,13 @@
         @foreach($outcomes as $index => $outcome)
             <div style="border: 1px solid #ddd;margin-top: 50px ;padding: 15px; border-radius: 8px; font-size: 14px; page-break-before: always;">
                 @if($loop->first)
-                    <h2 style="margin-top: 0; margin-bottom: 5px;">Career & Stream Recommendations</h2>
+                    <h2 style="margin-top: 0; margin-bottom: 5px;">
+                        @if(str_contains($test_name, 'PROFESSIONAL'))
+                            Recommendations
+                        @else
+                            Career & Stream Recommendations
+                        @endif
+                    </h2>
                     <p style="margin-top: 0; margin-bottom: 10px;">Based on the combination of your profiles, we have identified the following career paths that would be a strong fit for you.</p>
                 @endif
                 <h3 style="margin-top: 0; margin-bottom: 5px; color: #6fc7c4; font-size: 18px;">Option {{ $index + 1 }}</h3>
@@ -364,7 +370,7 @@
 
                 @if(str_contains($test_name, 'SENIOR'))
                 <div class="rec-block" style="margin-bottom: 8px;">
-                    <span class="rec-title" style="font-size: 16px; margin-bottom: 10px;">Carrier Match With:</span>
+                    <span class="rec-title" style="font-size: 16px; margin-bottom: 10px;">Career Match With:</span>
                     <div class="rec-tags" style="line-height: 1.8;">
                         @foreach(explode(';', $outcome['suggested_streams']) as $stream)
                             <span class="tag" style="background-color: #e0f5f4; color: #018580; font-size: 14px; padding: 2px 5px;">{{ trim($stream) }}</span>
