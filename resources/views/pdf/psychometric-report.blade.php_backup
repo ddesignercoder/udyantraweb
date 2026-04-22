@@ -99,16 +99,6 @@
             font-size: 10px;
             padding-right: 5px;
         }
-        .profile-decode{
-            background-color: #f8f9fa;
-            /* border-left: 4px solid #018580; */
-            padding: 12px;
-            margin-bottom: 20px;
-            border-radius: 0 4px 4px 0;
-            font-size: 13px;
-            line-height: 1.7;
-            box-shadow: 1px 1px 3px rgba(0,0,0,0.05);
-        }
         .summary-box {
             background-color: #f8f9fa;
             border-left: 4px solid #018580;
@@ -361,39 +351,44 @@
                 @endif
                 <h3 style="margin-top: 0; margin-bottom: 5px; color: #6fc7c4; font-size: 18px;">Option {{ $index + 1 }}</h3>
                 
-                {{-- Suggested Streams --}}
-                @if(str_contains($test_name, 'JUNIOR'))
+                <div class="summary-box" style="padding: 8px; margin-bottom: 8px;">
+                    <span class="summary-title" style="font-size: 16px; margin-bottom: 3px; padding-bottom: 2px;">Profile Snapshot</span>
+                    @php
+                        $summary = $outcome['short_summary'];
+                        $summary = str_replace('Learning Orientation:', '<br><strong>Learning Orientation:</strong>', $summary);
+                        $summary = str_replace('Personality:', '<br><strong>Personality:</strong>', $summary);
+                        $summary = str_replace('Dominant Aptitude:', '<br><strong>Dominant Aptitude:</strong>', $summary);
+                        $summary = str_replace('Interest/Motivation:', '<br><strong>Interest/Motivation:</strong>', $summary);
+                        $summary = preg_replace('/Recommended Stream\(s\):.*$/s', '', $summary);
+                        
+                        if (strpos($summary, '<br>') === 0) {
+                            $summary = substr($summary, 4);
+                        }
+                    @endphp
+                    <div style="font-size: 14px; line-height: 1.5;">{!! $summary !!}</div>
+                </div>
+
+                @if(str_contains($test_name, 'SENIOR'))
                 <div class="rec-block" style="margin-bottom: 8px;">
-                    <span class="rec-title" style="font-size: 16px; margin-bottom: 10px;">Suggested Streams:</span>
+                    <span class="rec-title" style="font-size: 16px; margin-bottom: 10px;">Career Match With:</span>
                     <div class="rec-tags" style="line-height: 1.8;">
-                        @foreach(explode(';', $outcome['suggested_stream']) as $stream)
+                        @foreach(explode(';', $outcome['suggested_streams']) as $stream)
                             <span class="tag" style="background-color: #e0f5f4; color: #018580; font-size: 14px; padding: 2px 5px;">{{ trim($stream) }}</span>
                         @endforeach
                     </div>
                 </div>
                 @endif
 
-                {{-- Career Options --}}
+                @if(!str_contains($test_name, 'PROFESSIONAL'))
                 <div class="rec-block" style="margin-bottom: 8px;">
-                    <span class="rec-title" style="font-size: 16px; margin-bottom: 10px;">
-                        @if(str_contains($test_name,'PROFESSIONAL'))
-                            Probable Professional pursuits
-                        @else
-                            Career Options
-                        @endif
-                    </span>
+                    <span class="rec-title" style="font-size: 16px; margin-bottom: 10px;">Suggested Subjects:</span>
                     <div class="rec-tags" style="line-height: 1.8;">
-                        @foreach(explode(',', $outcome['career_options']) as $career)
-                            <span class="tag" style="background-color: #e0f5f4; color: #018580; font-size: 14px; padding: 2px 5px;">{{ trim($career) }}</span>
+                        @foreach(explode(';', $outcome['suggested_subjects']) as $subject)
+                            <span class="tag" style="background-color: #e0f5f4; color: #018580; font-size: 14px; padding: 2px 5px;">{{ trim($subject) }}</span>
                         @endforeach
                     </div>
                 </div>
-
-                {{-- Top Life Skills --}}
-                <div class="summary-box" style="padding: 8px; margin-bottom: 8px;">
-                    <span class="summary-title" style="font-size: 16px; margin-bottom: 3px; padding-bottom: 2px;">Top Life Skills</span>
-                    <div style="font-size: 14px; line-height: 1.5;">{{ $outcome['top_life_skills'] }}</div>
-                </div>
+                @endif
 
                 <div class="row" style="margin-top: 8px;">
                     <div class="col-6">
@@ -413,14 +408,6 @@
                         </ul>
                     </div>
                 </div>
-                
-                {{-- Profile Decode --}}
-                @if(!str_contains($test_name, 'PROFESSIONAL'))
-                <div class="profile-decode" style="padding: 8px; margin-bottom: 8px;">
-                    <span class="summary-title" style="font-size: 20px; margin-bottom: 3px; padding-bottom: 2px;">Profile Decode</span>
-                    <div style="font-size: 14px; line-height: 1.5;font-style: italic;">"{{ $outcome['profile_decode'] }}"</div>
-                </div>
-                @endif
             </div>
         @endforeach
         
