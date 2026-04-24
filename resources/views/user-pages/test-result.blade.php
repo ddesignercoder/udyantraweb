@@ -133,7 +133,7 @@
                         </div> 
 
                         {{-- Top Life Skills --}}
-                        <div>
+                        {{-- <div>
                             <h4 class="text-lg font-bold text-gray-900 mb-3 flex items-center">
                                 <x-lucide-target class="w-5 h-5 mr-2 text-primary" />
                                 Top Life Skills
@@ -146,7 +146,7 @@
                                     </span>
                                 @endforeach
                             </div>
-                        </div>
+                        </div> --}}
 
                         {{-- Strengths & Areas to Improve --}}
                         <div class="grid md:grid-cols-2 gap-6">

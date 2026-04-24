@@ -390,10 +390,10 @@
                 </div>
 
                 {{-- Top Life Skills --}}
-                <div class="summary-box" style="padding: 8px; margin-bottom: 8px;">
+                {{-- <div class="summary-box" style="padding: 8px; margin-bottom: 8px;">
                     <span class="summary-title" style="font-size: 16px; margin-bottom: 3px; padding-bottom: 2px;">Top Life Skills</span>
                     <div style="font-size: 14px; line-height: 1.5;">{{ $outcome['top_life_skills'] }}</div>
-                </div>
+                </div> --}}
 
                 <div class="row" style="margin-top: 8px;">
                     <div class="col-6">
