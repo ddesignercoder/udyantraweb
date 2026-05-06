@@ -75,6 +75,7 @@ return [
 
     'links' => [
         public_path('storage') => storage_path('app/public'),
+        public_path('udyantra-storage') => env('UDYANTRA_STORAGE_PATH', base_path('../udyantra-storage')),
     ],
 
 ];

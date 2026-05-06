@@ -131,4 +131,57 @@ class ProfileController extends Controller
         }
     }
 
+    // ==========================================
+    // 4. UPDATE BRAND LOGO (POST)
+    // ==========================================
+    public function updateBrandLogo(Request $request)
+    {
+        $token = Session::get('api_token');
+
+        if (!$token) {
+            return redirect()->route('login')->with('error', 'Please log in.');
+        }
+
+        $request->validateWithBag('updateBrandLogo', [
+            'brand_logo' => 'required|image|mimes:jpg,jpeg,png,webp|max:250',
+        ]);
+
+        try {
+            $url = config('services.backend.url') . '/profile/update-brand-logo';
+            
+            // Forward Multipart Request to Backend
+            $response = Http::withToken($token)
+                ->attach(
+                    'brand_logo', 
+                    $request->file('brand_logo')->getContent(), 
+                    $request->file('brand_logo')->getClientOriginalName()
+                )
+                ->post($url);
+                
+            $result = $response->json();
+           
+            // 1. Success
+            if ($response->successful() && ($result['success'] ?? false)) {
+                return redirect()->route('profile.brand-logo')->with('success', 'Brand logo updated successfully!');
+            }
+
+            // 2. Validation Error (422)
+            if ($response->status() === 422) {
+                return back()
+                    ->withErrors($result['errors'] ?? [], 'updateBrandLogo') 
+                    ->withInput();
+            }
+
+            // 3. Unauthorized
+            if ($response->status() === 401) {
+                session()->flush();
+                return redirect()->route('login')->with('error', 'Session expired.');
+            }
+
+            return back()->with('error', $result['message'] ?? 'Failed to update brand logo.');
+
+        } catch (\Exception $e) {
+            return back()->with('error', 'Unable to connect to server.');
+        }
+    }
 }
