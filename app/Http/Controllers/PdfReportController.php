@@ -235,11 +235,24 @@ class PdfReportController extends Controller
         $detailed_strengths = $findStrengths($strengthsList, $strengthsData);
         $detailed_areas = $findAreas($areasList, $areasData);
 
+        // Load organization brand logo as base64 for DomPDF (cannot load external URLs)
+        $brandLogoBase64 = '';
+        $brandLogoUrl = $data['brand_logo'] ?? null;
+        if ($brandLogoUrl) {
+            $brandLogoPath = public_path('udyantra-storage/' . $brandLogoUrl);
+            if (file_exists($brandLogoPath)) {
+                $type = pathinfo($brandLogoPath, PATHINFO_EXTENSION);
+                $brandLogoData = file_get_contents($brandLogoPath);
+                $brandLogoBase64 = 'data:image/' . $type . ';base64,' . base64_encode($brandLogoData);
+            }
+        }
+
         // Pass to View
         $data['detailed_strengths'] = $detailed_strengths;
         $data['detailed_areas'] = $detailed_areas;
         $data['profile_key'] = $profileKey;
         $data['sub_section_traits'] = $subSectionTraits;
+        $data['brand_logo_base64'] = $brandLogoBase64;
 
         // Generate pie chart images
         $data['chart_images'] = $this->buildChartImages($data['subsection_analysis']);

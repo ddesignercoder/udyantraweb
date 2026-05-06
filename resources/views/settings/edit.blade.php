@@ -42,12 +42,29 @@
                    Password
                 </a>
 
+                {{-- Brand Logo Link --}}
+                @if(in_array(session('user_role'), ['school_admin', 'company_admin']))
+                <a href="{{ route('profile.brand-logo') }}" 
+                   class="whitespace-nowrap group flex items-center py-4 px-1 border-b-2 font-medium text-sm transition-colors
+                   {{ request()->routeIs('profile.brand-logo') 
+                        ? 'border-primary text-primary' 
+                        : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300' }}">
+                   
+                   {{-- Icon: Image --}}
+                   <x-lucide-image class="mr-2 h-5 w-5 {{ request()->routeIs('profile.brand-logo') ? 'text-primary' : 'text-black group-hover:text-primary' }}" />
+                   
+                   Brand Logo
+                </a>
+                @endif
+
             </nav>
 
         {{-- CONTENT AREA --}}
         <div>
             @if(request()->routeIs('profile.password'))
                 <x-dashboard.password />
+            @elseif(request()->routeIs('profile.brand-logo'))
+                <x-dashboard.brand-logo :data="$data ?? []" />
             @else
                 <x-dashboard.profile :role="$role" :data="$data" />
             @endif

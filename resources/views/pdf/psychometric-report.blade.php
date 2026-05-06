@@ -208,12 +208,23 @@
         if (file_exists($logoSymbolPath)) {
             $logoSymbolBase64 = trim(file_get_contents($logoSymbolPath));
         }
+
+        $brandLogoBase64 = $brand_logo_base64 ?? '';
     ?>
 
     <!-- Cover Page -->
     <div class="cover-page">
-        @if($logoBase64)
-            <img src="{{ $logoBase64 }}" style="max-width: 250px; margin-bottom: 20px;" alt="Udyantra Logo">
+        @if($logoBase64 || $brandLogoBase64)
+            <div style="display: block; margin-bottom: 20px; text-align: center;">
+                {{-- Udyantra Logo (left) --}}
+                @if($logoBase64)
+                    <img src="{{ $logoBase64 }}" style="max-width: 200px; vertical-align: middle;" alt="Udyantra Logo">
+                @endif
+                {{-- Brand Logo (right) --}}
+                @if($brandLogoBase64)
+                    <img src="{{ $brandLogoBase64 }}" style=" margin-left: 30px; max-width: 200px; vertical-align: middle;" alt="Organization Logo">
+                @endif
+            </div>
         @else
             <div style="margin-bottom: 30px; font-size: 40px; color: #ccc;">LOGO</div>
         @endif
@@ -239,6 +250,9 @@
     {{-- Note: DomPDF handles fixed positioned elements on every page --}}
     <div class="header">
         <div style="text-align: center; font-weight: bold; color: #fff; font-size: 18px; line-height: 30px;">Udyantra Psychometric Analysis</div>
+        @if($brandLogoBase64)
+            <img src="{{ $brandLogoBase64 }}" style="position: absolute; left: 40px; top: 8px; height: 40px; background-color: #fff; padding: 5px; border-radius: 5px;" alt="Organization Logo">
+        @endif
         @if($logoBase64)
             <img src="{{ $logoBase64 }}" style="position: absolute; right: 40px; top: 8px; height: 40px; background-color: #fff; padding: 5px; border-radius: 5px;" alt="Udyantra Logo">
         @endif
