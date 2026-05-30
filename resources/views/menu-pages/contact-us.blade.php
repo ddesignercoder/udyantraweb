@@ -16,13 +16,25 @@
             </h1>
                <ul>
                   <li class="flex items-center"><img src="{{ asset('assets/image/contact-us/e-mail.svg') }}" 
-               alt="Email Icon"  loading="lazy" class="flex pointer-events-none w-6"/>&nbsp;&nbsp;Email:  <a href="mailto: care@udyantra.com">care@udyantra.com</a></li><br/>
-                  <li class="flex items-center"><img src="{{ asset('assets/image/contact-us/e-mail.svg') }}" 
-               alt="Email Icon"  loading="lazy" class="flex pointer-events-none w-6"/>&nbsp;&nbsp;Email: <a href="founder@udyantra.com">founder@udyantra.com</a></li><br/>
+               alt="Email Icon"  loading="lazy" class="flex pointer-events-none w-6"/>&nbsp;&nbsp;Email:  <a href="mailto:sales@udyantra.com">sales@udyantra.com</a></li><br/>
+                  <!-- <li class="flex items-center"><img src="{{ asset('assets/image/contact-us/e-mail.svg') }}" 
+               alt="Email Icon"  loading="lazy" class="flex pointer-events-none w-6"/>&nbsp;&nbsp;Email: <a href="founder@udyantra.com">founder@udyantra.com</a></li><br/> -->
                   <li class="flex items-center"><img src="{{ asset('assets/image/contact-us/call.svg') }}" 
                alt="Email Icon"  loading="lazy" class="flex pointer-events-none w-6"/>&nbsp;&nbsp;Tel: <a href="+918076627508">+91 807 662 7508</a></li><br/>
                   <li class="flex items-center"><img src="{{ asset('assets/image/contact-us/call.svg') }}" 
                alt="Email Icon"  loading="lazy" class="flex pointer-events-none w-6"/>&nbsp;&nbsp;Tel: <a href="+918273494712">+91 827 349 4712</a></li><br/>
+               <li class="flex items-start gap-2">
+                  <img src="{{ asset('assets/image/contact-us/location-map.svg') }}" 
+               alt="Location Icon"  loading="lazy" class="flex pointer-events-none w-6 shrink-0"/>
+                  <span class="flex flex-col md:flex-row md:gap-2">
+                     <span>Address:</span>
+                     <span>
+                        <span class="block">UDYANTRA EDUTECH LLP</span>
+                        <span class="block">B-405, Kanishka Tower Society, sector-35</span>
+                        <span class="block">Faridabad, Haryana, 121003</span>
+                     </span>
+                  </span>
+              </li>
                </ul>
          </div>
          {{-- 3. Right Side: OverlapDevice Mockup Image --}}
