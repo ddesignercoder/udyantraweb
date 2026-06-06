@@ -110,6 +110,7 @@ class AuthController extends Controller
         $response = Http::post("{$baseUrl}/register/individual", [
             'name'                  => $request->name,
             'email'                 => $request->email,
+            'phone'                 => $request->phone,
             'password'              => $request->password,
             'password_confirmation' => $request->password_confirmation,
         ]);
