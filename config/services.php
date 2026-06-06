@@ -39,4 +39,9 @@ return [
         'url' => env('BACKEND_API_URL'),
     ],
 
+    'admin_report' => [
+        'secret' => env('ADMIN_REPORT_SECRET'),
+        'api_token' => env('ADMIN_REPORT_API_TOKEN'),
+    ],
+
 ];

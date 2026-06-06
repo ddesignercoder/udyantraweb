@@ -13,6 +13,7 @@ return Application::configure(basePath: dirname(__DIR__))
     ->withMiddleware(function (Middleware $middleware): void {
             $middleware->alias([
             'auth.api' => \App\Http\Middleware\FrontendApiToken::class,
+            'verify.admin.signature' => \App\Http\Middleware\VerifyAdminSignature::class,
         ]);
         
         $middleware->validateCsrfTokens(except: [

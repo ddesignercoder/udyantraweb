@@ -10,6 +10,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\TestsManageController;
 use App\Http\Controllers\EnquiryController;
 use App\Http\Controllers\PdfReportController;
+use App\Http\Controllers\AdminReportController;
 
 // Route::get('/', function () {
 //     return view('welcome');
@@ -77,6 +78,13 @@ Route::get('/demo-test-preview', [TestPanelController::class, 'demoTestPreview']
 // ==========================================
 Route::match(['get', 'post'], '/payment/callback', [PaymentController::class, 'paymentCallback'])->name('payment.callback'); // Works for Juspay POST redirect
 
+
+// ==========================================
+// ADMIN PANEL — PDF Report (Signature-protected, no session required)
+// ==========================================
+Route::get('/admin-report/{userId}/{testResultId}', [AdminReportController::class, 'generateReport'])
+    ->middleware('verify.admin.signature')
+    ->name('admin-report');
 
 // ==========================================
 // PROTECTED ROUTES (Requires Session Token)
