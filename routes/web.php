@@ -49,7 +49,7 @@ Route::middleware('guest')->group(function () {
 });
 
 // ==========================================
-// PUBLIC MENU PAGES
+// PUBLIC MENU PAGES 
 // ==========================================
 Route::get('/pricing', [PaymentController::class, 'udyantraPackage'])->name('udyantra-package');
 Route::get('/why-choose-us', fn () => view('menu-pages.why-choose-us'))->name('why-choose-us');
