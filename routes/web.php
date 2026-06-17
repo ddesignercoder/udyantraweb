@@ -6,6 +6,7 @@ use App\Http\Controllers\TestPanelController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\OrgUserManagementController;
+use App\Http\Controllers\NotesController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\TestsManageController;
 use App\Http\Controllers\EnquiryController;
@@ -130,6 +131,12 @@ Route::middleware(['auth.api'])->group(function () {
     //School or Company Access their user test dashboard
     Route::get('/user-test-dashboard/{id}', [TestPanelController::class, 'userReportDashboard'])->name('user-test-dashboard');
     Route::get('/user-test-result/{userId}/{testResultId}', [TestPanelController::class, 'userResult'])->name('user-test-result');
+    
+    //Notes for Company or School for thier employee or student
+    Route::get('/user-notes/{id}', [NotesController::class, 'showUserNotes'])->name('user-notes');
+    Route::post('/user-notes/{id}', [NotesController::class, 'storeNote'])->name('users.notes.store');
+    Route::put('/notes/{noteId}', [NotesController::class, 'updateNote'])->name('notes.update');
+    Route::delete('/notes/{noteId}', [NotesController::class, 'destroyNote'])->name('notes.destroy');
     //PDF Report
     Route::get('/pdf-report/{userId}/{testResultId}', [PdfReportController::class, 'pdfReport'])->name('pdf-report');
 

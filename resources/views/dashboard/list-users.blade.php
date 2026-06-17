@@ -100,11 +100,18 @@
                                     {{ \Carbon\Carbon::parse($user['created_at'])->format('d M, Y') }}
                                 </td>
                                 <td class='px-6 py-4 text-right'>
-                                    <a href="{{ route('user-test-dashboard', ['id' => encrypt($user['id'])]) }}" 
-                                       class="inline-flex items-center justify-center gap-2 px-6 py-3 bg-white border-2 border-primary text-primary font-bold rounded-xl hover:bg-primary hover:text-white transition-all duration-300 shadow-sm hover:shadow-md group">
-                                       <x-lucide-bar-chart-3 class="w-5 h-5 group-hover:rotate-12 transition-transform" />
-                                       View Results
-                                    </a>
+                                    <div class="flex items-center justify-end gap-2">
+                                        <a href="{{ route('user-notes', ['id' => encrypt($user['id'])]) }}" 
+                                           class="inline-flex items-center justify-center gap-2 px-4 py-2 bg-white border border-primary text-primary font-semibold rounded-xl hover:bg-primary hover:text-white transition-all duration-300 shadow-sm hover:shadow-md group">
+                                           <x-lucide-sticky-note class="w-4 h-4 group-hover:rotate-12 transition-transform" />
+                                           Notes
+                                        </a>
+                                        <a href="{{ route('user-test-dashboard', ['id' => encrypt($user['id'])]) }}" 
+                                           class="inline-flex items-center justify-center gap-2 px-4 py-2 bg-white border border-primary text-primary font-semibold rounded-xl hover:bg-primary hover:text-white transition-all duration-300 shadow-sm hover:shadow-md group">
+                                           <x-lucide-bar-chart-3 class="w-4 h-4 group-hover:rotate-12 transition-transform" />
+                                           View Results
+                                        </a>
+                                    </div>
                                 </td>
                             </tr>
                         @empty
