@@ -101,7 +101,7 @@ class AuthController extends Controller
     }
 
     // ==========================================
-    // 4. REGISTER INDIVIDUAL
+    // 4a. REGISTER INDIVIDUAL
     // ==========================================
     public function registerIndividual(Request $request)
     {
@@ -135,6 +135,80 @@ class AuthController extends Controller
         return back()
             ->withInput($request->except(['password', 'password_confirmation']))
             ->with('error', $data['message'] ?? 'Registration failed');
+    }
+
+    // ==========================================
+    // 4b. MEMBER REGISTER (Student / Employee)
+    // ==========================================
+    public function showMemberRegister(Request $request, $inviteCode)
+    {
+        $baseUrl = config('services.backend.url');
+        
+        $organization = null;
+        $orgId = null;
+        $formTag = null;
+
+        try {
+            // Get invitation details by hash key
+            $response = Http::get("{$baseUrl}/invitations/{$inviteCode}");
+            if ($response->successful()) {
+                $data = $response->json()['data'];
+                $organization = $data['organization'];
+                $orgId = $data['organization_id'];
+                $formTag = $data['form_tag'];
+            }
+        } catch (\Exception $e) {
+            return redirect()->route('login')->with('error', 'Invalid invitation link.');
+        }
+
+        if (!$organization) {
+            return redirect()->route('login')->with('error', 'Invalid invitation link.');
+        }
+
+        return view('auth.register-member', compact('organization', 'orgId', 'formTag'));
+    }
+
+    public function registerMember(Request $request)
+    {
+        $baseUrl = config('services.backend.url');
+
+        // Forward the registration form data to backend
+        $response = Http::post("{$baseUrl}/register/member", $request->all());
+        $data = $response->json();
+
+        if ($response->successful() && isset($data['status']) && $data['status'] === true) {
+            
+            session([
+                'api_token'       => $data['token'],
+                'user_id'         => $data['user']['id'],
+                'user_name'       => $data['user']['name'],
+                'user_email'      => $data['user']['email'],
+                'user_role'       => $data['user']['roles'][0] ?? 'student',
+                'organization_id' => $data['user']['organization_id'] ?? null,
+                'udyantra_id'     => $data['user']['udyantra_id'] ?? null,
+            ]);
+
+            // If auto-assigned, redirect to the test-panel
+            if (!empty($data['auto_assigned']) && !empty($data['test_slug'])) {
+                return redirect()->route('test-panel', ['slug' => $data['test_slug']])
+                    ->with('success', 'Registration successful! You have been auto-assigned a test.');
+            }
+
+            // Redirect to dashboard
+            return redirect()->route('user.dashboard')
+                ->with('success', 'Registration successful! Please contact your administrator to assign tests.');
+        }
+
+        // if ($response->status() === 422) {
+        //     return back()
+        //         ->withInput($request->except(['password', 'password_confirmation']))
+        //         ->withErrors($data['errors'] ?? [])
+        //         ->with('error', $data['message'] ?? 'Validation failed.');
+        // }
+
+        return back()
+            ->withInput($request->except(['password', 'password_confirmation']))
+            ->with('error', $data['message'] ?? 'Registration failed.');
     }
 
     // ==========================================

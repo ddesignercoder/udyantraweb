@@ -42,6 +42,10 @@ Route::middleware('guest')->group(function () {
     Route::get('/register/individual', [AuthController::class, 'showIndividualRegister'])->name('register.ind.view');
     Route::post('/register/individual', [AuthController::class, 'registerIndividual'])->name('register.ind.submit');
 
+    // Step 2c: Member Registration (Student / Employee under School / Company)
+    Route::get('/register/member/{inviteCode}', [AuthController::class, 'showMemberRegister'])->name('register.member.view');
+    Route::post('/register/member', [AuthController::class, 'registerMember'])->name('register.member.submit');
+
     // --- Forgot Password ---
     Route::get('/forgot-password', fn () => view('auth.forgot-password'))->name('password.request');
     Route::post('/forgot-password', [AuthController::class, 'forgotPassword'])->name('password.forgot');
@@ -102,6 +106,8 @@ Route::middleware(['auth.api'])->group(function () {
     Route::get('/dashboard/users', [DashboardController::class, 'listUsers'])->name('dashboard.list-users');
     Route::get('/dashboard/bulk-upload-users', [OrgUserManagementController::class, 'viewBulkUploadUsers'])->name('dashboard.bulk-upload-users');
     Route::post('/org/bulk-upload-users', [OrgUserManagementController::class, 'bulkUploadUsers'])->name('org.bulk-upload-users');
+    Route::get('/dashboard/invite-members', [DashboardController::class, 'inviteMembers'])->name('dashboard.invite-members');
+    Route::post('/dashboard/invite/generate', [DashboardController::class, 'generateInviteLink'])->name('dashboard.invite.generate');
     
     //Test Management By company_admin or school_admin  
     Route::get('/dashboard/manage-tests', [TestsManageController::class, 'index'])->name('dashboard.manage-tests');

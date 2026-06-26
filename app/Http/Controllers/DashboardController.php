@@ -101,6 +101,18 @@ class DashboardController extends Controller
         return view('dashboard.add-user', ['role' => $role]);
     }
 
+    public function inviteMembers() //For student or employee invite to self register
+    {
+        $role = session('user_role');
+        
+        // Safety Check: Only Admins can access this
+        if (!in_array($role, ['school_admin', 'company_admin'])) {
+            return redirect()->route('user.dashboard')->with('error', 'Unauthorized access');
+        }
+
+        return view('dashboard.invite-members', ['role' => $role]);
+    }
+
     public function listUsers(Request $request)
     {
         $role = session('user_role');
@@ -119,11 +131,12 @@ class DashboardController extends Controller
         }
 
         // 2. Prepare Query Parameters
-        // We capture 'page' and 'search' from the browser URL to send to the API
+        // We capture 'page', 'search' and 'form_tag' from the browser URL to send to the API
         $queryParams = [
             'page' => $request->input('page', 1),
-            'per_page' => 10,                 // You can change this to 20 or 50
+            'per_page' => 10,                 
             'search' => $request->input('search'), // Forward the search term
+            'form_tag' => $request->input('form_tag'), // Forward the form_tag filter
         ];
 
         // 3. Fetch Data from API
@@ -132,9 +145,11 @@ class DashboardController extends Controller
 
         // Default empty paginator in case of error
         $usersPaginator = new LengthAwarePaginator([], 0, 10);
+        $formTags = [];
 
         if ($response->successful()) {
             $apiResponse = $response->json();
+            $formTags = $apiResponse['form_tags'] ?? [];
             
             // Based on your backend structure: { status: true, data: { current_page: 1, data: [...] } }
             if (isset($apiResponse['data']) && isset($apiResponse['data']['data'])) {
@@ -160,7 +175,33 @@ class DashboardController extends Controller
         return view('dashboard.list-users', [
             'users' => $usersPaginator,
             'role' => $role,
-            'title' => $pageTitle
+            'title' => $pageTitle,
+            'form_tags' => $formTags
         ]);
+    }
+
+    public function generateInviteLink(Request $request)
+    {
+        $role = session('user_role');
+        $token = session('api_token');
+        $baseUrl = config('services.backend.url');
+
+        // Check if Admin
+        if (!in_array($role, ['school_admin', 'company_admin'])) {
+            return response()->json([
+                'status'  => false,
+                'message' => 'Unauthorized access.'
+            ], 403);
+        }
+
+        // Call the backend API
+        $response = Http::withToken($token)->post("{$baseUrl}/invitations", [
+            'organization_id' => session('organization_id'),
+            'form_tag'        => $request->input('form_tag')
+        ]);
+
+        $data = $response->json();
+
+        return response()->json($data, $response->status());
     }
 }
