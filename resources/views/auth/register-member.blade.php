@@ -168,7 +168,7 @@
             </div>
 
             <div class="flex items-center justify-center">
-                <button type="submit" class="group relative w-1/4  py-3 px-4 border border-transparent text-sm font-bold rounded-full text-white bg-primary hover:bg-primary-dark focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary transition cursor-pointer">
+                <button type="submit" class="group relative md:w-1/4  py-3 px-4 border border-transparent text-sm font-bold rounded-full text-white bg-primary hover:bg-primary-dark focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary transition cursor-pointer">
                     Register and Start Test
                 </button>
             </div>
@@ -177,7 +177,7 @@
         <!-- <div class="text-center mt-4">
             <p class="text-sm text-textBlack">
                 Already have an account? 
-                <a href="{{ route('login') }}" class="font-medium text-primary hover:text-primary-dark transition-colors">
+                <a href="#" class="font-medium text-primary hover:text-primary-dark transition-colors">
                     Login here
                 </a>
             </p>
