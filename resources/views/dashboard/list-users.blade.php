@@ -14,26 +14,42 @@
             </div>
             
             <div class="flex flex-col sm:flex-row gap-3">
-                {{-- NEW: Search Form --}}
-                <form method="GET" action="{{ url()->current() }}" class="relative">
-                    <input 
-                        type="text" 
-                        name="search" 
-                        value="{{ request('search') }}" 
-                        placeholder="Search name or email..." 
-                        class="pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 w-full sm:w-64"
-                    >
-                    <div class="absolute left-3 top-2.5 text-gray-400">
-                        {{-- Assuming you have lucide icons, otherwise use SVG --}}
-                        <x-lucide-search class="w-5 h-5" /> 
+                {{-- NEW: Search & Source Form --}}
+                <form method="GET" action="{{ url()->current() }}" class="flex flex-col sm:flex-row gap-2 items-stretch sm:items-center">
+                    <div class="relative w-full sm:w-64">
+                        <input 
+                            type="text" 
+                            name="search" 
+                            value="{{ request('search') }}" 
+                            placeholder="Search name or email..." 
+                            class="pl-10 pr-10 py-2 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 w-full"
+                        >
+                        <div class="absolute left-3 top-2.5 text-gray-400">
+                            <x-lucide-search class="w-5 h-5" /> 
+                        </div>
+                        
+                        {{-- "Clear" button shows only if searching --}}
+                        @if(request('search'))
+                            <a href="{{ url()->current() . (request('form_tag') ? '?form_tag='.request('form_tag') : '') }}" class="absolute right-10 top-2.5 text-gray-400 hover:text-red-500">
+                                <x-lucide-x class="w-5 h-5" />
+                            </a>
+                        @endif
                     </div>
-                    
-                    {{-- "Clear" button shows only if searching --}}
-                    @if(request('search'))
-                        <a href="{{ url()->current() }}" class="absolute right-3 top-2.5 text-gray-400 hover:text-red-500">
-                            <x-lucide-x class="w-5 h-5" />
-                        </a>
-                    @endif
+
+                    <div>
+                        <select name="form_tag" onchange="this.form.submit()" class="border border-gray-300 rounded-lg px-3 py-2 text-sm text-textBlack focus:ring-blue-500 focus:border-blue-500 bg-white w-full">
+                            <option value="">Form Tag</option>
+                            {{-- Dynamic unique form_tags from database --}}
+                            @if(isset($form_tags))
+                                @foreach($form_tags as $tag)
+                                        <option value="{{ $tag }}" {{ request('form_tag') == $tag ? 'selected' : '' }}>
+                                            {{ ucfirst($tag) }}
+                                        </option>
+                                @endforeach
+                            @endif
+                            
+                        </select>
+                    </div>
                 </form>
 
                 <a href="{{ route('dashboard.add-user') }}" class="bg-primary text-white px-4 py-2 rounded-lg font-semibold hover:bg-primary-dark/80 cursor-pointer transition flex items-center justify-center gap-2 whitespace-nowrap">
@@ -143,5 +159,4 @@
             @endif
         </div>
     </div>
-
 @endsection
