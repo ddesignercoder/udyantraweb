@@ -101,18 +101,6 @@ class DashboardController extends Controller
         return view('dashboard.add-user', ['role' => $role]);
     }
 
-    public function inviteMembers() //For student or employee invite to self register
-    {
-        $role = session('user_role');
-        
-        // Safety Check: Only Admins can access this
-        if (!in_array($role, ['school_admin', 'company_admin'])) {
-            return redirect()->route('user.dashboard')->with('error', 'Unauthorized access');
-        }
-
-        return view('dashboard.invite-members', ['role' => $role]);
-    }
-
     public function listUsers(Request $request)
     {
         $role = session('user_role');
@@ -178,30 +166,5 @@ class DashboardController extends Controller
             'title' => $pageTitle,
             'form_tags' => $formTags
         ]);
-    }
-
-    public function generateInviteLink(Request $request)
-    {
-        $role = session('user_role');
-        $token = session('api_token');
-        $baseUrl = config('services.backend.url');
-
-        // Check if Admin
-        if (!in_array($role, ['school_admin', 'company_admin'])) {
-            return response()->json([
-                'status'  => false,
-                'message' => 'Unauthorized access.'
-            ], 403);
-        }
-
-        // Call the backend API
-        $response = Http::withToken($token)->post("{$baseUrl}/invitations", [
-            'organization_id' => session('organization_id'),
-            'form_tag'        => $request->input('form_tag')
-        ]);
-
-        $data = $response->json();
-
-        return response()->json($data, $response->status());
     }
 }

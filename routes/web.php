@@ -12,6 +12,7 @@ use App\Http\Controllers\TestsManageController;
 use App\Http\Controllers\EnquiryController;
 use App\Http\Controllers\PdfReportController;
 use App\Http\Controllers\AdminReportController;
+use App\Http\Controllers\InviteMemberController;
 
 // Route::get('/', function () {
 //     return view('welcome');
@@ -106,8 +107,10 @@ Route::middleware(['auth.api'])->group(function () {
     Route::get('/dashboard/users', [DashboardController::class, 'listUsers'])->name('dashboard.list-users');
     Route::get('/dashboard/bulk-upload-users', [OrgUserManagementController::class, 'viewBulkUploadUsers'])->name('dashboard.bulk-upload-users');
     Route::post('/org/bulk-upload-users', [OrgUserManagementController::class, 'bulkUploadUsers'])->name('org.bulk-upload-users');
-    Route::get('/dashboard/invite-members', [DashboardController::class, 'inviteMembers'])->name('dashboard.invite-members');
-    Route::post('/dashboard/invite/generate', [DashboardController::class, 'generateInviteLink'])->name('dashboard.invite.generate');
+    Route::get('/dashboard/invite-members', [InviteMemberController::class, 'inviteMembers'])->name('dashboard.invite-members');
+    Route::post('/dashboard/invite/generate', [InviteMemberController::class, 'generateInviteLink'])->name('dashboard.invite.generate');
+    Route::patch('/dashboard/invite/{id}/toggle-status', [InviteMemberController::class, 'toggleInviteStatus'])->name('dashboard.invite.toggle-status');
+    Route::get('/dashboard/invite/users', [InviteMemberController::class, 'registeredUsers'])->name('dashboard.invite.users');
     
     //Test Management By company_admin or school_admin  
     Route::get('/dashboard/manage-tests', [TestsManageController::class, 'index'])->name('dashboard.manage-tests');
