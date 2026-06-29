@@ -184,4 +184,58 @@ class ProfileController extends Controller
             return back()->with('error', 'Unable to connect to server.');
         }
     }
+
+    // ==========================================
+    // 5. UPDATE BRAND BACKGROUND (POST)
+    // ==========================================
+    public function updateBrandBackground(Request $request)
+    {
+        $token = Session::get('api_token');
+
+        if (!$token) {
+            return redirect()->route('login')->with('error', 'Please log in.');
+        }
+
+        $request->validateWithBag('updateBrandBackground', [
+            'brand_background' => 'required|image|mimes:jpg,jpeg,png,webp|max:2048',
+        ]);
+
+        try {
+            $url = config('services.backend.url') . '/profile/update-brand-background';
+            
+            // Forward Multipart Request to Backend
+            $response = Http::withToken($token)
+                ->attach(
+                    'brand_background', 
+                    $request->file('brand_background')->getContent(), 
+                    $request->file('brand_background')->getClientOriginalName()
+                )
+                ->post($url);
+                
+            $result = $response->json();
+           
+            // 1. Success
+            if ($response->successful() && ($result['success'] ?? false)) {
+                return redirect()->route('profile.brand-background')->with('success', 'Brand background updated successfully!');
+            }
+
+            // 2. Validation Error (422)
+            if ($response->status() === 422) {
+                return back()
+                    ->withErrors($result['errors'] ?? [], 'updateBrandBackground') 
+                    ->withInput();
+            }
+
+            // 3. Unauthorized
+            if ($response->status() === 401) {
+                session()->flush();
+                return redirect()->route('login')->with('error', 'Session expired.');
+            }
+
+            return back()->with('error', $result['message'] ?? 'Failed to update brand background.');
+
+        } catch (\Exception $e) {
+            return back()->with('error', 'Unable to connect to server.');
+        }
+    }
 }
