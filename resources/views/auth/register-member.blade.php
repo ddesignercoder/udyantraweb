@@ -29,7 +29,22 @@
             </div>
         @endif
 
-        <form novalidate class="mt-8 space-y-6" action="{{ route('register.member.submit') }}" method="POST">
+        <form novalidate class="mt-8 space-y-6" action="{{ route('register.member.submit') }}" method="POST"
+            x-data="{
+                states: [
+                    'Andhra Pradesh', 'Arunachal Pradesh', 'Assam', 'Bihar', 'Chhattisgarh', 'Goa', 'Gujarat', 
+                    'Haryana', 'Himachal Pradesh', 'Jharkhand', 'Karnataka', 'Kerala', 'Madhya Pradesh', 
+                    'Maharashtra', 'Manipur', 'Meghalaya', 'Mizoram', 'Nagaland', 'Odisha', 'Punjab', 
+                    'Rajasthan', 'Sikkim', 'Tamil Nadu', 'Telangana', 'Tripura', 'Uttar Pradesh', 
+                    'Uttarakhand', 'West Bengal', 'Andaman and Nicobar Islands', 'Chandigarh', 
+                    'Dadra and Nagar Haveli and Daman and Diu', 'Delhi', 'Jammu and Kashmir', 
+                    'Ladakh', 'Lakshadweep', 'Puducherry'
+                ],
+                classes: ['UG - 1st year','UG - 2nd year','UG - 3rd year','UG - 4th year','PG - 1st year','PG - 2nd year','PG - 3rd year'],
+                selectedState: '{{ addslashes(old('state', '')) }}',
+                selectedClass: '{{ addslashes(old('class', '')) }}',
+                showConfirmPassword: false
+            }">
             @csrf 
             <input type="hidden" name="trackingparam" value="{{ request('trackingparam') }}">
             
@@ -57,18 +72,18 @@
                     <p id="js-error-email" class="text-red-500 text-xs mt-1 hidden"></p>
                 </div>
 
+                <div>
+                    <label for="phone" class="block text-sm font-medium text-gray-700">Phone Number</label>
+                    <input id="phone" name="phone" type="text" required value="{{ old('phone') }}"
+                        class="appearance-none relative block w-full px-4 py-3 border border-secondary placeholder-gray-400 text-textBlack rounded-full focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent sm:text-sm bg-lightgray transition-colors" 
+                        placeholder="e.g. +1234567890">
+                    @error('phone') <p class="text-red-500 text-xs mt-1">{{ $message }}</p> @enderror
+                    <p id="js-error-phone" class="text-red-500 text-xs mt-1 hidden"></p>
+                </div>
+
 
                 <!-- Student Profile Fields -->
                 <div id="student_fields" class="space-y-4 {{ (isset($organization) && $organization['type'] === 'school') ? '' : 'hidden' }}">
-                    <div>
-                        <label for="phone" class="block text-sm font-medium text-gray-700">Phone Number</label>
-                        <input id="phone" name="phone" type="text" value="{{ old('phone') }}"
-                            class="appearance-none relative block w-full px-4 py-3 border border-secondary placeholder-gray-400 text-textBlack rounded-full focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent sm:text-sm bg-lightgray transition-colors" 
-                            placeholder="e.g. +1234567890">
-                        @error('phone') <p class="text-red-500 text-xs mt-1">{{ $message }}</p> @enderror
-                        <p id="js-error-phone" class="text-red-500 text-xs mt-1 hidden"></p>
-                    </div>
-
                     <div>
                         <label for="roll_no" class="block text-sm font-medium text-gray-700">Roll Number</label>
                         <input id="roll_no" name="roll_no" type="text" value="{{ old('roll_no') }}"
@@ -80,52 +95,40 @@
 
                     <div>
                         <label for="class_select" class="block text-sm font-medium text-gray-700">Class</label>
-                        <select id="class_select" name="class" required
+                        <select id="class_select" name="class" required x-model="selectedClass"
                             class="appearance-none relative block w-full px-4 py-3 border border-secondary placeholder-gray-400 text-textBlack rounded-full focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent sm:text-sm bg-white transition-colors">
                             <option value="">Select Class</option>
-                            <option value="9" {{ old('class') == '9' ? 'selected' : '' }}>9</option>
-                            <option value="10" {{ old('class') == '10' ? 'selected' : '' }}>10</option>
-                            <option value="11" {{ old('class') == '11' ? 'selected' : '' }}>11</option>
-                            <option value="12" {{ old('class') == '12' ? 'selected' : '' }}>12</option>
-                            <option value="Other" {{ old('class') == 'Other' ? 'selected' : '' }}>Other</option>
+                            <template x-for="cls in classes" :key="cls">
+                                <option :value="cls" x-text="cls"></option>
+                            </template>
                         </select>
                         @error('class') <p class="text-red-500 text-xs mt-1">{{ $message }}</p> @enderror
                         <p id="js-error-class_select" class="text-red-500 text-xs mt-1 hidden"></p>
                     </div>
 
-                    <div>
-                        <label for="section" class="block text-sm font-medium text-gray-700">Section (Optional)</label>
-                        <input id="section" name="section" type="text" value="{{ old('section') }}"
-                            class="appearance-none relative block w-full px-4 py-3 border border-secondary placeholder-gray-400 text-textBlack rounded-full focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent sm:text-sm bg-lightgray transition-colors" 
-                            placeholder="e.g. A">
-                        @error('section') <p class="text-red-500 text-xs mt-1">{{ $message }}</p> @enderror
-                    </div>
 
-                    <div>
-                        <label for="guardian_name" class="block text-sm font-medium text-gray-700">Guardian Name</label>
-                        <input id="guardian_name" name="guardian_name" type="text" value="{{ old('guardian_name') }}"
-                            class="appearance-none relative block w-full px-4 py-3 border border-secondary placeholder-gray-400 text-textBlack rounded-full focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent sm:text-sm bg-lightgray transition-colors" 
-                            placeholder="e.g. Robert Doe">
-                        @error('guardian_name') <p class="text-red-500 text-xs mt-1">{{ $message }}</p> @enderror
-                        <p id="js-error-guardian_name" class="text-red-500 text-xs mt-1 hidden"></p>
-                    </div>
 
 
                     <div>
                         <label for="state" class="block text-sm font-medium text-gray-700">State</label>
-                        <select id="state" name="state"
+                        <select id="state" name="state" required x-model="selectedState"
                             class="appearance-none relative block w-full px-4 py-3 border border-secondary placeholder-gray-400 text-textBlack rounded-full focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent sm:text-sm bg-white transition-colors">
                             <option value="">Select State</option>
+                            <template x-for="state in states" :key="state">
+                                <option :value="state" x-text="state"></option>
+                            </template>
                         </select>
                         @error('state') <p class="text-red-500 text-xs mt-1">{{ $message }}</p> @enderror
+                        <p id="js-error-state" class="text-red-500 text-xs mt-1 hidden"></p>
                     </div>
 
                     <div>
                         <label for="city" class="block text-sm font-medium text-gray-700">City</label>
-                        <input id="city" name="city" type="text" value="{{ old('city') }}"
+                        <input id="city" name="city" type="text" required value="{{ old('city') }}"
                             class="appearance-none relative block w-full px-4 py-3 border border-secondary placeholder-gray-400 text-textBlack rounded-full focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent sm:text-sm bg-lightgray transition-colors" 
                             placeholder="e.g. Noida">
                         @error('city') <p class="text-red-500 text-xs mt-1">{{ $message }}</p> @enderror
+                        <p id="js-error-city" class="text-red-500 text-xs mt-1 hidden"></p>
                     </div>
                 </div>
 
@@ -160,9 +163,15 @@
 
                 <div>
                     <label for="password_confirmation" class="block text-sm font-medium text-gray-700">Confirm Password</label>
-                    <input id="password_confirmation" name="password_confirmation" type="password" required 
-                        class="appearance-none relative block w-full px-4 py-3 border border-secondary placeholder-gray-400 text-textBlack rounded-full focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent sm:text-sm bg-lightgray transition-colors" 
-                        placeholder="••••••••">
+                    <div class="relative">
+                        <input id="password_confirmation" name="password_confirmation" :type="showConfirmPassword ? 'text' : 'password'" required 
+                            class="appearance-none relative block w-full px-4 py-3 border border-secondary placeholder-gray-400 text-textBlack rounded-full focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent sm:text-sm bg-lightgray transition-colors pr-10" 
+                            placeholder="••••••••">
+                        <button type="button" @click="showConfirmPassword = !showConfirmPassword" class="absolute inset-y-0 right-0 pr-4 flex items-center text-gray-400 hover:text-gray-600 focus:outline-none select-none">
+                            <x-lucide-eye x-show="!showConfirmPassword" class="w-5 h-5" />
+                            <x-lucide-eye-off x-show="showConfirmPassword" class="w-5 h-5" style="display: none;" />
+                        </button>
+                    </div>
                     <p id="js-error-password_confirmation" class="text-red-500 text-xs mt-1 hidden"></p>
                 </div>
             </div>
@@ -188,30 +197,6 @@
 
 <script>
 document.addEventListener('DOMContentLoaded', function () {
-    const states = [
-        "Andhra Pradesh", "Arunachal Pradesh", "Assam", "Bihar", "Chhattisgarh", "Goa", "Gujarat", 
-        "Haryana", "Himachal Pradesh", "Jharkhand", "Karnataka", "Kerala", "Madhya Pradesh", 
-        "Maharashtra", "Manipur", "Meghalaya", "Mizoram", "Nagaland", "Odisha", "Punjab", 
-        "Rajasthan", "Sikkim", "Tamil Nadu", "Telangana", "Tripura", "Uttar Pradesh", 
-        "Uttarakhand", "West Bengal", "Andaman and Nicobar Islands", "Chandigarh", 
-        "Dadra and Nagar Haveli and Daman and Diu", "Delhi", "Jammu and Kashmir", 
-        "Ladakh", "Lakshadweep", "Puducherry"
-    ];
-    
-    const stateSelect = document.getElementById('state');
-    if (stateSelect) {
-        const selectedState = "{{ old('state') }}";
-        states.forEach(state => {
-            const option = document.createElement('option');
-            option.value = state;
-            option.textContent = state;
-            if (state === selectedState) {
-                option.selected = true;
-            }
-            stateSelect.appendChild(option);
-        });
-    }
-
     // Client-side form validation
     const form = document.querySelector('form');
     if (form) {
@@ -260,27 +245,21 @@ document.addEventListener('DOMContentLoaded', function () {
                 setError('email', '');
             }
 
+            // Validate Phone
+            const phone = document.getElementById('phone').value.trim();
+            const phoneRegex = /^\+?[0-9]{10,15}$/;
+            if (!phone) {
+                setError('phone', 'Phone Number is required.');
+            } else if (!phoneRegex.test(phone)) {
+                setError('phone', 'Please enter a valid phone number (10 to 15 digits).');
+            } else {
+                setError('phone', '');
+            }
+
             // 3. Conditional Fields based on Organization Type
             const isSchool = {{ $organization['type'] === 'school' ? 'true' : 'false' }};
             if (isSchool) {
-                // Validate Phone
-                const phone = document.getElementById('phone').value.trim();
-                const phoneRegex = /^\+?[0-9]{10,15}$/;
-                if (!phone) {
-                    setError('phone', 'Phone Number is required.');
-                } else if (!phoneRegex.test(phone)) {
-                    setError('phone', 'Please enter a valid phone number (10 to 15 digits).');
-                } else {
-                    setError('phone', '');
-                }
 
-                // Validate Roll No
-                const rollNo = document.getElementById('roll_no').value.trim();
-                if (!rollNo) {
-                    setError('roll_no', 'Roll Number is required.');
-                } else {
-                    setError('roll_no', '');
-                }
 
                 // Validate Class
                 const classSelect = document.getElementById('class_select').value;
@@ -290,13 +269,23 @@ document.addEventListener('DOMContentLoaded', function () {
                     setError('class_select', '');
                 }
 
-                // Validate Guardian Name
-                const guardian = document.getElementById('guardian_name').value.trim();
-                if (!guardian) {
-                    setError('guardian_name', 'Guardian Name is required.');
+                // Validate State
+                const stateSelect = document.getElementById('state').value;
+                if (!stateSelect) {
+                    setError('state', 'Please select your state.');
                 } else {
-                    setError('guardian_name', '');
+                    setError('state', '');
                 }
+
+                // Validate City
+                const cityInput = document.getElementById('city').value.trim();
+                if (!cityInput) {
+                    setError('city', 'City is required.');
+                } else {
+                    setError('city', '');
+                }
+
+
             } else {
                 // Validate Employee Code
                 const empCode = document.getElementById('employee_code').value.trim();
