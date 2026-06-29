@@ -159,7 +159,9 @@ Route::middleware(['auth.api'])->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::get('/profile/password', [ProfileController::class, 'edit'])->name('profile.password');
     Route::get('/profile/brand-logo', [ProfileController::class, 'edit'])->name('profile.brand-logo');
+    Route::get('/profile/brand-background', [ProfileController::class, 'edit'])->name('profile.brand-background');
     Route::post('/profile/update', [ProfileController::class, 'update'])->name('profile.update');
     Route::post('/password/update', [ProfileController::class, 'updatePassword'])->name('password.update');
     Route::post('/brand-logo/update', [ProfileController::class, 'updateBrandLogo'])->name('brand-logo.update');
+    Route::post('/brand-background/update', [ProfileController::class, 'updateBrandBackground'])->name('brand-background.update');
 });
