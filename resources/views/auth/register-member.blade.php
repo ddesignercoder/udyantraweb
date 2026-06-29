@@ -4,7 +4,10 @@
 @section('description', 'Register under your school or company organization to start your career assessment test on Udyantra.')
 
 @section('content')
-<div class="min-h-screen flex items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
+<div class="min-h-screen flex items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8"
+     @if(isset($organization) && !empty($organization['brand_background_url']) && (!isset($organization['brand_enabled']) || $organization['brand_enabled']))
+     style="background-image: url('{{ asset('udyantra-storage/' . $organization['brand_background_url']) }}'); background-size: cover; background-position: center;"
+     @endif>
     <div class="max-w-5xl w-full space-y-8 bg-white rounded-xl shadow-lg p-2">
         
         <div class="text-center">

@@ -11,7 +11,7 @@
                              class="h-16 w-auto object-contain">
                     </a>
                     
-                    @if(isset($organization) && !empty($organization['brand_logo_url']) && (!isset($organization['brand_logo_enabled']) || $organization['brand_logo_enabled']))
+                    @if(isset($organization) && !empty($organization['brand_logo_url']) && (!isset($organization['brand_enabled']) || $organization['brand_enabled']))
                         <div class="h-8 w-px bg-gray-300"></div>
                         <div class="flex items-center">
                             <img src="{{ asset('udyantra-storage/' . $organization['brand_logo_url']) }}" 
